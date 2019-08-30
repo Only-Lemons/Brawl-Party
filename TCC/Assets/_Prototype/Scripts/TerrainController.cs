@@ -7,7 +7,7 @@ public class TerrainController : MonoBehaviour
     public static TerrainController instance;
 
 
-    public Tile[] tilesInstanciados;
+    public TileController[] tilesInstanciados;
    
  
     

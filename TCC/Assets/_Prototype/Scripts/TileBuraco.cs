@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileBuraco : Tile, IInteractable
+public class TileBuraco : Tile
 {
-
-    public new void Interagir(Personagem personagem)
+    public TileBuraco(Transform pivot)
     {
-        personagem.Morrer();
+        Peso = 2;
+        Pivot = pivot;
+        Prefab = Resources.Load("Tiles/TileBuraco") as GameObject;
     }
-    
+
+    public override void Interagir(Personagem player)
+    {
+        player.MudarEstado(State.Stun);
+    }
 }

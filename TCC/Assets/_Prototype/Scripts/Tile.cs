@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour, IInteractable
+
+public abstract class Tile 
 {
     public int Peso;
+    public Transform Pivot;
     public GameObject Prefab;
 
-    public void Interagir(Personagem personagem)
-    {
-        personagem.MudarEstado(State.Normal);
-    }
+    public abstract void Interagir(Personagem player);
+
+
 }
