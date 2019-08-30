@@ -16,6 +16,7 @@ public class Personagem : MonoBehaviour
 {
     public float velocidadedeMovimento;
     public State EstadoAtual;
+    Tile ativo = new Tile(); 
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class Personagem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Tile ativo = new Tile(); 
+        
         float menorDistancia = float.MaxValue;
         for (int k = 0; k < TerrainController.instance.tilesInstanciados.Length; k++)
         {
