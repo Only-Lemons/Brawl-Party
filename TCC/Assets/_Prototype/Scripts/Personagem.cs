@@ -14,10 +14,28 @@ public class Personagem : MonoBehaviour
 {
     public float velocidadedeMovimento;
     public State EstadoAtual;
+
     private void Start()
     {
         MudarEstado(State.Normal);
     }
+
+    private void FixedUpdate()
+    {
+        Tile[] Tiles = TerrainController.SingletonTiles;
+        IInteractable MenorPontoMedio = Tiles[0].GetComponent<IInteractable>();
+        float menorDistancia = 100;
+        for (int k = 0; k < Tiles.Length; k++)
+        {
+            if (Vector3.Distance(this.transform.position, Tiles[k].transform.position) < menorDistancia)
+            {
+                menorDistancia = Vector3.Distance(this.transform.position, Tiles[k].transform.position);
+                MenorPontoMedio = Tiles[k].GetComponent<IInteractable>();
+            }
+        }
+        MenorPontoMedio.Interagir(this);
+    }
+
     public void MudarEstado(State state)
     {
         EstadoAtual = state;
@@ -46,6 +64,7 @@ public class Personagem : MonoBehaviour
             velocidadedeMovimento = 2f;
         }
     }
+
     public void Morrer()
     {
         Destroy(this.gameObject);

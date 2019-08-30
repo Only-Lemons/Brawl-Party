@@ -217,6 +217,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: hextil (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4211833237493059273, guid: e52d945b9efdc0a408a10211bba875f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 875996149346204890, guid: e52d945b9efdc0a408a10211bba875f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -286,6 +291,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: hextileglo (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1858178452589374636, guid: 9a698cf09d63ede42bb67f9f2a6332e1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3428025114187865791, guid: 9a698cf09d63ede42bb67f9f2a6332e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -354,6 +364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hextil (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211833237493059273, guid: e52d945b9efdc0a408a10211bba875f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 875996149346204890, guid: e52d945b9efdc0a408a10211bba875f5,
         type: 3}
@@ -574,6 +589,7 @@ MonoBehaviour:
   - {fileID: 8565055665199371494}
   - {fileID: 8635758560924859444}
   - {fileID: 256749519}
+  - {fileID: 168180759}
 --- !u!1 &1732434016
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732434016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 4.78}
+  m_LocalPosition: {x: -4.81, y: 0.8, z: 3.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -802,6 +818,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: hextilburao
       objectReference: {fileID: 0}
+    - target: {fileID: 544136897404845448, guid: 553d9bdff5a881c49ace1217d82796d7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3591181417354710939, guid: 553d9bdff5a881c49ace1217d82796d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -883,6 +904,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: hextil (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4211833237493059273, guid: e52d945b9efdc0a408a10211bba875f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 875996149346204890, guid: e52d945b9efdc0a408a10211bba875f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -951,6 +977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hextileglo
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858178452589374636, guid: 9a698cf09d63ede42bb67f9f2a6332e1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3428025114187865791, guid: 9a698cf09d63ede42bb67f9f2a6332e1,
         type: 3}
