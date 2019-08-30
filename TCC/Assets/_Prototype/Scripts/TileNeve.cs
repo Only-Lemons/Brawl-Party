@@ -8,7 +8,7 @@ public class TileNeve : Tile
     {
         Peso = 1;
         Pivot = pivot;
-        Prefab = Resources.Load("Tiles/TileGelo") as GameObject;
+        Prefab = Resources.Load("Tiles/TileNeve") as GameObject;
     }
 
     public  override void Interagir(Personagem personagem)

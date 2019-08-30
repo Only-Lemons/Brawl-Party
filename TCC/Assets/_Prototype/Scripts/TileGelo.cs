@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileNormal : Tile
+public class TileGelo : Tile
 {
-    public TileNormal(Transform pivot)
+    public TileGelo(Transform pivot)
     {
         Peso = 1;
         Pivot = pivot;
-        Prefab = Resources.Load("Tiles/TileNormal") as GameObject;
+        Prefab = Resources.Load("Tiles/TileGelo") as GameObject;
     }
 
     public override void Interagir(Personagem player)
     {
-        player.MudarEstado(State.Normal);
+        player.MudarEstado(State.Escorregadio);
     }
+
 }

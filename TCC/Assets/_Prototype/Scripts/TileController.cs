@@ -4,40 +4,24 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-   public Tile tile;
-
-    public bool gambs= false;
-    public bool gambs1= false;
+    public Tile tile;
 
     void Start()
     {
-        tile = new TileNormal(this.transform);
+        //tile = new TileNormal(this.transform);
         InstaciarTile();
     }
 
-    void Update()
+    
+
+    public void InstaciarTile()
     {
-        if(gambs)
-        {
-         tile = new TileNeve(this.transform);
-         InstaciarTile();
-        }
-
-        if(gambs1)
-        {
-         tile = new TileBuraco(this.transform);
-         InstaciarTile();
-        }
-
-    }
-
-    void InstaciarTile()
-    {
-        if(transform.childCount >0)
+        if(transform.childCount>0)
         {
             Destroy(transform.GetChild(0).gameObject);
         }
-        Instantiate(tile.Prefab,transform.position, Quaternion.identity,this.transform);
+
+        Instantiate(tile.Prefab, transform.position, Quaternion.identity,this.transform);
 
     }
 

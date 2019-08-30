@@ -27,7 +27,7 @@ public class Personagem : MonoBehaviour
     {
         
         float menorDistancia = float.MaxValue;
-        for (int k = 0; k < TerrainController.instance.tilesInstanciados.Length; k++)
+        for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
         {
             if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].tile.Pivot.transform.position) < menorDistancia)
             {
