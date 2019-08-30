@@ -10,6 +10,8 @@ public enum State
     Stun,
     Escorregadio
 }
+
+
 public class Personagem : MonoBehaviour
 {
     public float velocidadedeMovimento;
@@ -22,18 +24,17 @@ public class Personagem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Tile[] Tiles = TerrainController.SingletonTiles;
-        IInteractable MenorPontoMedio = Tiles[0].GetComponent<IInteractable>();
-        float menorDistancia = 100;
-        for (int k = 0; k < Tiles.Length; k++)
+        Tile ativo = new Tile(); 
+        float menorDistancia = float.MaxValue;
+        for (int k = 0; k < TerrainController.instance.tilesInstanciados.Length; k++)
         {
-            if (Vector3.Distance(this.transform.position, Tiles[k].transform.position) < menorDistancia)
+            if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].transform.position) < menorDistancia)
             {
-                menorDistancia = Vector3.Distance(this.transform.position, Tiles[k].transform.position);
-                MenorPontoMedio = Tiles[k].GetComponent<IInteractable>();
+                menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].transform.position);
+                ativo = TerrainController.instance.tilesInstanciados[k];
             }
         }
-        MenorPontoMedio.Interagir(this);
+        ativo.Interagir(this);
     }
 
     public void MudarEstado(State state)
@@ -41,6 +42,7 @@ public class Personagem : MonoBehaviour
         EstadoAtual = state;
         MudarAtributosPorEstado();
     }
+
     private void MudarAtributosPorEstado()
     {
         if (EstadoAtual == State.Normal)

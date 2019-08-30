@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class TerrainController : MonoBehaviour
 {
-    [SerializeField]
-    public static  Tile[] SingletonTiles;
+    public static TerrainController instance;
+
+
+    public Tile[] tilesInstanciados;
    
  
     
     GameController gameController;
-    private void Start()
+
+    void Awake()
     {
-        SingletonTiles = GameObject.FindObjectsOfType<Tile>();
+        instance = this;
+    }
+
+
+
+    private void Start()
+    {    
         gameController = GameObject.FindObjectOfType<GameController>();
     }
+
+
     //void FixedUpdate()
     //{
         //for (int i = 0; i < gameController.getPersonagens().Count; i++)
