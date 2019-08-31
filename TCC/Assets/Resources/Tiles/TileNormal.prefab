@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8255676865281604679}
   - component: {fileID: 1137450144443795057}
   - component: {fileID: 6698402450715572872}
+  - component: {fileID: 2374543688242523632}
   m_Layer: 0
   m_Name: TileNormal
   m_TagString: Untagged
@@ -78,3 +79,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &2374543688242523632
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4956589101023481428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7320509, y: 0, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

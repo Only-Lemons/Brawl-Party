@@ -5,15 +5,16 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
    
-   public int tamanho = 100;
-
-    public int pesoTotal = 0;
-    public int pesoMaximo = 100;
-
-   public GameObject tile;
+    [SerializeField]
+    int tamanho = 100;
+    [SerializeField]
+    int pesoTotal = 0;
+    [SerializeField]
+    int pesoMaximo = 100;
+    [SerializeField]
+    GameObject tile;
     GameObject anterior = null;
-    GameObject primeiroFila = null;
-    
+    GameObject primeiroFila = null; 
     bool negativeZ = false;
     Vector3 offsetx = new Vector3(1.73f,0,0);
     Vector3 offsetz = new Vector3(0.86f,0,1.5f);
