@@ -25,10 +25,19 @@ public class CameraController2 : MonoBehaviour
     void FollowerZoom()
     {
         cam.transform.LookAt((targ[0].transform.position + targ[1].transform.position) / targ.Length);
-    }
 
-    Vector3 PlayerLenght(GameObject player)
-    {
-        return player.transform.position;
+        if (Vector3.Distance(targ[0].transform.position, targ[1].transform.position) > 20)
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 90, Time.deltaTime*5);
+        }
+        if (Vector3.Distance(targ[0].transform.position, targ[1].transform.position) <= 20 && Vector3.Distance(targ[0].transform.position, targ[1].transform.position) >= 10)
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60, Time.deltaTime*5);
+        }
+
+        if ((Vector3.Distance(targ[0].transform.position, targ[1].transform.position) < 10))
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 30, Time.deltaTime*5);
+        }
     }
 }
