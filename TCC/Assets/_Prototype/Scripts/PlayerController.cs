@@ -6,38 +6,42 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IMovement
 {
     Player player;
-    Vector3 input;
-    float inputDeadzone = 0.1f;
-    Rigidbody rb;
-    
+    Rigidbody rb;  
     float turnSpeed = 10f;
-    Quaternion targetRotation;
+
+    Vector3 movementAxis;
+    Vector3 rotationAxis;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         player = new Player(100,8f);
-        targetRotation = transform.rotation;
+
     }
 
     void Update()
     {
-        GetInput();
-        Turn();
+        movementAxis.x =  Input.GetAxisRaw("Horizontal");
+        movementAxis.z =  Input.GetAxisRaw("Vertical"); 
+        rotationAxis.x =  Input.GetAxisRaw("rotHorizontal");
+        rotationAxis.y =  Input.GetAxisRaw("rotVertical");
+         
     }
 
     void FixedUpdate()
     {
-        Move();
-    }
+       
+        rb.MovePosition(rb.position + movementAxis * player.Speed * Time.fixedDeltaTime);
 
-    void GetInput()
-    {
-        input = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
+        
+        Turn();
     }
 
     void Turn()
     {
+   
+        Vector3 newPos = new Vector3(0,Mathf.Atan2(rotationAxis.x,rotationAxis.y)*180/Mathf.PI,0f);
+        transform.localEulerAngles =Vector3.Cross(transform.localEulerAngles, newPos);
     }
 
     public void Move()
