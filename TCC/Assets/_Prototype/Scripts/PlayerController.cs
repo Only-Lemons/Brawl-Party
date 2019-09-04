@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour, IMovement
 
     Vector3 movementAxis;
     Vector3 rotationAxis;
-
+    Quaternion targetRotation;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,31 +21,26 @@ public class PlayerController : MonoBehaviour, IMovement
 
     void Update()
     {
-        movementAxis.x =  Input.GetAxisRaw("Horizontal");
-        movementAxis.z =  Input.GetAxisRaw("Vertical"); 
-        rotationAxis.x =  Input.GetAxisRaw("rotHorizontal");
-        rotationAxis.y =  Input.GetAxisRaw("rotVertical");
-         
+        movementAxis = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical"));
+        rotationAxis = new Vector3(Input.GetAxisRaw("rotHorizontal") * -1,0,Input.GetAxisRaw("rotVertical") * -1);
+
     }
 
     void FixedUpdate()
     {
        
-        rb.MovePosition(rb.position + movementAxis * player.Speed * Time.fixedDeltaTime);
+        Move();
 
-        
-        Turn();
-    }
 
-    void Turn()
-    {
-   
-        Vector3 newPos = new Vector3(0,Mathf.Atan2(rotationAxis.x,rotationAxis.y)*180/Mathf.PI,0f);
-        transform.localEulerAngles =Vector3.Cross(transform.localEulerAngles, newPos);
     }
 
     public void Move()
     {
-       
+        rb.MovePosition(rb.position + movementAxis * player.Speed * Time.fixedDeltaTime);
+        if(rotationAxis != Vector3.zero)
+        {
+            targetRotation = Quaternion.LookRotation (rotationAxis);
+            transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle (transform.eulerAngles.y, targetRotation.eulerAngles.y, 720f * Time.deltaTime);
+        }
     }
 }
