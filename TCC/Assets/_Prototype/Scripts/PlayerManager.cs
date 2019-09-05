@@ -5,16 +5,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    List<Player> Players;
-    public int NumPlayer = 0;
+    public List<PlayerController> Players = new List<PlayerController>();
+    int NumPlayer = 0;
+    public static PlayerManager instance;
 
 
     // Start is called before the first frame update
     void Start()
     {
-      
+        getPlayerInScene();
+       
     }
-
+    void getPlayerInScene()
+    {
+        GameObject[] aux;
+        aux = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject item in aux)
+        {
+            Players.Add(item.GetComponent<PlayerController>());
+        }
+    }
     void GerenciarInputs()
     {
         InputSystem.onDeviceChange +=
