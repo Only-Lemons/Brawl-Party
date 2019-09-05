@@ -12,8 +12,10 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     Vector3 movementAxis;
     Vector3 rotationAxis;
     Quaternion targetRotation;
+  
 
-    Gamepad actualGamepad;
+
+    
 
     Inputs controls;
 
@@ -23,9 +25,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     void Awake()
     {
         controls = new Inputs();
-        //controls.Enable();
+       
         
-        controls.Player.SetCallbacks(this);    
     }   
    
     void OnEnable()
@@ -42,8 +43,11 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         rb = GetComponent<Rigidbody>();
         player = new Player(100,8f);
-
-        actualGamepad = Gamepad.current;
+ 
+     
+     
+        
+        
 
     }
 
@@ -51,6 +55,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
+        
         //movementAxis = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical"));
         //rotationAxis = new Vector3(Input.GetAxisRaw("rotHorizontal") * -1,0,Input.GetAxisRaw("rotVertical") * -1);
     }
@@ -80,7 +85,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        rotationAxis =  new Vector3(context.ReadValue<Vector2>().x * -1,0,context.ReadValue<Vector2>().y * -1);
+        if(context.ReadValue<Vector2>().x != 0  || context.ReadValue<Vector2>().y != 0)
+        rotationAxis =  new Vector3(context.ReadValue<Vector2>().x ,0,context.ReadValue<Vector2>().y );
        
         Rot();
     }
@@ -88,5 +94,10 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnFire(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
+    }
+
+    public void OnStart(InputAction.CallbackContext context)
+    {
+      
     }
 }

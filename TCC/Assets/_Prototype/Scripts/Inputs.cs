@@ -40,6 +40,14 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6faf662-f0d7-444a-8220-8735dd5bca85"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -73,6 +81,101 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d37f0bee-b385-402b-8577-4de23c41abb4"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Player2"",
+            ""id"": ""65e8dcdd-f68b-447d-86d6-5059a2463351"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""c2e6a648-78c0-4d3e-9e8d-8e3e67dc8c36"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""c82b2703-c895-4868-814f-cc99aa886a8b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecc65628-8337-43f8-95cf-dff9b7c40d19"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9b16e8e-548a-4f3c-824c-537e296ece70"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""034127ee-b6e3-4596-a7ce-3a6016655ad7"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b85ac8d8-1ecf-425d-9806-d07d0d18a0b2"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a725386c-5bfa-462a-ab40-9ba8de173314"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f3bc404-5af3-4ced-85f1-751a2d52c1fa"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -496,6 +599,13 @@ public class Inputs : IInputActionCollection
         m_Player_Move = m_Player.GetAction("Move");
         m_Player_Look = m_Player.GetAction("Look");
         m_Player_Fire = m_Player.GetAction("Fire");
+        m_Player_Start = m_Player.GetAction("Start");
+        // Player2
+        m_Player2 = asset.GetActionMap("Player2");
+        m_Player2_Move = m_Player2.GetAction("Move");
+        m_Player2_Look = m_Player2.GetAction("Look");
+        m_Player2_Fire = m_Player2.GetAction("Fire");
+        m_Player2_Start = m_Player2.GetAction("Start");
         // UI
         m_UI = asset.GetActionMap("UI");
         m_UI_Navigate = m_UI.GetAction("Navigate");
@@ -561,6 +671,7 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Start;
     public struct PlayerActions
     {
         private Inputs m_Wrapper;
@@ -568,6 +679,7 @@ public class Inputs : IInputActionCollection
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Start => m_Wrapper.m_Player_Start;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -586,6 +698,9 @@ public class Inputs : IInputActionCollection
                 Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                Start.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
+                Start.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
+                Start.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -599,10 +714,70 @@ public class Inputs : IInputActionCollection
                 Fire.started += instance.OnFire;
                 Fire.performed += instance.OnFire;
                 Fire.canceled += instance.OnFire;
+                Start.started += instance.OnStart;
+                Start.performed += instance.OnStart;
+                Start.canceled += instance.OnStart;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Player2
+    private readonly InputActionMap m_Player2;
+    private IPlayer2Actions m_Player2ActionsCallbackInterface;
+    private readonly InputAction m_Player2_Move;
+    private readonly InputAction m_Player2_Look;
+    private readonly InputAction m_Player2_Fire;
+    private readonly InputAction m_Player2_Start;
+    public struct Player2Actions
+    {
+        private Inputs m_Wrapper;
+        public Player2Actions(Inputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player2_Move;
+        public InputAction @Look => m_Wrapper.m_Player2_Look;
+        public InputAction @Fire => m_Wrapper.m_Player2_Fire;
+        public InputAction @Start => m_Wrapper.m_Player2_Start;
+        public InputActionMap Get() { return m_Wrapper.m_Player2; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player2Actions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer2Actions instance)
+        {
+            if (m_Wrapper.m_Player2ActionsCallbackInterface != null)
+            {
+                Move.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMove;
+                Move.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMove;
+                Move.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnMove;
+                Look.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLook;
+                Look.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLook;
+                Look.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnLook;
+                Fire.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
+                Fire.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
+                Fire.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnFire;
+                Start.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnStart;
+                Start.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnStart;
+                Start.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnStart;
+            }
+            m_Wrapper.m_Player2ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                Move.started += instance.OnMove;
+                Move.performed += instance.OnMove;
+                Move.canceled += instance.OnMove;
+                Look.started += instance.OnLook;
+                Look.performed += instance.OnLook;
+                Look.canceled += instance.OnLook;
+                Fire.started += instance.OnFire;
+                Fire.performed += instance.OnFire;
+                Fire.canceled += instance.OnFire;
+                Start.started += instance.OnStart;
+                Start.performed += instance.OnStart;
+                Start.canceled += instance.OnStart;
+            }
+        }
+    }
+    public Player2Actions @Player2 => new Player2Actions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -757,6 +932,14 @@ public class Inputs : IInputActionCollection
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
+    }
+    public interface IPlayer2Actions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
