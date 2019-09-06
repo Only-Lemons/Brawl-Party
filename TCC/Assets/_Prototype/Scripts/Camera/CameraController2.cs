@@ -30,21 +30,17 @@ public class CameraController2 : MonoBehaviour
     void LateUpdate()
     {
         ControleFoco();
-
+        CameraMan();
     }
 
     void ControleFoco()
     {
         cam.transform.LookAt(MediaDistancia());
-        CameraMan();
-
-        cam.fieldOfView = ZoomDistancia(targ[0].transform, targ[1].transform, targ[2].transform, targ[3].transform);
-        //cam.fieldOfView = ZoomDistancia(targ);
     }
 
     void CameraMan()
     {
-
+        cam.transform.position = ZoomDistancia();
     }
     Vector3 MediaDistancia()
     {
@@ -57,33 +53,30 @@ public class CameraController2 : MonoBehaviour
         return m / targ.Count;
     }
 
-    float ZoomDistancia(Transform a, Transform b, Transform c, Transform d)
+    Vector3 ZoomDistancia()
     {
-        float z = 0;
-        if (a != null || b != null || c != null || d != null)
+        Vector3 z = Vector3.zero;
+        float max = 0;
+        for (int i = 0; i < targ.Count; i++)
         {
-            if (Vector3.Distance(a.position, b.position) > 20 || Vector3.Distance(a.position, c.position) > 20 || Vector3.Distance(a.position, d.position) < 10 || Vector3.Distance(b.position, c.position) < 10 || Vector3.Distance(b.position, d.position) > 20 || Vector3.Distance(c.position, d.position) > 20)
+            for (int j = 0; j < targ.Count; j++)
             {
-                z = Mathf.Lerp(cam.fieldOfView, 90, Time.deltaTime * 5);
-            }
-            if (Vector3.Distance(a.position, b.position) <= 20 || Vector3.Distance(a.position, c.position) <= 20 || Vector3.Distance(a.position, d.position) <= 20 || Vector3.Distance(b.position, c.position) < 10 || Vector3.Distance(b.position, d.position) < 10 || Vector3.Distance(c.position, d.position) <= 20)
-            {
-                if (Vector3.Distance(a.position, b.position) >= 10 || Vector3.Distance(a.position, c.position) >= 10 || Vector3.Distance(a.position, d.position) < 10 || Vector3.Distance(b.position, c.position) < 10 || Vector3.Distance(b.position, d.position) >= 10 || Vector3.Distance(c.position, d.position) >= 10)
+                if(i != j)
                 {
-                    z = Mathf.Lerp(cam.fieldOfView, 60, Time.deltaTime * 5);
+                    if (Vector3.Distance(targ[i].transform.position, targ[j].transform.position) > max)
+                    {
+                        max = Vector3.Distance(targ[i].transform.position, targ[j].transform.position);
+                    }
                 }
             }
-            if (Vector3.Distance(a.position, b.position) < 10 || Vector3.Distance(a.position, c.position) < 10 || Vector3.Distance(a.position, d.position) < 10 || Vector3.Distance(b.position, c.position) < 10 || Vector3.Distance(b.position, d.position) < 10 || Vector3.Distance(c.position, d.position) < 10)
-            {
-                z = Mathf.Lerp(cam.fieldOfView, 30, Time.deltaTime * 5);
-            }
+            
         }
-        return z;
-    }
-    float ZoomDistancia(List<GameObject> m)
-    {
-        float z = 0;
-
+        if (max > 30)
+            z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 30, Time.deltaTime), cam.transform.position.z);
+        if (max <= 30 && max>=10)
+            z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 20, Time.deltaTime), cam.transform.position.z);
+        if (max < 10)
+            z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 10, Time.deltaTime), cam.transform.position.z);
         return z;
     }
 
