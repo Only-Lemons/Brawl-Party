@@ -8,6 +8,7 @@ public class CameraController2 : MonoBehaviour
 {
     // Start is called before the first frame update
     Camera cam;
+    public float posicaoEmZ = -6;
 
     public List<GameObject> targ = new List<GameObject>();
     void Start()
@@ -35,7 +36,8 @@ public class CameraController2 : MonoBehaviour
 
     void ControleFoco()
     {
-        cam.transform.position = new Vector3(MediaDistancia().x, cam.transform.position.y, MediaDistancia().z);
+        cam.transform.position = new Vector3(MediaDistancia().x, cam.transform.position.y, MediaDistancia().z + posicaoEmZ);
+        cam.transform.LookAt(MediaDistancia());
     }
 
     void CameraMan()
@@ -71,11 +73,11 @@ public class CameraController2 : MonoBehaviour
             }
             
         }
-        if (max > 30)
+        if (max > 20)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 30, Time.deltaTime), cam.transform.position.z);
-        if (max <= 30 && max>=10)
+        if (max <= 20 && max>=5)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 20, Time.deltaTime), cam.transform.position.z);
-        if (max < 10)
+        if (max < 5)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 10, Time.deltaTime), cam.transform.position.z);
         return z;
     }
