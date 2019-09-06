@@ -64,8 +64,15 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
    
     void Start()
     {
+<<<<<<< HEAD:TCC/Assets/_Prototype/Scripts/PlayerController.cs
+        powerUPManagers = new List<PowerUPManager>();
+        rb = GetComponent<Rigidbody>();
+  
+        
+=======
         SOpowerUps = new List<PowerUpManager>();
         rb = GetComponent<Rigidbody>();     
+>>>>>>> 0b7f89055a994c107dff55cccfe5fd752b24678b:TCC/Assets/_Prototype/Scripts/Player/PlayerController.cs
     }
     private void FixedUpdate()
     {
