@@ -30,8 +30,11 @@ public class CameraController2 : MonoBehaviour
 
     void LateUpdate()
     {
-        ControleFoco();
-        CameraMan();
+        if (targ != null)
+        {
+            ControleFoco();
+            CameraMan();
+        }
     }
 
     void ControleFoco()
@@ -74,7 +77,7 @@ public class CameraController2 : MonoBehaviour
             
         }
         if (max > 20)
-            z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 30, Time.deltaTime), cam.transform.position.z);
+            z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 40, Time.deltaTime), cam.transform.position.z);
         if (max <= 20 && max>=5)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 20, Time.deltaTime), cam.transform.position.z);
         if (max < 5)
