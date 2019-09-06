@@ -33,7 +33,7 @@ public class CameraController2 : MonoBehaviour
         if (targ != null)
         {
             ControleFoco();
-            CameraMan();
+            ControleZoom();
         }
     }
 
@@ -43,7 +43,7 @@ public class CameraController2 : MonoBehaviour
         cam.transform.LookAt(MediaDistancia());
     }
 
-    void CameraMan()
+    void ControleZoom()
     {
         cam.transform.position = ZoomDistancia();
     }
