@@ -161,7 +161,13 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         
        if(actualArma != null)
+       {
             actualArma.Shoot();
+            actualArma.ammoAmount-=1;
+            if(actualArma.ammoAmount<=0)
+                actualArma=null;   
+       }
+        
     }
 
     public void OnStart(InputAction.CallbackContext context)
