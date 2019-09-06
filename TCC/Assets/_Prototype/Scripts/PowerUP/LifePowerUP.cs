@@ -7,7 +7,7 @@ public class LifePowerUP : PowerUP
 
     public override void Interact(PlayerController player)
     {
-        Player aux = player.player;
+        SOPlayer aux = player.player;
         if (player.life < aux.hp)
             player.life += 1;
 

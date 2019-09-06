@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/_Prototype/Scripts/Inputs.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/_Prototype/Scripts/Misc/Inputs.inputactions'
 
 using System.Collections;
 using System.Collections.Generic;
@@ -63,7 +63,7 @@ public class Inputs : IInputActionCollection
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""aaa"",
+                    ""name"": ""WSAD"",
                     ""id"": ""de91e2c3-c641-409b-bca7-38cd1d40790e"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -146,6 +146,17 @@ public class Inputs : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e86c868-d337-4eff-90f1-9812098c8d79"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

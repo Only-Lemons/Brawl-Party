@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PowerUPManager
+public class PowerUpManager
 {
     public float time;
     public float tempoAtual;
     public PowerUP PU;
     PlayerController player;
     public GameObject[] Particulas;
-   public PowerUPManager(float tempo,PowerUP powerU,PlayerController player)
+   public PowerUpManager(float tempo,PowerUP powerU,PlayerController player)
    {
         this.time = tempo;
         tempoAtual = tempo;
