@@ -35,7 +35,7 @@ public class CameraController2 : MonoBehaviour
 
     void ControleFoco()
     {
-        cam.transform.LookAt(MediaDistancia());
+        cam.transform.position = new Vector3(MediaDistancia().x, cam.transform.position.y, MediaDistancia().z);
     }
 
     void CameraMan()

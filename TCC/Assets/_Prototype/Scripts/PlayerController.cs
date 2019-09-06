@@ -63,11 +63,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         powerUPManagers = new List<PowerUPManager>();
         rb = GetComponent<Rigidbody>();
-<<<<<<< HEAD
   
-=======
-        
->>>>>>> a90407f7b4c8a22e39509e17fe6cd5b27c927b18
         
     }
     private void FixedUpdate()
