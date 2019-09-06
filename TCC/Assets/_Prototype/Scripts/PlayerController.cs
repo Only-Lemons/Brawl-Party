@@ -63,7 +63,11 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         powerUPManagers = new List<PowerUPManager>();
         rb = GetComponent<Rigidbody>();
+<<<<<<< HEAD
   
+=======
+        
+>>>>>>> a90407f7b4c8a22e39509e17fe6cd5b27c927b18
         
     }
     private void FixedUpdate()
@@ -118,32 +122,34 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
-        
-        //movementAxis = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical"));
-        //rotationAxis = new Vector3(Input.GetAxisRaw("rotHorizontal") * -1,0,Input.GetAxisRaw("rotVertical") * -1);
+
     }
 
     public void Rot()
     {
-       
-
-            targetRotation = Quaternion.LookRotation (rotationAxis);
-            //transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle (transform.eulerAngles.y, targetRotation.eulerAngles.y, 720f * Time.deltaTime);
-            transform.rotation = targetRotation * Quaternion.identity ;
+        targetRotation = Quaternion.LookRotation (rotationAxis);
+        transform.rotation = targetRotation * Quaternion.identity ;
     }
 
 
     public void Move()
     {
-        //rb.MovePosition(rb.position + movementAxis * player.Speed * Time.deltaTime);
-        rb.velocity = movementAxis * player.speed;
+       
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
-        Move();
-        
+         movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
+        if(Gamepad.current == null)
+        {
+                rb.MovePosition(movementAxis + transform.position);
+        }else
+        {
+           
+            movementAxis *= player.speed;
+            rb.velocity  = movementAxis; 
+        }
+  
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -164,14 +170,4 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
       
     }
 
-    public void OnMoveKeyboard(InputAction.CallbackContext context)
-    {
-        Debug.Log("this is us");
-    }
-
-    public void OnRotateWithMouse(InputAction.CallbackContext context)
-    {
-
-        Debug.Log(Keyboard.current);
-    }
 }
