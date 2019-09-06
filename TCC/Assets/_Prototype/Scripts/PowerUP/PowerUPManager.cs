@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PowerUpManager
 {
+    //teste
     public float time;
     public float tempoAtual;
     public PowerUP PU;
