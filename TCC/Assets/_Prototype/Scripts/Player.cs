@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player 
+
+
+[CreateAssetMenu (fileName ="Personagens",menuName = "Player")]
+public class Player : ScriptableObject
 {
-    int hp;
-    float speed;
-
-    public Player(int hp, float speed)
-    {
-        this.hp = hp;
-        this.speed = speed;
-    }
-
-    public int Hp { get => hp; set => hp = value; }
-    public float Speed { get => speed; set => speed = value; }
+   public string nome;
+   public int hp;
+   public float speed;
+   public GameObject prefab;
+   public Animator stateAnimation;
+    
+  
 }

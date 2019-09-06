@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     Inputs controls;
 
 
-
+    public PlayerController(Player jogador)
+    {
+        player = jogador;
+       
+    }
 
     void Awake()
     {
         controls = new Inputs();
-       
+      
         
     }   
    
@@ -42,13 +46,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = new Player(100,8f);
- 
-     
-     
+        Debug.Log(Keyboard.current + " " + this.gameObject.name);
         
-        
-
     }
 
 
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void Move()
     {
         //rb.MovePosition(rb.position + movementAxis * player.Speed * Time.deltaTime);
-        rb.velocity = movementAxis * player.Speed;
+        rb.velocity = movementAxis * player.speed;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -99,5 +98,16 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnStart(InputAction.CallbackContext context)
     {
       
+    }
+
+    public void OnMoveKeyboard(InputAction.CallbackContext context)
+    {
+        Debug.Log("this is us");
+    }
+
+    public void OnRotateWithMouse(InputAction.CallbackContext context)
+    {
+
+        Debug.Log(Keyboard.current);
     }
 }
