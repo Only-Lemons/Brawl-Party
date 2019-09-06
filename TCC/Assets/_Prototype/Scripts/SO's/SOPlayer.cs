@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu (fileName ="Personagens",menuName = "Player")]
-public class Player : ScriptableObject
+public class SOPlayer : ScriptableObject
 {
    public string nome;
    public int hp;

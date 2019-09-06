@@ -10,8 +10,6 @@ public class TerrainController : MonoBehaviour
    public List<TileController> tilesInstanciados = new List<TileController>();
    
  
-    
-    GameController gameController;
 
     void Awake()
     {
@@ -22,7 +20,7 @@ public class TerrainController : MonoBehaviour
 
     private void Start()
     {    
-        gameController = GameObject.FindObjectOfType<GameController>();
+       
     }
 
 

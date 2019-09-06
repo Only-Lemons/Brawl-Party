@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         Ativo
     }
 
-    
-    public Player player;
+    [Header("ScriptableObject")]
+    public SOPlayer player;
     Rigidbody rb;  
     float turnSpeed = 10f;
     Vector3 movementAxis;
@@ -21,19 +21,25 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     Quaternion targetRotation;
     
 
+    public Arma actualArma;
+
  
     #region PowerUPs
+    [Header("PowerUp")]
     public EstadoPU PowerUp;
-    Player statusNormal;
-    List<PowerUPManager> powerUPManagers;
+    SOPlayer statusNormal;
+    List<PowerUpManager> SOpowerUps;
     #endregion
-    #region Status
+
+    #region 
+    [Header("Status")]
     public int life;
     #endregion
+
     Inputs controls;
 
 
-    public PlayerController(Player jogador)
+    public PlayerController(SOPlayer jogador)
     {
         player = jogador;
         statusNormal = jogador;
@@ -41,12 +47,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
 
     void Awake()
-    {
-       
+    { 
         life = player.hp;
-        controls = new Inputs();
-      
-        
+        controls = new Inputs();      
     }   
    
     void OnEnable()
@@ -61,10 +64,15 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
    
     void Start()
     {
+<<<<<<< HEAD:TCC/Assets/_Prototype/Scripts/PlayerController.cs
         powerUPManagers = new List<PowerUPManager>();
         rb = GetComponent<Rigidbody>();
   
         
+=======
+        SOpowerUps = new List<PowerUpManager>();
+        rb = GetComponent<Rigidbody>();     
+>>>>>>> 0b7f89055a994c107dff55cccfe5fd752b24678b:TCC/Assets/_Prototype/Scripts/Player/PlayerController.cs
     }
     private void FixedUpdate()
     {
@@ -76,17 +84,17 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     
     void VerificarParticulas()
     {
-        if (powerUPManagers.Count == 0)
+        if (SOpowerUps.Count == 0)
         {
             DesativarPowerUP();
         }
         else
         {
-            for (int i = 0; i < powerUPManagers.Count; i++)
+            for (int i = 0; i < SOpowerUps.Count; i++)
             {
-                if (powerUPManagers[i].AcabouTempo())
+                if (SOpowerUps[i].AcabouTempo())
                 {
-                    powerUPManagers.RemoveAt(i);
+                    SOpowerUps.RemoveAt(i);
 
                 }
             }
@@ -99,14 +107,14 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         {
             statusNormal = player;
             PowerUp = EstadoPU.Ativo;
-            PowerUPManager PUP = new PowerUPManager(Time,powerUP,this);
+            PowerUpManager PUP = new PowerUpManager(Time,powerUP,this);
             PUP.Particulas = particulas;
-            powerUPManagers.Add(PUP);
+            SOpowerUps.Add(PUP);
         }
         else
         {
-            PowerUPManager PUP = new PowerUPManager(Time, powerUP,this);
-            powerUPManagers.Add(PUP);
+            PowerUpManager PUP = new PowerUpManager(Time, powerUP,this);
+            SOpowerUps.Add(PUP);
         }
     }
     public void DesativarPowerUP()
@@ -158,7 +166,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        
+       if(actualArma != null)
+            actualArma.Shoot();
     }
 
     public void OnStart(InputAction.CallbackContext context)

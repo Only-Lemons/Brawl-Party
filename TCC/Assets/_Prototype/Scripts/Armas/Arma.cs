@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class Arma : ScriptableObject
 {
-    float fireRate;
-    float ammoAmount;
-    float damage;
+    public float fireRate;
+    public float ammoAmount;
+    public float damage;
 
     public abstract void Shoot();
     
