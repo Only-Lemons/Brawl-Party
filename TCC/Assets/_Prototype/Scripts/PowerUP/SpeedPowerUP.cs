@@ -13,10 +13,10 @@ public class SpeedPowerUP : PowerUP
 
     public override void Interact(PlayerController player)
     {
-
+      
         if (Activate == false)
         {
-            player.speed = player.speed + (player.speed * 0.30f);
+            player.speed = player.speed * 2;
             Activate = true;
         }
     }
@@ -24,7 +24,7 @@ public class SpeedPowerUP : PowerUP
     {
         if(other.GetComponentInParent<PlayerController>() != null)
         {
-            other.GetComponentInParent<PlayerController>().AtivarPowerUP(5, null, this);
+            other.GetComponentInParent<PlayerController>().AtivarPowerUP(2, null, this);
             Destroy(this.gameObject);
         }
         Debug.Log(other.gameObject);

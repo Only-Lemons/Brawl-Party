@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LifePowerUP : PowerUP
 {
+    float time = 1;
     public override void FinishAndBack(PlayerController player)
     {
             
@@ -12,15 +13,20 @@ public class LifePowerUP : PowerUP
     public override void Interact(PlayerController player)
     {
         SOPlayer aux = player.player;
-        if (player.life < aux.hp)
-            player.life += 1;
+        int vidaMaximaT = Mathf.FloorToInt(player.life +aux.hp * 0.20f)/3;
+        time += Time.deltaTime;
+        if (player.life < aux.hp && time >= 1)
+        {
+            player.life += vidaMaximaT;
+            time = 0;
+        }
 
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponentInParent<PlayerController>() != null)
         {
-            other.GetComponentInParent<PlayerController>().AtivarPowerUP(10, null, this);
+            other.GetComponentInParent<PlayerController>().AtivarPowerUP(3, null, this);
             Destroy(this.gameObject);
         }
         Debug.Log(other.gameObject);
