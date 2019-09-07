@@ -116,10 +116,30 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         }
         else
         {
-            PowerUpManager PUP = new PowerUpManager(Time, powerUP,this);
-            SOpowerUps.Add(PUP);
-           
+            if (PUActive(powerUP)){
+                Debug.Log("Não adicionou");
+           }
+            else
+            {
+                PowerUpManager PUP = new PowerUpManager(Time, powerUP, this);
+                SOpowerUps.Add(PUP);
+            }
         }
+    }
+    public bool PUActive(PowerUP pu)
+    {
+        for (int i = 0; i < SOpowerUps.Count; i++)
+        {
+            if (SOpowerUps[i].PU.Name == pu.Name)
+            {
+                Debug.Log("Encontrou");
+                SOpowerUps[i].tempoAtual = SOpowerUps[i].time;
+                return true;
+            }
+
+        }
+        Debug.Log(" Não Encontrou");
+        return false;
     }
     public void DesativarPowerUP()
     {
@@ -131,7 +151,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
-
+        
     }
 
     public void Rot()
