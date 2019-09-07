@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
       
         SOpowerUps = new List<PowerUpManager>();
         rb = GetComponent<Rigidbody>();
-        Debug.Log(SOpowerUps.Count);
+     
     }
     private void FixedUpdate()
     {
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     
     void VerificarPU()
     {
-        Debug.Log(SOpowerUps.Count);
+       
         if (SOpowerUps.Count == 0 || SOpowerUps == null)
         {
            
@@ -116,11 +116,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         }
         else
         {
-            if (PUActive(powerUP)){
-                Debug.Log("Não adicionou");
-           }
-            else
-            {
+            if (!PUActive(powerUP)){
                 PowerUpManager PUP = new PowerUpManager(Time, powerUP, this);
                 SOpowerUps.Add(PUP);
             }
@@ -131,8 +127,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         for (int i = 0; i < SOpowerUps.Count; i++)
         {
             if (SOpowerUps[i].PU.Name == pu.Name)
-            {
-                Debug.Log("Encontrou");
+            {   
                 SOpowerUps[i].tempoAtual = SOpowerUps[i].time;
                 return true;
             }

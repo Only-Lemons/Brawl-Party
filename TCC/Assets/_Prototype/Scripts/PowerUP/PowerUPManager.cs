@@ -30,6 +30,7 @@ public class PowerUpManager
         }
         else
         {
+           
             tempoAtual -= Time.deltaTime;
             PU.Interact(player);
             return false;
