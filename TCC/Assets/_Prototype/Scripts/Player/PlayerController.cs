@@ -31,9 +31,10 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     List<PowerUpManager> SOpowerUps;
     #endregion
 
-    #region 
+    #region Status
     [Header("Status")]
     public int life;
+    public float speed;
     #endregion
 
     Inputs controls;
@@ -47,8 +48,11 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
 
     void Awake()
-    { 
+    {
+        statusNormal = player;
+        PowerUp = EstadoPU.Normal;
         life = player.hp;
+        speed = player.speed;
         controls = new Inputs();      
     }   
    
@@ -64,27 +68,32 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
    
     void Start()
     {
+      
         SOpowerUps = new List<PowerUpManager>();
-        rb = GetComponent<Rigidbody>();     
+        rb = GetComponent<Rigidbody>();
+        Debug.Log(SOpowerUps.Count);
     }
     private void FixedUpdate()
     {
 
         
         if (PowerUp == EstadoPU.Ativo)
-            VerificarParticulas();
+            VerificarPU();
     }
     
-    void VerificarParticulas()
+    void VerificarPU()
     {
-        if (SOpowerUps.Count == 0)
+        Debug.Log(SOpowerUps.Count);
+        if (SOpowerUps.Count == 0 || SOpowerUps == null)
         {
+           
             DesativarPowerUP();
         }
         else
         {
             for (int i = 0; i < SOpowerUps.Count; i++)
             {
+               
                 if (SOpowerUps[i].AcabouTempo())
                 {
                     SOpowerUps.RemoveAt(i);
@@ -98,24 +107,27 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         if(PowerUp == EstadoPU.Normal)
         {
-            statusNormal = player;
+         
             PowerUp = EstadoPU.Ativo;
             PowerUpManager PUP = new PowerUpManager(Time,powerUP,this);
             PUP.Particulas = particulas;
             SOpowerUps.Add(PUP);
+         
         }
         else
         {
             PowerUpManager PUP = new PowerUpManager(Time, powerUP,this);
             SOpowerUps.Add(PUP);
+           
         }
     }
     public void DesativarPowerUP()
     {
-        player = statusNormal;
         PowerUp = EstadoPU.Normal;
+      
+      
     }
-
+   
 
     void Update()
     {

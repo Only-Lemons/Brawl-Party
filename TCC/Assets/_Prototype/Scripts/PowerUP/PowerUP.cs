@@ -7,4 +7,5 @@ public abstract class  PowerUP : MonoBehaviour
 {
     public string Name;
     public abstract void Interact(PlayerController player);
+    public abstract void FinishAndBack(PlayerController player);
 }

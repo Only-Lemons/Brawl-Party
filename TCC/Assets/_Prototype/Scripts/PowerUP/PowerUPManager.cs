@@ -25,6 +25,7 @@ public class PowerUpManager
         {
             if (Particulas == null || Particulas.Length > 0 )
                 DestruirParticulas();
+            PU.FinishAndBack(player);
             return true;
         }
         else
