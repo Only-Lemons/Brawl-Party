@@ -29,7 +29,7 @@ public class LifePowerUP : PowerUP
             other.GetComponentInParent<PlayerController>().AtivarPowerUP(3, null, this);
             Destroy(this.gameObject);
         }
-        Debug.Log(other.gameObject);
+
     }
 
 }

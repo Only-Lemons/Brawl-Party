@@ -22,12 +22,11 @@ public class SpeedPowerUP : PowerUP
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             other.GetComponentInParent<PlayerController>().AtivarPowerUP(2, null, this);
             Destroy(this.gameObject);
         }
-        Debug.Log(other.gameObject);
     }
 
 }
