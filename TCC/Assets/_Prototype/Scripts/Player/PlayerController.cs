@@ -81,8 +81,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         if (PowerUp == EstadoPU.Ativo)
             VerificarPU();
     }
-    public int AtivarEscudo(int valor){
+    public void AtivarEscudo(int valor){
         shield += valor;
+
     }
     public void DesativarEscudo(){
         shield = 0;
