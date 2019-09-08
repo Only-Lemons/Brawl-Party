@@ -138,14 +138,18 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
             }
 
         }
-        Debug.Log(" Não Encontrou");
+
         return false;
     }
     public void DesativarPowerUP()
     {
+<<<<<<< HEAD
         PowerUp =false;
       
       
+=======
+        PowerUp = EstadoPU.Normal;
+>>>>>>> 5b3efb8e1e41f569c9c11ff5cfb89a3f2349b1b1
     }
    
 
