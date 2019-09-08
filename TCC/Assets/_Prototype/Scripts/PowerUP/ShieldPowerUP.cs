@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpeedPowerUP : PowerUP
+{
+    bool Activate = false;
+
+    public override void FinishAndBack(PlayerController player)
+    {
+        player.DesativarEscudo();
+    }
+
+    public override void Interact(PlayerController player)
+    {
+       player.AtivarEscudo(Mathf.FloorToInt(player.player.hp * 0.30f));
+        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponentInParent<PlayerController>() != null)
+        {
+            other.GetComponentInParent<PlayerController>().AtivarPowerUP(3, null, this);
+            Destroy(this.gameObject);
+        }
+        Debug.Log(other.gameObject);
+    }
+
+}

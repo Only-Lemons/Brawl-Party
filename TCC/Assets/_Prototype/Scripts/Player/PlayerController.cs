@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     [Header("Status")]
     public int life;
     public float speed;
+    public int shield;
     #endregion
 
     Inputs controls;
@@ -80,7 +81,12 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         if (PowerUp == EstadoPU.Ativo)
             VerificarPU();
     }
-    
+    public int AtivarEscudo(int valor){
+        shield += valor;
+    }
+    public void DesativarEscudo(){
+        shield = 0;
+    }
     void VerificarPU()
     {
        
