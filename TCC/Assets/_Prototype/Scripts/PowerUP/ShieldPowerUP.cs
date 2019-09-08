@@ -21,12 +21,12 @@ public class ShieldPowerUP : PowerUP
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponentInParent<PlayerController>() != null)
+        if(other.tag == "Player")
         {
             other.GetComponentInParent<PlayerController>().AtivarPowerUP(3, null, this);
             Destroy(this.gameObject);
         }
-        Debug.Log(other.gameObject);
+     
     }
 
 }
