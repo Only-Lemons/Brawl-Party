@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
  
     #region PowerUPs
     [Header("PowerUp")]
-    public EstadoPU PowerUp;
+    public bool PowerUp;
     SOPlayer statusNormal;
     List<PowerUpManager> SOpowerUps;
     #endregion
@@ -45,13 +45,13 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         player = jogador;
         statusNormal = jogador;
-        PowerUp = EstadoPU.Normal;
+        PowerUp = false; 
     }
 
     void Awake()
     {
         statusNormal = player;
-        PowerUp = EstadoPU.Normal;
+        PowerUp = false ; 
         life = player.hp;
         speed = player.speed;
         controls = new Inputs();      
@@ -76,9 +76,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     private void FixedUpdate()
     {
-
-        
-        if (PowerUp == EstadoPU.Ativo)
+        if (PowerUp == true) 
             VerificarPU();
     }
     public void AtivarEscudo(int valor){
@@ -112,10 +110,10 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     public void AtivarPowerUP(float Time,GameObject[] particulas,PowerUP powerUP)
     {
-        if(PowerUp == EstadoPU.Normal)
+        if(PowerUp == false)
         {
          
-            PowerUp = EstadoPU.Ativo;
+            PowerUp = true; 
             PowerUpManager PUP = new PowerUpManager(Time,powerUP,this);
             PUP.Particulas = particulas;
             SOpowerUps.Add(PUP);
@@ -145,7 +143,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     public void DesativarPowerUP()
     {
-        PowerUp = EstadoPU.Normal;
+        PowerUp =false;
       
       
     }
