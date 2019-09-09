@@ -20,8 +20,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     Vector3 rotationAxis;
     Quaternion targetRotation;
     
-
+    [Header("Arma")]
     public Arma actualArma;
+    public bool canShoot;
 
  
     #region PowerUPs
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
       
         SOpowerUps = new List<PowerUpManager>();
         rb = GetComponent<Rigidbody>();
+        canShoot=true;
      
     }
     private void FixedUpdate()
@@ -143,13 +145,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     public void DesativarPowerUP()
     {
-<<<<<<< HEAD
         PowerUp =false;
       
       
-=======
-        PowerUp = EstadoPU.Normal;
->>>>>>> 5b3efb8e1e41f569c9c11ff5cfb89a3f2349b1b1
     }
    
 
@@ -196,19 +194,37 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnFire(InputAction.CallbackContext context)
     {
         
+
        if(actualArma != null)
        {
-            actualArma.Shoot();
-            actualArma.ammoAmount-=1;
-            if(actualArma.ammoAmount<=0)
-                actualArma=null;   
+
+            if(canShoot)
+            {
+                actualArma.Shoot();
+                StartCoroutine(fireRate(actualArma.fireRate));
+            
+         
+                actualArma.ammoAmount-=1;
+                if(actualArma.ammoAmount<=0)
+                {
+                    actualArma=null;
+                    canShoot = true;
+                    Destroy(transform.GetChild(1).GetChild(0).gameObject); 
+                }
+            }         
        }
-        
     }
 
     public void OnStart(InputAction.CallbackContext context)
     {
       
     }
+
+   IEnumerator fireRate(float fireRate)
+   {
+       canShoot = false;
+       yield return new WaitForSeconds(fireRate);
+        canShoot = true;
+   }
 
 }

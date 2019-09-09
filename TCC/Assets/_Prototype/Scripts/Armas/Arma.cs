@@ -8,6 +8,8 @@ public abstract class Arma : ScriptableObject
     public float ammoAmount;
     public float damage;
 
+    public GameObject prefab;
+
     public abstract void Shoot();
     
 
