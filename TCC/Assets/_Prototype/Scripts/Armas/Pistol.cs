@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName="Armas/Pistol")]
+
 public class Pistol : Arma
 {
-    void Awake()
+    public Pistol()
     {
-        fireRate = 2;
-        ammoAmount = 5;
-        damage = 200;
+        fireRate = 1f;
+        ammoAmount = 7;
+        damage = 10;
+        prefab = Resources.Load("Armas/Pistol") as GameObject;
     }
+
     public override void Shoot()
     {
         Debug.Log("PIUPIU");

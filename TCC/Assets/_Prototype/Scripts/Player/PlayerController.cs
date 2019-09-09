@@ -20,13 +20,14 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     Vector3 rotationAxis;
     Quaternion targetRotation;
     
-
+    [Header("Arma")]
     public Arma actualArma;
+    public bool canShoot;
 
  
     #region PowerUPs
     [Header("PowerUp")]
-    public EstadoPU PowerUp;
+    public bool PowerUp;
     SOPlayer statusNormal;
     List<PowerUpManager> SOpowerUps;
     #endregion
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     [Header("Status")]
     public int life;
     public float speed;
+    public int shield;
     #endregion
 
     Inputs controls;
@@ -44,13 +46,13 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         player = jogador;
         statusNormal = jogador;
-        PowerUp = EstadoPU.Normal;
+        PowerUp = false; 
     }
 
     void Awake()
     {
         statusNormal = player;
-        PowerUp = EstadoPU.Normal;
+        PowerUp = false ; 
         life = player.hp;
         speed = player.speed;
         controls = new Inputs();      
@@ -71,16 +73,21 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
       
         SOpowerUps = new List<PowerUpManager>();
         rb = GetComponent<Rigidbody>();
+        canShoot=true;
      
     }
     private void FixedUpdate()
     {
-
-        
-        if (PowerUp == EstadoPU.Ativo)
+        if (PowerUp == true) 
             VerificarPU();
     }
-    
+    public void AtivarEscudo(int valor){
+        shield += valor;
+
+    }
+    public void DesativarEscudo(){
+        shield = 0;
+    }
     void VerificarPU()
     {
        
@@ -105,10 +112,10 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     public void AtivarPowerUP(float Time,GameObject[] particulas,PowerUP powerUP)
     {
-        if(PowerUp == EstadoPU.Normal)
+        if(PowerUp == false)
         {
          
-            PowerUp = EstadoPU.Ativo;
+            PowerUp = true; 
             PowerUpManager PUP = new PowerUpManager(Time,powerUP,this);
             PUP.Particulas = particulas;
             SOpowerUps.Add(PUP);
@@ -133,12 +140,12 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
             }
 
         }
-        Debug.Log(" Não Encontrou");
+
         return false;
     }
     public void DesativarPowerUP()
     {
-        PowerUp = EstadoPU.Normal;
+        PowerUp =false;
       
       
     }
@@ -187,19 +194,37 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnFire(InputAction.CallbackContext context)
     {
         
+
        if(actualArma != null)
        {
-            actualArma.Shoot();
-            actualArma.ammoAmount-=1;
-            if(actualArma.ammoAmount<=0)
-                actualArma=null;   
+
+            if(canShoot)
+            {
+                actualArma.Shoot();
+                StartCoroutine(fireRate(actualArma.fireRate));
+            
+         
+                actualArma.ammoAmount-=1;
+                if(actualArma.ammoAmount<=0)
+                {
+                    actualArma=null;
+                    canShoot = true;
+                    Destroy(transform.GetChild(1).GetChild(0).gameObject); 
+                }
+            }         
        }
-        
     }
 
     public void OnStart(InputAction.CallbackContext context)
     {
       
     }
+
+   IEnumerator fireRate(float fireRate)
+   {
+       canShoot = false;
+       yield return new WaitForSeconds(fireRate);
+        canShoot = true;
+   }
 
 }
