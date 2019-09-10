@@ -14,6 +14,8 @@ public class Pistol : Arma
 
     public override void Shoot()
     {
+        ammoAmount--;
         Debug.Log("PIUPIU");
+   
     }
 }

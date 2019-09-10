@@ -19,7 +19,7 @@ public class ArmaManager : MonoBehaviour
        switch(rnd)
        {
             case 0:
-                armaPrefab.GetComponent<ArmaController>().actualArma = new Pistol();
+                armaPrefab.GetComponent<ArmaController>().actualArma = new Pistol() ;
                 break;
             case 1:
              armaPrefab.GetComponent<ArmaController>().actualArma = new Pistol();

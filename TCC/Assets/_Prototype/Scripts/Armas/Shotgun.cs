@@ -16,6 +16,8 @@ public class Shotgun : Arma
 
     public override void Shoot()
     {
+        ammoAmount--;
         Debug.Log("PLAUPLAU");
+       
     }
 }

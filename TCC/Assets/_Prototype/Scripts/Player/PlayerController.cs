@@ -146,8 +146,6 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void DesativarPowerUP()
     {
         PowerUp =false;
-      
-      
     }
    
 
@@ -202,9 +200,6 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
             {
                 actualArma.Shoot();
                 StartCoroutine(fireRate(actualArma.fireRate));
-            
-         
-                actualArma.ammoAmount-=1;
                 if(actualArma.ammoAmount<=0)
                 {
                     actualArma=null;
