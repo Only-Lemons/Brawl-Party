@@ -39,13 +39,14 @@ public class CameraController2 : MonoBehaviour
 
     void ControleFoco()
     {
-        cam.transform.position = new Vector3(MediaDistancia().x, cam.transform.position.y, MediaDistancia().z + posicaoEmZ);
+        cam.transform.position = new Vector3(MediaDistancia().x, cam.transform.position.y, MediaDistancia().z + (posicaoEmZ * -1));
         cam.transform.LookAt(MediaDistancia());
     }
 
     void ControleZoom()
     {
-        cam.transform.position = ZoomDistancia();
+        //cam.transform.position = ZoomDistancia();
+        cam.fieldOfView = ZoomDistanciaFOV();
     }
     Vector3 MediaDistancia()
     {
@@ -58,7 +59,7 @@ public class CameraController2 : MonoBehaviour
         return m / targ.Count;
     }
 
-    Vector3 ZoomDistancia()
+    Vector3 ZoomDistanciaPOS()
     {
         Vector3 z = Vector3.zero;
         float max = 0;
@@ -74,7 +75,6 @@ public class CameraController2 : MonoBehaviour
                     }
                 }
             }
-            
         }
         if (max > 20)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 40, Time.deltaTime), cam.transform.position.z);
@@ -85,4 +85,29 @@ public class CameraController2 : MonoBehaviour
         return z;
     }
 
+    float ZoomDistanciaFOV()
+    {
+        float z = 0;
+        float max = 0;
+        for (int i = 0; i < targ.Count; i++)
+        {
+            for (int j = 0; j < targ.Count; j++)
+            {
+                if(i != j)
+                {
+                    if (Vector3.Distance(targ[i].transform.position, targ[j].transform.position) > max)
+                    {
+                        max = Vector3.Distance(targ[i].transform.position, targ[j].transform.position);
+                    }
+                }
+            }
+        }
+        if (max > 20)
+            z = Mathf.Lerp(cam.fieldOfView, 65, Time.deltaTime);
+        if (max <= 20 && max>=5)
+            z = Mathf.Lerp(cam.fieldOfView, 45, Time.deltaTime);
+        if (max < 5)
+            z = Mathf.Lerp(cam.fieldOfView, 20, Time.deltaTime);
+        return z;
+    }
 }

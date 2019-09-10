@@ -14,6 +14,7 @@ public class TesteInstancias : MonoBehaviour
     public int tempoRespawn;
     void Start()
     {
+        goAtual = null;
         podeContinuar = true;
         timer = 0;
         pontoRef = Vector3.zero;

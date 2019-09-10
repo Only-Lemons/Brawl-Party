@@ -280,6 +280,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8153527505664661698, guid: 763540642b86ee5499e770d9e5528bd9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153527504863021439, guid: 763540642b86ee5499e770d9e5528bd9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 763540642b86ee5499e770d9e5528bd9, type: 3}
 --- !u!1 &336693878
@@ -333,7 +343,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 45
+  field of view: 44.999973
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -358,8 +368,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336693878}
-  m_LocalRotation: {x: 0.593723, y: 0, z: 0, w: 0.8046695}
-  m_LocalPosition: {x: -0.15857145, y: 19.999998, z: -3.0814285}
+  m_LocalRotation: {x: 0.5577199, y: 0, z: 0, w: 0.83002925}
+  m_LocalPosition: {x: -0.22200003, y: 19.999998, z: -4.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -486,11 +496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed10cfda84f90444a7a136099f492d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posicaoEmZ: -6
+  posicaoEmZ: 8
   targ:
   - {fileID: 998167519}
-  - {fileID: 1458692396}
-  - {fileID: 1187897903}
   - {fileID: 1092621064}
   - {fileID: 1238968710}
   - {fileID: 1811726352}
@@ -643,12 +651,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!1 &1187897903 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8153527505664661698, guid: 763540642b86ee5499e770d9e5528bd9,
-    type: 3}
-  m_PrefabInstance: {fileID: 209088895}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1238968710
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,12 +760,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!1 &1458692396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8153527504863021439, guid: 763540642b86ee5499e770d9e5528bd9,
-    type: 3}
-  m_PrefabInstance: {fileID: 209088895}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1811726352
 GameObject:
   m_ObjectHideFlags: 0
