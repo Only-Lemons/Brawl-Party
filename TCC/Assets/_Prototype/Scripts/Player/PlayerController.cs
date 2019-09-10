@@ -170,16 +170,16 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-         movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
-        if(Gamepad.current == null)
-        {
+        movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
+       //if(true)
+        //{
                 rb.MovePosition(movementAxis + transform.position);
-        }else
-        {
+       // }else
+       // {
            
-            movementAxis *= player.speed;
-            rb.velocity  = movementAxis; 
-        }
+           // movementAxis *= player.speed;
+           // rb.velocity  = movementAxis; 
+       // }
   
     }
 

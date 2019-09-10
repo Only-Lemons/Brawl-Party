@@ -52,7 +52,7 @@
                 },
                 {
                     "name": "WSAD",
-                    "id": "de91e2c3-c641-409b-bca7-38cd1d40790e",
+                    "id": "064f3e02-e850-4acb-b2fb-050f140416f2",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -63,47 +63,58 @@
                 },
                 {
                     "name": "up",
-                    "id": "314ac211-2b23-48d8-b53b-c414b2bcc863",
+                    "id": "452d1bfe-8718-471b-8736-51466523708d",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "d558de23-4a83-4d22-a486-3a58a07ed5e7",
+                    "id": "a2a50b1d-91e5-4b86-94a7-ba63d4369639",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "9b7387a0-9b51-4fb8-9298-197c60e82e88",
+                    "id": "3597eba7-519d-409d-8030-dbb00a49dd08",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "073908cf-25fd-45a8-9258-4c5eef86ac3c",
+                    "id": "09dfee96-377e-4a24-8369-4a0a0e87d92c",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "53f9c94a-646f-4f67-9621-590fe1946a52",
+                    "path": "<HID::MotioninJoy MotioninJoy Virtual Game Controller>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -123,6 +134,17 @@
                     "interactions": "",
                     "processors": "NormalizeVector2",
                     "groups": "Keyboard&Mouse",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fab2c69d-4dc3-4ccb-be6a-6459d822e9d4",
+                    "path": "*/{Hatswitch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
