@@ -40,9 +40,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8153527505591309848}
   - component: {fileID: 8153527505591309851}
-  - component: {fileID: 8153527505591309849}
-  - component: {fileID: 8153527505591309854}
   - component: {fileID: 3132262564887125043}
+  - component: {fileID: 1466083661}
+  - component: {fileID: 9173719926958905139}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -80,27 +80,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 82cb6a9727311b143b114f780e8c59cf, type: 2}
   actualArma: {fileID: 0}
+  canShoot: 0
   PowerUp: 0
   life: 50
   speed: 0
   shield: 0
---- !u!54 &8153527505591309849
-Rigidbody:
+--- !u!136 &3132262564887125043
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8153527505591309850}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
---- !u!114 &8153527505591309854
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1466083661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,8 +141,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 8d7d6908-7210-4eb6-9eca-ce1d7d7281a3
-    m_ActionName: Player/Move
+    m_ActionId: a84250f7-2471-4e35-a4d4-955ec33ff11d
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8153527505591309851}
@@ -159,8 +158,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 612546b4-d03b-46ce-9ded-e29055d81a41
-    m_ActionName: Player/Look
+    m_ActionId: 33612110-46f5-44e7-b94f-5c56f98e21db
+    m_ActionName: Player/Look[/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8153527505591309851}
@@ -176,99 +175,29 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 53dd48d2-9f0c-4a19-affa-aa05caa27c9a
-    m_ActionName: Player/Fire
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 58d17348-4dd5-4186-b6c7-233bc6d2374f
-    m_ActionName: UI/Navigate
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 00f35709-d524-440f-95f2-1f18b9fa34fc
-    m_ActionName: UI/Submit
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: f11c4d1e-2161-4aa9-a611-8738e4fe8a44
-    m_ActionName: UI/Cancel
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: ac2876a6-7d2e-47f1-b1cb-ae1c279b92be
-    m_ActionName: UI/Point
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: c26860cd-02e5-483c-9bd9-b2c040933e97
-    m_ActionName: UI/Click
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 5f5d961b-bd5e-4251-81d4-c65aa8e53394
-    m_ActionName: UI/ScrollWheel
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: bc3892fe-65cc-40c6-9a40-04ab11b50e52
-    m_ActionName: UI/MiddleClick
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 2e6f1c0b-c23b-41f9-a0b9-34eaccff2ba0
-    m_ActionName: UI/RightClick
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: ab882ab3-0546-4185-9bd5-9c0517dc5d8b
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: ed3c4cf1-c2ce-47a6-8feb-e7ecb6d56aad
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: f80f9a2c-a29b-45ea-95d9-7c5fd2215750
-    m_ActionName: UI/TrackedDeviceSelect
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: c6faf662-f0d7-444a-8220-8735dd5bca85
-    m_ActionName: Player/Start[/XInputControllerWindows/start,/XInputControllerWindows/start,/XInputControllerWindows/start,/XInputControllerWindows/start]
+    m_ActionId: d0a05ba7-d68f-4f5d-b099-543705f53838
+    m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger]
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: 74411b17-0430-439d-a9b2-4839bc474a5d
+  m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!136 &3132262564887125043
-CapsuleCollider:
+--- !u!54 &9173719926958905139
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8153527505591309850}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1001 &1393442036069364913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -346,8 +275,7 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7093633643888655820, guid: 25449f961aa00cf40ac1634e886bf470, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25449f961aa00cf40ac1634e886bf470, type: 3}
 --- !u!4 &8153527504863021436 stripped
 Transform:

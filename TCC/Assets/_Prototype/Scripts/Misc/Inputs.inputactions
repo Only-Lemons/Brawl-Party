@@ -3,12 +3,12 @@
     "maps": [
         {
             "name": "Player",
-            "id": "43431123-d662-4cbd-8fb7-1a61aaf2adf4",
+            "id": "545b8236-6bd5-405f-b4c5-863d8652879b",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "7c5f11e4-8c80-4cff-8bfb-90e86bd1ff34",
+                    "id": "a84250f7-2471-4e35-a4d4-955ec33ff11d",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -16,7 +16,7 @@
                 {
                     "name": "Look",
                     "type": "Value",
-                    "id": "ab5153ef-43db-4679-9767-280e77e241de",
+                    "id": "33612110-46f5-44e7-b94f-5c56f98e21db",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -24,8 +24,8 @@
                 {
                     "name": "Fire",
                     "type": "Button",
-                    "id": "41ca6f5f-1966-45cb-999c-3fec9a711d18",
-                    "expectedControlType": "",
+                    "id": "d0a05ba7-d68f-4f5d-b099-543705f53838",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -33,99 +33,33 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "49e8ee17-1978-48c6-9574-26d7bd88a8c0",
+                    "id": "9d4debef-705c-480d-980a-8901e5bd61b2",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "WSAD",
-                    "id": "edb34779-43e5-467a-9ff0-11b2a7248a22",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "881f4517-665c-4739-91a4-e456af946139",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "033c3b2f-5919-4da5-8440-87e92accaf34",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "60d2b106-4b70-445a-84fb-26867265eeec",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "390e2b53-ee3a-4c81-a7b8-e41844767ee2",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "0140806c-50b6-4141-ba7c-886ca0ac5210",
+                    "id": "be5221ba-b71e-4091-9b3c-ddc737786bac",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "122cff2c-0890-46b3-b677-d071ad42c361",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0ef18809-fd95-4ff4-bf62-8d48a86b3144",
+                    "id": "0f01a908-98d2-4e54-b879-ada6c49a11ea",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -140,6 +74,28 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

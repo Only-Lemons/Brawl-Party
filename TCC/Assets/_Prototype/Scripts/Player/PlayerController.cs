@@ -6,15 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 {
-    public enum EstadoPU
-    {
-        Normal,
-        Ativo
-    }
-
     [Header("ScriptableObject")]
     public SOPlayer player;
-    Rigidbody rb;  
+    Rigidbody rb;
+    CharacterController cc;  
     float turnSpeed = 10f;
     Vector3 movementAxis;
     Vector3 rotationAxis;
@@ -73,6 +68,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
       
         SOpowerUps = new List<PowerUpManager>();
         rb = GetComponent<Rigidbody>();
+        cc = GetComponent<CharacterController>();
         canShoot=true;
      
     }
@@ -151,7 +147,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
-        
+        rb.MovePosition(movementAxis + transform.position);
+        Rot();
     }
 
     public void Rot()
@@ -169,16 +166,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
-       //if(true)
-        //{
-                rb.MovePosition(movementAxis + transform.position);
-       // }else
-       // {
-           
-           // movementAxis *= player.speed;
-           // rb.velocity  = movementAxis; 
-       // }
-  
+        movementAxis *= speed * Time.deltaTime;
+         
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -186,7 +175,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         if(context.ReadValue<Vector2>().x != 0  || context.ReadValue<Vector2>().y != 0)
         rotationAxis =  new Vector3(context.ReadValue<Vector2>().x ,0,context.ReadValue<Vector2>().y );
        
-        Rot();
+    
     }
 
     public void OnFire(InputAction.CallbackContext context)
