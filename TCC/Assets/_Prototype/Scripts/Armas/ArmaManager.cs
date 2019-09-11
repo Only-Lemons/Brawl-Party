@@ -9,11 +9,11 @@ public class ArmaManager : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.F1)) //Provisorio
-            instanciarArma();
+            InstanciarArma();
     }
 
 
-   public void instanciarArma()
+   public void InstanciarArma()
    {
        int rnd = Random.Range(0,5);
        switch(rnd)
