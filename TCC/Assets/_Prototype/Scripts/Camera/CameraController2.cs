@@ -8,8 +8,8 @@ public class CameraController2 : MonoBehaviour
 {
     // Start is called before the first frame update
     Camera cam;
-    public float posicaoEmZ = 15;
-    public float alturaCam = 30;
+    public float posicaoEmZ = 8;
+    public float alturaCam = 25;
 
     public List<GameObject> targ = new List<GameObject>();
     void Start()
