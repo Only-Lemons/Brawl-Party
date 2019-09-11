@@ -5,13 +5,13 @@ using UnityEngine;
 public class TesteInstancias : MonoBehaviour
 {
     public GameObject[] go;
-    public int velocidadeQueda = 3;
+    public int velocidadeQueda = 10;
 
     GameObject goAtual;
     Vector3 pontoRef;
     bool podeContinuar;
     float timer;
-    public int tempoRespawn;
+    public int tempoRespawn = 5;
     void Start()
     {
         goAtual = null;
