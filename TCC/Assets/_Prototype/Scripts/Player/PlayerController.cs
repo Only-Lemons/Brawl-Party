@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
+        
         rb.MovePosition(movementAxis + transform.position);
         Rot();
     }
@@ -211,4 +212,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         canShoot = true;
    }
 
+    public void OnInsert(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }
