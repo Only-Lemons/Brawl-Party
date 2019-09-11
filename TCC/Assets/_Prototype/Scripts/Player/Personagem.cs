@@ -17,7 +17,7 @@ public class Personagem : MonoBehaviour
     public float velocidadedeMovimento;
     public State EstadoAtual;
     TileController ativo; 
-
+   
     private void Start()
     {
         MudarEstado(State.Normal);
