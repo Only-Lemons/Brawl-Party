@@ -8,12 +8,14 @@ public class CameraController2 : MonoBehaviour
 {
     // Start is called before the first frame update
     Camera cam;
-    public float posicaoEmZ = -6;
+    public float posicaoEmZ = 15;
+    public float alturaCam = 30;
 
     public List<GameObject> targ = new List<GameObject>();
     void Start()
     {
         cam = Camera.main;
+        cam.transform.position = new Vector3(alturaCam,alturaCam,alturaCam);
         GetTargets();
 
     }
@@ -30,7 +32,7 @@ public class CameraController2 : MonoBehaviour
 
     void LateUpdate()
     {
-        if (targ != null)
+        if (targ.Count > 0)
         {
             ControleFoco();
             ControleZoom();

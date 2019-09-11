@@ -177,6 +177,12 @@ MonoBehaviour:
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: d0a05ba7-d68f-4f5d-b099-543705f53838
     m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 0f61bc1e-d623-43ed-ad6d-6bf55f01fd78
+    m_ActionName: Player/Insert[/XInputControllerWindows/start,/XInputControllerWindows/start,/XInputControllerWindows/start,/XInputControllerWindows/start]
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b
@@ -209,11 +215,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gfx
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093633643888655822, guid: 25449f961aa00cf40ac1634e886bf470,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7093633643888655821, guid: 25449f961aa00cf40ac1634e886bf470,
         type: 3}
@@ -269,11 +270,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7093633643616545907, guid: 25449f961aa00cf40ac1634e886bf470,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25449f961aa00cf40ac1634e886bf470, type: 3}

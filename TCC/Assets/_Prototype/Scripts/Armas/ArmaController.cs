@@ -14,6 +14,7 @@ public class ArmaController : MonoBehaviour
             other.GetComponentInParent<PlayerController>().actualArma = actualArma;
             Instantiate(actualArma.prefab,other.transform.GetChild(1).transform.position,Quaternion.identity,other.transform.GetChild(1).transform);
             Destroy(this.gameObject);
+            
         }
 
     }
