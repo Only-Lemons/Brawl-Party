@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     private void FixedUpdate()
     {
+        player.passiva.AtivarPassiva(this);
         if (PowerUp == true) 
             VerificarPU();
     }
@@ -127,6 +128,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     public bool PUActive(PowerUP pu)
     {
+        
         for (int i = 0; i < SOpowerUps.Count; i++)
         {
             if (SOpowerUps[i].PU.Name == pu.Name)

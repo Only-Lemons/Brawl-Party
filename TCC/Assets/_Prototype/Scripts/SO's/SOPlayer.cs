@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-[CreateAssetMenu (fileName ="Personagens",menuName = "Player")]
+[CreateAssetMenu (fileName = "Player",menuName ="Jogadores")]
 public class SOPlayer : ScriptableObject
 {
    public string nome;
@@ -13,6 +13,6 @@ public class SOPlayer : ScriptableObject
    public float speed;
    public GameObject prefab;
    public Animator stateAnimation;
-    
+   public Passive passiva;
   
 }
