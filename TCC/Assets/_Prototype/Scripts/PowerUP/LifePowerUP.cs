@@ -18,6 +18,8 @@ public class LifePowerUP : PowerUP
         if (player.life < aux.hp && time >= 1)
         {
             player.life += vidaMaximaT;
+            if (player.life > aux.hp)
+                player.life = aux.hp;
             time = 0;
         }
 

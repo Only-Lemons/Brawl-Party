@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     private void FixedUpdate()
     {
+        player.passiva.AtivarPassiva(this);
         if (PowerUp == true) 
             VerificarPU();
     }
@@ -127,6 +128,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     public bool PUActive(PowerUP pu)
     {
+        
         for (int i = 0; i < SOpowerUps.Count; i++)
         {
             if (SOpowerUps[i].PU.Name == pu.Name)
@@ -147,6 +149,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
+        
         rb.MovePosition(movementAxis + transform.position);
         Rot();
     }
@@ -211,4 +214,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         canShoot = true;
    }
 
+    public void OnInsert(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }
