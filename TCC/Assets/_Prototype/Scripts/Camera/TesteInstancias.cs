@@ -5,12 +5,8 @@ using UnityEngine;
 public class TesteInstancias : MonoBehaviour
 {
     public GameObject[] go;
-<<<<<<< Updated upstream
     public int velocidadeQueda = 10;
-=======
     public GameObject cxPadrao;
-    public int velocidadeQueda = 3;
->>>>>>> Stashed changes
 
     GameObject goAtual;
     Vector3 pontoRef;
