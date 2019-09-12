@@ -10,12 +10,14 @@ public class Pistol : Arma
         ammoAmount = 7;
         damage = 10;
         prefab = Resources.Load("Armas/Pistol") as GameObject;
+        ammunitionPrefab = Resources.Load("Municoes/MPistol") as GameObject;
     }
 
     public override void Shoot()
     {
         ammoAmount--;
         Debug.Log("PIUPIU");
+        //Instantiate(ammunitionPrefab);
    
     }
 }

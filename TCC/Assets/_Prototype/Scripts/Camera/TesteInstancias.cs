@@ -100,7 +100,7 @@ public class TesteInstancias : MonoBehaviour
 
     void InstanciarRandom()
     {
-        int b = Random.Range(0, go.Length);
+        int b = Random.Range(3, go.Length);
         if (b != go.Length - 1)
             Instantiate(go[b], goAtual.transform.position, Quaternion.identity);
         else
