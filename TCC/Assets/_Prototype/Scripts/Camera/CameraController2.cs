@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [ExecuteInEditMode]
 public class CameraController2 : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     Camera cam;
     public float posicaoEmZ = 8;
     public float alturaCam = 25;
