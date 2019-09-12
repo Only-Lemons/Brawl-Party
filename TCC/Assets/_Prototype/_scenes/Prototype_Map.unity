@@ -998,7 +998,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8851506818517258863}
   m_LocalRotation: {x: 0.58958644, y: 0, z: 0, w: 0.8077053}
-  m_LocalPosition: {x: -0.20249987, y: 25, z: -9.0825}
+  m_LocalPosition: {x: -0.2025001, y: 25, z: -9.0825}
   m_LocalScale: {x: 100.000046, y: 100, z: 100.00002}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1084,6 +1084,7 @@ MonoBehaviour:
   - {fileID: 8468137584767431535, guid: 7d48fabbc407eb44797368c95f701987, type: 3}
   - {fileID: 8888574536522326467, guid: 4c311e2f77e1fe344ad3ffcc25441b33, type: 3}
   velocidadeQueda: 10
+  limiteParaInstanciar: {x: 13, y: 8}
   cxPadrao: {fileID: 2236393400438116409, guid: 233be8f2c4e86b34880ba5068a76428c,
     type: 3}
   tempoRespawn: 5
@@ -1103,6 +1104,6 @@ MonoBehaviour:
   alturaCam: 25
   targ:
   - {fileID: 645684936}
-  - {fileID: 1104324784}
-  - {fileID: 1707202699}
   - {fileID: 234777293}
+  - {fileID: 1707202699}
+  - {fileID: 1104324784}

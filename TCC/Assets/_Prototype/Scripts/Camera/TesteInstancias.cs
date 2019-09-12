@@ -6,6 +6,7 @@ public class TesteInstancias : MonoBehaviour
 {
     public GameObject[] go;
     public int velocidadeQueda = 10;
+    public Vector2 limiteParaInstanciar = new Vector2(15,15);
     public GameObject cxPadrao;
 
     GameObject goAtual;
@@ -27,22 +28,16 @@ public class TesteInstancias : MonoBehaviour
         ControlarQueda();
     }
 
-    void InstanciarRandom()
+    void InstanciarCaixa()
     {
-        int x = Random.Range(-15, 16);
-        int z = Random.Range(-15, 16);
+        int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x+1);
+        int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y+1);
         pontoRef = new Vector3(x, 20, z);
 
         if (goAtual == null)
-        {
-            //goAtual = Instantiate(go[Random.Range(0, go.Length)], pontoRef, Quaternion.identity);
+        {  
             goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity);
         }
-    }
-
-    void InstaciarCaixa()
-    {
-
     }
 
     void Instanciar()
@@ -51,7 +46,7 @@ public class TesteInstancias : MonoBehaviour
         if (timer >= tempoRespawn)
         {
             timer = 0;
-            InstanciarRandom();
+            InstanciarCaixa();
         }
     }
 
@@ -98,16 +93,21 @@ public class TesteInstancias : MonoBehaviour
             }
             else
             {
-                int b = Random.Range(0, go.Length);
-                if(b != 3)
-                    Instantiate(go[b], goAtual.transform.position, Quaternion.identity);
-                else
-                    Instantiate(InstanciarArma(b), goAtual.transform.position, Quaternion.identity);
-                    
-                Destroy(goAtual);
-                goAtual = null;
+                InstanciarRandom();
             }
         }
+    }
+
+    void InstanciarRandom()
+    {
+        int b = Random.Range(0, go.Length);
+        if (b != go.Length - 1)
+            Instantiate(go[b], goAtual.transform.position, Quaternion.identity);
+        else
+            Instantiate(InstanciarArma(b), goAtual.transform.position, Quaternion.identity);
+
+        Destroy(goAtual);
+        goAtual = null;
     }
 
 }

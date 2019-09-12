@@ -343,7 +343,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 44.999973
+  field of view: 44.999996
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -368,8 +368,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336693878}
-  m_LocalRotation: {x: 0.5577199, y: 0, z: 0, w: 0.83002925}
-  m_LocalPosition: {x: -0.22200003, y: 19.999998, z: -4.02}
+  m_LocalRotation: {x: 0.58768153, y: 0, z: 0, w: 0.8090924}
+  m_LocalPosition: {x: -0.22200003, y: 25, z: -4.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -497,6 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   posicaoEmZ: 8
+  alturaCam: 25
   targ:
   - {fileID: 998167519}
   - {fileID: 1092621064}
@@ -535,6 +536,7 @@ MonoBehaviour:
   - {fileID: 8468137584767431535, guid: 7d48fabbc407eb44797368c95f701987, type: 3}
   - {fileID: 8888574536522326467, guid: 4c311e2f77e1fe344ad3ffcc25441b33, type: 3}
   velocidadeQueda: 5
+  cxPadrao: {fileID: 0}
   tempoRespawn: 10
 --- !u!1 &998167519 stripped
 GameObject:
