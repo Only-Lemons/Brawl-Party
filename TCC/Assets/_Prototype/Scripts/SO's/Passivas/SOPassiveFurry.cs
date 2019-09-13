@@ -11,21 +11,23 @@ public class SOPassiveFurry : SOPassive
     {
         if (Cronometro())
             FinishPassive(player);
-        if (player.actualArma != null && isActive == false)
+        if (player.actualArma != null && isActive == false && CheckCD())
         {
             if (armaAtual != player.actualArma)
             {
                 armaAtual = player.actualArma;
                 player.speed += player.player.speed;
                 isActive = true;
+               
             }
 
         }
-        if(player.PowerUp && isActive == false)
+        if(player.PowerUp && isActive == false && CheckCD())
         {
             armaAtual = player.actualArma;
             player.speed += player.player.speed;
             isActive = true;
+            
         }
 
     }
@@ -33,6 +35,7 @@ public class SOPassiveFurry : SOPassive
     {
         isActive = false;
         player.speed -= player.player.speed;
+        inCD = true;
     }
     bool Cronometro()
     {
@@ -48,6 +51,25 @@ public class SOPassiveFurry : SOPassive
             
         }
         return false;
+    }
+    public override bool CheckCD()
+    {
+        if(inCD == true)
+        {
+            actualtimeCD -= Time.deltaTime;
+            if(actualtimeCD <= 0)
+            {
+                actualtimeCD = timeCD;
+                inCD = false;
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            actualtimeCD = timeCD;
+            return true;
+        }
     }
 
 }
