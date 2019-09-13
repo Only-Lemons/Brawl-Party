@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveSkull : Passive
+[CreateAssetMenu (fileName ="Passiva Esqueleto",menuName ="Passivas")]
+public class SOPassiveSkull : SOPassive
 {
     public override void AtivarPassiva(PlayerController player)
     {

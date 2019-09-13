@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Passive : ScriptableObject
+[CreateAssetMenu(fileName = "Passiva", menuName = "Passivas")]
+public abstract class SOPassive : ScriptableObject
 {
     float time;
     bool isActive;
