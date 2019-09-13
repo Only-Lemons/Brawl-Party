@@ -14,10 +14,10 @@ public class Shotgun : Arma
        
     }
 
-    public override void Shoot()
+    public override void Shoot(Vector3 position, Quaternion rotation)
     {
         ammoAmount--;
-        Debug.Log("PLAUPLAU");
-       
+        Debug.Log("POUPOU");
+
     }
 }

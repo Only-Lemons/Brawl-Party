@@ -14,11 +14,12 @@ public class Pistol : Arma
         ammunitionPrefab.GetComponent<Tiro>().damage = this.damage;
     }
 
-    public override void Shoot()
+  
+
+    public override void Shoot(Vector3 position, Quaternion rotation)
     {
         ammoAmount--;
         Debug.Log("PIUPIU");
-        Instantiate(ammunitionPrefab);
-   
+        Instantiate(ammunitionPrefab,position,rotation);
     }
 }

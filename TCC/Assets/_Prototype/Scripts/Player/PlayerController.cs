@@ -153,7 +153,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+            Atirar();
         rb.MovePosition(movementAxis + transform.position);
         Rot();
     }
@@ -194,7 +195,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
             if(canShoot)
             {
-                actualArma.Shoot();
+                actualArma.Shoot(this.transform.position,this.transform.rotation);
                 StartCoroutine(fireRate(actualArma.fireRate));
                 if(actualArma.ammoAmount<=0)
                 {
@@ -205,7 +206,25 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
             }         
        }
     }
+    void Atirar()
+    {
 
+        if (actualArma != null)
+        {
+
+            if (canShoot)
+            {
+                actualArma.Shoot(new Vector3(this.transform.position.x+1, this.transform.position.y, this.transform.position.z), this.transform.rotation);
+                StartCoroutine(fireRate(actualArma.fireRate));
+                if (actualArma.ammoAmount <= 0)
+                {
+                    actualArma = null;
+                    canShoot = true;
+                    Destroy(transform.GetChild(1).GetChild(0).gameObject);
+                }
+            }
+        }
+    }
     public void OnStart(InputAction.CallbackContext context)
     {
       
