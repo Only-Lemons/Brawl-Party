@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Passiva Robô", menuName = "Passivas")]
+[CreateAssetMenu(fileName = "Passivas", menuName = "PassivaRobo")]
 public class SOPassiveRobot : SOPassive
 {
     Arma armaAtual;

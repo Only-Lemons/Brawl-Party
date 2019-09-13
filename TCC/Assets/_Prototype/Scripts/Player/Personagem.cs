@@ -16,7 +16,7 @@ public class Personagem : MonoBehaviour
 {
     public float velocidadedeMovimento;
     public State EstadoAtual;
-    TileController ativo; 
+    Tile ativo; 
    
     private void Start()
     {
@@ -29,13 +29,13 @@ public class Personagem : MonoBehaviour
         float menorDistancia = float.MaxValue;
         for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
         {
-            if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].tile.Pivot.transform.position) < menorDistancia)
+            if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
             {
-                menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].tile.Pivot.transform.position);
+                menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
                 ativo = TerrainController.instance.tilesInstanciados[k];
             }
         }
-        ativo.tile.Interagir(this);
+        ativo.Interagir(this);
     }
 
     public void MudarEstado(State state)

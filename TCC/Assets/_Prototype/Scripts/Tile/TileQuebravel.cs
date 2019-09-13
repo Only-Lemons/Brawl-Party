@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileNeve : Tile
+public class TileQuebravel : Tile
 {
-    public TileNeve(Transform pivot)
+    public TileQuebravel(Transform pivot)
     {
    
         Pivot = pivot;

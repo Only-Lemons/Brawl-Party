@@ -13,6 +13,6 @@ public class SOPlayer : ScriptableObject
    public float speed;
    public GameObject prefab;
    public Animator stateAnimation;
-   public Passive passiva;
+   public SOPassive passiva;
   
 }

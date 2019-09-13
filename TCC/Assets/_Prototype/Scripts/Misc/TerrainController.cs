@@ -7,7 +7,7 @@ public class TerrainController : MonoBehaviour
     public static TerrainController instance;
 
 
-   public List<TileController> tilesInstanciados = new List<TileController>();
+   public List<Tile> tilesInstanciados = new List<Tile>();
    
  
 
