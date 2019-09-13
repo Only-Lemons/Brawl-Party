@@ -4,10 +4,11 @@ using UnityEngine;
 
 public abstract class SOPassive : ScriptableObject
 {
-    float time;
-    bool isActive;
+    public float timeCD;
+    public float actualtimeCD;
+    public bool inCD;
 
 
     public abstract void AtivarPassiva(PlayerController player);
-
+    public abstract bool CheckCD();
 }

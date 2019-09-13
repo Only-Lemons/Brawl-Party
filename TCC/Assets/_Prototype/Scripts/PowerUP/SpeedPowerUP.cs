@@ -16,7 +16,7 @@ public class SpeedPowerUP : PowerUP
       
         if (Activate == false)
         {
-            player.speed = player.speed * 2;
+            player.speed += player.player.speed;
             Activate = true;
         }
     }
