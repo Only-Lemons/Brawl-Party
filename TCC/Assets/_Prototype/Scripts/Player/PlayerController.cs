@@ -241,4 +241,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         throw new System.NotImplementedException();
     }
+
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }

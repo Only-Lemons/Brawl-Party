@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "Passivas", menuName = "PassivaMonster")]
 public class SOPassiveMonster : SOPassive
 {
     public int recoveryTime;

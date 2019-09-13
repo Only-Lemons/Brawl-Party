@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Passivas", menuName = "PassivaFurry")]
 public class SOPassiveFurry : SOPassive
 {
     Arma armaAtual;

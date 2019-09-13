@@ -11,7 +11,7 @@ public class Pistol : Arma
         damage = 10;
         prefab = Resources.Load("Armas/Pistol") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/MPistol") as GameObject;
-        ammunitionPrefab.GetComponent<Tiro>().damage = this.damage;
+        ammunitionPrefab.GetComponentInParent<Tiro>().damage = this.damage;
     }
 
   
