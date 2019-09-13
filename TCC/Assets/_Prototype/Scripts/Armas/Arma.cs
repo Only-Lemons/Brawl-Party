@@ -6,7 +6,7 @@ public abstract class Arma : ScriptableObject
 {
     public float fireRate;
     public float ammoAmount;
-    public float damage;
+    public int damage;
     public GameObject ammunitionPrefab;
 
     public GameObject prefab;

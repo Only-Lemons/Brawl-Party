@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public int life;
     public float speed;
     public int shield;
+    public SOPassive passiva;
     #endregion
 
     Inputs controls;
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
    
     void Start()
     {
-      
+        passiva = Instantiate(player.passiva);
         SOpowerUps = new List<PowerUpManager>();
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     }
     private void FixedUpdate()
     {
-        player.passiva.AtivarPassiva(this);
+        passiva.AtivarPassiva(this);
         if (PowerUp == true) 
             VerificarPU();
     }
@@ -82,8 +83,11 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         shield += valor;
 
     }
-    public void DesativarEscudo(){
-        shield = 0;
+    public void DesativarEscudo(int valor){
+        if(shield > 0)
+            shield -= valor;
+        if (shield < 0)
+            shield = 0;
     }
     void VerificarPU()
     {

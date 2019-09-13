@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Tiro : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    public int damage;
 
     void Update()
     {
         transform.position += transform.forward*Time.deltaTime*10;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            other.GetComponentInParent<PlayerController>().life -= damage;
+            Destroy(this.gameObject);
+        }
     }
 }

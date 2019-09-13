@@ -6,9 +6,11 @@ using UnityEngine;
 public class SOPassiveRobot : SOPassive
 {
     Arma armaAtual;
- 
+    public float finishedShildTime;
+    PlayerController player;
     public override void AtivarPassiva(PlayerController player)
     {
+        this.player = player;
         if(player.actualArma != null && CheckCD())
         {
             if (armaAtual != player.actualArma)
@@ -29,6 +31,8 @@ public class SOPassiveRobot : SOPassive
         if (inCD == true)
         {
             actualtimeCD -= Time.deltaTime;
+            if (actualtimeCD <= finishedShildTime)
+                player.DesativarEscudo(Mathf.FloorToInt(player.player.hp * 0.20f));
             if (actualtimeCD <= 0)
             {
                 actualtimeCD = timeCD;
