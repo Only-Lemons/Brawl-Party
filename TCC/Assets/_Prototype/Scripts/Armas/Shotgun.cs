@@ -11,13 +11,14 @@ public class Shotgun : Arma
         ammoAmount = 4;
         damage = 20;
         prefab = Resources.Load("Armas/Shotgun") as GameObject;
-       
+        ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
+
     }
 
-    public override void Shoot()
+    public override void Shoot(Transform pos)
     {
         ammoAmount--;
-        Debug.Log("PLAUPLAU");
+        Instantiate(ammunitionPrefab,pos.position,Quaternion.identity);
        
     }
 }

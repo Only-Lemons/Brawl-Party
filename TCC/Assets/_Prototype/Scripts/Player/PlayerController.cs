@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     
     [Header("Arma")]
     public Arma actualArma;
+    public Arma[] armaInv;
     public bool canShoot;
 
  
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
         canShoot=true;
-     
+        armaInv = new Arma[2];
     }
     private void FixedUpdate()
     {
@@ -187,10 +188,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
        if(actualArma != null)
        {
-
             if(canShoot)
             {
-                actualArma.Shoot();
+                actualArma.Shoot(transform.GetChild(1).GetChild(0).GetChild(0));
                 StartCoroutine(fireRate(actualArma.fireRate));
                 if(actualArma.ammoAmount<=0)
                 {
@@ -217,5 +217,17 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnInsert(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
+    }
+    
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        Debug.Log("Troquei");
+        actualArma = armaInv[1];
+        armaInv[1] = armaInv[0];
+        armaInv[1] = actualArma;
+
+        // instanciar a arma nova
+            Destroy(this.transform.GetChild(1).GetChild(0).gameObject);
+            Instantiate(actualArma.prefab,this.transform.GetChild(1).transform);   
     }
 }

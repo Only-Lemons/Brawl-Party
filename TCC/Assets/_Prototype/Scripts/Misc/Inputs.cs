@@ -48,6 +48,14 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Switch"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6bc9e3f-eb2a-4f27-bb5f-703551d692b9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap(duration=0.8,pressPoint=0.5)""
                 }
             ],
             ""bindings"": [
@@ -79,7 +87,7 @@ public class Inputs : IInputActionCollection
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -90,7 +98,7 @@ public class Inputs : IInputActionCollection
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -101,7 +109,7 @@ public class Inputs : IInputActionCollection
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -112,7 +120,7 @@ public class Inputs : IInputActionCollection
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -130,11 +138,33 @@ public class Inputs : IInputActionCollection
                 },
                 {
                     ""name"": """",
+                    ""id"": ""12abd525-4b00-4b48-92bd-ad2c5eafe2c4"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""0f01a908-98d2-4e54-b879-ada6c49a11ea"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a71c58c3-2012-411d-87d2-9efe4f091a98"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -147,6 +177,28 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Insert"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""594d77b4-2e9c-4c96-891d-1da0d596c345"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8580fa0f-c15f-4403-9f09-74081609c62c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Switch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -526,12 +578,17 @@ public class Inputs : IInputActionCollection
             ]
         },
         {
-            ""name"": ""Keyboard"",
-            ""bindingGroup"": ""Keyboard"",
+            ""name"": ""KeyboardMouse"",
+            ""bindingGroup"": ""KeyboardMouse"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]
@@ -555,6 +612,7 @@ public class Inputs : IInputActionCollection
         m_Player_Look = m_Player.GetAction("Look");
         m_Player_Fire = m_Player.GetAction("Fire");
         m_Player_Insert = m_Player.GetAction("Insert");
+        m_Player_Switch = m_Player.GetAction("Switch");
         // UI
         m_UI = asset.GetActionMap("UI");
         m_UI_Navigate = m_UI.GetAction("Navigate");
@@ -621,6 +679,7 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Insert;
+    private readonly InputAction m_Player_Switch;
     public struct PlayerActions
     {
         private Inputs m_Wrapper;
@@ -629,6 +688,7 @@ public class Inputs : IInputActionCollection
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Insert => m_Wrapper.m_Player_Insert;
+        public InputAction @Switch => m_Wrapper.m_Player_Switch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -650,6 +710,9 @@ public class Inputs : IInputActionCollection
                 Insert.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInsert;
                 Insert.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInsert;
                 Insert.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInsert;
+                Switch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
+                Switch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
+                Switch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -666,6 +729,9 @@ public class Inputs : IInputActionCollection
                 Insert.started += instance.OnInsert;
                 Insert.performed += instance.OnInsert;
                 Insert.canceled += instance.OnInsert;
+                Switch.started += instance.OnSwitch;
+                Switch.performed += instance.OnSwitch;
+                Switch.canceled += instance.OnSwitch;
             }
         }
     }
@@ -792,13 +858,13 @@ public class Inputs : IInputActionCollection
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    private int m_KeyboardSchemeIndex = -1;
-    public InputControlScheme KeyboardScheme
+    private int m_KeyboardMouseSchemeIndex = -1;
+    public InputControlScheme KeyboardMouseScheme
     {
         get
         {
-            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.GetControlSchemeIndex("Keyboard");
-            return asset.controlSchemes[m_KeyboardSchemeIndex];
+            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.GetControlSchemeIndex("KeyboardMouse");
+            return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
         }
     }
     private int m_MouseSchemeIndex = -1;
@@ -816,6 +882,7 @@ public class Inputs : IInputActionCollection
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnInsert(InputAction.CallbackContext context);
+        void OnSwitch(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

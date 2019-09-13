@@ -11,7 +11,7 @@ public abstract class Arma : ScriptableObject
 
     public GameObject prefab;
 
-    public abstract void Shoot();
+    public abstract void Shoot(Transform pos);
     
 
 }
