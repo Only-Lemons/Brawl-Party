@@ -14,7 +14,7 @@ public class Tiro : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            other.GetComponentInParent<PlayerController>().life -= damage;
+            other.GetComponentInParent<PlayerController>().ReceiveDamage(damage);
             Destroy(this.gameObject);
         }
     }

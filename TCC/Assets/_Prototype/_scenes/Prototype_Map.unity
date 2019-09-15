@@ -396,6 +396,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4574943190371278668, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4903474882140566239, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6808099243178776321, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -414,11 +424,6 @@ PrefabInstance:
     - target: {fileID: -5982637757194479735, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
         type: 3}
       propertyPath: m_Lightmapping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4574943190371278668, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
-        type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
@@ -499,11 +504,6 @@ PrefabInstance:
     - target: {fileID: 4352067921750905578, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
         type: 3}
       propertyPath: m_Lightmapping
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4903474882140566239, guid: 5c418ed7ae1e1114d8cbc1a40b9bf154,
-        type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   - {fileID: 8888574536522326467, guid: 4c311e2f77e1fe344ad3ffcc25441b33, type: 3}
   velocidadeQueda: 10
   limiteParaInstanciar: {x: 13, y: 8}
-  cxPadrao: {fileID: 2236393400438116409, guid: 233be8f2c4e86b34880ba5068a76428c,
+  cxPadrao: {fileID: 8888574536522326467, guid: 4c311e2f77e1fe344ad3ffcc25441b33,
     type: 3}
   tempoRespawn: 5
 --- !u!114 &8851506818517258865

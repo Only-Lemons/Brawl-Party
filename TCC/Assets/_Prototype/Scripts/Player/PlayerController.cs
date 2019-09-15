@@ -71,7 +71,27 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
         canShoot=true;
+       
      
+    }
+    public void ReceiveDamage(int damage)
+    {
+        if (shield >= damage)
+            shield -= damage;
+        else if(shield < damage)
+        {
+            if(shield > 0)
+            {
+                int danoVida = damage - shield;
+                shield = 0;
+                life -= danoVida;
+            }
+            else
+            {
+                life -= damage;
+            }
+        }
+
     }
     private void FixedUpdate()
     {
@@ -214,7 +234,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
             if (canShoot)
             {
-                actualArma.Shoot(new Vector3(this.transform.position.x+1, this.transform.position.y, this.transform.position.z), this.transform.rotation);
+                actualArma.Shoot(transform.GetChild(1).GetChild(1).gameObject.transform.position, this.transform.rotation);
                 StartCoroutine(fireRate(actualArma.fireRate));
                 if (actualArma.ammoAmount <= 0)
                 {
