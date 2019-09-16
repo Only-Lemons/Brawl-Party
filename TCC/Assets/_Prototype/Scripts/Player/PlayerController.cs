@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     
     [Header("Arma")]
     public Arma actualArma;
+    public Arma[] armaInventory;
     public bool canShoot;
 
  
@@ -47,10 +48,6 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Awake()
     {
-        statusNormal = player;
-        PowerUp = false ; 
-        life = player.hp;
-        speed = player.speed;
         controls = new Inputs();      
     }   
    
@@ -70,9 +67,15 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         SOpowerUps = new List<PowerUpManager>();
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
+        armaInventory = new Arma[2];
         canShoot=true;
-       
-     
+        PowerUp = false; 
+    
+        // Iniciação dos status do personagem
+        statusNormal = player;
+        life = player.hp;
+        speed = player.speed;
+
     }
     public void ReceiveDamage(int damage)
     {
@@ -99,16 +102,19 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         if (PowerUp == true) 
             VerificarPU();
     }
+
     public void AtivarEscudo(int valor){
         shield += valor;
 
     }
+    
     public void DesativarEscudo(int valor){
         if(shield > 0)
             shield -= valor;
         if (shield < 0)
             shield = 0;
     }
+    
     void VerificarPU()
     {
        
@@ -173,8 +179,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            Atirar();
+     
         rb.MovePosition(movementAxis + transform.position);
         Rot();
     }
@@ -209,13 +214,11 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnFire(InputAction.CallbackContext context)
     {
         
-
        if(actualArma != null)
        {
-
             if(canShoot)
             {
-                actualArma.Shoot(this.transform.position,this.transform.rotation);
+                actualArma.Shoot(transform.GetChild(1).GetChild(0).position,this.transform.rotation);
                 StartCoroutine(fireRate(actualArma.fireRate));
                 if(actualArma.ammoAmount<=0)
                 {
@@ -226,25 +229,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
             }         
        }
     }
-    void Atirar()
-    {
 
-        if (actualArma != null)
-        {
-
-            if (canShoot)
-            {
-                actualArma.Shoot(transform.GetChild(1).GetChild(1).gameObject.transform.position, this.transform.rotation);
-                StartCoroutine(fireRate(actualArma.fireRate));
-                if (actualArma.ammoAmount <= 0)
-                {
-                    actualArma = null;
-                    canShoot = true;
-                    Destroy(transform.GetChild(1).GetChild(0).gameObject);
-                }
-            }
-        }
-    }
     public void OnStart(InputAction.CallbackContext context)
     {
       

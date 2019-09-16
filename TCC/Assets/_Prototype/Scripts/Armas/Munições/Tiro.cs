@@ -6,16 +6,23 @@ public class Tiro : MonoBehaviour
 {
     public int damage;
 
-    void Update()
+    void Start()
     {
-        transform.position += transform.forward*Time.deltaTime*10;
+        GetComponent<Rigidbody>().AddForce(Vector3.forward * 200f);
+        Destroy(this.gameObject,5f);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            other.GetComponentInParent<PlayerController>().ReceiveDamage(damage);
+            other.GetComponent<PlayerController>().ReceiveDamage(damage);
             Destroy(this.gameObject);
         }
+        else if(other.gameObject.tag == "Obstaculo")
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 }

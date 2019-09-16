@@ -80,12 +80,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 82cb6a9727311b143b114f780e8c59cf, type: 2}
   actualArma: {fileID: 0}
-  armaInv: []
+  armaInventory: []
   canShoot: 0
   PowerUp: 0
   life: 0
   speed: 0
   shield: 0
+  passiva: {fileID: 0}
 --- !u!136 &3132262564887125043
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -300,6 +301,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gfx
       objectReference: {fileID: 0}
+    - target: {fileID: 7093633643888655822, guid: 25449f961aa00cf40ac1634e886bf470,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7093633643888655821, guid: 25449f961aa00cf40ac1634e886bf470,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -353,6 +359,11 @@ PrefabInstance:
     - target: {fileID: 7093633643888655821, guid: 25449f961aa00cf40ac1634e886bf470,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093633643888655820, guid: 25449f961aa00cf40ac1634e886bf470,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
