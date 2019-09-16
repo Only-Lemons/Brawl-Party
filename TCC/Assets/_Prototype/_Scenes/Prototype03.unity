@@ -280,12 +280,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8153527505664661698, guid: 763540642b86ee5499e770d9e5528bd9,
+    - target: {fileID: 8153527504863021439, guid: 763540642b86ee5499e770d9e5528bd9,
         type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
-    - target: {fileID: 8153527504863021439, guid: 763540642b86ee5499e770d9e5528bd9,
+    - target: {fileID: 8153527505664661698, guid: 763540642b86ee5499e770d9e5528bd9,
         type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 495566116}
   - component: {fileID: 495566115}
   - component: {fileID: 495566117}
+  - component: {fileID: 495566118}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: Untagged
@@ -536,8 +537,22 @@ MonoBehaviour:
   - {fileID: 8468137584767431535, guid: 7d48fabbc407eb44797368c95f701987, type: 3}
   - {fileID: 8888574536522326467, guid: 4c311e2f77e1fe344ad3ffcc25441b33, type: 3}
   velocidadeQueda: 5
-  cxPadrao: {fileID: 0}
+  limiteParaInstanciar: {x: 15, y: 15}
+  cxPadrao: {fileID: 2236393400438116409, guid: 233be8f2c4e86b34880ba5068a76428c,
+    type: 3}
   tempoRespawn: 10
+--- !u!114 &495566118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495566114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23502611ecb7aa04a8900781a2d42a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &998167519 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8153527505591309850, guid: 763540642b86ee5499e770d9e5528bd9,
