@@ -104,12 +104,12 @@ public class CameraController2 : MonoBehaviour
                 }
             }
         }
-        if (max > 20)
+        if (max > 12)
             z = Mathf.Lerp(cam.fieldOfView, 65, Time.deltaTime);
-        if (max <= 20 && max>=5)
-            z = Mathf.Lerp(cam.fieldOfView, 45, Time.deltaTime);
+        if (max <= 12 && max>=5)
+            z = Mathf.Lerp(cam.fieldOfView, 50, Time.deltaTime/1.2f);
         if (max < 5)
-            z = Mathf.Lerp(cam.fieldOfView, 20, Time.deltaTime);
+            z = Mathf.Lerp(cam.fieldOfView, 20, Time.deltaTime/1.5f);
         return z;
     }
 }
