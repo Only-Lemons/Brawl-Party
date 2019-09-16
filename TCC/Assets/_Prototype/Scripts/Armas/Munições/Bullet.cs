@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tiro : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     public int damage;
 
@@ -16,7 +16,7 @@ public class Tiro : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerController>().ReceiveDamage(damage);
+            other.GetComponentInParent<PlayerController>().ReceiveDamage(damage);
             Destroy(this.gameObject);
         }
         else if(other.gameObject.tag == "Obstaculo")

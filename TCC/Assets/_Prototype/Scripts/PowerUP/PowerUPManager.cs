@@ -23,7 +23,7 @@ public class PowerUpManager
     {
         if (tempoAtual <= 0)
         {
-            if (Particulas == null || Particulas.Length > 0 )
+            if (Particulas != null || Particulas.Length > 0 )
                 DestruirParticulas();
             PU.FinishAndBack(player);
             return true;

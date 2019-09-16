@@ -8,14 +8,14 @@ public class ShieldPowerUP : PowerUP
 
     public override void FinishAndBack(PlayerController player)
     {
-        player.DesativarEscudo(Mathf.FloorToInt(player.player.hp * 0.30f));
+        player.DesativarEscudo((int)(player.player.hp * 0.30f));
     }
 
     public override void Interact(PlayerController player)
     {
         if (Activate == false)
         {
-            player.AtivarEscudo(Mathf.FloorToInt(player.player.hp * 0.30f));
+            player.AtivarEscudo((int)(player.player.hp * 0.30f));
             Activate = true;
         }
     }
