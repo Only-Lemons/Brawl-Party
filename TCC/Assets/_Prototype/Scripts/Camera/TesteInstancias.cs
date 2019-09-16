@@ -8,21 +8,23 @@ public class TesteInstancias : MonoBehaviour
 
     public GameObject[] go;
     public int velocidadeQueda = 10;
-    public Vector2 limiteParaInstanciar = new Vector2(15,15);
+    public Vector2 limiteParaInstanciar = new Vector2(15, 15);
     public GameObject cxPadrao;
 
     GameObject goAtual;
     Vector3 pontoRef;
-    bool podeContinuar;
     float timer;
     public int tempoRespawn = 5;
+
+    public int porcZerarTempoRespawn = 5;
+    bool podeContar;
     void Start()
     {
         GetNormalTiles();
 
+        podeContar = true;
         goAtual = null;
-        podeContinuar = true;
-        timer = 0;
+        timer = tempoRespawn;
         pontoRef = Vector3.zero;
     }
 
@@ -35,8 +37,9 @@ public class TesteInstancias : MonoBehaviour
     void InstanciarCaixa()
     {
         //Modelo inicial
-        int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x+1);
-        int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y+1);
+        
+        int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x + 1);
+        int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y + 1);
         pontoRef = new Vector3(x, 20, z);
         //Fim
 
@@ -48,70 +51,85 @@ public class TesteInstancias : MonoBehaviour
         posO = Random.Range(0, tilesN.Count);
         go1 = tilesN[posO];
         novoPos = go1.transform.position;
-        novoPos.y = 50;
+        novoPos.y = 20;
         //Fim
 
         if (goAtual == null)
         {
             //goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity); //Modelo inicial
             goAtual = Instantiate(cxPadrao, novoPos, Quaternion.identity); //Modelo por tile normal
+            
+        }
+    }
+
+    void ResetarTime()
+    {
+        int x = Random.Range(0, 100);
+
+        if(x > 100 - porcZerarTempoRespawn)
+        {
+            timer = 0.1f;
         }
     }
 
     void Instanciar()
     {
-        timer += Time.deltaTime;
-        if (timer >= tempoRespawn)
+        if(podeContar)
+            timer -= Time.deltaTime;
+
+        if (timer <= 0)
         {
-            timer = 0;
+            timer = tempoRespawn;
+            ResetarTime();
             InstanciarCaixa();
         }
     }
 
     public GameObject InstanciarArma(int b)
-   {
-       int rnd = Random.Range(0,5);
-       switch(rnd)
-       {
+    {
+        int rnd = Random.Range(0, 5);
+        switch (rnd)
+        {
             case 0:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol() ;
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
             case 1:
-             go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
-  
+
             case 2:
-             go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
+                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
-  
+
             case 3:
-             go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
+                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
-  
+
             case 4:
-             go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
 
             default:
                 break;
-       }
-       return go[b];
-   }
+        }
+        return go[b];
+    }
 
     void ControlarQueda()
     {
-        if(goAtual != null)
+        if (goAtual != null)
         {
             Vector3 valor = goAtual.transform.position;
             if (goAtual.transform.position.y > 0.5)
             {
-                goAtual.transform.position = new Vector3(valor.x, valor.y -= Time.deltaTime*velocidadeQueda, valor.z);
-                goAtual.transform.Rotate(0,Mathf.PingPong(Time.time, 2)-1,0);
-                
+                goAtual.transform.position = new Vector3(valor.x, valor.y -= Time.deltaTime * velocidadeQueda, valor.z);
+                goAtual.transform.Rotate(0, Mathf.PingPong(Time.time, 2) - 1, 0);
+                podeContar = false;
             }
             else
             {
                 InstanciarRandom();
+                podeContar = true;
             }
         }
     }
