@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
-        {
+        { 
             other.GetComponentInParent<PlayerController>().ReceiveDamage(damage);
             Destroy(this.gameObject);
         }
