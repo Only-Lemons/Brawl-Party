@@ -5,10 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int damage;
+    public int velocidadeDaBala = 1;
 
     void Start()
     {
-        GetComponent<Rigidbody>().AddForce(Vector3.forward * 200f);
+        GetComponent<Rigidbody>().AddForce(Vector3.forward * 200f * velocidadeDaBala);
         Destroy(this.gameObject,5f);
     }
 
