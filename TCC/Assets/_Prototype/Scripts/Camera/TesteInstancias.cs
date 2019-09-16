@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TesteInstancias : MonoBehaviour
 {
+    public List<GameObject> tilesN = new List<GameObject>();
+
     public GameObject[] go;
     public int velocidadeQueda = 10;
     public Vector2 limiteParaInstanciar = new Vector2(15,15);
@@ -16,6 +18,8 @@ public class TesteInstancias : MonoBehaviour
     public int tempoRespawn = 5;
     void Start()
     {
+        GetNormalTiles();
+
         goAtual = null;
         podeContinuar = true;
         timer = 0;
@@ -30,13 +34,27 @@ public class TesteInstancias : MonoBehaviour
 
     void InstanciarCaixa()
     {
+        //Modelo inicial
         int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x+1);
         int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y+1);
         pontoRef = new Vector3(x, 20, z);
+        //Fim
+
+        //Modelo por tile normal
+        int posO = 0;
+        Vector3 novoPos = Vector3.zero;
+        GameObject go1 = null;
+
+        posO = Random.Range(0, tilesN.Count);
+        go1 = tilesN[posO];
+        novoPos = go1.transform.position;
+        novoPos.y = 50;
+        //Fim
 
         if (goAtual == null)
-        {  
-            goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity);
+        {
+            //goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity); //Modelo inicial
+            goAtual = Instantiate(cxPadrao, novoPos, Quaternion.identity); //Modelo por tile normal
         }
     }
 
@@ -108,6 +126,16 @@ public class TesteInstancias : MonoBehaviour
 
         Destroy(goAtual);
         goAtual = null;
+    }
+
+    void GetNormalTiles()
+    {
+        tilesN.Clear();
+        GameObject[] aux = GameObject.FindGameObjectsWithTag("TileN");
+        foreach (GameObject item in aux)
+        {
+            tilesN.Add(item);
+        }
     }
 
 }
