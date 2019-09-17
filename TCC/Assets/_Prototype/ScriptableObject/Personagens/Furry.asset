@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994c0360461a6f94c9abcd333b6cadb8, type: 3}
+  m_Name: Furry
+  m_EditorClassIdentifier: 
+  nome: Furry
+  hp: 90
+  actualHP: 0
+  speed: 12
+  prefab: {fileID: 7093633643888655822, guid: 25449f961aa00cf40ac1634e886bf470, type: 3}
+  stateAnimation: {fileID: 0}
+  passiva: {fileID: 11400000, guid: 8f84cef065f16714389360a947b1a81c, type: 2}

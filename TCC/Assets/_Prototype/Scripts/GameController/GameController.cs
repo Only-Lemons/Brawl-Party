@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Singleton;
+    float time;
     TileManager tileManager;
     PlayerManager playerManager;
-    // Start is called before the first frame update
-    void Start()
+    ArmaManager armaManager;
+
+    void Awake()
     {
-        
+        Singleton = this;
+        tileManager = GetComponent<TileManager>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

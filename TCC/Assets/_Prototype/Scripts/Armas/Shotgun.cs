@@ -7,18 +7,20 @@ public class Shotgun : Arma
 {
     public Shotgun()
     {
-        fireRate = 2f;
+        fireRate = 1f;
         ammoAmount = 4;
         damage = 20;
         prefab = Resources.Load("Armas/Shotgun") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
         ammunitionPrefab.GetComponent<Bullet>().damage = this.damage;
+       
 
     }
 
-    public override void Shoot(Vector3 position, Quaternion rotation)
+    public override void Shoot(Vector3 position, Quaternion rotation,Vector3 Forward)
     {
         ammoAmount--;
+        ammunitionPrefab.GetComponent<Bullet>().transformForward = Forward;
         Instantiate(ammunitionPrefab, position, rotation);
         Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x,rotation.y,rotation.z -2,rotation.w));
         Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x, rotation.y, rotation.z + 2, rotation.w));

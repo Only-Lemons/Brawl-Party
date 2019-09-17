@@ -14,7 +14,7 @@ public class TesteInstancias : MonoBehaviour
     GameObject goAtual;
     Vector3 pontoRef;
     float timer;
-    public int tempoRespawn = 5;
+    public int tempoRespawn = 2;
 
     public int porcZerarTempoRespawn = 5;
     bool podeContar;
@@ -57,8 +57,9 @@ public class TesteInstancias : MonoBehaviour
         if (goAtual == null)
         {
             //goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity); //Modelo inicial
-            goAtual = Instantiate(cxPadrao, novoPos, Quaternion.identity); //Modelo por tile normal
-            
+            goAtual = Instantiate(cxPadrao, novoPos, Quaternion.identity);
+             //Modelo por tile normal
+
         }
     }
 
@@ -81,6 +82,8 @@ public class TesteInstancias : MonoBehaviour
         {
             timer = tempoRespawn;
             ResetarTime();
+            InstanciarCaixa();
+            InstanciarCaixa();
             InstanciarCaixa();
         }
     }

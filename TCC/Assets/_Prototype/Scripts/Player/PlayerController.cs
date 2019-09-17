@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
+public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
 {
     [Header("ScriptableObject")]
     public SOPlayer player;
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         passiva = Instantiate(player.passiva);
         SOpowerUps = new List<PowerUpManager>();
-        rb = GetComponent<Rigidbody>();
+       // rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
         armaInventory = new Arma[2];
         canShoot=true;
@@ -103,13 +103,16 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         }
 
     }
+
     void Death()
     {
         Destroy(this.gameObject);
     }
+
+
     private void FixedUpdate()
     {
-        TileInteract();
+       // TileInteract();
         passiva.AtivarPassiva(this);
         if (PowerUp == true) 
             VerificarPU();
@@ -129,10 +132,8 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     
     void VerificarPU()
     {
-       
         if (SOpowerUps.Count == 0 || SOpowerUps == null)
         {
-           
             DesativarPowerUP();
         }
         else
@@ -153,7 +154,6 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         if(PowerUp == false)
         {
-         
             PowerUp = true; 
             PowerUpManager PUP = new PowerUpManager(Time,powerUP,this);
             PUP.Particulas = particulas;
@@ -205,36 +205,35 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
    
     void Update()
     {
-     
-        rb.MovePosition(movementAxis + transform.position);
+       
+        //rb.MovePosition(movementAxis + transform.position);
+        cc.Move(movementAxis);
+
+       
         Rot();
+    }
+
+    void LateUpdate()
+    {
     }
 
     public void Rot()
     {
-        targetRotation = Quaternion.LookRotation (rotationAxis);
-        transform.rotation = targetRotation * Quaternion.identity ;
-    }
-
-
-    public void Move()
-    {
-       
+        if(rotationAxis != Vector3.zero)
+        targetRotation = Quaternion.LookRotation(rotationAxis );
+        transform.GetChild(0).rotation = Quaternion.Lerp(targetRotation , Quaternion.identity, Time.deltaTime);
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
         movementAxis *= (speed + speedTile) * Time.deltaTime;
-         
+        //transform.rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, .5f); ;
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        if(context.ReadValue<Vector2>().x != 0  || context.ReadValue<Vector2>().y != 0)
         rotationAxis =  new Vector3(context.ReadValue<Vector2>().x ,0,context.ReadValue<Vector2>().y );
-       
-    
     }
 
     public void OnFire(InputAction.CallbackContext context)
@@ -244,13 +243,15 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
        {
             if(canShoot)
             {
-                actualArma.Shoot(transform.GetChild(1).GetChild(0).position,this.transform.rotation);
+                transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
+                Transform transformArma = transform.GetChild(2).GetChild(0).GetChild(0);
+                actualArma.Shoot(transformArma.position,this.transform.rotation,transformArma.forward);
                 StartCoroutine(fireRate(actualArma.fireRate));
                 if(actualArma.ammoAmount<=0)
                 {
                     actualArma=null;
                     canShoot = true;
-                    Destroy(transform.GetChild(1).GetChild(0).gameObject); 
+                    Destroy(transform.GetChild(2).GetChild(0).gameObject); 
                 }
             }         
        }

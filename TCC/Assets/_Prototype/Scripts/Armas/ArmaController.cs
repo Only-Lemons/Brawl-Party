@@ -14,7 +14,7 @@ public class ArmaController : MonoBehaviour
            if (other.GetComponentInParent<PlayerController>().actualArma == null)
            {
                 other.GetComponentInParent<PlayerController>().actualArma = actualArma;
-                Instantiate(actualArma.prefab, other.transform.GetChild(1).transform.position, Quaternion.identity, other.transform.GetChild(1).transform);
+                Instantiate(actualArma.prefab, other.transform.GetChild(2).transform.position, other.transform.GetChild(2).rotation, other.transform.GetChild(2).transform);
              
             }
             else 

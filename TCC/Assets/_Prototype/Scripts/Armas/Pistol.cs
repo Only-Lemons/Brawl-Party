@@ -6,8 +6,8 @@ public class Pistol : Arma
 {
     public Pistol()
     {
-        fireRate = 1f;
-        ammoAmount = 7;
+        fireRate = .2f;
+        ammoAmount = 27;
         damage = 10;
         prefab = Resources.Load("Armas/Pistol") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
@@ -16,10 +16,10 @@ public class Pistol : Arma
 
   
 
-    public override void Shoot(Vector3 position, Quaternion rotation)
+    public override void Shoot(Vector3 position, Quaternion rotation, Vector3 Foward)
     {
         ammoAmount--;
-    
+        ammunitionPrefab.GetComponent<Bullet>().transformForward = Foward;
         Instantiate(ammunitionPrefab,position,rotation);
     }
 }
