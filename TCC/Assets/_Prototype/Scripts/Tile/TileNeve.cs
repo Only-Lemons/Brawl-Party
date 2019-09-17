@@ -13,6 +13,6 @@ public class TileNeve : Tile
 
     public  override void Interagir(PlayerController personagem)
     {
-        personagem.ChangeState(MoveState.Slow);
+        personagem.speedTile = -(personagem.player.speed/2);
     }
 }

@@ -13,6 +13,6 @@ public class TileBuraco : Tile
 
     public override void Interagir(PlayerController player)
     {
-        player.ChangeState(MoveState.Stun);
+        player.speedTile = -player.speed;
     }
 }

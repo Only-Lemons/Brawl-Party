@@ -13,6 +13,6 @@ public class TileNormal : Tile
 
     public override void Interagir(PlayerController player)
     {
-        player.ChangeState(MoveState.Normal);
+        player.speedTile = 0;
     }
 }

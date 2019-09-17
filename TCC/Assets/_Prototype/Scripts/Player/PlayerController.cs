@@ -35,9 +35,10 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     [Header("Status")]
     public int life;
     public float speed;
+    public float speedTile;
     public int shield;
     public SOPassive passiva;
-    public MoveState actualMoveState;
+  
     #endregion
 
     Inputs controls;
@@ -199,35 +200,9 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         }
         ativo.Interagir(this);
     }
-    public void ChangeState(MoveState state)
-    {
-        actualMoveState = state;
-        ChangeAtributtesMove();
-    }
 
-    private void ChangeAtributtesMove()
-    {
-        if (actualMoveState == MoveState.Normal)
-        {
-            speed = player.speed;
-        }
-        else if (actualMoveState == MoveState.Slow)
-        {
-            speed = player.speed /2;
-        }
-        else if (actualMoveState == MoveState.Stun)
-        {
-            speed = 0;
-        }
-        else if (actualMoveState == MoveState.Correndo)
-        {
-            speed = player.speed * 2;
-        }
-        else if (actualMoveState == MoveState.Escorregadio)
-        {
-           
-        }
-    }
+
+   
     void Update()
     {
      
@@ -250,7 +225,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
-        movementAxis *= speed * Time.deltaTime;
+        movementAxis *= (speed + speedTile) * Time.deltaTime;
          
     }
 
@@ -303,11 +278,4 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
         throw new System.NotImplementedException();
     }
 }
-public enum MoveState
-{
-    Correndo,
-    Normal,
-    Slow,
-    Stun,
-    Escorregadio
-}
+

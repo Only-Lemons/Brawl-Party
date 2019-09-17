@@ -13,7 +13,7 @@ public class TileGelo : Tile
 
     public override void Interagir(PlayerController player)
     {
-        player.ChangeState(MoveState.Slow);
+       
     }
 
 }

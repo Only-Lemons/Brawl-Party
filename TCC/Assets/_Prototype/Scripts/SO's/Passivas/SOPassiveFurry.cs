@@ -17,7 +17,7 @@ public class SOPassiveFurry : SOPassive
             if (armaAtual != player.actualArma)
             {
                 armaAtual = player.actualArma;
-                player.ChangeState(MoveState.Correndo);
+                player.speed += player.player.speed;
                 isActive = true;
                
             }
@@ -26,7 +26,7 @@ public class SOPassiveFurry : SOPassive
         if(player.PowerUp && isActive == false && CheckCD())
         {
             armaAtual = player.actualArma;
-            player.ChangeState(MoveState.Correndo);
+            player.speed += player.player.speed;
             isActive = true;
             
         }
@@ -35,7 +35,7 @@ public class SOPassiveFurry : SOPassive
     void FinishPassive(PlayerController player)
     {
         isActive = false;
-        player.ChangeState(MoveState.Normal);
+        player.speed -= player.player.speed;
         inCD = true;
     }
     bool Cronometro()
