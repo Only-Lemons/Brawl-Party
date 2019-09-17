@@ -8,7 +8,7 @@ public class SpeedPowerUP : PowerUP
 
     public override void FinishAndBack(PlayerController player)
     {
-        player.speed = player.player.speed;
+        player.speed -= player.player.speed;
     }
 
     public override void Interact(PlayerController player)
