@@ -11,8 +11,8 @@ public class TileQuebravel : Tile
      
     }
 
-    public  override void Interagir(Personagem personagem)
+    public  override void Interagir(PlayerController personagem)
     {
-        personagem.MudarEstado(State.Slow);
+        
     }
 }

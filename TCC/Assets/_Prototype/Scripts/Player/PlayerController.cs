@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public Arma[] armaInventory;
     public bool canShoot;
 
- 
+    #region Interaçao Ambiente
+    Tile ativo;
+    #endregion
+
     #region PowerUPs
     [Header("PowerUp")]
     public bool PowerUp;
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     public float speed;
     public int shield;
     public SOPassive passiva;
+    public MoveState actualMoveState;
     #endregion
 
     Inputs controls;
@@ -92,12 +96,19 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
             else
             {
                 life -= damage;
+                if (life <= 0)
+                    Death();
             }
         }
 
     }
+    void Death()
+    {
+        Destroy(this.gameObject);
+    }
     private void FixedUpdate()
     {
+        TileInteract();
         passiva.AtivarPassiva(this);
         if (PowerUp == true) 
             VerificarPU();
@@ -175,8 +186,48 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         PowerUp =false;
     }
-   
+    public void TileInteract()
+    {
+        float menorDistancia = float.MaxValue;
+        for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
+        {
+            if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
+            {
+                menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
+                ativo = TerrainController.instance.tilesInstanciados[k];
+            }
+        }
+        ativo.Interagir(this);
+    }
+    public void ChangeState(MoveState state)
+    {
+        actualMoveState = state;
+        ChangeAtributtesMove();
+    }
 
+    private void ChangeAtributtesMove()
+    {
+        if (actualMoveState == MoveState.Normal)
+        {
+            speed = player.speed;
+        }
+        else if (actualMoveState == MoveState.Slow)
+        {
+            speed = player.speed /2;
+        }
+        else if (actualMoveState == MoveState.Stun)
+        {
+            speed = 0;
+        }
+        else if (actualMoveState == MoveState.Correndo)
+        {
+            speed = player.speed * 2;
+        }
+        else if (actualMoveState == MoveState.Escorregadio)
+        {
+           
+        }
+    }
     void Update()
     {
      
@@ -251,4 +302,12 @@ public class PlayerController : MonoBehaviour, IMovement , Inputs.IPlayerActions
     {
         throw new System.NotImplementedException();
     }
+}
+public enum MoveState
+{
+    Correndo,
+    Normal,
+    Slow,
+    Stun,
+    Escorregadio
 }

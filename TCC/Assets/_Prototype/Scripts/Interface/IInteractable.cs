@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IInteractable 
 {
-    void Interagir(Personagem personagem);
+    void Interagir(Player personagem);
 
 }

@@ -11,8 +11,8 @@ public class TileNeve : Tile
      
     }
 
-    public  override void Interagir(Personagem personagem)
+    public  override void Interagir(PlayerController personagem)
     {
-        personagem.MudarEstado(State.Slow);
+        personagem.ChangeState(MoveState.Slow);
     }
 }

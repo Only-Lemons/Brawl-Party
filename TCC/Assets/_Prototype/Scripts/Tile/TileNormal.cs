@@ -11,8 +11,8 @@ public class TileNormal : Tile
 
     }
 
-    public override void Interagir(Personagem player)
+    public override void Interagir(PlayerController player)
     {
-        player.MudarEstado(State.Normal);
+        player.ChangeState(MoveState.Normal);
     }
 }
