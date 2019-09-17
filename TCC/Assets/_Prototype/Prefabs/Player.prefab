@@ -325,29 +325,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: 0f61bc1e-d623-43ed-ad6d-6bf55f01fd78
-    m_ActionName: Player/Insert[/XInputControllerWindows/start,/XInputControllerWindows/start,/XInputControllerWindows/start,/XInputControllerWindows/start]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8153527505591309851}
-        m_MethodName: OnSwitch
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
-    m_ActionId: c6bc9e3f-eb2a-4f27-bb5f-703551d692b9
-    m_ActionName: Player/Switch[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 32e026f2-d1a3-451b-9264-ed3f3a993737
     m_ActionName: UI/Navigate
   - m_PersistentCalls:
@@ -410,6 +387,29 @@ MonoBehaviour:
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: d94b5f98-48ee-4af4-b1a4-3d90dfbe8b43
     m_ActionName: UI/TrackedDeviceSelect
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8153527505591309851}
+        m_MethodName: OnNotAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 97a4d398-30b5-4a45-9fd4-2b88e286edfc
+    m_ActionName: Player/Switch[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/leftTrigger,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 6d28fee9-9236-48f7-851d-a0f767a58858
+    m_ActionName: Player/New action
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b

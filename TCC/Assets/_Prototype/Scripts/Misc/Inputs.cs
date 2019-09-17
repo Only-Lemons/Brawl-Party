@@ -44,7 +44,7 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": ""Insert"",
                     ""type"": ""Button"",
-                    ""id"": ""0f61bc1e-d623-43ed-ad6d-6bf55f01fd78"",
+                    ""id"": ""97a4d398-30b5-4a45-9fd4-2b88e286edfc"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -52,7 +52,7 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": ""Switch"",
                     ""type"": ""Button"",
-                    ""id"": ""c6bc9e3f-eb2a-4f27-bb5f-703551d692b9"",
+                    ""id"": ""6d28fee9-9236-48f7-851d-a0f767a58858"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Tap(duration=0.8,pressPoint=0.5)""
@@ -142,7 +142,7 @@ public class Inputs : IInputActionCollection
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

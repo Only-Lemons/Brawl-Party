@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
+public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
     [Header("ScriptableObject")]
     public SOPlayer player;
     Rigidbody rb;
-    CharacterController cc;  
+    CharacterController cc;
     float turnSpeed = 10f;
     Vector3 movementAxis;
     Vector3 rotationAxis;
     Quaternion targetRotation;
-    
+
     [Header("Arma")]
     public Arma actualArma;
     public Arma[] armaInventory;
@@ -38,24 +38,24 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
     public float speedTile;
     public int shield;
     public SOPassive passiva;
-  
     #endregion
 
     Inputs controls;
 
+    Material hp;
 
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
         statusNormal = jogador;
-        PowerUp = false; 
+        PowerUp = false;
     }
 
     void Awake()
     {
-        controls = new Inputs();      
-    }   
-   
+        controls = new Inputs();
+    }
+
     void OnEnable()
     {
         controls.Enable();
@@ -65,30 +65,32 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
     {
         controls.Disable();
     }
-   
+
     void Start()
     {
         passiva = Instantiate(player.passiva);
         SOpowerUps = new List<PowerUpManager>();
-       // rb = GetComponent<Rigidbody>();
+        // rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
         armaInventory = new Arma[2];
-        canShoot=true;
-        PowerUp = false; 
-    
+        canShoot = true;
+        PowerUp = false;
+
         // Iniciação dos status do personagem
         statusNormal = player;
         life = player.hp;
         speed = player.speed;
+
+        
 
     }
     public void ReceiveDamage(int damage)
     {
         if (shield >= damage)
             shield -= damage;
-        else if(shield < damage)
+        else if (shield < damage)
         {
-            if(shield > 0)
+            if (shield > 0)
             {
                 int danoVida = damage - shield;
                 shield = 0;
@@ -112,24 +114,29 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
 
     private void FixedUpdate()
     {
-       // TileInteract();
+        // TileInteract();
         passiva.AtivarPassiva(this);
-        if (PowerUp == true) 
+        if (PowerUp == true)
             VerificarPU();
+
+
+       
     }
 
-    public void AtivarEscudo(int valor){
+    public void AtivarEscudo(int valor)
+    {
         shield += valor;
 
     }
-    
-    public void DesativarEscudo(int valor){
-        if(shield > 0)
+
+    public void DesativarEscudo(int valor)
+    {
+        if (shield > 0)
             shield -= valor;
         if (shield < 0)
             shield = 0;
     }
-    
+
     void VerificarPU()
     {
         if (SOpowerUps.Count == 0 || SOpowerUps == null)
@@ -140,7 +147,7 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
         {
             for (int i = 0; i < SOpowerUps.Count; i++)
             {
-               
+
                 if (SOpowerUps[i].AcabouTempo())
                 {
                     SOpowerUps.RemoveAt(i);
@@ -148,21 +155,22 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
                 }
             }
         }
-        
+
     }
-    public void AtivarPowerUP(float Time,GameObject[] particulas,PowerUP powerUP)
+    public void AtivarPowerUP(float Time, GameObject[] particulas, PowerUP powerUP)
     {
-        if(PowerUp == false)
+        if (PowerUp == false)
         {
-            PowerUp = true; 
-            PowerUpManager PUP = new PowerUpManager(Time,powerUP,this);
+            PowerUp = true;
+            PowerUpManager PUP = new PowerUpManager(Time, powerUP, this);
             PUP.Particulas = particulas;
             SOpowerUps.Add(PUP);
-         
+
         }
         else
         {
-            if (!PUActive(powerUP)){
+            if (!PUActive(powerUP))
+            {
                 PowerUpManager PUP = new PowerUpManager(Time, powerUP, this);
                 SOpowerUps.Add(PUP);
             }
@@ -170,11 +178,11 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
     }
     public bool PUActive(PowerUP pu)
     {
-        
+
         for (int i = 0; i < SOpowerUps.Count; i++)
         {
             if (SOpowerUps[i].PU.Name == pu.Name)
-            {   
+            {
                 SOpowerUps[i].tempoAtual = SOpowerUps[i].time;
                 return true;
             }
@@ -185,7 +193,7 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
     }
     public void DesativarPowerUP()
     {
-        PowerUp =false;
+        PowerUp = false;
     }
     public void TileInteract()
     {
@@ -202,72 +210,66 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
     }
 
 
-   
+
     void Update()
     {
-       
-        //rb.MovePosition(movementAxis + transform.position);
+
+        
         cc.Move(movementAxis);
-
-       
         Rot();
-    }
-
-    void LateUpdate()
-    {
     }
 
     public void Rot()
     {
-        if(rotationAxis != Vector3.zero)
-        targetRotation = Quaternion.LookRotation(rotationAxis );
-        transform.GetChild(0).rotation = Quaternion.Lerp(targetRotation , Quaternion.identity, Time.deltaTime);
+        if (rotationAxis != Vector3.zero)
+            targetRotation = Quaternion.LookRotation(rotationAxis);
+        transform.GetChild(0).rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, Time.deltaTime);
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        movementAxis = new Vector3(context.ReadValue<Vector2>().x,0,context.ReadValue<Vector2>().y);
+        movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
         movementAxis *= (speed + speedTile) * Time.deltaTime;
-        //transform.rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, .5f); ;
+
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        rotationAxis =  new Vector3(context.ReadValue<Vector2>().x ,0,context.ReadValue<Vector2>().y );
+        rotationAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
     }
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        
-       if(actualArma != null)
-       {
-            if(canShoot)
+
+        if (actualArma != null)
+        {
+            if (canShoot)
             {
                 transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
                 Transform transformArma = transform.GetChild(2).GetChild(0).GetChild(0);
-                actualArma.Shoot(transformArma.position,this.transform.rotation,transformArma.forward);
+                actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward);
                 StartCoroutine(fireRate(actualArma.fireRate));
-                if(actualArma.ammoAmount<=0)
+                if (actualArma.ammoAmount <= 0)
                 {
-                    actualArma=null;
+                    actualArma = null;
                     canShoot = true;
-                    Destroy(transform.GetChild(2).GetChild(0).gameObject); 
+                    Destroy(transform.GetChild(2).GetChild(0).gameObject);
                 }
-            }         
-       }
+            }
+        }
     }
 
     public void OnStart(InputAction.CallbackContext context)
     {
-      
+
     }
 
-   IEnumerator fireRate(float fireRate)
-   {
-       canShoot = false;
-       yield return new WaitForSeconds(fireRate);
+    IEnumerator fireRate(float fireRate)
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(fireRate);
         canShoot = true;
-   }
+    }
 
     public void OnInsert(InputAction.CallbackContext context)
     {
@@ -278,5 +280,8 @@ public class PlayerController : MonoBehaviour , Inputs.IPlayerActions
     {
         throw new System.NotImplementedException();
     }
+
+     
 }
+
 
