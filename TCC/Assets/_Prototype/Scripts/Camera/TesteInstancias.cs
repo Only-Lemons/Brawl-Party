@@ -16,13 +16,12 @@ public class TesteInstancias : MonoBehaviour
     float timer;
     public int tempoRespawn = 2;
 
-    public int porcZerarTempoRespawn = 5;
-    bool podeContar;
+    public int qtdInstanciar = 1;
+
     void Start()
     {
         GetNormalTiles();
 
-        podeContar = true;
         goAtual = null;
         timer = tempoRespawn;
         pontoRef = Vector3.zero;
@@ -37,13 +36,14 @@ public class TesteInstancias : MonoBehaviour
     void InstanciarCaixa()
     {
         //Modelo inicial
-        
         int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x + 1);
         int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y + 1);
         pontoRef = new Vector3(x, 20, z);
         //Fim
 
         //Modelo por tile normal
+        for(int i =0; i< qtdInstanciar; i++)
+        {
         int posO = 0;
         Vector3 novoPos = Vector3.zero;
         GameObject go1 = null;
@@ -57,31 +57,21 @@ public class TesteInstancias : MonoBehaviour
         if (goAtual == null)
         {
             //goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity); //Modelo inicial
+            
             goAtual = Instantiate(cxPadrao, novoPos, Quaternion.identity);
              //Modelo por tile normal
 
         }
-    }
-
-    void ResetarTime()
-    {
-        int x = Random.Range(0, 100);
-
-        if(x > 100 - porcZerarTempoRespawn)
-        {
-            timer = 0.1f;
         }
     }
 
     void Instanciar()
     {
-        if(podeContar)
             timer -= Time.deltaTime;
 
         if (timer <= 0)
         {
             timer = tempoRespawn;
-            ResetarTime();
             InstanciarCaixa();
             InstanciarCaixa();
             InstanciarCaixa();
@@ -127,12 +117,10 @@ public class TesteInstancias : MonoBehaviour
             {
                 goAtual.transform.position = new Vector3(valor.x, valor.y -= Time.deltaTime * velocidadeQueda, valor.z);
                 goAtual.transform.Rotate(0, Mathf.PingPong(Time.time, 2) - 1, 0);
-                podeContar = false;
             }
             else
             {
                 InstanciarRandom();
-                podeContar = true;
             }
         }
     }
