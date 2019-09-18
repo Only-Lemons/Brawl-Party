@@ -17,7 +17,7 @@ public class Shotgun : Arma
 
     }
 
-    public override void Shoot(Vector3 position, Quaternion rotation,Vector3 Forward)
+    public override void Shoot(Vector3 position, Quaternion rotation,Vector3 Forward, PlayerController player)
     {
         ammoAmount--;
         ammunitionPrefab.GetComponent<Bullet>().transformForward = Forward;
