@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public int damage;
     public int velocidadeDaBala = 3;
     public Vector3 transformForward;
+    public PlayerController player;
 
     void Start()
     {
@@ -18,7 +19,8 @@ public class Bullet : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         { 
-            other.GetComponent<PlayerController>().ReceiveDamage(damage);
+            other.GetComponent<PlayerController>().ReceiveDamage(damage,player);
+      
             Destroy(this.gameObject);
         }
         else if(other.gameObject.tag == "Obstaculo")

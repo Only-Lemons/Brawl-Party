@@ -8,9 +8,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
     [Header("ScriptableObject")]
     public SOPlayer player;
-    Rigidbody rb;
     CharacterController cc;
-    float turnSpeed = 10f;
     Vector3 movementAxis;
     Vector3 rotationAxis;
     Quaternion targetRotation;
@@ -22,12 +20,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     #region Interaçao Ambiente
     Tile ativo;
+    PlayerController playerLastDamage;
+    public Vector3 _base;
     #endregion
 
     #region PowerUPs
     [Header("PowerUp")]
     public bool PowerUp;
-    SOPlayer statusNormal;
     List<PowerUpManager> SOpowerUps;
     #endregion
 
@@ -44,10 +43,25 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     Material hp;
 
+    public void ResetarPlayer()
+    {
+        this.gameObject.SetActive(true);
+        this.transform.position = _base;
+        actualArma = null;
+        armaInventory = new Arma[2];
+        canShoot = true;
+        life = player.hp;
+        speed = player.speed;
+        shield = 0;
+        SOpowerUps.Clear();
+        
+
+
+    }
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
-        statusNormal = jogador;
+     
         PowerUp = false;
     }
 
@@ -77,15 +91,17 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         PowerUp = false;
 
         // Iniciação dos status do personagem
-        statusNormal = player;
+        
         life = player.hp;
         speed = player.speed;
 
         
 
     }
-    public void ReceiveDamage(int damage)
+   
+    public void ReceiveDamage(int damage,PlayerController lastDamage)
     {
+        playerLastDamage = lastDamage;
         if (shield >= damage)
             shield -= damage;
         else if (shield < damage)
@@ -101,6 +117,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 life -= damage;
                 if (life <= 0)
                     Death();
+                    
             }
         }
 
@@ -108,7 +125,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Death()
     {
-        Destroy(this.gameObject);
+        GameController.Singleton.gameMode.KillRule(playerLastDamage);
+        this.gameObject.SetActive(false);
     }
 
 
@@ -223,7 +241,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (rotationAxis != Vector3.zero)
             targetRotation = Quaternion.LookRotation(rotationAxis);
-        transform.GetChild(0).rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, Time.deltaTime);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -247,7 +265,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             {
                 transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
                 Transform transformArma = transform.GetChild(2).GetChild(0).GetChild(0);
-                actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward);
+                actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward, this);
                 StartCoroutine(fireRate(actualArma.fireRate));
                 if (actualArma.ammoAmount <= 0)
                 {

@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    public List<SOPlayer> playerSO = new List<SOPlayer>();
+    public List<SOPlayer> playerSOMortos = new List<SOPlayer>();
     public List<PlayerController> Players = new List<PlayerController>();
+    public Dictionary<PlayerController, float> playerMortos = new Dictionary<PlayerController, float>();
     public GameObject prefabPlayer;
     
 

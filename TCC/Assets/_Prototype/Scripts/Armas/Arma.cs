@@ -8,10 +8,10 @@ public abstract class Arma : ScriptableObject
     public float ammoAmount;
     public int damage;
     public GameObject ammunitionPrefab;
-
+    
     public GameObject prefab;
 
-    public abstract void Shoot(Vector3 position,Quaternion rotation,Vector3 Foward);
+    public abstract void Shoot(Vector3 position,Quaternion rotation,Vector3 Foward, PlayerController player);
     
 
 }
