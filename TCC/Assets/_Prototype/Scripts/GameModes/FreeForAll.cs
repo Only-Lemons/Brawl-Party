@@ -28,7 +28,7 @@ public class FreeForAll : IGameMode
                 aux.playerManager.playerMortosPrefabs.Add(player);
                 player.ResetarPlayer();
                 player.gameObject.SetActive(false);
-                KillRule(auxp);
+                PointRule(auxp);
             }
         }
      
@@ -41,7 +41,7 @@ public class FreeForAll : IGameMode
             WinRule();
     }
 
-    public void KillRule(PlayerController player)
+    public void PointRule(PlayerController player)
     {
         //conta pontos toda vez que o player matar alguem
       
