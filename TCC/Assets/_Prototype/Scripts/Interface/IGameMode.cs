@@ -9,7 +9,7 @@ public interface  IGameMode
     /// </summary>
     void StartGame();
     void FinishGame();
-    void KillRule(PlayerController player);
+    void PointRule(PlayerController player);
     void WinRule();
     void DeathRule(PlayerController player);
  
