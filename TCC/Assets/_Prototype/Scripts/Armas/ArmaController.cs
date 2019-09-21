@@ -14,6 +14,7 @@ public class ArmaController : MonoBehaviour
            if (other.GetComponentInParent<PlayerController>().actualArma == null)
            {
                 other.GetComponentInParent<PlayerController>().actualArma = actualArma;
+                other.GetComponentInParent<PlayerController>().playerUI.ammo.maxValue = actualArma.ammoAmount;
                 Instantiate(actualArma.prefab, other.transform.GetChild(2).transform.position, other.transform.GetChild(2).rotation, other.transform.GetChild(2).transform);
              
             }

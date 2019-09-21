@@ -11,6 +11,7 @@ public class SOPlayer : ScriptableObject
    public int hp;
    public int actualHP;
    public float speed;
+    public Sprite sprite;
    public GameObject prefab;
    public Animator stateAnimation;
    public SOPassive passiva;

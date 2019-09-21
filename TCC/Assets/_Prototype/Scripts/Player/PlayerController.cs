@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public Arma[] armaInventory;
     public bool canShoot;
 
+    public playerUIElements playerUI;
+
     #region Interaçao Ambiente
     Tile ativo;
     public PlayerController playerLastDamage;
@@ -70,6 +72,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         controls = new Inputs();
         canDeath = true;
+        UIManager.instance.onChangeValues += uiUpdate;
+        UIManager.instance.onStartValues += uiStart;
     }
 
     void OnEnable()
@@ -93,12 +97,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         PowerUp = false;
 
         // Iniciação dos status do personagem
-        
         life = player.hp;
         speed = player.speed;
 
-        
-
+      
     }
    
     public void ReceiveDamage(int damage,PlayerController lastDamage)
@@ -177,6 +179,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         }
 
     }
+
+
     public void AtivarPowerUP(float Time, GameObject[] particulas, PowerUP powerUP)
     {
         if (PowerUp == false)
@@ -196,6 +200,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             }
         }
     }
+
     public bool PUActive(PowerUP pu)
     {
 
@@ -211,6 +216,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
         return false;
     }
+
     public void DesativarPowerUP()
     {
         PowerUp = false;
@@ -230,6 +236,32 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
 
 
+    void uiStart()
+    {
+        playerUI.hp.maxValue = player.hp;
+        playerUI.character.sprite = player.sprite;
+       
+   
+
+    }
+
+    void uiUpdate()
+    {
+        playerUI.hp.value = life;
+        playerUI.hpText.text = life.ToString();
+
+        //provisorio 
+        if(actualArma != null)
+        {
+            playerUI.ammo.value = actualArma.ammoAmount;
+            playerUI.ammoText.text = actualArma.ammoAmount.ToString();
+            playerUI.gun.sprite = actualArma.gunSprite;
+        }
+   
+
+        // mudar os outros trem aqui 
+
+    }
 
     void Update()
     {
@@ -302,6 +334,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
 
      
+
+
 }
 
 

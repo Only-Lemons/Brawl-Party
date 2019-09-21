@@ -8,8 +8,18 @@ public abstract class Arma : ScriptableObject
     public float ammoAmount;
     public int damage;
     public GameObject ammunitionPrefab;
-    
+    public Sprite gunSprite;
     public GameObject prefab;
+
+    public Arma()
+    {
+        fireRate = 0;
+        ammoAmount = 0;
+        damage = 0;
+        ammunitionPrefab = null;
+        gunSprite = null;
+        prefab = null;
+    }
 
     public abstract void Shoot(Vector3 position,Quaternion rotation,Vector3 Foward, PlayerController player);
     

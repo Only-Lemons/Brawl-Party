@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     
     public TileManager tileManager;
     public PlayerManager playerManager;
-
+    public UIManager uIManager;
     
   
 
@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
         Singleton = this;
         tileManager = GetComponent<TileManager>();
         playerManager = GetComponent<PlayerManager>();
+        uIManager = GetComponent<UIManager>();
         gameMode = new FreeForAll(this, 60);
        
         
