@@ -20,13 +20,19 @@ public class GameController : MonoBehaviour
         Singleton = this;
         tileManager = GetComponent<TileManager>();
         playerManager = GetComponent<PlayerManager>();
+        gameMode = new FreeForAll(this, 60);
+       
         
     }
     private void Start()
     {
-        
-        
 
+        gameMode.StartGame();
+
+    }
+    private void Update()
+    {
+        gameMode.FinishGame();   
     }
 
 

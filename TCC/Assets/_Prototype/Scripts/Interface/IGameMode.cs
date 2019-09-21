@@ -11,6 +11,6 @@ public interface  IGameMode
     void FinishGame();
     void KillRule(PlayerController player);
     void WinRule();
-    void DeathRule();
+    void DeathRule(PlayerController player);
  
 }

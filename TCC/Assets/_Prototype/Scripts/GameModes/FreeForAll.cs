@@ -8,6 +8,7 @@ public class FreeForAll : IGameMode
     float time;
     public float actualtime;
     public Dictionary<PlayerController, int> pontos = new Dictionary<PlayerController, int>();
+    public float timeToRespawn = 3f;
     public FreeForAll(GameController gameController,float time)
     {
         aux = gameController;
@@ -15,9 +16,22 @@ public class FreeForAll : IGameMode
         actualtime = 0;
     }
 
-    public void DeathRule()
+    public void DeathRule(PlayerController player)
     {
-       //Renasce dps de 3 seg, em sua base.
+        //Renasce dps de 3 seg, em sua base.
+        if (player.playerLastDamage != null)
+        {
+            if (player.canDeath)
+            {
+                PlayerController auxp = player.playerLastDamage;
+                aux.playerManager.playerMortos.Add(player, timeToRespawn);
+                aux.playerManager.playerMortosPrefabs.Add(player);
+                player.ResetarPlayer();
+                player.gameObject.SetActive(false);
+                KillRule(auxp);
+            }
+        }
+     
     }
 
     public void FinishGame()
@@ -30,7 +44,9 @@ public class FreeForAll : IGameMode
     public void KillRule(PlayerController player)
     {
         //conta pontos toda vez que o player matar alguem
-        pontos[player] += 1; 
+      
+        pontos[player] += 1;
+        Debug.Log(player.gameObject.name + "  tem " + pontos[player] + "pontos");
 
     }
 
@@ -50,7 +66,7 @@ public class FreeForAll : IGameMode
 
     public void WinRule()
     {
-        PlayerController playerMaior;
+        PlayerController playerMaior = null;
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in aux.playerManager.Players)
         {
@@ -60,5 +76,7 @@ public class FreeForAll : IGameMode
                 playerMaior = player;
             }
         }
+        Time.timeScale = 0;
+        Debug.Log("Acabooou!!! e o ganhador foi : " + playerMaior.gameObject.name + "com "  + maiorPonto +" pontos");
     }
 }

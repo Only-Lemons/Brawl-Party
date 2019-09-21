@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     #region Interaçao Ambiente
     Tile ativo;
-    PlayerController playerLastDamage;
+    public PlayerController playerLastDamage;
     public Vector3 _base;
     #endregion
 
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public float speedTile;
     public int shield;
     public SOPassive passiva;
+    public bool canDeath ;
     #endregion
 
     Inputs controls;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public void ResetarPlayer()
     {
-        this.gameObject.SetActive(true);
+       
         this.transform.position = _base;
         actualArma = null;
         armaInventory = new Arma[2];
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Awake()
     {
         controls = new Inputs();
+        canDeath = true;
     }
 
     void OnEnable()
@@ -125,8 +127,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Death()
     {
-        GameController.Singleton.gameMode.KillRule(playerLastDamage);
-        this.gameObject.SetActive(false);
+      
+        GameController.Singleton.gameMode.DeathRule(this);
     }
 
 
