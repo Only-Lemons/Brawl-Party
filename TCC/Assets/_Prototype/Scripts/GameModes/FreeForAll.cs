@@ -13,7 +13,7 @@ public class FreeForAll : IGameMode
     {
         aux = gameController;
         this.time = time;
-        actualtime = 0;
+        actualtime = time;
     }
 
     public void DeathRule(PlayerController player)
@@ -36,9 +36,48 @@ public class FreeForAll : IGameMode
 
     public void FinishGame()
     {
-        actualtime += Time.deltaTime;
-        if(actualtime > time)
+        actualtime -= Time.deltaTime;
+        ShowTime();
+        if(actualtime <= 0)
             WinRule();
+    }
+    public void ShowTime()
+    {
+        string minute;
+        string seconds;
+        if(actualtime / 60 < 1)
+        {
+            minute = "00";
+            if (actualtime  < 10)
+            {
+                seconds = "0" + (actualtime).ToString("0");
+            }
+            else
+            {
+                seconds = (actualtime).ToString("0");
+            }
+        }
+        else
+        {
+            if (actualtime / 60 > 10) {
+                minute = (actualtime / 60 -1).ToString("0");
+                seconds = (actualtime % 60).ToString("0");
+            }
+            else
+            {
+                minute = "0"+(actualtime / 60 -1).ToString("0");
+                if ((actualtime - (actualtime / 60)) < 10)
+                {
+                    seconds ="0"+ (actualtime % 60).ToString("0");
+                }
+                else
+                {
+                    seconds = (actualtime % 60).ToString("0");
+                }
+            }
+        }
+        aux.time.text = minute +":"+ seconds;
+
     }
 
     public void PointRule(PlayerController player)
@@ -46,7 +85,8 @@ public class FreeForAll : IGameMode
         //conta pontos toda vez que o player matar alguem
       
         pontos[player] += 1;
-        Debug.Log(player.gameObject.name + "  tem " + pontos[player] + "pontos");
+        player.playerUI.points.text = pontos[player].ToString();
+        
 
     }
 
@@ -60,6 +100,7 @@ public class FreeForAll : IGameMode
         foreach (PlayerController player in aux.playerManager.Players)
         {
             pontos.Add(player,0);
+            player.playerUI.points.text = pontos[player].ToString();
         }
     }
 
@@ -77,6 +118,8 @@ public class FreeForAll : IGameMode
             }
         }
         Time.timeScale = 0;
-        Debug.Log("Acabooou!!! e o ganhador foi : " + playerMaior.gameObject.name + "com "  + maiorPonto +" pontos");
+        Debug.Log("Finish");
+        
     }
+
 }

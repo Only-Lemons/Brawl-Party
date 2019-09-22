@@ -253,11 +253,17 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         //provisorio 
         if(actualArma != null)
         {
+           
             playerUI.ammo.value = actualArma.ammoAmount;
             playerUI.ammoText.text = actualArma.ammoAmount.ToString();
             playerUI.gun.sprite = actualArma.gunSprite;
         }
-   
+        else
+        {
+            playerUI.ammo.value = 0;
+            playerUI.ammoText.text = "0";
+        }
+
 
         // mudar os outros trem aqui 
 

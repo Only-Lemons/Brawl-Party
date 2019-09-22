@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class GameController : MonoBehaviour
     public TileManager tileManager;
     public PlayerManager playerManager;
     public UIManager uIManager;
-    
-  
+
+    public Text time;
 
     void Awake()
     {
@@ -21,10 +22,11 @@ public class GameController : MonoBehaviour
         tileManager = GetComponent<TileManager>();
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
-        gameMode = new FreeForAll(this, 60);
+        gameMode = new FreeForAll(this, 120);
        
         
     }
+
     private void Start()
     {
 
