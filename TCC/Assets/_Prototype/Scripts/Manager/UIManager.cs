@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance;
 
-    public  event Action onChangeValues;
-    public  event Action onStartValues;
+    public static  event Action onChangeValues;
+    public static event Action onStartValues;
 
 
     private void Awake()
