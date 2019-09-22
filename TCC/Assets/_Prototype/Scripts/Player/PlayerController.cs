@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
       
     }
-   
+    
     public void ReceiveDamage(int damage,PlayerController lastDamage)
     {
         playerLastDamage = lastDamage;
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
    
 
     }
-
+    
     void uiUpdate()
     {
         playerUI.hp.value = life;

@@ -14,6 +14,7 @@ public struct playerUIElements
     public Text ammoText;
     public Slider passive;
     public Text passiveText;
+    public Image Respawn;
 
     public Image gun;
     public Image character;
@@ -28,7 +29,7 @@ public class PlayerManager : MonoBehaviour
     public List<PlayerController> playerMortosPrefabs = new List<PlayerController>();
     public GameObject prefabPlayer;
     public List<playerUIElements> playersUI = new List<playerUIElements>();
- 
+    public float timeRespawn;
 
 
 
@@ -61,8 +62,11 @@ public class PlayerManager : MonoBehaviour
             for (int i = 0; i < playerMortos.Count; i++)
             {
                 playerMortos[playerMortosPrefabs[i]] -= Time.deltaTime;
-                if(playerMortos[playerMortosPrefabs[i]] <= 0)
+                playerMortosPrefabs[i].playerUI.Respawn.fillAmount =  playerMortos[playerMortosPrefabs[i]] / timeRespawn;
+                if (playerMortos[playerMortosPrefabs[i]] <= 0)
                 {
+                    playerMortosPrefabs[i].playerUI.Respawn.enabled = false;
+                    playerMortosPrefabs[i].ResetarPlayer();
                     playerMortosPrefabs[i].gameObject.SetActive(true);
                     playerMortos.Remove(playerMortosPrefabs[i]);
                     playerMortosPrefabs.Remove(playerMortosPrefabs[i]);

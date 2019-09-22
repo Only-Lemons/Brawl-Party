@@ -26,7 +26,7 @@ public class FreeForAll : IGameMode
                 PlayerController auxp = player.playerLastDamage;
                 aux.playerManager.playerMortos.Add(player, timeToRespawn);
                 aux.playerManager.playerMortosPrefabs.Add(player);
-                player.ResetarPlayer();
+                player.playerUI.Respawn.enabled = true;
                 player.gameObject.SetActive(false);
                 PointRule(auxp);
             }
@@ -93,6 +93,7 @@ public class FreeForAll : IGameMode
     public void StartGame()
     {
         AddPlayerPoints();
+        aux.playerManager.timeRespawn = timeToRespawn;
     }
 
     void AddPlayerPoints()
