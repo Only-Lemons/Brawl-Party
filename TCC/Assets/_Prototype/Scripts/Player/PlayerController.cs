@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         controls = new Inputs();
         canDeath = true;
-        UIManager.instance.onChangeValues += uiUpdate;
-        UIManager.instance.onStartValues += uiStart;
+        UIManager.onChangeValues += uiUpdate;
+        UIManager.onStartValues += uiStart;
     }
 
     void OnEnable()
