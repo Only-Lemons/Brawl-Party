@@ -36,12 +36,11 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         setPlayerInScene();
-       
     }
 
     void setPlayerInScene()
     {
-         PlayerController[] aux =  GameController.FindObjectsOfType<PlayerController>();
+        PlayerController[] aux =  GameController.FindObjectsOfType<PlayerController>();
         for (int i = 0; i < aux.Length; i++)
         {
             Players.Add(aux[i]);

@@ -223,12 +223,26 @@ MonoBehaviour:
   actualArma: {fileID: 0}
   armaInventory: []
   canShoot: 0
+  playerUI:
+    points: {fileID: 0}
+    hp: {fileID: 0}
+    hpText: {fileID: 0}
+    ammo: {fileID: 0}
+    ammoText: {fileID: 0}
+    passive: {fileID: 0}
+    passiveText: {fileID: 0}
+    Respawn: {fileID: 0}
+    gun: {fileID: 0}
+    character: {fileID: 0}
+  playerLastDamage: {fileID: 0}
+  _base: {x: 0, y: 0, z: 0}
   PowerUp: 0
   life: 0
   speed: 0
   speedTile: 0
   shield: 0
   passiva: {fileID: 0}
+  canDeath: 0
 --- !u!136 &3132262564887125043
 CapsuleCollider:
   m_ObjectHideFlags: 0

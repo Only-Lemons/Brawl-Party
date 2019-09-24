@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class FreeForAll : IGameMode
 {
     GameController aux;
@@ -41,6 +43,7 @@ public class FreeForAll : IGameMode
         if(actualtime <= 0)
             WinRule();
     }
+
     public void ShowTime()
     {
         string minute;
@@ -119,7 +122,8 @@ public class FreeForAll : IGameMode
             }
         }
         Time.timeScale = 0;
-        Debug.Log("Finish");
+        SceneManager.LoadScene(1);
+     
         
     }
 
