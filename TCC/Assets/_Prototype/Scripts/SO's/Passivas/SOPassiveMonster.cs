@@ -4,26 +4,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Passivas", menuName = "PassivaMonster")]
 public class SOPassiveMonster : SOPassive
 {
-    public int recoveryTime;
+    float recoveryTime;
     float timeTotal = 0;
     float time = 1;
     public override void AtivarPassiva(PlayerController player)
     {
-
+        recoveryTime = 3;
         SOPlayer aux = player.player;
         if (player.life <= (aux.hp * 0.30f) && CheckCD())
         {
-           
-            int vidaMaximaT = Mathf.FloorToInt(aux.hp * 0.3f) / recoveryTime;
-            if (Cronometro())
-            {
-                player.life += vidaMaximaT;
-                if (player.life > aux.hp)
-                    player.life = aux.hp;
-                if (timeTotal == recoveryTime)
+            
+            if (player.life > 0) {
+                Debug.Log("Ola");
+                int vidaMaximaT = Mathf.FloorToInt(aux.hp * 0.3f / recoveryTime);
+
+                if (Cronometro())
                 {
-                    inCD = true;
-                    timeTotal = 0;
+                    player.life += vidaMaximaT;
+                    if (player.life > aux.hp)
+                        player.life = aux.hp;
+                    if (timeTotal >= recoveryTime)
+                    {
+                        inCD = true;
+                        timeTotal = 0;
+                    }
                 }
             }
         }

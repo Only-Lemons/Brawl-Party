@@ -69,7 +69,7 @@ public class FreeForAll : IGameMode
             else
             {
                 minute = "0"+(actualtime / 60 -1).ToString("0");
-                if ((actualtime - (actualtime / 60)) < 10)
+                if ((actualtime - (actualtime / 60 - 1)) < 10)
                 {
                     seconds ="0"+ (actualtime % 60).ToString("0");
                 }
@@ -115,6 +115,8 @@ public class FreeForAll : IGameMode
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in aux.playerManager.Players)
         {
+            if (player == null)
+                Debug.Log("Teste fim!!!!");
             if (pontos[player] > maiorPonto)
             {
                 maiorPonto = pontos[player];

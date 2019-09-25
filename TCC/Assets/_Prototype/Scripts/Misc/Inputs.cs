@@ -378,7 +378,7 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": ""up"",
                     ""id"": ""5fb70a49-4619-487a-aeeb-6e3e68c3f9ba"",
-                    ""path"": ""<Joystick>/stick/up"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -389,7 +389,7 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": ""down"",
                     ""id"": ""65351f86-5e97-4be4-b026-fd6f9474d025"",
-                    ""path"": ""<Joystick>/stick/down"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -400,7 +400,7 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": ""left"",
                     ""id"": ""8265f4a4-3cf4-45a7-aa39-a27532efec33"",
-                    ""path"": ""<Joystick>/stick/left"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -411,7 +411,7 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": ""right"",
                     ""id"": ""9d6f1623-d5aa-4d30-a7a7-f6868007669a"",
-                    ""path"": ""<Joystick>/stick/right"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",

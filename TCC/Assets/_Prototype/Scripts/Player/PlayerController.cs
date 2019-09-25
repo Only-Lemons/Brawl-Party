@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public Arma actualArma;
     public Arma[] armaInventory;
     public bool canShoot;
+    public Vector3 aim;
+    Transform pivot;
+    public LayerMask layer;
 
     public playerUIElements playerUI;
 
@@ -95,7 +98,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         armaInventory = new Arma[2];
         canShoot = true;
         PowerUp = false;
-
+        pivot = transform.GetChild(0);
+        aim = new Vector3(5f, 2f, 10f);
         // Iniciação dos status do personagem
         life = player.hp;
         speed = player.speed;
@@ -129,7 +133,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Death()
     {
-      
+        if(this.transform.GetChild(2).childCount > 0)
+            Destroy(this.transform.GetChild(2).GetChild(0));
         GameController.Singleton.gameMode.DeathRule(this);
     }
 
@@ -276,13 +281,17 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         cc.Move(movementAxis);
         Rot();
     }
+    
 
     public void Rot()
     {
         if (rotationAxis != Vector3.zero)
             targetRotation = Quaternion.LookRotation(rotationAxis);
         transform.rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, Time.deltaTime);
+       
+
     }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -339,7 +348,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         throw new System.NotImplementedException();
     }
 
-     
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(pivot.position, aim);
+    }
 
 
 }
