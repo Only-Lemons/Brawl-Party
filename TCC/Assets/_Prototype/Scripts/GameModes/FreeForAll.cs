@@ -7,14 +7,13 @@ using UnityEngine.SceneManagement;
 public class FreeForAll : IGameMode
 {
     GameController aux;
-    float time;
+  
     public float actualtime;
     public Dictionary<PlayerController, int> pontos = new Dictionary<PlayerController, int>();
     public float timeToRespawn = 3f;
     public FreeForAll(GameController gameController,float time)
     {
         aux = gameController;
-        this.time = time;
         actualtime = time;
     }
 

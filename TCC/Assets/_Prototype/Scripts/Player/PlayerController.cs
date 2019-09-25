@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     #region Interaçao Ambiente
     Tile ativo;
     public PlayerController playerLastDamage;
+    public bool withFlag; //Com a bandeira
     public Vector3 _base;
     #endregion
 
