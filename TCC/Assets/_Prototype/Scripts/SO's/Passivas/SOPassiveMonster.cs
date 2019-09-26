@@ -14,7 +14,7 @@ public class SOPassiveMonster : SOPassive
         if (player.life <= (aux.hp * 0.30f) && CheckCD())
         {
            
-            int vidaMaximaT = Mathf.FloorToInt(aux.hp * 0.3f) / recoveryTime;
+            int vidaMaximaT = Mathf.FloorToInt(aux.hp * 0.3f/ recoveryTime);
             if (Cronometro())
             {
                 player.life += vidaMaximaT;
