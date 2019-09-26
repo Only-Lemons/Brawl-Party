@@ -8,7 +8,8 @@ public class Flag : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponentInParent<PlayerController>().withFlag = true;
+            GameController.Singleton.gameMode.PointRule(other.GetComponent<PlayerController>());
+            Destroy(this.gameObject);
         }
     }
 
@@ -16,7 +17,8 @@ public class Flag : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponentInParent<PlayerController>().withFlag = false;
+            GameController.Singleton.gameMode.PointRule(other.GetComponent<PlayerController>());
+            Destroy(this.gameObject);
         }
     }
 

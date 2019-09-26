@@ -35,4 +35,9 @@ public class GameController : MonoBehaviour
         gameMode.FinishGame();   
     }
 
+    public void IntanceObject(GameObject obj)
+    {
+        GameObject.Instantiate(obj);
+    }
+
 }

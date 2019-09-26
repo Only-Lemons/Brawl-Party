@@ -6,11 +6,13 @@ using UnityEngine;
 public class CaptureTheFlag : IGameMode
 {
     GameController aux;
-    List<PlayerController> pl = new List<PlayerController>();
     public Dictionary<PlayerController, int> pontos = new Dictionary<PlayerController, int>();
+    public Dictionary<PlayerController, bool> bandeira = new Dictionary<PlayerController, bool>();
     public float actualtime = 5;
+    PlayerController auxp;
 
-    public GameObject flag;
+    GameObject flag = Resources.Load("Mecanicas/Flag") as GameObject;
+
     
     bool withFlag;
 
@@ -22,23 +24,38 @@ public class CaptureTheFlag : IGameMode
     }
     public void StartGame()
     {
-        GameObject[] ax = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject g in ax)
-        {
-            pl.Add(g.GetComponent<PlayerController>());
-        }
+        GameObject.Instantiate(flag, new Vector3(0, 0, 0), Quaternion.identity);
     }
     public void FinishGame()
     {
         actualtime -= Time.deltaTime;
-        WhoPlayerFlag(pl);
+        AddPoints();
         if(actualtime <= 0)
             WinRule();
     }
     public void PointRule(PlayerController player)
     {
-        pontos[player] += 1;
-        player.playerUI.points.text = pontos[player].ToString();
+        if(!bandeira[player])
+        {
+            bandeira[player] = true;
+            auxp = player;
+            foreach (PlayerController playerm in aux.playerManager.Players)
+            {
+                if (playerm != player)
+                    bandeira[playerm] = false;
+            }
+        }
+        
+        
+       
+    }
+    void AddPoints()
+    {
+        if (auxp != null)
+        {
+            pontos[auxp] += 1;
+            auxp.playerUI.points.text = pontos[auxp].ToString();
+        }
     }
     public void WinRule()
     {
@@ -46,6 +63,10 @@ public class CaptureTheFlag : IGameMode
     }
     public void DeathRule(PlayerController player)
     {
+        bandeira[player] = false;
+        auxp = null;
+        GameObject.Instantiate(flag,player.transform.position, Quaternion.identity);
+
 
     }
 
@@ -56,8 +77,5 @@ public class CaptureTheFlag : IGameMode
         flag.transform.position = p.transform.position;
     }
 
-    void WhoPlayerFlag(List<PlayerController> player)
-    {
-        WithFlag(player.Find(x =>  x.withFlag == true)); 
-    }
+ 
 }
