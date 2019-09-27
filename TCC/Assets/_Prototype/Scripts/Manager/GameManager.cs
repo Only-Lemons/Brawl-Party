@@ -8,9 +8,19 @@ public class GameManager : MonoBehaviour
     private GameController sceneController;
     public GameObject playerInputPrefab;
     public List<GameObject> playerInputsPrefabs;
+
+    #region LevelInteract
+    public int nextLevel;
+    #endregion
     private void Awake()
     {
-        Instance = this;
-        DontDestroyOnLoad(this);
+        if (Instance != null)
+            Destroy(this.gameObject);
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }      
     }
+
 }
