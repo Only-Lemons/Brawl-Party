@@ -23,10 +23,12 @@ public class SortScene : MonoBehaviour
     }
 
     
-    IEnumerator ShowImageScene(Sprite sprite,Image image, int Index)
+    IEnumerator ShowImageScene(Scenes[] sprite,Image image, int Index)
     {
         yield return new WaitForSeconds(.1f);
-        image.sprite = sprite;
+        if (Index % sprite.Length + 1 >= sprite.Length)
+            image.sprite = sprite[0].Scene;
+        else image.sprite = sprite[Index % sprite.Length + 1].Scene;
         Index++;
         Debug.Log(Index % cenas.Length);
         if (Index >= cenas.Length * 5 && Index%cenas.Length == sortScene)
@@ -38,17 +40,20 @@ public class SortScene : MonoBehaviour
             Scenep = true;
         }
         else {
-              StartCoroutine(ShowImageScene(cenas[Index % cenas.Length].Scene, prefabScene, Index));
+              StartCoroutine(ShowImageScene(cenas, prefabScene, Index));
         }
     }
-    IEnumerator ShowImageGameMode(Sprite sprite, Image imagem, int Index)
+    IEnumerator ShowImageGameMode(GameMode[] gameMode, Image imagem, int Index)
     {
         yield return new WaitForSeconds(.1f);
-        imagem.sprite = sprite;
+        if(Index % gameMode.Length +1 >= gameMode.Length)
+            imagem.sprite = gameMode[0].sprite;
+        else imagem.sprite = gameMode[Index % gameMode.Length + 1].sprite;
         Index++;
         Debug.Log(Index % gameModes.Length);
         if (Index >= gameModes.Length * 5 && Index%gameModes.Length == sortGameM)
         {
+            Debug.Log("Diferente: " + Index % gameModes.Length);
             if (Scenep)
             {
                 StartCoroutine(ChangeScene());
@@ -57,14 +62,15 @@ public class SortScene : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ShowImageGameMode(gameModes[Index % gameModes.Length].sprite, prefabGM, Index));
+            StartCoroutine(ShowImageGameMode(gameModes, prefabGM, Index));
         }
     }
     IEnumerator ChangeScene()
     {
-        yield return new WaitForSeconds(1);
+        Debug.Log("Diferente(2): " + gameModes[sortGameM].gameMode);
         GameManager.Instance.nextLevel = cenas[sortScene].SceneIndex;
-        GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;
+        GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;      
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(3);
      
     }
@@ -72,8 +78,8 @@ public class SortScene : MonoBehaviour
     IEnumerator StartScene()
     {
         yield return new WaitForSeconds(0.5f);
-        StartCoroutine(ShowImageScene(cenas[0].Scene, prefabScene,0));
-        StartCoroutine(ShowImageGameMode(gameModes[0].sprite,prefabGM,0));
+        StartCoroutine(ShowImageScene(cenas, prefabScene,0));
+        StartCoroutine(ShowImageGameMode(gameModes,prefabGM,0));
     }
 
 }

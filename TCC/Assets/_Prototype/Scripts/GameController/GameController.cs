@@ -17,14 +17,14 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.TryGetGameController();
+  
         Singleton = this;
         tileManager = GetComponent<TileManager>();
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
-        //gameMode = new FreeForAll(this, 120);
-       
-        
+        GameManager.Instance.TryGetGameController();
+
+
     }
 
     private void Start()
@@ -34,11 +34,6 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         gameMode.FinishGame();   
-    }
-
-    public void IntanceObject(GameObject obj)
-    {
-        GameObject.Instantiate(obj);
     }
 
 }
