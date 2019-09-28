@@ -17,12 +17,13 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        GameManager.Instance.TryGetGameController();
         Singleton = this;
         tileManager = GetComponent<TileManager>();
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
         //gameMode = new FreeForAll(this, 120);
-        gameMode = new CaptureTheFlag(this, 120);
+       
         
     }
 
