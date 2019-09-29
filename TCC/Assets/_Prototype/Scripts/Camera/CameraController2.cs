@@ -6,20 +6,20 @@ using UnityEngine.InputSystem;
 [ExecuteInEditMode]
 public class CameraController2 : MonoBehaviour
 {
-
     Camera cam;
     public float posicaoEmZ = 8;
     public float alturaCam = 25;
 
     public List<GameObject> targ = new List<GameObject>();
+
     void Start()
     {
         cam = Camera.main;
-        cam.transform.position = new Vector3(alturaCam,alturaCam,alturaCam);
+        cam.transform.position = new Vector3(0, alturaCam, -10);
         GetTargets();
 
     }
-    void GetTargets()
+    public void GetTargets()
     {
         targ.Clear();
         GameObject[] aux = GameObject.FindGameObjectsWithTag("Player");
@@ -69,7 +69,7 @@ public class CameraController2 : MonoBehaviour
         {
             for (int j = 0; j < targ.Count; j++)
             {
-                if(i != j)
+                if (i != j)
                 {
                     if (Vector3.Distance(targ[i].transform.position, targ[j].transform.position) > max)
                     {
@@ -80,7 +80,7 @@ public class CameraController2 : MonoBehaviour
         }
         if (max > 20)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 40, Time.deltaTime), cam.transform.position.z);
-        if (max <= 20 && max>=5)
+        if (max <= 20 && max >= 5)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 20, Time.deltaTime), cam.transform.position.z);
         if (max < 5)
             z = new Vector3(cam.transform.position.x, Mathf.Lerp(cam.transform.position.y, 10, Time.deltaTime), cam.transform.position.z);
@@ -95,7 +95,7 @@ public class CameraController2 : MonoBehaviour
         {
             for (int j = 0; j < targ.Count; j++)
             {
-                if(i != j)
+                if (i != j)
                 {
                     if (Vector3.Distance(targ[i].transform.position, targ[j].transform.position) > max)
                     {
@@ -106,10 +106,9 @@ public class CameraController2 : MonoBehaviour
         }
         if (max > 12)
             z = Mathf.Lerp(cam.fieldOfView, 65, Time.deltaTime);
-        if (max <= 12 && max>=5)
-            z = Mathf.Lerp(cam.fieldOfView, 50, Time.deltaTime/1.2f);
-        if (max < 5)
-            z = Mathf.Lerp(cam.fieldOfView, 20, Time.deltaTime/1.5f);
+        if (max <= 12)
+            z = Mathf.Lerp(cam.fieldOfView, 50, Time.deltaTime / 1.2f);
+
         return z;
     }
 }

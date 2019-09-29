@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
+
     public void ChangeSceneWithLoad(int scene)
     {
        
