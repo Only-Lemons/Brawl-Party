@@ -2687,6 +2687,8 @@ GameObject:
   - component: {fileID: 832325715}
   - component: {fileID: 832325714}
   - component: {fileID: 832325718}
+  - component: {fileID: 832325720}
+  - component: {fileID: 832325719}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2805,6 +2807,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638390605575adf4588d2c4eab57f6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &832325719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832325713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed10cfda84f90444a7a136099f492d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posicaoEmZ: 8
+  alturaCam: 25
+  targ: []
+--- !u!114 &832325720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832325713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0284e2384663a94798e5e5eadebc2ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilesN: []
+  go:
+  - {fileID: 8888574536522326467, guid: 4c311e2f77e1fe344ad3ffcc25441b33, type: 3}
+  velocidadeQueda: 10
+  limiteParaInstanciar: {x: 13, y: 8}
+  cxPadrao: {fileID: 2236393400438116409, guid: 233be8f2c4e86b34880ba5068a76428c,
+    type: 3}
+  tempoRespawn: 5
+  qtdInstanciar: 5
 --- !u!1001 &834548942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6188,8 +6226,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8851506818517258863}
   m_LocalRotation: {x: 0.58958644, y: 0, z: 0, w: 0.8077053}
-  m_LocalPosition: {x: 0, y: 25, z: -8}
-  m_LocalScale: {x: 100.000046, y: 100, z: 100.00002}
+  m_LocalPosition: {x: 25, y: 25, z: 25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -6210,7 +6248,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 24.571886
+  m_FocalLength: 25.494108
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -6219,7 +6257,7 @@ Camera:
     height: 1
   near clip plane: 0.099999994
   far clip plane: 1000
-  field of view: 52.058342
+  field of view: 50.41245
   orthographic: 0
   orthographic size: 0.0034285777
   m_Depth: 0
@@ -6247,8 +6285,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5890765519611305797}
   - component: {fileID: 6334343411452147174}
-  - component: {fileID: 8851506818517258865}
-  - component: {fileID: 8851506818517258864}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -6256,39 +6292,3 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8851506818517258864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8851506818517258863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0284e2384663a94798e5e5eadebc2ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilesN: []
-  go:
-  - {fileID: 8888574536522326467, guid: 4c311e2f77e1fe344ad3ffcc25441b33, type: 3}
-  velocidadeQueda: 10
-  limiteParaInstanciar: {x: 13, y: 8}
-  cxPadrao: {fileID: 2236393400438116409, guid: 233be8f2c4e86b34880ba5068a76428c,
-    type: 3}
-  tempoRespawn: 5
-  qtdInstanciar: 5
---- !u!114 &8851506818517258865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8851506818517258863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed10cfda84f90444a7a136099f492d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posicaoEmZ: 8
-  alturaCam: 25
-  targ: []
