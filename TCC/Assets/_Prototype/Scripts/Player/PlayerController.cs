@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public bool canDeath ;
     #endregion
 
-    Inputs controls;
+    public Inputs controls;
 
     Material hp;
 
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Awake()
     {
-        controls = new Inputs();
+        //controls = new Inputs();
         canDeath = true;
         UIManager.onChangeValues += uiUpdate;
         UIManager.onStartValues += uiStart;

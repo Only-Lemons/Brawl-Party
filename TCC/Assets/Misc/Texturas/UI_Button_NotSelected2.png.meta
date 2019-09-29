@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 0ffaa4177b0b5ca49a83c1ccf7ac87a1
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7665956741298328961
+    second: UI_Button_NotSelected2_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,7 +99,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UI_Button_NotSelected2_0
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 55
+        width: 407
+        height: 726
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faefd6597ea0a074f943faeaaa79cc8d
+      internalID: 7665956741298328961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playerInputsPrefabs;
     public float TimeInGame = 120;
     public GameModes newGameMode;
+    public List<PlayerSelect> playersPanels = new List<PlayerSelect>();
+
     #region LevelInteract
     public int nextLevel;
     #endregion
@@ -25,6 +27,25 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }      
     }
+
+
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene().buildIndex ==4)
+        {
+            if (playersPanels != null && !playersPanels.Find(x => x.isConfirmed == false))
+            {
+                SceneManager.LoadScene(5); // provisorio
+            }
+        }
+
+     
+
+
+    }
+
+
+
     public void TryGetGameController()
     {
         if(GameObject.FindObjectOfType<GameController>() != null)
