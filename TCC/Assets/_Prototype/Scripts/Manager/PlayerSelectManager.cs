@@ -8,16 +8,9 @@ public class PlayerSelectManager : MonoBehaviour
     public PlayerInputManager player;
 
 
-
-    private void Awake()
-    {
-        player = GetComponent<PlayerInputManager>();
-    }
-
     private void Update()
     {
-        player.playerPrefab.transform.SetParent(this.transform);
+        
     }
-
 
 }

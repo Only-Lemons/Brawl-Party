@@ -11,13 +11,13 @@ public class PlayerSelect : MonoBehaviour, Inputs.ISelectUIActions
     public Image playerImage;
     public Image playerBackround;
     public bool isConfirmed = false;
-    public Transform pai;
+    public GameObject pai;
 
     private void Awake()
     {
         playerBackround = GetComponent<Image>();
         playerImage = transform.GetChild(0).GetComponent<Image>(); // levando em conta que tem so player
-        pai = GameObject.FindGameObjectsWithTag("Pai");
+        pai = GameObject.FindGameObjectsWithTag("Pai")[0];
     }
 
     private void Start()
@@ -62,6 +62,6 @@ public class PlayerSelect : MonoBehaviour, Inputs.ISelectUIActions
 
     public void OnAdd(InputAction.CallbackContext context)
     {
-       this.transform.SetParent()
+        this.transform.SetParent(pai.transform);
     }
 }
