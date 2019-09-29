@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject playerInputPrefab;
     public IGameMode gameMode;
     public GameController gameController;
-    public List<GameObject> playerInputsPrefabs;
     public float TimeInGame = 120;
     public GameModes newGameMode;
     #region LevelInteract
     public int nextLevel;
-    #endregion
+    #endregion  
     private void Awake()
     {
         if (Instance != null)
@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
             gameController.gameMode = new FreeForAll(gameController, TimeInGame);
         }
     }
-    
+
+    private void Update()
+    {
+
+    }
+
 
 }
