@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     private void FixedUpdate()
     {
-        // TileInteract();
+        
         passiva.AtivarPassiva(this);
         if (PowerUp == true)
             VerificarPU();
@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Update()
     {
 
-        
+        TileInteract();
         cc.Move(movementAxis);
         Rot();
     }

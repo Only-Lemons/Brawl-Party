@@ -11,12 +11,14 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     public Image playerImage;
     public Image playerBackround;
     public bool isConfirmed = false;
-    public GameObject pai;
+    public PlayerController PlayerGame;
 
     private void Awake()
     {
+       
         playerBackround = GetComponent<Image>();
         playerImage = transform.GetChild(0).GetComponent<Image>(); // levando em conta que tem so player
+     
     }
 
     private void Start()
@@ -30,7 +32,11 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     void Update()
     {
         if (isConfirmed)
+        {
             playerBackround.color = Color.green;
+            PlayerGame.player = selectPlayer;
+            Debug.Log("Colocou!!");
+        }
         else
             playerBackround.color = Color.red;
 

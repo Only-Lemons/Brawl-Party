@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TerrainController : MonoBehaviour
 {
-    public static TerrainController instance;
+   public static TerrainController instance;
 
 
    public List<Tile> tilesInstanciados = new List<Tile>();
@@ -17,11 +17,7 @@ public class TerrainController : MonoBehaviour
     }
 
 
-
-    private void Start()
-    {    
-       
-    }
+    
 
 
    

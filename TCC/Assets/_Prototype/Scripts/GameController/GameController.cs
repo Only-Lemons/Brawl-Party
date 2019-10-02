@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     public IGameMode gameMode;
     
-    public TileManager tileManager;
+    public TerrainController tileManager;
     public PlayerManager playerManager;
     public UIManager uIManager;
 
@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     {
   
         Singleton = this;
-        tileManager = GetComponent<TileManager>();
+        tileManager = GetComponent<TerrainController>();
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
         GameManager.Instance.TryGetGameController();
