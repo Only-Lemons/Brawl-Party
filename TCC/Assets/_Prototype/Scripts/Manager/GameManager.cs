@@ -38,6 +38,13 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(5); // provisorio
             }
         }
+<<<<<<< HEAD
+=======
+
+     
+
+
+>>>>>>> parent of aa1b5a6... PLAYER FUNCIOANANDO MAS A HUD PAROU
     }
 
 
@@ -61,6 +68,11 @@ public class GameManager : MonoBehaviour
         {
             gameController.gameMode = new FreeForAll(gameController, TimeInGame);
         }
+    }
+
+    private void Update()
+    {
+
     }
 
 
