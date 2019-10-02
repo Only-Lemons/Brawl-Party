@@ -22,13 +22,14 @@ public class GameController : MonoBehaviour
         tileManager = GetComponent<TerrainController>();
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
-        GameManager.Instance.TryGetGameController();
+   
 
 
     }
 
     private void Start()
     {
+        GameManager.Instance.TryGetGameController();
         gameMode.StartGame();
     }
     private void Update()
