@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
 
     void Awake()
     {
-        //setPlayerInScene();
+        setPlayerInScene();
     }
 
     void setPlayerInScene()
@@ -44,9 +44,10 @@ public class PlayerManager : MonoBehaviour
 
         for (int i = 0; i < players.Count; i++)
         {
-            Players.Add(players[i].GetComponentInChildren<PlayerController>());
-            players[i].GetComponentInChildren<PlayerController>().playerUI = playersUI[i];
+            //Players.Add(players[i].GetComponentInChildren<PlayerController>());
+            players[i].transform.GetChild(0).GetComponent<PlayerController>().playerUI = playersUI[i];
         }
+    
             
     }
 

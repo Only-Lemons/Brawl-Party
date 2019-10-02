@@ -100,7 +100,7 @@ public class FreeForAll : IGameMode
 
     void AddPlayerPoints()
     {
-        foreach (PlayerController player in aux.playerManager.Players)
+        foreach (PlayerController player in GameController.Singleton.playerManager.Players)
         {
             pontos.Add(player,0);
             player.playerUI.points.text = pontos[player].ToString();

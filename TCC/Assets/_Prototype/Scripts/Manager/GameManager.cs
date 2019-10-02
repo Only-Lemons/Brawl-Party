@@ -70,6 +70,12 @@ public class GameManager : MonoBehaviour
         if(GameObject.FindObjectOfType<GameController>() != null)
         {
             gameController = GameObject.FindObjectOfType<GameController>();
+            foreach (GameObject playerComplete in playersPanels)
+            {
+                gameController.playerManager.Players.Add( playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
+            }
+           
+
             newScene(newGameMode);
         }
 
