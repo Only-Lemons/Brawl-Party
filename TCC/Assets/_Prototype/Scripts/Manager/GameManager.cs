@@ -38,10 +38,6 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(5); // provisorio
             }
         }
-
-     
-
-
     }
 
 
@@ -65,11 +61,6 @@ public class GameManager : MonoBehaviour
         {
             gameController.gameMode = new FreeForAll(gameController, TimeInGame);
         }
-    }
-
-    private void Update()
-    {
-
     }
 
 
