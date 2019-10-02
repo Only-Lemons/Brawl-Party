@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float TimeInGame = 120;
     public GameModes newGameMode;
     public List<GameObject> playersPanels = new List<GameObject>();
+    public Vector3 lastPainel;
 
     #region LevelInteract
     public int nextLevel;
@@ -72,7 +73,8 @@ public class GameManager : MonoBehaviour
             gameController = GameObject.FindObjectOfType<GameController>();
             foreach (GameObject playerComplete in playersPanels)
             {
-                gameController.playerManager.Players.Add( playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
+                gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
+                gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
             }
            
 
