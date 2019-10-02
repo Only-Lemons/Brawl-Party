@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameController gameController;
     public float TimeInGame = 120;
     public GameModes newGameMode;
-    public List<PlayerSelect> playersPanels = new List<PlayerSelect>();
+    public List<GameObject> playersPanels = new List<GameObject>();
 
     #region LevelInteract
     public int nextLevel;
@@ -29,19 +29,38 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if(SceneManager.GetActiveScene().buildIndex ==4)
+        switch(SceneManager.GetActiveScene().buildIndex)
         {
-            if (playersPanels != null && !playersPanels.Find(x => x.isConfirmed == false))
-            {
-                SceneManager.LoadScene(5); // provisorio
-            }
+            case 4: // Menu do Personagem
+                foreach (GameObject player in playersPanels)
+                {
+                    player.transform.GetChild(0).gameObject.SetActive(false);
+                    player.transform.GetChild(1).gameObject.SetActive(true);
+                }
+
+                    transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+                    if (playersPanels.Count > 0 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == false))
+                    {
+                          SceneManager.LoadScene(5); // provisorio
+                    }
+
+
+                break;
+
+            case 7:  //cenas de jogo no caso essa é a primeira 
+                foreach (GameObject player in playersPanels)
+                {
+                    player.transform.GetChild(1).gameObject.SetActive(false);
+                    player.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                break;
+
+            default:
+                transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                break;
         }
-
-     
-
-
     }
 
 
@@ -65,11 +84,6 @@ public class GameManager : MonoBehaviour
         {
             gameController.gameMode = new FreeForAll(gameController, TimeInGame);
         }
-    }
-
-    private void Update()
-    {
-
     }
 
 

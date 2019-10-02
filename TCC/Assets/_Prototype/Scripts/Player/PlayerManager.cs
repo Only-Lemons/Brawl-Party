@@ -35,16 +35,17 @@ public class PlayerManager : MonoBehaviour
 
     void Awake()
     {
-        setPlayerInScene();
+        //setPlayerInScene();
     }
 
     void setPlayerInScene()
     {
-        PlayerController[] aux =  GameController.FindObjectsOfType<PlayerController>();
-        for (int i = 0; i < aux.Length; i++)
+        List<GameObject> players = GameManager.Instance.playersPanels;
+
+        for (int i = 0; i < players.Count; i++)
         {
-            Players.Add(aux[i]);
-            aux[i].playerUI = playersUI[i];
+            Players.Add(players[i].GetComponentInChildren<PlayerController>());
+            players[i].GetComponentInChildren<PlayerController>().playerUI = playersUI[i];
         }
             
     }

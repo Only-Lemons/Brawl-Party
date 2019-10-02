@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-public class PlayerSelect : MonoBehaviour, Inputs.ISelectUIActions
+public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 {
     public List<SOPlayer> players= new List<SOPlayer>();
     public SOPlayer selectPlayer;
@@ -17,7 +17,6 @@ public class PlayerSelect : MonoBehaviour, Inputs.ISelectUIActions
     {
         playerBackround = GetComponent<Image>();
         playerImage = transform.GetChild(0).GetComponent<Image>(); // levando em conta que tem so player
-        pai = GameObject.FindGameObjectsWithTag("Pai")[0];
     }
 
     private void Start()
@@ -62,6 +61,31 @@ public class PlayerSelect : MonoBehaviour, Inputs.ISelectUIActions
 
     public void OnAdd(InputAction.CallbackContext context)
     {
-        this.transform.SetParent(pai.transform);
+        //GameManager.Instance.transform.SetParent(this.transform);
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnInsert(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
     }
 }
