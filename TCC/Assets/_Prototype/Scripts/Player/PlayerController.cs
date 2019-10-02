@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Awake()
     {
-        //controls = new Inputs();
+        controls = new Inputs();
         canDeath = true;
         UIManager.onChangeValues += uiUpdate;
         UIManager.onStartValues += uiStart;
@@ -344,9 +344,20 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         throw new System.NotImplementedException();
     }
 
-     
+    public void OnAdd(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 
+    public void OnConfirmed(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 
+    public void OnUP(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 

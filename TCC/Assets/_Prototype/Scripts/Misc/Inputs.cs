@@ -26,6 +26,30 @@ public class Inputs : IInputActionCollection
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Add"",
+                    ""type"": ""Button"",
+                    ""id"": ""5cac40f4-eacd-4aed-a203-635a41614410"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Confirmed"",
+                    ""type"": ""Button"",
+                    ""id"": ""1180468d-8dff-41c7-aed7-413cdf886c5f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""UP"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6cb16ca-edb2-4bd9-9d04-82327cb906c9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""33612110-46f5-44e7-b94f-5c56f98e21db"",
@@ -199,6 +223,160 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""Switch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Teclado"",
+                    ""id"": ""e19a927f-c6e1-4881-ae5b-53db54b8c39b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6f2e316a-9bdc-4d33-98cb-e5fdd6214f7d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5091af6a-38fd-423a-9353-5afb9d78b6f9"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""952860d1-fe58-4429-b1fe-ea30fcbf056d"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""795d440a-d970-4bdb-b60f-b4f310f94ce4"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Mante"",
+                    ""id"": ""b4d84d6e-7e65-48a9-86ae-6706782c740e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0e79c47a-9146-4349-8366-b8703cc6b310"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""da5d14b3-299f-45d0-852a-80e0aac3cfd9"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6a80fa9e-fa2e-4975-880a-6e5f70346331"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""940ab0c3-67c6-4f32-abe4-3b98388b9cde"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cf2be8c-c43e-40b9-94f4-8f57f81d4f15"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Confirmed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d3b7058-b848-450d-a975-d068205cb182"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Confirmed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cdedc3d-d00e-4ed0-9702-e3ba5067bb20"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Add"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c014615-a8b9-4b8e-8291-d95e619910af"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Add"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -585,6 +763,14 @@ public class Inputs : IInputActionCollection
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""UP1"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef2e8b7f-5b08-41d9-9960-7e0db65ed0a4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Add"",
                     ""type"": ""Button"",
                     ""id"": ""a2145048-2876-4b8a-a260-776b06d3ebd1"",
@@ -747,6 +933,116 @@ public class Inputs : IInputActionCollection
                     ""action"": ""Add"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Teclado"",
+                    ""id"": ""5f3bb3b4-80d2-4f7e-bd89-b329fe739200"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP1"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""90364b6c-f3bc-483b-9a4d-2a2040c1191f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""2aa3ed36-d834-4bf4-bd34-bc44f43a4c83"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""553d5148-0201-4a7e-b8cc-ddee31798aef"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""54e2e50e-9ffc-4e52-8df0-ac593ef31da7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Mante"",
+                    ""id"": ""eed93615-9b0a-48fb-8f09-2b789f86e95f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP1"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d5977d68-28a7-432e-be12-2c332a507d43"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""eac4b71d-5237-4b2c-a339-f3e0e14b7e33"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5864188e-fe7e-48f5-9b21-48ca5913217c"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""02071cb0-a975-4088-a97e-03bb2ccfe93c"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -795,6 +1091,9 @@ public class Inputs : IInputActionCollection
         // Player
         m_Player = asset.GetActionMap("Player");
         m_Player_Move = m_Player.GetAction("Move");
+        m_Player_Add = m_Player.GetAction("Add");
+        m_Player_Confirmed = m_Player.GetAction("Confirmed");
+        m_Player_UP = m_Player.GetAction("UP");
         m_Player_Look = m_Player.GetAction("Look");
         m_Player_Fire = m_Player.GetAction("Fire");
         m_Player_Insert = m_Player.GetAction("Insert");
@@ -816,6 +1115,7 @@ public class Inputs : IInputActionCollection
         m_SelectUI = asset.GetActionMap("SelectUI");
         m_SelectUI_UP = m_SelectUI.GetAction("UP");
         m_SelectUI_Confirmed = m_SelectUI.GetAction("Confirmed");
+        m_SelectUI_UP1 = m_SelectUI.GetAction("UP1");
         m_SelectUI_Add = m_SelectUI.GetAction("Add");
     }
 
@@ -867,6 +1167,9 @@ public class Inputs : IInputActionCollection
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Add;
+    private readonly InputAction m_Player_Confirmed;
+    private readonly InputAction m_Player_UP;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Insert;
@@ -876,6 +1179,9 @@ public class Inputs : IInputActionCollection
         private Inputs m_Wrapper;
         public PlayerActions(Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Add => m_Wrapper.m_Player_Add;
+        public InputAction @Confirmed => m_Wrapper.m_Player_Confirmed;
+        public InputAction @UP => m_Wrapper.m_Player_UP;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Insert => m_Wrapper.m_Player_Insert;
@@ -892,6 +1198,15 @@ public class Inputs : IInputActionCollection
                 Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                Add.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdd;
+                Add.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdd;
+                Add.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAdd;
+                Confirmed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmed;
+                Confirmed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmed;
+                Confirmed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmed;
+                UP.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUP;
+                UP.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUP;
+                UP.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUP;
                 Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
@@ -911,6 +1226,15 @@ public class Inputs : IInputActionCollection
                 Move.started += instance.OnMove;
                 Move.performed += instance.OnMove;
                 Move.canceled += instance.OnMove;
+                Add.started += instance.OnAdd;
+                Add.performed += instance.OnAdd;
+                Add.canceled += instance.OnAdd;
+                Confirmed.started += instance.OnConfirmed;
+                Confirmed.performed += instance.OnConfirmed;
+                Confirmed.canceled += instance.OnConfirmed;
+                UP.started += instance.OnUP;
+                UP.performed += instance.OnUP;
+                UP.canceled += instance.OnUP;
                 Look.started += instance.OnLook;
                 Look.performed += instance.OnLook;
                 Look.canceled += instance.OnLook;
@@ -1046,6 +1370,7 @@ public class Inputs : IInputActionCollection
     private ISelectUIActions m_SelectUIActionsCallbackInterface;
     private readonly InputAction m_SelectUI_UP;
     private readonly InputAction m_SelectUI_Confirmed;
+    private readonly InputAction m_SelectUI_UP1;
     private readonly InputAction m_SelectUI_Add;
     public struct SelectUIActions
     {
@@ -1053,6 +1378,7 @@ public class Inputs : IInputActionCollection
         public SelectUIActions(Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @UP => m_Wrapper.m_SelectUI_UP;
         public InputAction @Confirmed => m_Wrapper.m_SelectUI_Confirmed;
+        public InputAction @UP1 => m_Wrapper.m_SelectUI_UP1;
         public InputAction @Add => m_Wrapper.m_SelectUI_Add;
         public InputActionMap Get() { return m_Wrapper.m_SelectUI; }
         public void Enable() { Get().Enable(); }
@@ -1069,6 +1395,9 @@ public class Inputs : IInputActionCollection
                 Confirmed.started -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnConfirmed;
                 Confirmed.performed -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnConfirmed;
                 Confirmed.canceled -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnConfirmed;
+                UP1.started -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnUP1;
+                UP1.performed -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnUP1;
+                UP1.canceled -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnUP1;
                 Add.started -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnAdd;
                 Add.performed -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnAdd;
                 Add.canceled -= m_Wrapper.m_SelectUIActionsCallbackInterface.OnAdd;
@@ -1082,6 +1411,9 @@ public class Inputs : IInputActionCollection
                 Confirmed.started += instance.OnConfirmed;
                 Confirmed.performed += instance.OnConfirmed;
                 Confirmed.canceled += instance.OnConfirmed;
+                UP1.started += instance.OnUP1;
+                UP1.performed += instance.OnUP1;
+                UP1.canceled += instance.OnUP1;
                 Add.started += instance.OnAdd;
                 Add.performed += instance.OnAdd;
                 Add.canceled += instance.OnAdd;
@@ -1119,6 +1451,9 @@ public class Inputs : IInputActionCollection
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnAdd(InputAction.CallbackContext context);
+        void OnConfirmed(InputAction.CallbackContext context);
+        void OnUP(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnInsert(InputAction.CallbackContext context);
@@ -1142,6 +1477,7 @@ public class Inputs : IInputActionCollection
     {
         void OnUP(InputAction.CallbackContext context);
         void OnConfirmed(InputAction.CallbackContext context);
+        void OnUP1(InputAction.CallbackContext context);
         void OnAdd(InputAction.CallbackContext context);
     }
 }
