@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Shotgun : Arma
+public class Granade : Arma
 {
-    public Shotgun()
+    public Granade()
     {
         fireRate = 1f;
-        ammoAmount = 4;
-        damage = 20;
+        ammoAmount = 1;
+        damage = 100;
         gunSprite = Resources.Load("Armas/Sprites/Shotgun") as Sprite;
         prefab = Resources.Load("Armas/Shotgun") as GameObject;
-        ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
+        ammunitionPrefab = Resources.Load("Municoes/ProjetilBazuca") as GameObject;
         ammunitionPrefab.GetComponent<Bullet>().damage = this.damage;
        
 
@@ -23,9 +23,6 @@ public class Shotgun : Arma
         ammoAmount--;
         ammunitionPrefab.GetComponent<Bullet>().transformForward = Forward;
         ammunitionPrefab.GetComponent<Bullet>().player = player;
-        Instantiate(ammunitionPrefab, position, rotation);
-        Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x,rotation.y,rotation.z - Random.Range(1f,3f),rotation.w));
-        Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x, rotation.y, rotation.z + Random.Range(1f,3f), rotation.w));
-
+        GameObject ob = Instantiate(ammunitionPrefab, position, rotation);
     }
 }

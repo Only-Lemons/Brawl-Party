@@ -84,22 +84,22 @@ public class TesteInstancias : MonoBehaviour
         switch (rnd)
         {
             case 0:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
             case 1:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
 
             case 2:
-                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
 
             case 3:
-                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
 
             case 4:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
 
             default:

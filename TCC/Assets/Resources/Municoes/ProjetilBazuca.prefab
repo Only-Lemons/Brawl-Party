@@ -87,11 +87,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6682347049234938651}
-  - component: {fileID: -2743489864226378879}
   - component: {fileID: 4615050634415768337}
   - component: {fileID: 8016778931901649200}
+  - component: {fileID: -4799605317226143391}
   m_Layer: 0
-  m_Name: Projetil
+  m_Name: ProjetilBazuca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,22 +112,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2743489864226378879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627841914251809787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8abeda5a7661ff24498b692801704647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  velocidadeDaBala: 3
-  transformForward: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
 --- !u!54 &4615050634415768337
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,3 +141,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.583395, y: 0.70654726, z: 0.49386573}
   m_Center: {x: 0.0027341843, y: 0, z: 0.01845634}
+--- !u!114 &-4799605317226143391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627841914251809787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4a359894db21b43bd11c2be251f237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  velocidadeDaBala: 3
+  transformForward: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}

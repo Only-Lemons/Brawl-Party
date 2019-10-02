@@ -22,11 +22,11 @@ public class ArmaManager : MonoBehaviour
                 armaPrefab.GetComponent<ArmaController>().actualArma = new Pistol() ;
                 break;
             case 1:
-             armaPrefab.GetComponent<ArmaController>().actualArma = new Pistol();
+             armaPrefab.GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
   
             case 2:
-             armaPrefab.GetComponent<ArmaController>().actualArma = new Shotgun();
+             armaPrefab.GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
   
             case 3:
