@@ -24,7 +24,7 @@ public class PlayerSelectManager : MonoBehaviour
        
             for (int i = 0; i < jogadores.Length; i++)
             {
-                if (!players.Exists(x => x == jogadores[i]))
+               if (!players.Exists(x => x == jogadores[i]))
                     players.Add(jogadores[i]);
             }
 

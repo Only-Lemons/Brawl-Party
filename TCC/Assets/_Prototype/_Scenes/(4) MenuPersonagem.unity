@@ -211,7 +211,7 @@ MonoBehaviour:
   m_NotificationBehavior: 2
   m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 1
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -234,7 +234,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.InputSystem.PlayerInputManager+PlayerLeftEvent, Unity.InputSystem,
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
   m_JoinAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Action
       m_Type: 1
@@ -242,8 +242,24 @@ MonoBehaviour:
       m_Id: 0aa5e077-3baf-4678-a89a-3d43add8fe15
       m_Processors: 
       m_Interactions: 
-      m_SingletonActionBindings: []
-    m_Reference: {fileID: 2948334911205091288, guid: 5496847c02242cb4a9515a24e2bed161,
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: ccdca141-f75a-49bf-b49d-9a51ff01631c
+        m_Path: <Gamepad>/start
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 35c21f2a-12f0-4cdf-9b72-cd2cf17ac980
+        m_Path: <Keyboard>/space
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+    m_Reference: {fileID: -6956733093625933452, guid: 5496847c02242cb4a9515a24e2bed161,
       type: 3}
   m_PlayerPrefab: {fileID: 8037151831598590397, guid: 9d2427f9ff82be841aa26d736af04cd0,
     type: 3}

@@ -18,9 +18,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
        
         playerBackround = GetComponent<Image>();
         playerImage = transform.GetChild(0).GetComponent<Image>(); // levando em conta que tem so player
-        if (GameManager.Instance.lastPainel != null)
-            this.transform.position = new Vector3(GameManager.Instance.lastPainel.x, GameManager.Instance.lastPainel.y + 10, GameManager.Instance.lastPainel.z);
-        else GameManager.Instance.lastPainel = this.transform.position;
+
     }
 
     private void Start()

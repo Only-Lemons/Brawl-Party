@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     #region LevelInteract
     public int nextLevel;
     #endregion  
-    private void Awake()
+    private void OnEnable()
     {
         if (Instance != null)
             Destroy(this.gameObject);
@@ -73,8 +73,9 @@ public class GameManager : MonoBehaviour
             gameController = GameObject.FindObjectOfType<GameController>();
             foreach (GameObject playerComplete in playersPanels)
             {
+                if (!gameController.playerManager.Players.Exists(x => x == playerComplete.transform.GetChild(0).GetComponent<PlayerController>()))
                 gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
-                gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
+               // gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
             }
            
 

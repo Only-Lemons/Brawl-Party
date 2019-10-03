@@ -87,7 +87,7 @@ public class CaptureTheFlag : IGameMode
         {
             bandeira[player] = true;
             auxp = player;
-            foreach (PlayerController playerm in aux.playerManager.Players)
+            foreach (PlayerController playerm in GameController.Singleton.playerManager.Players)
             {
                 if (playerm != player)
                     bandeira[playerm] = false;

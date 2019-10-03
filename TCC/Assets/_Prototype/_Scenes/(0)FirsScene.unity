@@ -580,6 +580,31 @@ PrefabInstance:
       propertyPath: m_PlayerJoinedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4542242325927994715, guid: 019d824110cdef24987d596f5b0c5dbd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.034946
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542242325927994715, guid: 019d824110cdef24987d596f5b0c5dbd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000002861
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542242325927994715, guid: 019d824110cdef24987d596f5b0c5dbd,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 434.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542242325927994715, guid: 019d824110cdef24987d596f5b0c5dbd,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1023.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1047384758114244771, guid: 019d824110cdef24987d596f5b0c5dbd,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 019d824110cdef24987d596f5b0c5dbd, type: 3}
 --- !u!1 &767578977
