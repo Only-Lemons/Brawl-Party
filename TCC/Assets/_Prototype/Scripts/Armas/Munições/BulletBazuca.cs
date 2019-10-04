@@ -5,43 +5,43 @@ using UnityEngine;
 public class BulletBazuca : MonoBehaviour
 {
     public int damage;
-    public int velocidadeDaBala = 3;
+    public float velocidadeDaBala = 1.5f;
     public Vector3 transformForward;
     public PlayerController player;
 
     void Start()
     {
-        GetComponent<Rigidbody>().AddForce(transformForward* 400f * velocidadeDaBala, ForceMode.Acceleration);
-        Destroy(this.gameObject,5f);
+        GetComponent<Rigidbody>().AddForce(transformForward * 400f * velocidadeDaBala, ForceMode.Acceleration);
+        Destroy(this.gameObject, 5f);
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Debug.Log(player);
-            other.GetComponent<PlayerController>().ReceiveDamage(damage,player);
+            other.GetComponent<PlayerController>().ReceiveDamage(damage, player);
 
-            for(int i = 0; i<GameManager.Instance.playersPanels.Count; i++)
+            for (int i = 0; i < GameController.Singleton.playerManager.Players.Count; i++)
             {
-                if(Vector3.Distance(this.gameObject.transform.position, GameManager.Instance.playersPanels[i].transform.position) < 5)
+                if (Vector3.Distance(this.gameObject.transform.position, GameController.Singleton.playerManager.Players[i].transform.position) < 5)
                 {
-                    GameManager.Instance.playersPanels[i].GetComponent<PlayerController>().life -= damage/2;
-                    Debug.Log("tomou" + GameManager.Instance.playersPanels[i]);
+                    GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
+                    Debug.Log(GameController.Singleton.playerManager.Players[i].name + "tomou " + damage / 2 + "de dano.");
                 }
             }
-      
+
             Destroy(this.gameObject);
         }
-        else if(other.gameObject.tag == "Obstaculo")
+        else if (other.gameObject.tag == "Obstaculo")
         {
-            for(int i = 0; i<GameManager.Instance.playersPanels.Count; i++)
+            for (int i = 0; i < GameController.Singleton.playerManager.Players.Count; i++)
             {
-                if(Vector3.Distance(this.gameObject.transform.position, GameManager.Instance.playersPanels[i].transform.position) < 5)
+                if (Vector3.Distance(this.gameObject.transform.position, GameController.Singleton.playerManager.Players[i].transform.position) < 5)
                 {
-                    GameManager.Instance.playersPanels[i].GetComponent<PlayerController>().life -= damage/2;
-                    Debug.Log("tomou" +GameManager.Instance.playersPanels[i]);
+                    GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
+                    Debug.Log(GameController.Singleton.playerManager.Players[i].name + "tomou " + damage / 2 + "de dano.");
                 }
             }
 
