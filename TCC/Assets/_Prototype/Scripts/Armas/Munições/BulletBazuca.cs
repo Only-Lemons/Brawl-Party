@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletBazuca : MonoBehaviour
 {
     public int damage;
-    public int velocidadeDaBala = 3;
+    public float velocidadeDaBala = 1.5f;
     public Vector3 transformForward;
     public PlayerController player;
 
