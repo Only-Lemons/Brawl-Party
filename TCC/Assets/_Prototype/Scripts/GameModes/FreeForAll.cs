@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class FreeForAll : IGameMode
 {
     GameController aux;
-  
+
     public float actualtime;
     public Dictionary<PlayerController, int> pontos = new Dictionary<PlayerController, int>();
     public float timeToRespawn;
-    public FreeForAll(GameController gameController,float time)
+    public FreeForAll(GameController gameController, float time)
     {
         aux = gameController;
         actualtime = time;
@@ -20,18 +20,18 @@ public class FreeForAll : IGameMode
 
     public void DeathRule(PlayerController player)
     {
-            if (player.canDeath)
+        if (player.canDeath)
+        {
+            player.gameObject.SetActive(false);
+            if (player.playerLastDamage != null && player.playerLastDamage != player)
             {
-                player.gameObject.SetActive(false);
-                if(player.playerLastDamage != null && player.playerLastDamage != player)
-                {
-                      PlayerController auxp = player.playerLastDamage;
-                      PointRule(auxp);
-                }
-               
-                aux.playerManager.playerMortos.Add(player, timeToRespawn);
-                aux.playerManager.playerMortosPrefabs.Add(player);
-                player.playerUI.Respawn.enabled = true;
+                PlayerController auxp = player.playerLastDamage;
+                PointRule(auxp);
+            }
+
+            aux.playerManager.playerMortos.Add(player, timeToRespawn);
+            aux.playerManager.playerMortosPrefabs.Add(player);
+            player.playerUI.Respawn.enabled = true;
         }
     }
 
@@ -39,56 +39,25 @@ public class FreeForAll : IGameMode
     {
         actualtime -= Time.deltaTime;
         ShowTime();
-        if(actualtime <= 0)
+        if (actualtime <= 0)
             WinRule();
     }
 
     public void ShowTime()
     {
-        string minute;
-        string seconds;
-        if(actualtime / 60 < 1)
-        {
-            minute = "00";
-            if (actualtime  < 10)
-            {
-                seconds = "0" + (actualtime).ToString("0");
-            }
-            else
-            {
-                seconds = (actualtime).ToString("0");
-            }
-        }
-        else
-        {
-            if (actualtime / 60 > 10) {
-                minute = (actualtime / 60 -1).ToString("0");
-                seconds = (actualtime % 60).ToString("0");
-            }
-            else
-            {
-                minute = "0"+(actualtime / 60 -1).ToString("0");
-                if ((actualtime - (actualtime / 60)) < 10)
-                {
-                    seconds ="0"+ (actualtime % 60).ToString("0");
-                }
-                else
-                {
-                    seconds = (actualtime % 60).ToString("0");
-                }
-            }
-        }
-        aux.time.text = minute +":"+ seconds;
+        string minute = ((int)(actualtime / 60)).ToString("00"); ;
+        string seconds = ((int)(actualtime % 60)).ToString("00"); ;
 
+        aux.time.text = minute + ":" + seconds;
     }
 
     public void PointRule(PlayerController player)
     {
         //conta pontos toda vez que o player matar alguem
-      
+
         pontos[player] += 1;
         player.playerUI.points.text = pontos[player].ToString();
-        
+
 
     }
 
@@ -102,7 +71,7 @@ public class FreeForAll : IGameMode
     {
         foreach (PlayerController player in GameController.Singleton.playerManager.Players)
         {
-            pontos.Add(player,0);
+            pontos.Add(player, 0);
             player.playerUI.points.text = pontos[player].ToString();
         }
     }
@@ -122,8 +91,8 @@ public class FreeForAll : IGameMode
         }
         Time.timeScale = 0;
         SceneManager.LoadScene(1);
-     
-        
+
+
     }
 
 }

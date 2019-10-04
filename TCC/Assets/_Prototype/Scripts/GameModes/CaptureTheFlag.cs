@@ -15,7 +15,7 @@ public class CaptureTheFlag : IGameMode
 
 
 
-    public CaptureTheFlag(GameController gameController,float time)
+    public CaptureTheFlag(GameController gameController, float time)
     {
         auxp = null;
         aux = gameController;
@@ -31,59 +31,29 @@ public class CaptureTheFlag : IGameMode
         actualtime -= Time.deltaTime;
         ShowTime();
         AddPoints();
-        if(actualtime <= 0)
+        if (actualtime <= 0)
             WinRule();
     }
-     void AddPlayerPoints()
+    void AddPlayerPoints()
     {
         foreach (PlayerController player in aux.playerManager.Players)
         {
-            pontos.Add(player,0);
-            bandeira.Add(player,false);
+            pontos.Add(player, 0);
+            bandeira.Add(player, false);
             player.playerUI.points.text = pontos[player].ToString();
         }
     }
-     public void ShowTime()
+    public void ShowTime()
     {
-        string minute;
-        string seconds;
-        if(actualtime / 60 < 1)
-        {
-            minute = "00";
-            if (actualtime  < 10)
-            {
-                seconds = "0" + (actualtime).ToString("0");
-            }
-            else
-            {
-                seconds = (actualtime).ToString("0");
-            }
-        }
-        else
-        {
-            if (actualtime / 60 > 10) {
-                minute = (actualtime / 60 -1).ToString("0");
-                seconds = (actualtime % 60).ToString("0");
-            }
-            else
-            {
-                minute = "0"+(actualtime / 60 -1).ToString("0");
-                if ((actualtime - (actualtime / 60)) < 10)
-                {
-                    seconds ="0"+ (actualtime % 60).ToString("0");
-                }
-                else
-                {
-                    seconds = (actualtime % 60).ToString("0");
-                }
-            }
-        }
-        aux.time.text = minute +":"+ seconds;
+        string minute = ((int)(actualtime / 60)).ToString("00"); ;
+        string seconds = ((int)(actualtime % 60)).ToString("00"); ;
 
+        aux.time.text = minute + ":" + seconds;
     }
+
     public void PointRule(PlayerController player)
     {
-        if(bandeira[player] == false)
+        if (bandeira[player] == false)
         {
             bandeira[player] = true;
             auxp = player;
@@ -93,9 +63,9 @@ public class CaptureTheFlag : IGameMode
                     bandeira[playerm] = false;
             }
         }
-        
-        
-       
+
+
+
     }
     void AddPoints()
     {
@@ -111,24 +81,25 @@ public class CaptureTheFlag : IGameMode
     }
     public void DeathRule(PlayerController player)
     {
-         if (player.canDeath)
+        if (player.canDeath)
+        {
+            if (bandeira[player])
             {
-                if(bandeira[player]){
-                    auxp = null;
-                    bandeira[player] = false;
-                    GameObject.Instantiate(flag,player.transform.position, Quaternion.identity);
-                }
-                aux.playerManager.playerMortos.Add(player, timeToRespawn);
-                aux.playerManager.playerMortosPrefabs.Add(player);
-                player.playerUI.Respawn.enabled = true;
-                player.gameObject.SetActive(false);
+                auxp = null;
+                bandeira[player] = false;
+                GameObject.Instantiate(flag, player.transform.position, Quaternion.identity);
             }
-      
+            aux.playerManager.playerMortos.Add(player, timeToRespawn);
+            aux.playerManager.playerMortosPrefabs.Add(player);
+            player.playerUI.Respawn.enabled = true;
+            player.gameObject.SetActive(false);
+        }
+
 
 
     }
 
-   
 
- 
+
+
 }
