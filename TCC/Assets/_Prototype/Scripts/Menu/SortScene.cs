@@ -50,10 +50,9 @@ public class SortScene : MonoBehaviour
             imagem.sprite = gameMode[0].sprite;
         else imagem.sprite = gameMode[Index % gameMode.Length + 1].sprite;
         Index++;
-        Debug.Log(Index % gameModes.Length);
         if (Index >= gameModes.Length * 5 && Index%gameModes.Length == sortGameM)
         {
-            Debug.Log("Diferente: " + Index % gameModes.Length);
+          
             if (Scenep)
             {
                 StartCoroutine(ChangeScene());
@@ -67,7 +66,7 @@ public class SortScene : MonoBehaviour
     }
     IEnumerator ChangeScene()
     {
-        Debug.Log("Diferente(2): " + gameModes[sortGameM].gameMode);
+      
         GameManager.Instance.nextLevel = cenas[sortScene].SceneIndex;
         GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;      
         yield return new WaitForSeconds(1);

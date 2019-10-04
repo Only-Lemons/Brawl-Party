@@ -47,6 +47,7 @@ public class PlayerManager : MonoBehaviour
         foreach (PlayerController player in Players)
         {
             player.gameObject.transform.position = GameController.Singleton.tileManager.bases[Players.IndexOf(player)];
+            player._base = GameController.Singleton.tileManager.bases[Players.IndexOf(player)];
         }
     }
     void setPlayerInScene()

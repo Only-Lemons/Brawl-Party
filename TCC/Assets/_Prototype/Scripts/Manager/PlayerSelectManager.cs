@@ -18,7 +18,7 @@ public class PlayerSelectManager : MonoBehaviour
 
     public void addPlayerToCanvas()
     {
-        Debug.Log("HSOOOOOOOOOW");  
+
 
         GameObject[] jogadores = GameObject.FindGameObjectsWithTag("Filho");
        

@@ -14,6 +14,7 @@ public class TerrainController : MonoBehaviour
     void Awake()
     {
         instance = this;
+
     }
 
 

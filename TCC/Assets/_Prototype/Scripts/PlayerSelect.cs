@@ -35,7 +35,6 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         {
             playerBackround.color = Color.green;
             PlayerGame.player = selectPlayer;
-            Debug.Log("Colocou!!");
         }
         else
             playerBackround.color = Color.red;

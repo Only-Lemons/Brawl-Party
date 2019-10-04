@@ -10,29 +10,29 @@ public class FreeForAll : IGameMode
   
     public float actualtime;
     public Dictionary<PlayerController, int> pontos = new Dictionary<PlayerController, int>();
-    public float timeToRespawn = 3f;
+    public float timeToRespawn;
     public FreeForAll(GameController gameController,float time)
     {
         aux = gameController;
         actualtime = time;
+        timeToRespawn = 3;
     }
 
     public void DeathRule(PlayerController player)
     {
-        //Renasce dps de 3 seg, em sua base.
-        if (player.playerLastDamage != null)
-        {
             if (player.canDeath)
             {
-                PlayerController auxp = player.playerLastDamage;
+                player.gameObject.SetActive(false);
+                if(player.playerLastDamage != null && player.playerLastDamage != player)
+                {
+                      PlayerController auxp = player.playerLastDamage;
+                      PointRule(auxp);
+                }
+               
                 aux.playerManager.playerMortos.Add(player, timeToRespawn);
                 aux.playerManager.playerMortosPrefabs.Add(player);
                 player.playerUI.Respawn.enabled = true;
-                player.gameObject.SetActive(false);
-                PointRule(auxp);
-            }
         }
-     
     }
 
     public void FinishGame()

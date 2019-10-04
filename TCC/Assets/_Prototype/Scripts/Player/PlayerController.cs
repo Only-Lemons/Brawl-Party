@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public float speedTile;
     public int shield;
     public SOPassive passiva;
-    public bool canDeath ;
+    public bool canDeath;
     #endregion
 
     public Inputs controls;
