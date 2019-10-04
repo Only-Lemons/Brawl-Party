@@ -6,14 +6,22 @@ using UnityEngine.InputSystem;
 [ExecuteInEditMode]
 public class CameraController2 : MonoBehaviour
 {
+    public static CameraController2 Singleton;
     Camera cam;
     public float posicaoEmZ = 8;
     public float alturaCam = 25;
 
-    public List<GameObject> targ = new List<GameObject>();
+    List<PlayerController> targ = new List<PlayerController>();
 
     void Start()
     {
+        if (Singleton == null)
+        {
+            Singleton = this;
+        }
+        else
+            Destroy(gameObject);
+
         cam = Camera.main;
         cam.transform.position = new Vector3(0, alturaCam, -10);
         GetTargets();
@@ -22,8 +30,8 @@ public class CameraController2 : MonoBehaviour
     public void GetTargets()
     {
         targ.Clear();
-        GameObject[] aux = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject item in aux)
+        
+        foreach (PlayerController item in GameController.Singleton.playerManager.Players)
         {
             targ.Add(item);
         }
@@ -58,7 +66,7 @@ public class CameraController2 : MonoBehaviour
             m += targ[i].transform.position;
         }
 
-        return m / targ.Count;
+        return m / (targ.Count +1);
     }
 
     Vector3 ZoomDistanciaPOS()
