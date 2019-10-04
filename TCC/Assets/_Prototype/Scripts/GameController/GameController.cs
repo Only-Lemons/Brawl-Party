@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour
     public TerrainController tileManager;
     public PlayerManager playerManager;
     public UIManager uIManager;
+    public ArmaManager armaManager;
+
+
 
     public Text time;
 
@@ -22,6 +25,7 @@ public class GameController : MonoBehaviour
         tileManager = GetComponent<TerrainController>();
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
+
    
 
 
@@ -31,6 +35,7 @@ public class GameController : MonoBehaviour
     {
         GameManager.Instance.TryGetGameController();
         gameMode.StartGame();
+
     }
     private void Update()
     {

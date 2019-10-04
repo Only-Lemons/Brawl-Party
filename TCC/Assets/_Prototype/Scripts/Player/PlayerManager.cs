@@ -36,8 +36,19 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         setPlayerInScene();
+     
     }
-
+    private void Start()
+    {
+        MovePlayerBase();
+    }
+    void MovePlayerBase()
+    {
+        foreach (PlayerController player in Players)
+        {
+            player.gameObject.transform.position = GameController.Singleton.tileManager.bases[Players.IndexOf(player)];
+        }
+    }
     void setPlayerInScene()
     {
         List<GameObject> players = GameManager.Instance.playersPanels;

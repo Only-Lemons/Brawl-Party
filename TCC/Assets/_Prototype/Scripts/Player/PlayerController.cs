@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Update()
     {
 
-       // TileInteract();
+       TileInteract();
         cc.Move(movementAxis);
         Rot();
     }
