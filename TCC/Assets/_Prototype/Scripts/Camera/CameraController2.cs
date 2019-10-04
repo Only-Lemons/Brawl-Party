@@ -49,14 +49,14 @@ public class CameraController2 : MonoBehaviour
 
     void ControleFoco()
     {
-        cam.transform.position = new Vector3(MediaDistancia().x, cam.transform.position.y, MediaDistancia().z + (posicaoEmZ * -1));
+        cam.transform.position = new Vector3(Mathf.Lerp(transform.position.x, MediaDistancia().x, 2), cam.transform.position.y, Mathf.Lerp(transform.position.z, MediaDistancia().z + (posicaoEmZ * -1), 2));
         cam.transform.LookAt(MediaDistancia());
     }
 
     void ControleZoom()
     {
-        //cam.transform.position = ZoomDistancia();
-        cam.fieldOfView = ZoomDistanciaFOV();
+        //cam.transform.position = ZoomDistanciaPOS(); //Distancia por posição
+        cam.fieldOfView = ZoomDistanciaFOV(); //Distancia por fov
     }
     Vector3 MediaDistancia()
     {
