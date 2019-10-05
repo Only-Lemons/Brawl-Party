@@ -83,15 +83,22 @@ public class CaptureTheFlag : IGameMode
     {
         if (player.canDeath)
         {
+            aux.playerManager.playerMortos.Add(player, timeToRespawn);
+            aux.playerManager.playerMortosPrefabs.Add(player);
+            player.playerUI.Respawn.enabled = true;
+            Vector3 posAux = player.transform.position;
+
+
             if (bandeira[player])
             {
                 auxp = null;
                 bandeira[player] = false;
-                GameObject.Instantiate(flag, player.transform.position, Quaternion.identity);
+                //GameObject.Instantiate(flag, posAux + new Vector3(Random.Range(-1,2), 1, Random.Range(-1, 2)), Quaternion.identity);
+                GameObject.Instantiate(flag, Vector3.zero, Quaternion.identity);
+
+                Debug.Log("Entrei na bandeira");
             }
-            aux.playerManager.playerMortos.Add(player, timeToRespawn);
-            aux.playerManager.playerMortosPrefabs.Add(player);
-            player.playerUI.Respawn.enabled = true;
+            //player.gameObject.transform.position = new Vector3(300, 0, 300);
             player.gameObject.SetActive(false);
         }
 

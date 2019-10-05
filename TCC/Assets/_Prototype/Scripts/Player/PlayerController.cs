@@ -133,10 +133,9 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Death()
     {
-        
         GameController.Singleton.gameMode.DeathRule(this);
         if(this.transform.GetChild(2).childCount > 0)
-        GameObject.Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
+        Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
         
     }
 
