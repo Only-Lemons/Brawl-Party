@@ -27,7 +27,8 @@ public class BulletBazuca : MonoBehaviour
             {
                 if (Vector3.Distance(this.gameObject.transform.position, GameController.Singleton.playerManager.Players[i].transform.position) < 5)
                 {
-                    GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
+                    player.GetComponent<PlayerController>().ReceiveDamage(damage / 2, GameController.Singleton.playerManager.Players[i]);
+                    //GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
                     Debug.Log(GameController.Singleton.playerManager.Players[i].name + "tomou " + damage / 2 + "de dano.");
                 }
             }
@@ -40,7 +41,8 @@ public class BulletBazuca : MonoBehaviour
             {
                 if (Vector3.Distance(this.gameObject.transform.position, GameController.Singleton.playerManager.Players[i].transform.position) < 5)
                 {
-                    GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
+                    player.GetComponent<PlayerController>().ReceiveDamage(damage / 2, GameController.Singleton.playerManager.Players[i]);
+                    //GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
                     Debug.Log(GameController.Singleton.playerManager.Players[i].name + "tomou " + damage / 2 + "de dano.");
                 }
             }

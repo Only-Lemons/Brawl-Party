@@ -121,6 +121,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 life -= damage;
                 if (life <= 0)
                 {
+                    life = 0;
+                    Debug.Log("Morri");
                     Death();
                 }
                     
