@@ -18,7 +18,7 @@ public class CaptureTheFlag : IGameMode
     public CaptureTheFlag(GameController gameController, float time)
     {
         auxp = null;
-        aux = gameController;
+        aux = GameController.Singleton;
         actualtime = time;
     }
     public void StartGame()
