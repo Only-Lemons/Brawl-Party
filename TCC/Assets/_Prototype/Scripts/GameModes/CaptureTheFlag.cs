@@ -71,7 +71,7 @@ public class CaptureTheFlag : IGameMode
     {
         if (auxp != null)
         {
-            pontos[auxp] += 0.1f;
+            pontos[auxp] += 0.5f;
             auxp.playerUI.points.text = pontos[auxp].ToString("0");
         }
     }
