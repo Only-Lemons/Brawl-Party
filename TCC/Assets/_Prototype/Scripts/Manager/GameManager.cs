@@ -51,14 +51,15 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 7:  //cenas de jogo no caso essa é a primeira 
+                
+                break;
+
+            default:
                 foreach (GameObject player in playersPanels)
                 {
                     player.transform.GetChild(1).gameObject.SetActive(false);
                     player.transform.GetChild(0).gameObject.SetActive(true);
                 }
-                break;
-
-            default:
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                 break;
         }
