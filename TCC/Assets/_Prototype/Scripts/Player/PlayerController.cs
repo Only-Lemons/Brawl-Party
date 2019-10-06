@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public void ResetarPlayer()
     {
-       
+
         this.transform.position = _base;
         actualArma = null;
         armaInventory = new Arma[2];
@@ -57,14 +57,14 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         SOpowerUps.Clear();
-        
+
 
 
     }
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
-     
+
         PowerUp = false;
     }
 
@@ -100,10 +100,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         life = player.hp;
         speed = player.speed;
 
-      
+
     }
-    
-    public void ReceiveDamage(int damage,PlayerController lastDamage)
+
+    public void ReceiveDamage(int damage, PlayerController lastDamage)
     {
         playerLastDamage = lastDamage;
         if (shield >= damage)
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                     Debug.Log("Morri");
                     Death();
                 }
-                    
+
             }
         }
 
@@ -134,21 +134,21 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Death()
     {
         GameController.Singleton.gameMode.DeathRule(this);
-        if(this.transform.GetChild(2).childCount > 0)
-        Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
-        
+        if (this.transform.GetChild(2).childCount > 0)
+            Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
+
     }
 
 
     private void FixedUpdate()
     {
-        
+
         passiva.AtivarPassiva(this);
         if (PowerUp == true)
             VerificarPU();
 
 
-       
+
     }
 
     public void AtivarEscudo(int valor)
@@ -230,15 +230,22 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public void TileInteract()
     {
         float menorDistancia = float.MaxValue;
-        for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
+        try
         {
-            if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
+            for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
             {
-                menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
-                ativo = TerrainController.instance.tilesInstanciados[k];
+                if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
+                {
+                    menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
+                    ativo = TerrainController.instance.tilesInstanciados[k];
+                }
             }
+            ativo.Interagir(this);
         }
-        ativo.Interagir(this);
+        catch
+        {
+            Debug.Log("Tentando definir tiles interativos");
+        }
     }
 
 
@@ -246,20 +253,20 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         playerUI.hp.maxValue = player.hp;
         playerUI.character.sprite = player.sprite;
-       
-   
+
+
 
     }
-    
+
     void uiUpdate()
     {
         playerUI.hp.value = life;
         playerUI.hpText.text = life.ToString();
 
         //provisorio 
-        if(actualArma != null)
+        if (actualArma != null)
         {
-           
+
             playerUI.ammo.value = actualArma.ammoAmount;
             playerUI.ammoText.text = actualArma.ammoAmount.ToString();
             playerUI.gun.sprite = actualArma.gunSprite;
@@ -278,7 +285,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Update()
     {
 
-       TileInteract();
+        TileInteract();
         cc.Move(movementAxis);
         Rot();
     }
