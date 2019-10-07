@@ -51,7 +51,10 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 7:  //cenas de jogo no caso essa é a primeira 
-                
+                foreach(GameObject i in GameObject.FindGameObjectsWithTag("Player"))
+                {
+                    i.transform.parent = this.transform;
+                }
                 break;
 
             default:
