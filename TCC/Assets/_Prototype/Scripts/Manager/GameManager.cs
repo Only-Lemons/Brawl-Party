@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
                 foreach(GameObject i in GameObject.FindGameObjectsWithTag("Player"))
                 {
                     i.transform.parent = this.transform;
+                    i.transform.position = new Vector3(i.transform.position.x, 0, i.transform.position.z);
                 }
                 break;
 
