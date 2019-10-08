@@ -49,7 +49,7 @@ public class CameraController2 : MonoBehaviour
 
     void ControleFoco()
     {
-        cam.transform.position = new Vector3(Mathf.Lerp(transform.position.x, MediaDistancia().x, 2), cam.transform.position.y, Mathf.Lerp(transform.position.z, MediaDistancia().z + (posicaoEmZ * -1), 2));
+        cam.transform.position = new Vector3(Mathf.Lerp(cam.transform.position.x, MediaDistancia().x, 2), cam.transform.position.y, Mathf.Lerp(cam.transform.position.z, MediaDistancia().z + (posicaoEmZ * -1), 2));
         cam.transform.LookAt(Vector3.Lerp(transform.position, MediaDistancia(), Time.deltaTime));
     }
 

@@ -24,8 +24,8 @@ public class Shotgun : Arma
         ammunitionPrefab.GetComponent<Bullet>().transformForward = Forward;
         ammunitionPrefab.GetComponent<Bullet>().player = player;
         Instantiate(ammunitionPrefab, position, rotation);
-        Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x,rotation.y,rotation.z - Random.Range(1f,3f),rotation.w));
-        Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x, rotation.y, rotation.z + Random.Range(1f,3f), rotation.w));
+        Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x,rotation.y - Random.Range(1f, 3f), rotation.z - Random.Range(1f,3f),rotation.w));
+        Instantiate(ammunitionPrefab, position, new Quaternion(rotation.x, rotation.y + Random.Range(1f, 3f), rotation.z + Random.Range(1f,3f), rotation.w));
 
     }
 }

@@ -87,11 +87,11 @@ public class TesteInstancias : MonoBehaviour
                 go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
             case 1:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
 
             case 2:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
 
             case 3:
