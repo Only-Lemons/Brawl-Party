@@ -22,6 +22,6 @@ public class Pistol : Arma
         ammoAmount--;
         ammunitionPrefab.GetComponent<Bullet>().transformForward = Foward;
         ammunitionPrefab.GetComponent<Bullet>().player = player;
-        Instantiate(ammunitionPrefab,position,rotation);
+        Instantiate(ammunitionPrefab,position + player.transform.forward*1.5f,rotation);
     }
 }

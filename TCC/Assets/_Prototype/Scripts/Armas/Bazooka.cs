@@ -23,7 +23,7 @@ public class Bazooka : Arma
         ammoAmount--;
         ammunitionPrefab.GetComponent<BulletBazuca>().transformForward = Forward;
         ammunitionPrefab.GetComponent<BulletBazuca>().player = player;
-        GameObject ob = Instantiate(ammunitionPrefab, position, rotation);
+        GameObject ob = Instantiate(ammunitionPrefab, position + player.transform.forward * 2f, rotation);
         ob.transform.localScale = new Vector3(1.4f,1.4f,1.4f);
     }
 }
