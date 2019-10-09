@@ -108,15 +108,16 @@ public class CameraController2 : MonoBehaviour
                     if (Vector3.Distance(targ[i].transform.position, targ[j].transform.position) > max)
                     {
                         max = Vector3.Distance(targ[i].transform.position, targ[j].transform.position);
+                        
                     }
                 }
             }
         }
-        if (max > 12)
-            z = Mathf.Lerp(cam.fieldOfView, 65, Time.deltaTime);
-        if (max <= 12)
-            z = Mathf.Lerp(cam.fieldOfView, 50, Time.deltaTime / 1.2f);
-
+        //if (max > 12)
+        //    z = Mathf.Lerp(cam.fieldOfView, 65, Time.deltaTime);
+        //if (max <= 12)
+        //    z = Mathf.Lerp(cam.fieldOfView, 50, Time.deltaTime / 1.2f);
+        z = Mathf.Lerp(cam.fieldOfView, max + 30, Time.deltaTime*4);
         return z;
     }
 }
