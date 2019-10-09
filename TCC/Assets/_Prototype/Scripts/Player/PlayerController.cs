@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         armaInventory = new Arma[2];
         canShoot = true;
         PowerUp = false;
-
+        this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
         // Iniciação dos status do personagem
         life = player.hp;
         speed = player.speed;
@@ -148,8 +148,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         if (PowerUp == true)
             VerificarPU();
 
-
-
+        if(actualArma == null)
+            anim.SetBool("HasGun", false);
+        else
+            anim.SetBool("HasGun", true);
     }
 
     public void AtivarEscudo(int valor)
@@ -302,7 +304,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
         movementAxis *= (speed + speedTile) * Time.deltaTime;
-        anim.SetFloat("Speed", (movementAxis.x+movementAxis.z) * 2f);
+        anim.SetFloat("x", context.ReadValue<Vector2>().x);
+        anim.SetFloat("y", context.ReadValue<Vector2>().y);
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -315,7 +318,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
         if (actualArma != null)
         {
-            anim.SetBool("HasGun", true);
+           
             if (canShoot)
             {
                 
@@ -331,10 +334,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 }
             }
         }
-        else
-        {
-            anim.SetBool("HasGun", false);
-        }
+     
     }
 
     public void OnStart(InputAction.CallbackContext context)
