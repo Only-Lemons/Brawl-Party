@@ -492,11 +492,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1883096382335086853}
     m_Modifications:
-    - target: {fileID: 4733153827643673565, guid: e4477fef836046a4088451ca0a1c29bf,
-        type: 3}
-      propertyPath: PlayerGame
-      value: 
-      objectReference: {fileID: 8403181778319626252}
     - target: {fileID: 4733153827643673562, guid: e4477fef836046a4088451ca0a1c29bf,
         type: 3}
       propertyPath: m_Name
@@ -512,6 +507,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4733153827643673565, guid: e4477fef836046a4088451ca0a1c29bf,
+        type: 3}
+      propertyPath: PlayerGame
+      value: 
+      objectReference: {fileID: 8403181778319626252}
     - target: {fileID: 4733153827643673563, guid: e4477fef836046a4088451ca0a1c29bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -764,11 +764,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9848b78c5913d354fb8fbc43ad45e4e0,
         type: 2}
-    - target: {fileID: 523295900359895984, guid: b9262915b58d6114bb75812b66df167a,
-        type: 3}
-      propertyPath: mao
-      value: 
-      objectReference: {fileID: 6170422004471102920}
     - target: {fileID: 523295900359895987, guid: b9262915b58d6114bb75812b66df167a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -855,9 +850,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5bc5ffe8d0c56b4aae425108480958b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &6170422004471102920 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2773295470902543988, guid: b9262915b58d6114bb75812b66df167a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8348837630990384060}
-  m_PrefabAsset: {fileID: 0}

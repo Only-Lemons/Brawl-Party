@@ -18,6 +18,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
        
         playerBackround = transform.GetChild(0).GetComponent<Image>();
         playerImage = transform.GetChild(0).GetChild(0).GetComponent<Image>(); // levando em conta que tem so player
+
     }
 
     private void Start()
