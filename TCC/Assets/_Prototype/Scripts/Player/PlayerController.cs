@@ -12,12 +12,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     Vector3 movementAxis;
     Vector3 rotationAxis;
     Quaternion targetRotation;
-    Animator anim;
+    public Animator anim;
 
     [Header("Arma")]
     public Arma actualArma;
     public Arma[] armaInventory;
     public bool canShoot;
+    public Transform mao;
 
     public playerUIElements playerUI;
 
@@ -148,10 +149,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         if (PowerUp == true)
             VerificarPU();
 
-        if(actualArma == null)
-            anim.SetBool("HasGun", false);
-        else
-            anim.SetBool("HasGun", true);
+       
     }
 
     public void AtivarEscudo(int valor)
@@ -304,7 +302,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
         movementAxis *= (speed + speedTile) * Time.deltaTime;
-        anim.SetFloat("x", context.ReadValue<Vector2>().x);
+         anim.SetFloat("x", context.ReadValue<Vector2>().x);
         anim.SetFloat("y", context.ReadValue<Vector2>().y);
     }
 
@@ -330,6 +328,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 {
                     actualArma = null;
                     canShoot = true;
+                    anim.SetBool("HasGun", false);
                     Destroy(transform.GetChild(2).GetChild(0).gameObject);
                 }
             }
