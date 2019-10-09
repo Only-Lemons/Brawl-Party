@@ -53,11 +53,17 @@ public class PlayerManager : MonoBehaviour
     void setPlayerInScene()
     {
         PlayerController[] aux = GameObject.FindObjectsOfType<PlayerController>();
-        foreach (PlayerController player  in aux)
+        for (int i = 0; i < aux.Length; i++)
         {
-            Players.Add(player);
-            playersUI.Add(player.playerUI);
-        }    
+            Players.Add(aux[i]);
+
+            aux[i].playerUI = playersUI[i];
+        }
+
+    
+       
+        
+
     }
 
     private void Update()
