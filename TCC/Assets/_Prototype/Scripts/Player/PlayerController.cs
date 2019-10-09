@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         canDeath = true;
         UIManager.onChangeValues += uiUpdate;
         UIManager.onStartValues += uiStart;
+     
     }
 
     void OnEnable()
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         // Iniciação dos status do personagem
         life = player.hp;
         speed = player.speed;
-
+        cc.enabled = false;
 
     }
 
@@ -143,7 +144,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     private void FixedUpdate()
     {
-
+       
+        cc.enabled = true;
+        
+        Rot();
         passiva.AtivarPassiva(this);
         if (PowerUp == true)
             VerificarPU();
@@ -287,10 +291,9 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Update()
     {
-
-        TileInteract();
         cc.Move(movementAxis);
-        Rot();
+        TileInteract();
+  
     }
 
     public void Rot()

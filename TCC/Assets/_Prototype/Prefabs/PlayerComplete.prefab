@@ -478,7 +478,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8403181778319626253}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51f5b5c653a750442be241830d1b4f83, type: 3}
   m_Name: 
@@ -492,6 +492,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1883096382335086853}
     m_Modifications:
+    - target: {fileID: 4733153827643673565, guid: e4477fef836046a4088451ca0a1c29bf,
+        type: 3}
+      propertyPath: PlayerGame
+      value: 
+      objectReference: {fileID: 8403181778319626252}
     - target: {fileID: 4733153827643673562, guid: e4477fef836046a4088451ca0a1c29bf,
         type: 3}
       propertyPath: m_Name
@@ -507,11 +512,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4733153827643673565, guid: e4477fef836046a4088451ca0a1c29bf,
-        type: 3}
-      propertyPath: PlayerGame
-      value: 
-      objectReference: {fileID: 8403181778319626252}
     - target: {fileID: 4733153827643673563, guid: e4477fef836046a4088451ca0a1c29bf,
         type: 3}
       propertyPath: m_LocalPosition.x
