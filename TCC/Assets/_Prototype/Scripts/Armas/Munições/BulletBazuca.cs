@@ -9,6 +9,8 @@ public class BulletBazuca : MonoBehaviour
     public Vector3 transformForward;
     public PlayerController player;
 
+    public GameObject testExplosao;
+
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(transformForward * 400f * velocidadeDaBala, ForceMode.Acceleration);
@@ -23,29 +25,13 @@ public class BulletBazuca : MonoBehaviour
             Debug.Log(player);
             other.GetComponent<PlayerController>().ReceiveDamage(damage, player);
 
-            for (int i = 0; i < GameController.Singleton.playerManager.Players.Count; i++)
-            {
-                if (Vector3.Distance(this.gameObject.transform.position, GameController.Singleton.playerManager.Players[i].transform.position) < 5)
-                {
-                    player.GetComponent<PlayerController>().ReceiveDamage(damage / 2, GameController.Singleton.playerManager.Players[i]);
-                    //GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
-                    Debug.Log(GameController.Singleton.playerManager.Players[i].name + "tomou " + damage / 2 + "de dano.");
-                }
-            }
+            Instantiate(testExplosao, this.transform.position, Quaternion.identity, GameObject.Find("GameManager").transform);
 
             Destroy(this.gameObject);
         }
         else if (other.gameObject.tag == "Obstaculo")
         {
-            for (int i = 0; i < GameController.Singleton.playerManager.Players.Count; i++)
-            {
-                if (Vector3.Distance(this.gameObject.transform.position, GameController.Singleton.playerManager.Players[i].transform.position) < 5)
-                {
-                    player.GetComponent<PlayerController>().ReceiveDamage(damage / 2, GameController.Singleton.playerManager.Players[i]);
-                    //GameController.Singleton.playerManager.Players[i].GetComponent<PlayerController>().life -= damage / 2;
-                    Debug.Log(GameController.Singleton.playerManager.Players[i].name + "tomou " + damage / 2 + "de dano.");
-                }
-            }
+            Instantiate(testExplosao, this.transform.position, Quaternion.identity, GameObject.Find("GameManager").transform);
 
             Destroy(this.gameObject);
         }
