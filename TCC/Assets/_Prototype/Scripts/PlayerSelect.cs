@@ -93,4 +93,8 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         throw new System.NotImplementedException();
     }
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }

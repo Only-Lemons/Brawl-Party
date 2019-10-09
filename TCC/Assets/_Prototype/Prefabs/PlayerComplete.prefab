@@ -466,19 +466,36 @@ MonoBehaviour:
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: ef2e8b7f-5b08-41d9-9960-7e0db65ed0a4
     m_ActionName: SelectUI/UP1[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8403181778319626252}
+        m_MethodName: OnAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: ac149a4a-e81d-493b-b362-8f205f1904b4
+    m_ActionName: Player/Aim[/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3554254726418018108
+--- !u!114 &6481429930709135198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8403181778319626253}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51f5b5c653a750442be241830d1b4f83, type: 3}
   m_Name: 

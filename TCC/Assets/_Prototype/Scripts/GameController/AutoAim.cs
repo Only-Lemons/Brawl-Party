@@ -7,31 +7,36 @@ public class AutoAim : MonoBehaviour
     public int distancia = 15;
     public int sensibilidade;
 
+    public bool mirando = false;
+
     void Start()
     {
-
+        mirando = false;
     }
 
     void Update()
     {
-        MirarNoMaisProximo(sensibilidade);
+        if (mirando)
+            MirarNoMaisProximo(sensibilidade);
     }
 
-    void MirarNoMaisProximo(int sens)
+    public void SetarBool()
+    {
+        if(!mirando)
+            mirando = true;
+    }
+    public void MirarNoMaisProximo(int sens)
     {
         try
         {
+            Vector3 prox = Vector3.zero;
             for (int i = 0; i < GameManager.Instance.gameController.playerManager.Players.Count; i++)
             {
-                Transform prox = GameManager.Instance.gameController.playerManager.Players[i].gameObject.transform;
-
-                if (Vector3.Distance(transform.position, prox.position) > distancia)
+                //if (Vector3.Distance(transform.position, GameManager.Instance.gameController.playerManager.Players[i].gameObject.transform.position) < 5)
                 {
-                    transform.LookAt(prox);
-                    //GameManager.Instance.gameController.playerManager.Players[i].gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.RotateTowards(iRotation, jRotation, 2 * Time.deltaTime));
-                    //Quaternion targetRotation = Quaternion.LookRotation(GameManager.Instance.gameController.playerManager.Players[j].transform.position);
-                    //GameManager.Instance.gameController.playerManager.Players[i].gameObject.transform.rotation = Quaternion.Lerp(targetRotation, iRotation, 0.5f*Time.deltaTime);
+                    prox = GameManager.Instance.gameController.playerManager.Players[i].gameObject.transform.position;
                 }
+                transform.LookAt(prox);
             }
         }
         catch

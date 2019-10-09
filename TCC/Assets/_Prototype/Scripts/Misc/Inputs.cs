@@ -80,6 +80,14 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Tap(duration=0.8,pressPoint=0.5)""
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac149a4a-e81d-493b-b362-8f205f1904b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
                 }
             ],
             ""bindings"": [
@@ -377,6 +385,28 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Add"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27735b19-1349-4c49-8c82-7e8e59c806a3"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a75282c-9e08-4319-bd3c-ee1f88c3593c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1098,6 +1128,7 @@ public class Inputs : IInputActionCollection
         m_Player_Fire = m_Player.GetAction("Fire");
         m_Player_Insert = m_Player.GetAction("Insert");
         m_Player_Switch = m_Player.GetAction("Switch");
+        m_Player_Aim = m_Player.GetAction("Aim");
         // UI
         m_UI = asset.GetActionMap("UI");
         m_UI_Navigate = m_UI.GetAction("Navigate");
@@ -1174,6 +1205,7 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Insert;
     private readonly InputAction m_Player_Switch;
+    private readonly InputAction m_Player_Aim;
     public struct PlayerActions
     {
         private Inputs m_Wrapper;
@@ -1186,6 +1218,7 @@ public class Inputs : IInputActionCollection
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Insert => m_Wrapper.m_Player_Insert;
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
+        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1219,6 +1252,9 @@ public class Inputs : IInputActionCollection
                 Switch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
                 Switch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
                 Switch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
+                Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1247,6 +1283,9 @@ public class Inputs : IInputActionCollection
                 Switch.started += instance.OnSwitch;
                 Switch.performed += instance.OnSwitch;
                 Switch.canceled += instance.OnSwitch;
+                Aim.started += instance.OnAim;
+                Aim.performed += instance.OnAim;
+                Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -1458,6 +1497,7 @@ public class Inputs : IInputActionCollection
         void OnFire(InputAction.CallbackContext context);
         void OnInsert(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

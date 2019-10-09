@@ -299,7 +299,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public void Rot()
     {
         if (rotationAxis != Vector3.zero)
+        {
             targetRotation = Quaternion.LookRotation(rotationAxis);
+            GetComponent<AutoAim>().mirando = false;
+        }
         transform.rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, Time.deltaTime);
     }
 
@@ -325,22 +328,24 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnFire(InputAction.CallbackContext context)
     {
-
-        if (actualArma != null)
+        if(context.started)
         {
-           
-            if (canShoot)
+            if (actualArma != null)
             {
-                
-                transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
-                Transform transformArma = transform.GetChild(2).GetChild(0).GetChild(0);
-                actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward, this);
-                StartCoroutine(fireRate(actualArma.fireRate));
-                if (actualArma.ammoAmount <= 0)
+            
+                if (canShoot)
                 {
-                    actualArma = null;
-                    canShoot = true;
-                    Destroy(transform.GetChild(2).GetChild(0).gameObject);
+                    
+                    transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
+                    Transform transformArma = transform.GetChild(2).GetChild(0).GetChild(0);
+                    actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward, this);
+                    StartCoroutine(fireRate(actualArma.fireRate));
+                    if (actualArma.ammoAmount <= 0)
+                    {
+                        actualArma = null;
+                        canShoot = true;
+                        Destroy(transform.GetChild(2).GetChild(0).gameObject);
+                    }
                 }
             }
         }
@@ -359,6 +364,11 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         yield return new WaitForSeconds(fireRate);
         anim.SetBool("Shooting", false);
         canShoot = true;
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        GetComponent<AutoAim>().SetarBool();
     }
 
     public void OnInsert(InputAction.CallbackContext context)
@@ -385,6 +395,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         throw new System.NotImplementedException();
     }
+
+
 }
 
 
