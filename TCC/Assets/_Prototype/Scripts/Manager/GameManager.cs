@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
                 foreach(GameObject i in GameObject.FindGameObjectsWithTag("Player"))
                 {
                     i.transform.parent = this.transform;
-                    i.transform.position = new Vector3(i.transform.position.x, 0, i.transform.position.z);
+                    if (i.transform.position.x > 40 || i.transform.position.y > 40 || i.transform.position.z > 40)
+                        i.transform.position = new Vector3(0, 0, 0);
                 }
                 break;
 
