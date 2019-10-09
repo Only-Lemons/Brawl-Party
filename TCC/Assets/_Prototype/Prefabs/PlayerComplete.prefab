@@ -66,8 +66,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -680,17 +680,27 @@ PrefabInstance:
     - target: {fileID: 4733153826867779947, guid: e4477fef836046a4088451ca0a1c29bf,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.9056604
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4733153826867779947, guid: e4477fef836046a4088451ca0a1c29bf,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.12388753
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4733153826867779947, guid: e4477fef836046a4088451ca0a1c29bf,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.12388753
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733153826867779947, guid: e4477fef836046a4088451ca0a1c29bf,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 4733153826867779947, guid: e4477fef836046a4088451ca0a1c29bf,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4733153827643673564, guid: e4477fef836046a4088451ca0a1c29bf, type: 3}
@@ -746,13 +756,14 @@ PrefabInstance:
     - target: {fileID: 523295900359895985, guid: b9262915b58d6114bb75812b66df167a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 523295900359895984, guid: b9262915b58d6114bb75812b66df167a,
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 9848b78c5913d354fb8fbc43ad45e4e0,
+        type: 2}
     - target: {fileID: 523295900359895987, guid: b9262915b58d6114bb75812b66df167a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -806,6 +817,11 @@ PrefabInstance:
     - target: {fileID: 523295900359895987, guid: b9262915b58d6114bb75812b66df167a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 523295900702340308, guid: b9262915b58d6114bb75812b66df167a,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

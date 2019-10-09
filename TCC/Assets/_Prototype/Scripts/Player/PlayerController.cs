@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     Vector3 movementAxis;
     Vector3 rotationAxis;
     Quaternion targetRotation;
+    Animator anim;
 
     [Header("Arma")]
     public Arma actualArma;
@@ -90,8 +91,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         passiva = Instantiate(player.passiva);
         SOpowerUps = new List<PowerUpManager>();
-        // rb = GetComponent<Rigidbody>();
         cc = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
         armaInventory = new Arma[2];
         canShoot = true;
         PowerUp = false;
@@ -301,7 +302,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
         movementAxis *= (speed + speedTile) * Time.deltaTime;
-
+        anim.SetFloat("Speed", (movementAxis.x+movementAxis.z) * 2f);
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -314,8 +315,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
         if (actualArma != null)
         {
+            anim.SetBool("HasGun", true);
             if (canShoot)
             {
+                
                 transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
                 Transform transformArma = transform.GetChild(2).GetChild(0).GetChild(0);
                 actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward, this);
@@ -328,6 +331,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 }
             }
         }
+        else
+        {
+            anim.SetBool("HasGun", false);
+        }
     }
 
     public void OnStart(InputAction.CallbackContext context)
@@ -337,8 +344,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     IEnumerator fireRate(float fireRate)
     {
+        anim.SetBool("Shooting", true);
         canShoot = false;
         yield return new WaitForSeconds(fireRate);
+        anim.SetBool("Shooting", false);
         canShoot = true;
     }
 
