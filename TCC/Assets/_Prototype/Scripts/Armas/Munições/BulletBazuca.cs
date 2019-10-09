@@ -9,10 +9,11 @@ public class BulletBazuca : MonoBehaviour
     public Vector3 transformForward;
     public PlayerController player;
 
-    public GameObject testExplosao;
+    GameObject explosaoEfeito;
 
     void Start()
     {
+        explosaoEfeito = Resources.Load("Municoes/ExplosaoBazooka") as GameObject;
         GetComponent<Rigidbody>().AddForce(transformForward * 400f * velocidadeDaBala, ForceMode.Acceleration);
         Destroy(this.gameObject, 5f);
 
@@ -25,16 +26,18 @@ public class BulletBazuca : MonoBehaviour
             Debug.Log(player);
             other.GetComponent<PlayerController>().ReceiveDamage(damage, player);
 
-            Instantiate(testExplosao, this.transform.position, Quaternion.identity, GameObject.Find("GameManager").transform);
+            Instantiate(explosaoEfeito, this.transform.position, Quaternion.identity, GameObject.Find("GameManager").transform);
 
             Destroy(this.gameObject);
         }
         else if (other.gameObject.tag == "Obstaculo")
         {
-            Instantiate(testExplosao, this.transform.position, Quaternion.identity, GameObject.Find("GameManager").transform);
+            Instantiate(explosaoEfeito, this.transform.position, Quaternion.identity, GameObject.Find("GameManager").transform);
 
             Destroy(this.gameObject);
         }
+
+        
 
     }
 }

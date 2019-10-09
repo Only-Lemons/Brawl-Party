@@ -5,9 +5,10 @@ using UnityEngine;
 public class BulletBazucaExplosao : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject bulletBazuca;
+    GameObject bulletBazuca;
     void Start()
     {
+        bulletBazuca = Resources.Load("Municoes/ProjetilBazuca") as GameObject;
         Destroy(gameObject, 1);
     }
 

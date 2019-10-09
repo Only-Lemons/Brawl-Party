@@ -8,11 +8,11 @@ public class TesteInstancias : MonoBehaviour
 
     public GameObject[] go;
     public int velocidadeQueda = 10;
-    public Vector2 limiteParaInstanciar = new Vector2(15, 15);
+    //public Vector2 limiteParaInstanciar = new Vector2(15, 15);
     public GameObject cxPadrao;
 
     GameObject goAtual;
-    Vector3 pontoRef;
+    //Vector3 pontoRef;
     float timer;
     public int tempoRespawn = 2;
 
@@ -24,7 +24,7 @@ public class TesteInstancias : MonoBehaviour
 
         goAtual = null;
         timer = tempoRespawn;
-        pontoRef = Vector3.zero;
+        //pontoRef = Vector3.zero;
     }
 
     void Update()
@@ -36,21 +36,18 @@ public class TesteInstancias : MonoBehaviour
     void InstanciarCaixa()
     {
         //Modelo inicial
-        int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x + 1);
-        int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y + 1);
-        pontoRef = new Vector3(x, 20, z);
+        //int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x + 1);
+        //int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y + 1);
+        //pontoRef = new Vector3(x, 20, z);
         //Fim
 
         //Modelo por tile normal
         for(int i =0; i< qtdInstanciar; i++)
         {
-        int posO = 0;
-        Vector3 novoPos = Vector3.zero;
-        GameObject go1 = null;
 
-        posO = Random.Range(0, tilesN.Count);
-        go1 = tilesN[posO];
-        novoPos = go1.transform.position;
+        int posO = Random.Range(0, tilesN.Count);
+        GameObject go1 = tilesN[posO];
+        Vector3 novoPos = go1.transform.position;
         novoPos.y = 20;
         //Fim
 
@@ -73,8 +70,8 @@ public class TesteInstancias : MonoBehaviour
         {
             timer = tempoRespawn;
             InstanciarCaixa();
-            InstanciarCaixa();
-            InstanciarCaixa();
+            //InstanciarCaixa();
+            //InstanciarCaixa();
         }
     }
 
@@ -84,14 +81,14 @@ public class TesteInstancias : MonoBehaviour
         switch (rnd)
         {
             case 0:
-                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
             case 1:
-                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
+                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
 
             case 2:
-                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
 
             case 3:
@@ -99,7 +96,7 @@ public class TesteInstancias : MonoBehaviour
                 break;
 
             case 4:
-                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
 
             default:
