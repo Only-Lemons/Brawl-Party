@@ -10,8 +10,7 @@ public class CameraController2 : MonoBehaviour
     Camera cam;
     public float posicaoEmZ = 8;
     public float alturaCam = 25;
-
-    List<PlayerController> targ = new List<PlayerController>();
+    List<PlayerController> targ;
 
     void Start()
     {
@@ -22,19 +21,17 @@ public class CameraController2 : MonoBehaviour
         else
             Destroy(gameObject);
 
+        targ = GameController.Singleton.playerManager.Players;
         cam = Camera.main;
         cam.transform.position = new Vector3(0, alturaCam, -10);
-        GetTargets();
+      
 
     }
     public void GetTargets()
     {
         targ.Clear();
-        
-        foreach (PlayerController item in GameController.Singleton.playerManager.Players)
-        {
-            targ.Add(item);
-        }
+        targ = GameController.Singleton.playerManager.Players;
+
     }
 
 

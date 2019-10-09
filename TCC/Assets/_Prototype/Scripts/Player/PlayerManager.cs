@@ -52,15 +52,12 @@ public class PlayerManager : MonoBehaviour
     }
     void setPlayerInScene()
     {
-        List<GameObject> players = GameManager.Instance.playersPanels;
-
-        for (int i = 0; i < players.Count; i++)
+        PlayerController[] aux = GameObject.FindObjectsOfType<PlayerController>();
+        foreach (PlayerController player  in aux)
         {
-            //Players.Add(players[i].GetComponentInChildren<PlayerController>());
-            players[i].transform.GetChild(0).GetComponent<PlayerController>().playerUI = playersUI[i];
-        }
-    
-            
+            Players.Add(player);
+            playersUI.Add(player.playerUI);
+        }    
     }
 
     private void Update()
