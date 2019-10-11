@@ -6,32 +6,44 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
-    [Header("ScriptableObject")]
+    
     public SOPlayer player;
-    CharacterController cc;
-    Vector3 movementAxis;
-    Vector3 rotationAxis;
-    Quaternion targetRotation;
+    CharacterController _cc;
+    [HideInInspector]
     public Animator anim;
+    [HideInInspector]
+    public playerUIElements playerUI;
+    [HideInInspector]
+    public Inputs controls;
 
+    #region Movimentacao
+    Vector3 _movementAxis;
+    Vector3 _rotationAxis;
+    Quaternion _targetRotation;
+    #endregion
+
+    #region Arma
     [Header("Arma")]
     public Arma actualArma;
     public Arma[] armaInventory;
+    [HideInInspector]
     public bool canShoot;
     public Transform hand;
-
-    public playerUIElements playerUI;
+    AutoAim _autoAim;
+    #endregion
 
     #region Interaçao Ambiente
-    Tile ativo;
+    Tile _tileAtivo;
+    [HideInInspector]
     public PlayerController playerLastDamage;
+
     public Vector3 _base;
     #endregion
 
     #region PowerUPs
     [Header("PowerUp")]
     public bool PowerUp;
-    List<PowerUpManager> SOpowerUps;
+    List<PowerUpManager> _SOpowerUps;
     #endregion
 
     #region Status
@@ -44,25 +56,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public bool canDeath;
     #endregion
 
-    public Inputs controls;
-
     Material hp;
 
-    public void ResetarPlayer()
-    {
-
-        this.transform.position = _base;
-        actualArma = null;
-        armaInventory = new Arma[2];
-        canShoot = true;
-        life = player.hp;
-        speed = player.speed;
-        shield = 0;
-        SOpowerUps.Clear();
-
-
-
-    }
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
@@ -73,10 +68,9 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Awake()
     {
         controls = new Inputs();
-        canDeath = true;
         UIManager.onChangeValues += uiUpdate;
         UIManager.onStartValues += uiStart;
-     
+
     }
 
     void OnEnable()
@@ -92,20 +86,89 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Start()
     {
         passiva = Instantiate(player.passiva);
-        SOpowerUps = new List<PowerUpManager>();
-        cc = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
-        armaInventory = new Arma[2];
-        canShoot = true;
-        PowerUp = false;
-        this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
-        // Iniciação dos status do personagem
         life = player.hp;
         speed = player.speed;
-        cc.enabled = false;
 
+        canDeath = true;
+        canShoot = true;
+        PowerUp = false;
+
+        _SOpowerUps = new List<PowerUpManager>();
+        _cc = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
+        _autoAim = GetComponent<AutoAim>();
+       
+        armaInventory = new Arma[2];
+    
+        this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
     }
 
+    void Update()
+    {
+        //cc.Move(movementAxis);  
+        //TileInteract();
+    }
+
+    private void FixedUpdate()
+    {
+        this.transform.position += _movementAxis;
+        Rot();
+        passiva.AtivarPassiva(this);
+        if (PowerUp == true)
+            VerificarPU();
+
+        if (actualArma == null)
+            anim.SetBool("HasGun", false);
+        else
+            anim.SetBool("HasGun", true);
+    }
+
+    public void ResetarPlayer()
+    {
+
+        this.transform.position = _base;
+        actualArma = null;
+        armaInventory = new Arma[2];
+        canShoot = true;
+        life = player.hp;
+        speed = player.speed;
+        shield = 0;
+        _SOpowerUps.Clear();
+
+
+
+    }
+    void Rot()
+    {
+        if (_rotationAxis != Vector3.zero)
+        {
+            _targetRotation = Quaternion.LookRotation(_rotationAxis);
+            GetComponent<AutoAim>().mirando = false;
+        }
+        transform.rotation = Quaternion.Lerp(_targetRotation, Quaternion.identity, Time.deltaTime);
+    }
+    void TileInteract()
+    {
+        float menorDistancia = float.MaxValue;
+        try
+        {
+            for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
+            {
+                if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
+                {
+                    menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
+                    _tileAtivo = TerrainController.instance.tilesInstanciados[k];
+                }
+            }
+            _tileAtivo.Interagir(this);
+        }
+        catch
+        {
+            Debug.Log("Tentando definir tiles interativos");
+        }
+    }
+   
+    #region Condições de Derrota 
     public void ReceiveDamage(int damage, PlayerController lastDamage)
     {
         playerLastDamage = lastDamage;
@@ -133,7 +196,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         }
 
     }
-
     void Death()
     {
         GameController.Singleton.gameMode.DeathRule(this);
@@ -141,30 +203,14 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
 
     }
+    #endregion
 
-
-    private void FixedUpdate()
-    {
-       
-        cc.enabled = true;
-        
-        Rot();
-        passiva.AtivarPassiva(this);
-        if (PowerUp == true)
-            VerificarPU();
-
-        if(actualArma == null)
-            anim.SetBool("HasGun", false);
-        else
-            anim.SetBool("HasGun", true);
-    }
-
+    #region Shield
     public void AtivarEscudo(int valor)
     {
         shield += valor;
 
     }
-
     public void DesativarEscudo(int valor)
     {
         if (shield > 0)
@@ -172,29 +218,29 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         if (shield < 0)
             shield = 0;
     }
+    #endregion
 
+    #region PowerUP
     void VerificarPU()
     {
-        if (SOpowerUps.Count == 0 || SOpowerUps == null)
+        if (_SOpowerUps.Count == 0 || _SOpowerUps == null)
         {
             DesativarPowerUP();
         }
         else
         {
-            for (int i = 0; i < SOpowerUps.Count; i++)
+            for (int i = 0; i < _SOpowerUps.Count; i++)
             {
 
-                if (SOpowerUps[i].AcabouTempo())
+                if (_SOpowerUps[i].AcabouTempo())
                 {
-                    SOpowerUps.RemoveAt(i);
+                    _SOpowerUps.RemoveAt(i);
 
                 }
             }
         }
 
     }
-
-
     public void AtivarPowerUP(float Time, GameObject[] particulas, PowerUP powerUP)
     {
         if (PowerUp == false)
@@ -202,7 +248,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             PowerUp = true;
             PowerUpManager PUP = new PowerUpManager(Time, powerUP, this);
             PUP.Particulas = particulas;
-            SOpowerUps.Add(PUP);
+            _SOpowerUps.Add(PUP);
 
         }
         else
@@ -210,19 +256,18 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             if (!PUActive(powerUP))
             {
                 PowerUpManager PUP = new PowerUpManager(Time, powerUP, this);
-                SOpowerUps.Add(PUP);
+                _SOpowerUps.Add(PUP);
             }
         }
     }
-
     public bool PUActive(PowerUP pu)
     {
 
-        for (int i = 0; i < SOpowerUps.Count; i++)
+        for (int i = 0; i < _SOpowerUps.Count; i++)
         {
-            if (SOpowerUps[i].PU.Name == pu.Name)
+            if (_SOpowerUps[i].PU.Name == pu.Name)
             {
-                SOpowerUps[i].tempoAtual = SOpowerUps[i].time;
+                _SOpowerUps[i].tempoAtual = _SOpowerUps[i].time;
                 return true;
             }
 
@@ -230,33 +275,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
         return false;
     }
-
     public void DesativarPowerUP()
     {
         PowerUp = false;
     }
-    public void TileInteract()
-    {
-        float menorDistancia = float.MaxValue;
-        try
-        {
-            for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
-            {
-                if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
-                {
-                    menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
-                    ativo = TerrainController.instance.tilesInstanciados[k];
-                }
-            }
-            ativo.Interagir(this);
-        }
-        catch
-        {
-            Debug.Log("Tentando definir tiles interativos");
-        }
-    }
+    #endregion
 
-
+    #region UI
     void uiStart()
     {
         playerUI.hp.maxValue = player.hp;
@@ -265,7 +290,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
 
     }
-
     void uiUpdate()
     {
         playerUI.hp.value = life;
@@ -289,32 +313,15 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         // mudar os outros trem aqui 
 
     }
+    #endregion
 
-    void Update()
-    {
-        //cc.Move(movementAxis);
-        this.transform.position += movementAxis;
-        TileInteract();
-  
-    }
-
-    public void Rot()
-    {
-        if (rotationAxis != Vector3.zero)
-        {
-            targetRotation = Quaternion.LookRotation(rotationAxis);
-            GetComponent<AutoAim>().mirando = false;
-        }
-        transform.rotation = Quaternion.Lerp(targetRotation, Quaternion.identity, Time.deltaTime);
-    }
-
+    #region InputSystemEvents
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log(context.ReadValue<Vector2>());
 
-        movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+        _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
 
-        movementAxis *= (speed + speedTile) * Time.deltaTime;
+        _movementAxis *= (speed + speedTile) * Time.deltaTime;
         try
         {
             anim.SetFloat("x", context.ReadValue<Vector2>().x);
@@ -328,7 +335,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        rotationAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+        _rotationAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
     }
 
     public void OnFire(InputAction.CallbackContext context)
@@ -362,15 +369,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     }
 
-    IEnumerator fireRate(float fireRate)
-    {
-        anim.SetBool("Shooting", true);
-        canShoot = false;
-        yield return new WaitForSeconds(fireRate);
-        anim.SetBool("Shooting", false);
-        canShoot = true;
-    }
-
     public void OnAim(InputAction.CallbackContext context)
     {
         GetComponent<AutoAim>().SetarBool();
@@ -400,8 +398,16 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         throw new System.NotImplementedException();
     }
+    #endregion
 
-
+    IEnumerator fireRate(float fireRate)
+    {
+        anim.SetBool("Shooting", true);
+        canShoot = false;
+        yield return new WaitForSeconds(fireRate);
+        anim.SetBool("Shooting", false);
+        canShoot = true;
+    }
 }
 
 
