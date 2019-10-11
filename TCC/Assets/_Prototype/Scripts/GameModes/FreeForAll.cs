@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class FreeForAll : IGameMode
 {
-    GameController aux;
-
-    public float actualtime;
+    GameController _gameController;
+    float _actualtime;
+    float _timeToRespawn;
     public Dictionary<PlayerController, int> pontos = new Dictionary<PlayerController, int>();
-    public float timeToRespawn;
+
     public FreeForAll(GameController gameController, float time)
     {
-        aux = gameController;
-        actualtime = time;
-        timeToRespawn = 3;
+        _gameController = gameController;
+        _actualtime = time;
+        _timeToRespawn = 3;
     }
 
     public void DeathRule(PlayerController player)
@@ -29,59 +29,47 @@ public class FreeForAll : IGameMode
                 PointRule(auxp);
             }
 
-            aux.playerManager.playerMortos.Add(player, timeToRespawn);
-            aux.playerManager.playerMortosPrefabs.Add(player);
+            _gameController.playerManager.playerMortos.Add(player, _timeToRespawn);
+            _gameController.playerManager.playerMortosPrefabs.Add(player);
             player.playerUI.Respawn.enabled = true;
         }
     }
-
     public void FinishGame()
     {
-        actualtime -= Time.deltaTime;
+        _actualtime -= Time.deltaTime;
         ShowTime();
-        if (actualtime <= 0)
+        if (_actualtime <= 0)
             WinRule();
     }
-
     public void ShowTime()
     {
-        string minute = ((int)(actualtime / 60)).ToString("00"); ;
-        string seconds = ((int)(actualtime % 60)).ToString("00"); ;
-
-        aux.time.text = minute + ":" + seconds;
+        string minute = ((int)(_actualtime / 60)).ToString("00"); ;
+        string seconds = ((int)(_actualtime % 60)).ToString("00"); ;
+        _gameController.time.text = minute + ":" + seconds;
     }
-
     public void PointRule(PlayerController player)
     {
-        //conta pontos toda vez que o player matar alguem
-
         pontos[player] += 1;
         player.playerUI.points.text = pontos[player].ToString();
-
-
     }
-
     public void StartGame()
     {
         AddPlayerPoints();
-        aux.playerManager.timeRespawn = timeToRespawn;
+        _gameController.playerManager.timeRespawn = _timeToRespawn;
     }
-
     void AddPlayerPoints()
     {
-        foreach (PlayerController player in GameController.Singleton.playerManager.Players)
+        foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
         {
             pontos.Add(player, 0);
             player.playerUI.points.text = pontos[player].ToString();
         }
     }
-
-
     public void WinRule()
     {
         PlayerController playerMaior = null;
         int maiorPonto = int.MinValue;
-        foreach (PlayerController player in aux.playerManager.Players)
+        foreach (PlayerController player in _gameController.playerManager.playersControllers)
         {
             if (pontos[player] > maiorPonto)
             {
@@ -91,8 +79,6 @@ public class FreeForAll : IGameMode
         }
         Time.timeScale = 0;
         SceneManager.LoadScene(1);
-
-
     }
 
 }

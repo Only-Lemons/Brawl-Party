@@ -5,34 +5,28 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController Singleton;
+    public static GameController singleton;
 
     public IGameMode gameMode;
-    
+    [HideInInspector]
     public TerrainController tileManager;
+    [HideInInspector]
     public PlayerManager playerManager;
+    [HideInInspector]
     public UIManager uIManager;
-    public ArmaManager armaManager;
-
-
-
     public Text time;
 
-    void Awake()
+    void OnEnable()
     {
-  
-        Singleton = this;
+        singleton = this;
+   
+    }
+    private void Start()
+    {
         tileManager = GetComponent<TerrainController>();
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
 
-   
-
-
-    }
-
-    private void Start()
-    {
         GameManager.Instance.TryGetGameController();
         gameMode.StartGame();
 
@@ -41,5 +35,4 @@ public class GameController : MonoBehaviour
     {
         gameMode.FinishGame();   
     }
-
 }

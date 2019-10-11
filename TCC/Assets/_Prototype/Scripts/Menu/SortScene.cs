@@ -12,7 +12,7 @@ public class SortScene : MonoBehaviour
     public Image prefabGM;
     public int sortScene;
     public int sortGameM;
-    bool Scenep, Gamep;
+    bool _Scenep, _Gamep;
 
     void Start()
     {
@@ -22,7 +22,6 @@ public class SortScene : MonoBehaviour
        StartCoroutine(StartScene());
     }
 
-    
     IEnumerator ShowImageScene(Scenes[] sprite,Image image, int Index)
     {
         yield return new WaitForSeconds(.1f);
@@ -33,11 +32,11 @@ public class SortScene : MonoBehaviour
         Debug.Log(Index % cenas.Length);
         if (Index >= cenas.Length * 5 && Index%cenas.Length == sortScene)
         {
-            if (Gamep)
+            if (_Gamep)
             {
                 StartCoroutine(ChangeScene());
             }
-            Scenep = true;
+            _Scenep = true;
         }
         else {
               StartCoroutine(ShowImageScene(cenas, prefabScene, Index));
@@ -53,11 +52,11 @@ public class SortScene : MonoBehaviour
         if (Index >= gameModes.Length * 5 && Index%gameModes.Length == sortGameM)
         {
           
-            if (Scenep)
+            if (_Scenep)
             {
                 StartCoroutine(ChangeScene());
             }
-            Gamep = true;
+            _Gamep = true;
         }
         else
         {
@@ -73,7 +72,6 @@ public class SortScene : MonoBehaviour
         SceneManager.LoadScene(3);
      
     }
-   
     IEnumerator StartScene()
     {
         yield return new WaitForSeconds(0.5f);

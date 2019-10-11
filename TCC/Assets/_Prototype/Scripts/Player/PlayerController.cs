@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
-
         PowerUp = false;
     }
 
@@ -70,7 +69,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         controls = new Inputs();
         UIManager.onChangeValues += uiUpdate;
         UIManager.onStartValues += uiStart;
-
     }
 
     void OnEnable()
@@ -102,30 +100,21 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     
         this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
     }
-
-    void Update()
-    {
-        //cc.Move(movementAxis);  
-        //TileInteract();
-    }
-
     private void FixedUpdate()
     {
+        TileInteract();
         this.transform.position += _movementAxis;
         Rot();
         passiva.AtivarPassiva(this);
         if (PowerUp == true)
             VerificarPU();
-
         if (actualArma == null)
             anim.SetBool("HasGun", false);
         else
             anim.SetBool("HasGun", true);
     }
-
     public void ResetarPlayer()
     {
-
         this.transform.position = _base;
         actualArma = null;
         armaInventory = new Arma[2];
@@ -134,9 +123,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
-
-
-
     }
     void Rot()
     {
@@ -198,7 +184,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     void Death()
     {
-        GameController.Singleton.gameMode.DeathRule(this);
+        GameController.singleton.gameMode.DeathRule(this);
         if (this.transform.GetChild(2).childCount > 0)
             Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
 
@@ -318,9 +304,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     #region InputSystemEvents
     public void OnMove(InputAction.CallbackContext context)
     {
-
         _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
-
         _movementAxis *= (speed + speedTile) * Time.deltaTime;
         try
         {
@@ -344,10 +328,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         {
             if (actualArma != null)
             {
-            
                 if (canShoot)
                 {
-                    
                     transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
                     Transform transformArma = hand.GetChild(0);
                     actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward, this);
@@ -364,40 +346,22 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
      
     }
 
-    public void OnStart(InputAction.CallbackContext context)
-    {
-
-    }
+    public void OnStart(InputAction.CallbackContext context) { }
 
     public void OnAim(InputAction.CallbackContext context)
     {
         GetComponent<AutoAim>().SetarBool();
     }
 
-    public void OnInsert(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnInsert(InputAction.CallbackContext context) { }
 
-    public void OnSwitch(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnSwitch(InputAction.CallbackContext context) { }
 
-    public void OnAdd(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnAdd(InputAction.CallbackContext context) { }
 
-    public void OnConfirmed(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnConfirmed(InputAction.CallbackContext context) { }
 
-    public void OnUP(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnUP(InputAction.CallbackContext context) { }
     #endregion
 
     IEnumerator fireRate(float fireRate)

@@ -10,10 +10,8 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
-
     public void ChangeSceneWithLoad(int scene)
     {
-       
         GameManager.Instance.nextLevel = scene;
         SceneManager.LoadScene(3);
     }
@@ -21,6 +19,5 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
     }
-   
-    
+ 
 }

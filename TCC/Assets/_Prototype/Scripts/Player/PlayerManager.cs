@@ -15,7 +15,6 @@ public struct playerUIElements
     public Slider passive;
     public Text passiveText;
     public Image Respawn;
-
     public Image gun;
     public Image character;
     
@@ -24,30 +23,34 @@ public struct playerUIElements
 
 public class PlayerManager : MonoBehaviour
 {
-    public List<PlayerController> Players = new List<PlayerController>();
+    public List<PlayerController> playersControllers = new List<PlayerController>();
     public Dictionary<PlayerController, float> playerMortos = new Dictionary<PlayerController, float>();
     public List<PlayerController> playerMortosPrefabs = new List<PlayerController>();
-    public GameObject prefabPlayer;
     public List<playerUIElements> playersUI = new List<playerUIElements>();
     public float timeRespawn;
-
+    TerrainController _tileManager;
 
 
     void Awake()
     {
-        setPlayerInScene();
-     
+        setPlayerInScene(); 
     }
     private void Start()
     {
+        _tileManager = GameController.singleton.tileManager;
         MovePlayerBase();
     }
+    private void Update()
+    {
+        DeathPlayerVerifity();
+    }
+
     void MovePlayerBase()
     {
-        foreach (PlayerController player in Players)
+        foreach (PlayerController player in playersControllers)
         {
-            player.gameObject.transform.position = GameController.Singleton.tileManager.bases[Players.IndexOf(player)];
-            player._base = GameController.Singleton.tileManager.bases[Players.IndexOf(player)];
+            player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)];
+            player._base = _tileManager.bases[playersControllers.IndexOf(player)];
         }
     }
     void setPlayerInScene()
@@ -55,22 +58,11 @@ public class PlayerManager : MonoBehaviour
         PlayerController[] aux = GameObject.FindObjectsOfType<PlayerController>();
         for (int i = 0; i < aux.Length; i++)
         {
-            Players.Add(aux[i]);
+            playersControllers.Add(aux[i]);
 
             aux[i].playerUI = playersUI[i];
         }
-
-    
-       
-        
-
     }
-
-    private void Update()
-    {
-        DeathPlayerVerifity();
-    }
-
     void DeathPlayerVerifity()
     {
         if(playerMortos.Count > 0)
@@ -92,6 +84,4 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-
-
 }

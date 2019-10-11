@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Passivas",menuName = "PassivaEsqueleto")]
+[CreateAssetMenu(fileName = "Passivas",menuName = "Passivas/PassivaEsqueleto")]
 public class SOPassiveSkull : SOPassive
 {
+    bool _isStart = false;
 
-    bool isStart = false;
     public override void AtivarPassiva(PlayerController player)
     {
-        if(isStart == false)
+        if(_isStart == false)
         {
             player.canDeath = false;
-            isStart = true;
+            _isStart = true;
         }
         if(player.life <= 0 && CheckCD())
         {
@@ -26,7 +26,6 @@ public class SOPassiveSkull : SOPassive
         }
         
     }
-
     public override bool CheckCD()
     {
         if (inCD == true)

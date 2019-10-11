@@ -6,9 +6,7 @@ public class TileBuraco : Tile
 {
     public TileBuraco(Transform pivot)
     {
-  
         Pivot = pivot;
-       
     }
 
     public override void Interagir(PlayerController player)

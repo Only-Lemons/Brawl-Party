@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class SpeedPowerUP : PowerUP
 {
-    bool Activate = false;
+    bool _activate = false;
 
     public override void FinishAndBack(PlayerController player)
     {
         player.speed -= player.player.speed;
     }
-
     public override void Interact(PlayerController player)
     {
-      
-        if (Activate == false)
+        if (_activate == false)
         {
             player.speed += player.player.speed;
-            Activate = true;
+            _activate = true;
         }
     }
     private void OnTriggerEnter(Collider other)

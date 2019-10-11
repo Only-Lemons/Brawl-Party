@@ -2,37 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Passivas", menuName = "PassivaRobo")]
+[CreateAssetMenu(fileName = "Passivas", menuName = "Passivas/PassivaRobo")]
 public class SOPassiveRobot : SOPassive
 {
-    Arma armaAtual;
+    Arma _armaAtual;
     public float finishedShildTime;
-    PlayerController player;
+    PlayerController _player;
+
     public override void AtivarPassiva(PlayerController player)
     {
-        this.player = player;
+        this._player = player;
         if(player.actualArma != null && CheckCD())
         {
-            if (armaAtual != player.actualArma)
+            if (_armaAtual != player.actualArma)
             {
-
-                armaAtual = player.actualArma;
+                _armaAtual = player.actualArma;
                 player.AtivarEscudo(Mathf.FloorToInt(player.player.hp * 0.20f));
                 inCD = true;
             }
-           
         }
-        
-
     }
-
     public override bool CheckCD()
     {
         if (inCD == true)
         {
             actualtimeCD -= Time.deltaTime;
             if (actualtimeCD <= finishedShildTime)
-                player.DesativarEscudo(Mathf.FloorToInt(player.player.hp * 0.20f));
+                _player.DesativarEscudo(Mathf.FloorToInt(_player.player.hp * 0.20f));
             if (actualtimeCD <= 0)
             {
                 actualtimeCD = timeCD;

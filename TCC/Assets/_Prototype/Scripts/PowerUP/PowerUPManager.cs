@@ -5,18 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class PowerUpManager
 {
-    //teste
     public float time;
     public float tempoAtual;
     public PowerUP PU;
-    PlayerController player;
+    PlayerController _player;
     public GameObject[] Particulas;
+
    public PowerUpManager(float tempo,PowerUP powerU,PlayerController player)
    {
         this.time = tempo;
         tempoAtual = tempo;
         PU = powerU;
-        this.player = player;
+       _player = player;
 
    }
    public bool AcabouTempo()
@@ -25,18 +25,17 @@ public class PowerUpManager
         {
             if (Particulas != null && Particulas.Length > 0 )
                 DestruirParticulas();
-            PU.FinishAndBack(player);
+            PU.FinishAndBack(_player);
             return true;
         }
         else
         {
-           
             tempoAtual -= Time.deltaTime;
-            PU.Interact(player);
+            PU.Interact(_player);
             return false;
         }
     }
-    void DestruirParticulas()
+   void DestruirParticulas()
     {
         if (Particulas != null)
         {

@@ -7,9 +7,13 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
     public GameObject playerInputPrefab;
+
     public IGameMode gameMode;
+
     public GameController gameController;
+
     public float TimeInGame = 120;
     public GameModes newGameMode;
     public List<GameObject> playersPanels = new List<GameObject>();
@@ -28,8 +32,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }      
     }
-
-
     private void FixedUpdate()
     {
         switch(SceneManager.GetActiveScene().buildIndex)
@@ -65,24 +67,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-
     public void TryGetGameController()
     {
-        if(GameObject.FindObjectOfType<GameController>() != null)
-        {
+       
             gameController = GameObject.FindObjectOfType<GameController>();
             foreach (GameObject playerComplete in playersPanels)
             {
-                if (!gameController.playerManager.Players.Exists(x => x == playerComplete.transform.GetChild(0).GetComponent<PlayerController>()))
-                gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
+                if (!gameController.playerManager.playersControllers.Exists(x => x == playerComplete.transform.GetChild(0).GetComponent<PlayerController>()))
+                    gameController.playerManager.playersControllers.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
                // gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
             }
-           
-
             newScene(newGameMode);
-        }
-
     }
     public void newScene(GameModes game)
     {

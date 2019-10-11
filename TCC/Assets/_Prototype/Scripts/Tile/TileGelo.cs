@@ -6,14 +6,11 @@ public class TileGelo : Tile
 {
     public TileGelo(Transform pivot)
     {
-       
         Pivot = pivot;
-      
     }
 
     public override void Interagir(PlayerController player)
     {
-       
+      
     }
-
 }

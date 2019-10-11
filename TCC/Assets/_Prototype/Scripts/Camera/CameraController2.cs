@@ -21,7 +21,7 @@ public class CameraController2 : MonoBehaviour
         else
             Destroy(gameObject);
 
-        targ = GameController.Singleton.playerManager.Players;
+        targ = GameController.singleton.playerManager.playersControllers;
         cam = Camera.main;
         cam.transform.position = new Vector3(0, alturaCam, -10);
       
@@ -30,7 +30,7 @@ public class CameraController2 : MonoBehaviour
     public void GetTargets()
     {
         targ.Clear();
-        targ = GameController.Singleton.playerManager.Players;
+        targ = GameController.singleton.playerManager.playersControllers;
 
     }
 

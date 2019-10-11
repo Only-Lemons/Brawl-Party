@@ -8,16 +8,15 @@ public class Flag : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            GameController.Singleton.gameMode.PointRule(other.GetComponent<PlayerController>());
+            GameController.singleton.gameMode.PointRule(other.GetComponent<PlayerController>());
             Destroy(this.gameObject);
         }
     }
-
     private void OnTriggerExit(Collider other)  
     {
         if(other.tag == "Player")
         {
-            GameController.Singleton.gameMode.PointRule(other.GetComponent<PlayerController>());
+            GameController.singleton.gameMode.PointRule(other.GetComponent<PlayerController>());
             Destroy(this.gameObject);
         }
     }

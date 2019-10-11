@@ -15,12 +15,9 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     private void Awake()
     {
-       
         playerBackround = transform.GetChild(0).GetComponent<Image>();
         playerImage = transform.GetChild(0).GetChild(0).GetComponent<Image>(); // levando em conta que tem so player
-
     }
-
     private void Start()
     {
         selectPlayer = players[0];
@@ -28,7 +25,6 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         playerImage.sprite = selectPlayer.sprite;
         players.Add(selectPlayer);
     }
-
     void Update()
     {
         if (isConfirmed)
@@ -38,10 +34,9 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         }
         else
             playerBackround.color = Color.red;
-
     }
 
-
+    #region InputSystem Events
     public void OnUP(InputAction.CallbackContext context)
     {
         if(context.started)
@@ -63,38 +58,12 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 isConfirmed = true;
         }
     }
-
-    public void OnAdd(InputAction.CallbackContext context)
-    {
-        //GameManager.Instance.transform.SetParent(this.transform);
-    }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnFire(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnInsert(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnSwitch(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-    public void OnAim(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void OnAdd(InputAction.CallbackContext context) { }
+    public void OnMove(InputAction.CallbackContext context) { }
+    public void OnLook(InputAction.CallbackContext context) { }
+    public void OnFire(InputAction.CallbackContext context) { }
+    public void OnInsert(InputAction.CallbackContext context) { }
+    public void OnSwitch(InputAction.CallbackContext context) { }
+    public void OnAim(InputAction.CallbackContext context) { }
+    #endregion
 }

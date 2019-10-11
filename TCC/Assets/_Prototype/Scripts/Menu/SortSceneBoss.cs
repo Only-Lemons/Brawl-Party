@@ -8,6 +8,7 @@ public class SortSceneBoss : MonoBehaviour
     public Scenes[] cenas;
     public Image prefabScene;
     public int sortScene;
+
     void Start()
     {
         sortScene = Random.Range(0, cenas.Length);

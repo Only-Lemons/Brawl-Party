@@ -2,54 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Passivas", menuName = "PassivaFurry")]
+[CreateAssetMenu(fileName = "Passivas", menuName = "Passivas/PassivaFurry")]
 public class SOPassiveFurry : SOPassive
 {
-    Arma armaAtual;
-    bool isActive = false;
-    float time = 2f;
+    Arma _armaAtual;
+    bool _isActive = false;
+    float _time = 2f;
+
     public override void AtivarPassiva(PlayerController player)
     {
         if (Cronometro())
             FinishPassive(player);
-        if (player.actualArma != null && isActive == false && CheckCD())
+        if (player.actualArma != null && _isActive == false && CheckCD())
         {
-            if (armaAtual != player.actualArma)
+            if (_armaAtual != player.actualArma)
             {
-                armaAtual = player.actualArma;
+                _armaAtual = player.actualArma;
                 player.speed += player.player.speed/2;
-                isActive = true;
-               
+                _isActive = true;
             }
-
         }
-        if(player.PowerUp && isActive == false && CheckCD())
+        if (player.PowerUp && _isActive == false && CheckCD())
         {
-            armaAtual = player.actualArma;
-            player.speed += player.player.speed/2;
-            isActive = true;
-            
+            _armaAtual = player.actualArma;
+            player.speed += player.player.speed / 2;
+            _isActive = true;
         }
-
     }
     void FinishPassive(PlayerController player)
     {
-        isActive = false;
+        _isActive = false;
         player.speed -= player.player.speed/2;
         inCD = true;
     }
     bool Cronometro()
     {
-        if (isActive == true)
+        if (_isActive == true)
         {
-            time -= Time.deltaTime;
-            if (time <= 0)
+            _time -= Time.deltaTime;
+            if (_time <= 0)
             {
-                time = 2f;
+                _time = 2f;
                 return true;
-            }            
-              
-            
+            }  
         }
         return false;
     }
@@ -72,5 +67,4 @@ public class SOPassiveFurry : SOPassive
             return true;
         }
     }
-
 }

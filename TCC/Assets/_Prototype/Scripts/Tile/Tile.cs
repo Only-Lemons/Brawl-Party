@@ -5,9 +5,6 @@ using UnityEngine;
 public abstract class Tile : MonoBehaviour
 {
     public Transform Pivot;
- 
 
     public abstract void Interagir(PlayerController player);
-
-
 }

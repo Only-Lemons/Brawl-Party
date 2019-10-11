@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class LoadScene : MonoBehaviour
 {
     public Slider sliderLoad;
+
     void Awake()
     { 
         StartCoroutine(LoadAsynchronously(GameManager.Instance.nextLevel));
     }
+
     IEnumerator LoadAsynchronously(int scene)
     {
         yield return new WaitForSeconds(3);
@@ -19,7 +21,6 @@ public class LoadScene : MonoBehaviour
         {
             sliderLoad.value = operation.progress / 9;
             yield return  null;
-            
         }
     }
 }
