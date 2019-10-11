@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public Arma actualArma;
     public Arma[] armaInventory;
     public bool canShoot;
+    public Transform hand;
 
     public playerUIElements playerUI;
 
@@ -291,7 +292,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Update()
     {
-        cc.Move(movementAxis);
+        //cc.Move(movementAxis);
+        this.transform.position += movementAxis;
         TileInteract();
   
     }
@@ -308,7 +310,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        Debug.Log(context.ReadValue<Vector2>());
+
         movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+
         movementAxis *= (speed + speedTile) * Time.deltaTime;
         try
         {
@@ -317,7 +322,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         }
         catch
         {
-
+            Debug.Log("its not time yet folk calm down");
         }
     }
 
@@ -337,14 +342,14 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 {
                     
                     transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
-                    Transform transformArma = transform.GetChild(2).GetChild(0).GetChild(0);
+                    Transform transformArma = hand.GetChild(0);
                     actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward, this);
                     StartCoroutine(fireRate(actualArma.fireRate));
                     if (actualArma.ammoAmount <= 0)
                     {
                         actualArma = null;
                         canShoot = true;
-                        Destroy(transform.GetChild(2).GetChild(0).gameObject);
+                        Destroy(hand.GetChild(0).gameObject);
                     }
                 }
             }

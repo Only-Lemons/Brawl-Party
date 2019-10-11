@@ -107,7 +107,7 @@ public class Inputs : IInputActionCollection
                     ""id"": ""0e20a33e-4280-476f-9800-c4504ecf710a"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2,StickDeadzone(min=0.06,max=1)"",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": true,
