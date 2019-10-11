@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
-    
     public SOPlayer player;
     CharacterController _cc;
     [HideInInspector]
