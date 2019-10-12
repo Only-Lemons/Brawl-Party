@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody>().AddForce(transformForward* 400f * velocidadeDaBala, ForceMode.Acceleration);
+        GetComponent<Rigidbody>().AddForce(transformForward* 800f * velocidadeDaBala, ForceMode.Acceleration);
         Destroy(this.gameObject,5f);
     }
 
