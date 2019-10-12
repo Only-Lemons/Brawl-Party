@@ -12,6 +12,8 @@ public class CameraController2 : MonoBehaviour
     public float alturaCam = 25;
     List<PlayerController> targ;
 
+    float sizeOrtog; // modo de câmera ortográfica
+
     void Start()
     {
         if (Singleton == null)
@@ -23,8 +25,9 @@ public class CameraController2 : MonoBehaviour
 
         targ = GameController.singleton.playerManager.playersControllers;
         cam = Camera.main;
+
         cam.transform.position = new Vector3(0, alturaCam, -10);
-      
+        cam.orthographicSize = 8;
 
     }
     public void GetTargets()
@@ -53,7 +56,8 @@ public class CameraController2 : MonoBehaviour
     void ControleZoom()
     {
         //cam.transform.position = ZoomDistanciaPOS(); //Distancia por posição
-        cam.fieldOfView = ZoomDistanciaFOV(); //Distancia por fov
+        //cam.fieldOfView = ZoomDistanciaFOV(); //Distancia por fov
+        cam.orthographicSize = ZoomDistanciaORTO(); //Distancia por size - MODO DE CÂMERA ORTOGRÁFICA
     }
     Vector3 MediaDistancia()
     {
@@ -110,11 +114,32 @@ public class CameraController2 : MonoBehaviour
                 }
             }
         }
-        //if (max > 12)
-        //    z = Mathf.Lerp(cam.fieldOfView, 65, Time.deltaTime);
-        //if (max <= 12)
-        //    z = Mathf.Lerp(cam.fieldOfView, 50, Time.deltaTime / 1.2f);
+
         z = Mathf.Lerp(cam.fieldOfView, max + 30, Time.deltaTime*4);
         return z;
     }
+
+    float ZoomDistanciaORTO()
+    {
+        float z = 0;
+        float max = 0;
+        for (int i = 0; i < targ.Count; i++)
+        {
+            for (int j = 0; j < targ.Count; j++)
+            {
+                if (i != j)
+                {
+                    if (Vector3.Distance(targ[i].transform.position, targ[j].transform.position) > max)
+                    {
+                        max = Vector3.Distance(targ[i].transform.position, targ[j].transform.position);
+
+                    }
+                }
+            }
+        }
+
+        z = Mathf.Lerp(cam.orthographicSize, (max/8) +8, Time.deltaTime * 4);
+        return z;
+    }
+
 }
