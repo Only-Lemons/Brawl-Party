@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         _autoAim = GetComponent<AutoAim>();
         sairTiro = transform.GetChild(2);
         armaInventory = new Arma[2];
-    
+
         this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
     }
     private void FixedUpdate()
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         else
             anim.SetBool("isMove", false);
 
-        this.transform.position +=  _movementAxis * (speed + speedTile) * Time.deltaTime;
+        this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime;
 
         Rot();
         passiva.AtivarPassiva(this);
@@ -118,6 +118,9 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             anim.SetBool("HasGun", false);
         else
             anim.SetBool("HasGun", true);
+
+        if (life <= 0)
+            transform.position = Vector3.Lerp(transform.position, _base, Time.deltaTime);
     }
     public void ResetarPlayer()
     {
@@ -159,7 +162,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             Debug.Log("Tentando definir tiles interativos");
         }
     }
-   
+
     #region Condições de Derrota 
     public void ReceiveDamage(int damage, PlayerController lastDamage)
     {
@@ -190,6 +193,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     void Death()
     {
+
         GameController.singleton.gameMode.DeathRule(this);
         if (this.transform.GetChild(2).childCount > 0)
             Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
@@ -330,7 +334,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             if (actualArma != null)
             {
@@ -348,7 +352,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 }
             }
         }
-     
+
     }
 
     public void OnStart(InputAction.CallbackContext context) { }
