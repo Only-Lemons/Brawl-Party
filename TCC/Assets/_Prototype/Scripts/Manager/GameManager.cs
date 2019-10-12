@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            case 7:  
+            case 8:  
 
                 break;
 
