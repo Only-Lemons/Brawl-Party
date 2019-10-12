@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TesteInstancias : MonoBehaviour
 {
-    public List<GameObject> tilesN = new List<GameObject>();
+    public static TesteInstancias testeI;
+    List<GameObject> tilesN = new List<GameObject>();
 
     public GameObject[] go;
     public int velocidadeQueda = 10;
     //public Vector2 limiteParaInstanciar = new Vector2(15, 15);
-    public GameObject cxPadrao;
+    GameObject cxPadrao;
 
-    GameObject goAtual;
     //Vector3 pontoRef;
     float timer;
     public int tempoRespawn = 2;
@@ -20,9 +20,12 @@ public class TesteInstancias : MonoBehaviour
 
     void Start()
     {
+        testeI = this;
+
+        cxPadrao = Resources.Load("Bau/Bau") as GameObject;
+
         GetNormalTiles();
 
-        goAtual = null;
         timer = tempoRespawn;
         //pontoRef = Vector3.zero;
     }
@@ -30,7 +33,6 @@ public class TesteInstancias : MonoBehaviour
     void Update()
     {
         Instanciar();
-        ControlarQueda();
     }
 
     void InstanciarCaixa()
@@ -42,36 +44,29 @@ public class TesteInstancias : MonoBehaviour
         //Fim
 
         //Modelo por tile normal
-        for(int i =0; i< qtdInstanciar; i++)
+        for (int i = 0; i < qtdInstanciar; i++)
         {
+            int posO = Random.Range(0, tilesN.Count);
+            GameObject go1 = tilesN[posO];
+            Vector3 novoPos = go1.transform.position;
+            novoPos.y = 20;
+            //Fim
 
-        int posO = Random.Range(0, tilesN.Count);
-        GameObject go1 = tilesN[posO];
-        Vector3 novoPos = go1.transform.position;
-        novoPos.y = 20;
-        //Fim
-
-        if (goAtual == null)
-        {
             //goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity); //Modelo inicial
-            
-            goAtual = Instantiate(cxPadrao, novoPos, Quaternion.identity);
-             //Modelo por tile normal
 
-        }
+            Instantiate(cxPadrao, novoPos, Quaternion.identity);
+            //Modelo por tile normal
         }
     }
 
     void Instanciar()
     {
-            timer -= Time.deltaTime;
+        timer -= Time.deltaTime;
 
         if (timer <= 0)
         {
             timer = tempoRespawn;
             InstanciarCaixa();
-            //InstanciarCaixa();
-            //InstanciarCaixa();
         }
     }
 
@@ -105,34 +100,7 @@ public class TesteInstancias : MonoBehaviour
         return go[b];
     }
 
-    void ControlarQueda()
-    {
-        if (goAtual != null)
-        {
-            Vector3 valor = goAtual.transform.position;
-            if (goAtual.transform.position.y > 0.5)
-            {
-                goAtual.transform.position = new Vector3(valor.x, valor.y -= Time.deltaTime * velocidadeQueda, valor.z);
-                goAtual.transform.Rotate(0, Mathf.PingPong(Time.time, 2) - 1, 0);
-            }
-            else
-            {
-                InstanciarRandom();
-            }
-        }
-    }
-
-    void InstanciarRandom()
-    {
-        int b = Random.Range(0, go.Length);
-        if (b != go.Length - 1)
-            Instantiate(go[b], goAtual.transform.position, Quaternion.identity);
-        else
-            Instantiate(InstanciarArma(b), goAtual.transform.position, Quaternion.identity);
-
-        Destroy(goAtual);
-        goAtual = null;
-    }
+    
 
     void GetNormalTiles()
     {

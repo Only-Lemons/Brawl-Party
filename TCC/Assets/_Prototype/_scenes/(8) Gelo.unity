@@ -12120,7 +12120,6 @@ MonoBehaviour:
   tileManager: {fileID: 0}
   playerManager: {fileID: 0}
   uIManager: {fileID: 0}
-  armaManager: {fileID: 0}
   time: {fileID: 626765402}
 --- !u!114 &832325715
 MonoBehaviour:
@@ -12377,10 +12376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70e7edc8e74089428237ab8abc0bd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Players: []
+  playersControllers: []
   playerMortosPrefabs: []
-  prefabPlayer: {fileID: 628252506523737648, guid: 8a28279ae3d6fa14590f062297fefa72,
-    type: 3}
   playersUI:
   - points: {fileID: 1790045199880927903}
     hp: {fileID: 1790045199880927909}
@@ -12482,7 +12479,7 @@ MonoBehaviour:
   cxPadrao: {fileID: 2236393400438116409, guid: 233be8f2c4e86b34880ba5068a76428c,
     type: 3}
   tempoRespawn: 5
-  qtdInstanciar: 1
+  qtdInstanciar: 2
 --- !u!114 &832325721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12497,6 +12494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distancia: 15
   sensibilidade: 0
+  mirando: 0
 --- !u!1001 &832339690
 PrefabInstance:
   m_ObjectHideFlags: 0
