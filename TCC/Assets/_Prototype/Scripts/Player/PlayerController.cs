@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         else
             anim.SetBool("HasGun", true);
 
+        //essa parte apenas pra suavizar as travadas pós morte
         if (life <= 0)
             transform.position = Vector3.Lerp(transform.position, _base, Time.deltaTime);
     }
