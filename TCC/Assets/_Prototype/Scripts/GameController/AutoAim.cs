@@ -20,7 +20,7 @@ public class AutoAim : MonoBehaviour
 
     public void SetarBool()
     {
-        if(!mirando)
+        if (!mirando)
             mirando = true;
     }
     public void MirarNoMaisProximo(int sens)
@@ -30,11 +30,22 @@ public class AutoAim : MonoBehaviour
             Vector3 prox = Vector3.zero;
             for (int i = 0; i < GameManager.Instance.gameController.playerManager.playersControllers.Count; i++)
             {
-                //if (Vector3.Distance(transform.position, GameManager.Instance.gameController.playerManager.Players[i].gameObject.transform.position) < 5)
+                for (int j = 0; j < GameManager.Instance.gameController.playerManager.playersControllers.Count; j++)
                 {
-                    prox = GameManager.Instance.gameController.playerManager.playersControllers[i].gameObject.transform.position;
+                    if (i != j)
+                    {
+                        if (GameManager.Instance.gameController.playerManager.playersControllers[i].transform.position.magnitude != transform.position.magnitude && GameManager.Instance.gameController.playerManager.playersControllers[i].transform.position.magnitude != transform.position.magnitude)
+                            if (Vector3.Distance(this.gameObject.transform.position, GameManager.Instance.gameController.playerManager.playersControllers[j].gameObject.transform.position) <= Vector3.Distance(this.gameObject.transform.position, GameManager.Instance.gameController.playerManager.playersControllers[i].gameObject.transform.position))
+                            {
+                                Debug.Log("Entrei!");
+                                Debug.Log("Distancia do i" + Vector3.Distance(this.gameObject.transform.position, GameManager.Instance.gameController.playerManager.playersControllers[i].gameObject.transform.position));
+                                Debug.Log("Distancia do j" + Vector3.Distance(this.gameObject.transform.position, GameManager.Instance.gameController.playerManager.playersControllers[j].gameObject.transform.position));
+
+                                prox = GameManager.Instance.gameController.playerManager.playersControllers[i].gameObject.transform.position;
+                                transform.LookAt(prox);
+                            }
+                    }
                 }
-                transform.LookAt(prox);
             }
         }
         catch
