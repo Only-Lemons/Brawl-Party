@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         else
             anim.SetBool("isMove", false);
 
-        this.transform.position += _movementAxis;
+        this.transform.position += _movementAxis * Time.deltaTime;
 
         Rot();
         passiva.AtivarPassiva(this);
@@ -311,7 +311,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
-        _movementAxis *= (speed + speedTile) * Time.deltaTime;
+        _movementAxis *= speed + speedTile;
         try
         {
             anim.SetFloat("x", context.ReadValue<Vector2>().x);
