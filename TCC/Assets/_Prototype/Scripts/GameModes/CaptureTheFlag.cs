@@ -66,7 +66,7 @@ public class CaptureTheFlag : IGameMode
     {
         if (_auxPlayer != null)
         {
-            pontos[_auxPlayer] += 0.5f;
+            pontos[_auxPlayer] += 8 * Time.deltaTime;
             _auxPlayer.playerUI.points.text = pontos[_auxPlayer].ToString("0");
         }
     }

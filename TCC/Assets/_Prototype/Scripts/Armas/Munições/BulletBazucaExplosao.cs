@@ -21,7 +21,7 @@ public class BulletBazucaExplosao : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerController>().ReceiveDamage(bulletBazuca.GetComponent<BulletBazuca>().damage / (int)transform.localScale.x, other.gameObject.GetComponent<PlayerController>());
+            other.GetComponent<PlayerController>().ReceiveDamage(bulletBazuca.GetComponent<BulletBazuca>().damage / ((int)transform.localScale.x + 1), other.gameObject.GetComponent<PlayerController>());
 
         }
     }

@@ -20,7 +20,7 @@ public class AutoAim : MonoBehaviour
 
     public void SetarBool()
     {
-        if(!mirando)
+        if (!mirando)
             mirando = true;
     }
     public void MirarNoMaisProximo(int sens)
@@ -28,13 +28,18 @@ public class AutoAim : MonoBehaviour
         try
         {
             Vector3 prox = Vector3.zero;
-            for (int i = 0; i < GameManager.Instance.gameController.playerManager.playersControllers.Count; i++)
+            foreach (PlayerController um in GameManager.Instance.gameController.playerManager.playersControllers)
             {
-                //if (Vector3.Distance(transform.position, GameManager.Instance.gameController.playerManager.Players[i].gameObject.transform.position) < 5)
+                foreach (PlayerController outro in GameManager.Instance.gameController.playerManager.playersControllers)
                 {
-                    prox = GameManager.Instance.gameController.playerManager.playersControllers[i].gameObject.transform.position;
+                    {
+                        if (Vector3.Distance(this.transform.position, outro.transform.position) <= Vector3.Distance(this.transform.position, um.transform.position))
+                        {
+                            prox = outro.transform.position;
+                            transform.LookAt(prox);
+                        }
+                    }
                 }
-                transform.LookAt(prox);
             }
         }
         catch

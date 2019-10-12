@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
 
 public class FirstScene : MonoBehaviour
 {
@@ -13,19 +12,22 @@ public class FirstScene : MonoBehaviour
 
     bool subir;
 
+    public Image logo;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(1);
         }
-        //PiscarLetreiro();
+
         ScalarLetreiro();
+        CrossTextColor();
     }
 
     void CrossTextColor()
     {
-
+        textPress.color = new Color(1/_timeRun, _timeRun, 0);
     }
     void PiscarLetreiro()
     {
@@ -65,4 +67,5 @@ public class FirstScene : MonoBehaviour
             textPress.gameObject.transform.localScale = new Vector3(_timeRun + 1, _timeRun + 1, _timeRun + 1);
         }
     }
+
 }
