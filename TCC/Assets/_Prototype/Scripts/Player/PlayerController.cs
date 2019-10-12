@@ -102,7 +102,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     private void FixedUpdate()
     {
         TileInteract();
+        if (_movementAxis != Vector3.zero)
+            anim.SetBool("isMove", true);
+        else
+            anim.SetBool("isMove", false);
+
         this.transform.position += _movementAxis;
+
         Rot();
         passiva.AtivarPassiva(this);
         if (PowerUp == true)
