@@ -8,21 +8,24 @@ using System;
 public class FirstScene : MonoBehaviour
 {
     public Text textPress;
-    float _actualTime = 1.8f;
+    public float _actualTime = 1.8f;
     float _timeRun = 0;
+
+    bool subir;
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(1);
         }
-        PiscarLetreiro();
+        //PiscarLetreiro();
+        ScalarLetreiro();
     }
 
     void CrossTextColor()
     {
-        
+
     }
     void PiscarLetreiro()
     {
@@ -38,7 +41,28 @@ public class FirstScene : MonoBehaviour
     IEnumerator IEPiscarLetreiro()
     {
         textPress.gameObject.SetActive(false);
-        yield return new WaitForSeconds(_actualTime/2);
+        yield return new WaitForSeconds(_actualTime / 2);
         textPress.gameObject.SetActive(true);
+    }
+
+    void ScalarLetreiro()
+    {
+        if (_timeRun >= 1)
+        {
+            subir = false;
+        }
+        else if (_timeRun <= 0.3f)
+            subir = true;
+
+        if (subir)
+        {
+            _timeRun += Time.deltaTime;
+            textPress.gameObject.transform.localScale = new Vector3(_timeRun + 1, _timeRun + 1, _timeRun + 1);
+        }
+        if (!subir)
+        {
+            _timeRun -= Time.deltaTime;
+            textPress.gameObject.transform.localScale = new Vector3(_timeRun + 1, _timeRun + 1, _timeRun + 1);
+        }
     }
 }
