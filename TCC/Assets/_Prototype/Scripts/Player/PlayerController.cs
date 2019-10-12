@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public bool canShoot;
     public Transform hand;
     AutoAim _autoAim;
+    public Transform sairTiro;
     #endregion
 
     #region Interaçao Ambiente
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         _cc = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
         _autoAim = GetComponent<AutoAim>();
-       
+        sairTiro = transform.GetChild(2);
         armaInventory = new Arma[2];
     
         this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
@@ -102,7 +103,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     private void FixedUpdate()
     {
         TileInteract();
+        if (_movementAxis != Vector3.zero)
+            anim.SetBool("isMove", true);
+        else
+            anim.SetBool("isMove", false);
+
         this.transform.position += _movementAxis;
+
         Rot();
         passiva.AtivarPassiva(this);
         if (PowerUp == true)
@@ -329,9 +336,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             {
                 if (canShoot)
                 {
-                    transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;
-                    Transform transformArma = hand.GetChild(0);
-                    actualArma.Shoot(transformArma.position, this.transform.rotation, transformArma.forward, this);
+                    //transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;    
+                    actualArma.Shoot(sairTiro.position, this.transform.rotation, sairTiro.forward, this);
                     StartCoroutine(fireRate(actualArma.fireRate));
                     if (actualArma.ammoAmount <= 0)
                     {

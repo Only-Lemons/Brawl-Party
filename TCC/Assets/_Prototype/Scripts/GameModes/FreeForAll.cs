@@ -78,7 +78,7 @@ public class FreeForAll : IGameMode
             }
         }
         Time.timeScale = 0;
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
 }
