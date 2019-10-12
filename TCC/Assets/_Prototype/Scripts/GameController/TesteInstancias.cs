@@ -9,7 +9,9 @@ public class TesteInstancias : MonoBehaviour
 
     public GameObject[] go;
     public int velocidadeQueda = 10;
-    //public Vector2 limiteParaInstanciar = new Vector2(15, 15);
+
+    Vector2 limiteParaInstanciar = new Vector2(15, 15); //Modo Random ou sem tiles
+
     GameObject cxPadrao;
 
     //Vector3 pontoRef;
@@ -35,27 +37,27 @@ public class TesteInstancias : MonoBehaviour
         Instanciar();
     }
 
-    void InstanciarCaixa()
+    void InstanciarCaixaPorTile()
     {
-        //Modelo inicial
-        //int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x + 1);
-        //int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y + 1);
-        //pontoRef = new Vector3(x, 20, z);
-        //Fim
-
-        //Modelo por tile normal
         for (int i = 0; i < qtdInstanciar; i++)
         {
             int posO = Random.Range(0, tilesN.Count);
             GameObject go1 = tilesN[posO];
             Vector3 novoPos = go1.transform.position;
             novoPos.y = 20;
-            //Fim
-
-            //goAtual = Instantiate(cxPadrao, pontoRef, Quaternion.identity); //Modelo inicial
 
             Instantiate(cxPadrao, novoPos, Quaternion.identity);
-            //Modelo por tile normal
+        }
+    }
+
+    void InstanciarCaixaSemTile()
+    {
+        for (int i = 0; i < qtdInstanciar; i++)
+        {
+            int x = (int)Random.Range(-limiteParaInstanciar.x, limiteParaInstanciar.x + 1);
+            int z = (int)Random.Range(-limiteParaInstanciar.y, limiteParaInstanciar.y + 1);
+            Vector3 pontoRef = new Vector3(x, 20, z);
+            Instantiate(cxPadrao, pontoRef, Quaternion.identity);
         }
     }
 
@@ -66,7 +68,7 @@ public class TesteInstancias : MonoBehaviour
         if (timer <= 0)
         {
             timer = tempoRespawn;
-            InstanciarCaixa();
+            InstanciarCaixaPorTile();
         }
     }
 
