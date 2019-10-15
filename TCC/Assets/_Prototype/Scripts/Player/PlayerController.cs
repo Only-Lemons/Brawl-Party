@@ -122,6 +122,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         //essa parte apenas pra suavizar as travadas pós morte
         if (life <= 0)
             transform.position = Vector3.Lerp(transform.position, _base, Time.deltaTime);
+
+        AtirarSemParar();
     }
     public void ResetarPlayer()
     {
@@ -333,15 +335,27 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         _rotationAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
     }
 
+    bool podeAtirarSemParar = false;
     public void OnFire(InputAction.CallbackContext context)
     {
         if (context.started)
+        {
+            podeAtirarSemParar = !podeAtirarSemParar;
+        }
+
+    }
+
+    void AtirarSemParar()
+    {
+        if (podeAtirarSemParar)
         {
             if (actualArma != null)
             {
                 if (canShoot)
                 {
-                    //transform.rotation = transform.GetChild(0).rotation * Quaternion.identity;    
+                    if (GetComponent<AutoAim>().mirando)
+                        transform.rotation = GetComponent<AutoAim>().mirandoRotacao; //permite que a rotacao seja corrigida
+
                     actualArma.Shoot(sairTiro.position, this.transform.rotation, sairTiro.forward, this);
                     StartCoroutine(fireRate(actualArma.fireRate));
                     if (actualArma.ammoAmount <= 0)
@@ -353,12 +367,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 }
             }
         }
-
-    }
-
-    void AtirarSemParar()
-    {
-
     }
 
     public void OnStart(InputAction.CallbackContext context) { }

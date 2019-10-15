@@ -6,7 +6,12 @@ public class AutoAim : MonoBehaviour
 {
     public int distancia = 15;
     public int sensibilidade;
+
+    [HideInInspector]
     public bool mirando = false;
+
+    [HideInInspector]
+    public Quaternion mirandoRotacao;
 
     void Start()
     {
@@ -37,6 +42,7 @@ public class AutoAim : MonoBehaviour
                         {
                             prox = outro.transform.position;
                             transform.LookAt(prox);
+                            mirandoRotacao = transform.rotation; //controle de rotação atual
                         }
                     }
                 }
