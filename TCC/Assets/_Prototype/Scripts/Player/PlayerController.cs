@@ -356,6 +356,11 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     }
 
+    void AtirarSemParar()
+    {
+
+    }
+
     public void OnStart(InputAction.CallbackContext context) { }
 
     public void OnAim(InputAction.CallbackContext context)
