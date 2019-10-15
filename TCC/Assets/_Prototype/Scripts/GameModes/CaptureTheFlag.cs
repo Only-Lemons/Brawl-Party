@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class CaptureTheFlag : IGameMode
 {
+    bool adicionolPoint = false;
     GameController _gameController;
     PlayerController _auxPlayer = null;
     GameObject _flag = Resources.Load("Mecanicas/Flag") as GameObject;
@@ -27,9 +28,12 @@ public class CaptureTheFlag : IGameMode
     }
     public void FinishGame()
     {
-        _actualtime -= Time.deltaTime;
-        ShowTime();
-        AddPoints();
+        if (adicionolPoint == false)
+        {
+            _actualtime -= Time.deltaTime;
+            ShowTime();
+            AddPoints();
+        }
         if (_actualtime <= 0)
             WinRule();
     }
@@ -72,7 +76,22 @@ public class CaptureTheFlag : IGameMode
     }
     public void WinRule()
     {
-        Time.timeScale = 0;
+        PlayerController playerMaior = null;
+        float maiorPonto = int.MinValue;
+        foreach (PlayerController player in _gameController.playerManager.playersControllers)
+        {
+            if (pontos[player] > maiorPonto)
+            {
+                maiorPonto = pontos[player];
+                playerMaior = player;
+            }
+        }
+        if (adicionolPoint == false)
+        {
+            GameManager.Instance.pontosGeral[_gameController.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
+            _gameController.FinishGame();
+            adicionolPoint = true;
+        }
     }
     public void DeathRule(PlayerController player)
     {

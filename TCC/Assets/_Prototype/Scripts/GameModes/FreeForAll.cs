@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class FreeForAll : IGameMode
 {
+    bool adicionolPoint = false;
     GameController _gameController;
     float _actualtime;
     float _timeToRespawn;
@@ -36,8 +37,11 @@ public class FreeForAll : IGameMode
     }
     public void FinishGame()
     {
-        _actualtime -= Time.deltaTime;
-        ShowTime();
+        if (adicionolPoint == false)
+        {
+            _actualtime -= Time.deltaTime;
+            ShowTime();
+        }
         if (_actualtime <= 0)
             WinRule();
     }
@@ -77,8 +81,12 @@ public class FreeForAll : IGameMode
                 playerMaior = player;
             }
         }
-        Time.timeScale = 0;
-        //SceneManager.LoadScene(1);
-    }
+        if (adicionolPoint == false)
+        {
+            GameManager.Instance.pontosGeral[_gameController.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
+            _gameController.FinishGame();
+            adicionolPoint = true;
+        }
 
+    }
 }
