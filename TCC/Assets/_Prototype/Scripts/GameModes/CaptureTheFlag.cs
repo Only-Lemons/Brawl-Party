@@ -105,9 +105,17 @@ public class CaptureTheFlag : IGameMode
             {
                 _auxPlayer = null;
                 bandeira[player] = false;
-                GameObject.Instantiate(_flag, Vector3.zero, Quaternion.identity);
+                if (posAux.x < 0 && posAux.z < 0)
+                    GameObject.Instantiate(_flag, posAux + new Vector3(2, 0, 2), Quaternion.identity);
+                if (posAux.x < 0 && posAux.z > 0)
+                    GameObject.Instantiate(_flag, posAux + new Vector3(2, 0, -2), Quaternion.identity);
+                if (posAux.x > 0 && posAux.z < 0)
+                    GameObject.Instantiate(_flag, posAux + new Vector3(-2, 0, 2), Quaternion.identity);
+                if (posAux.x > 0 && posAux.z > 0)
+                    GameObject.Instantiate(_flag, posAux + new Vector3(-2, 0, -2), Quaternion.identity);
             }
-            player.gameObject.SetActive(false);
+
+            player.canDeath = false;
         }
     }
 }

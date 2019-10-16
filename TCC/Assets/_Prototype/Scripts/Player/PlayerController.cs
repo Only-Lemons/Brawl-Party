@@ -103,27 +103,34 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     private void FixedUpdate()
     {
         TileInteract();
-        if (_movementAxis != Vector3.zero)
-            anim.SetBool("isMove", true);
-        else
-            anim.SetBool("isMove", false);
 
-        this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime;
+        if (canDeath == true)
+        {
+            if (_movementAxis != Vector3.zero)
+                anim.SetBool("isMove", true);
+            else
+                anim.SetBool("isMove", false);
 
-        Rot();
-        passiva.AtivarPassiva(this);
-        if (PowerUp == true)
-            VerificarPU();
-        if (actualArma == null)
-            anim.SetBool("HasGun", false);
-        else
-            anim.SetBool("HasGun", true);
+            this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime;
 
-        //essa parte apenas pra suavizar as travadas pós morte
-        if (life <= 0)
-            transform.position = Vector3.Lerp(transform.position, _base, Time.deltaTime);
+            Rot();
+            passiva.AtivarPassiva(this);
+            if (PowerUp == true)
+                VerificarPU();
+            if (actualArma == null)
+                anim.SetBool("HasGun", false);
+            else
+                anim.SetBool("HasGun", true);
 
-        AtirarSemParar();
+            AtirarSemParar();
+        }
+
+        if (canDeath == false)
+        {
+            transform.position = Vector3.Lerp(transform.position, _base, 3*Time.deltaTime);
+            this.gameObject.SetActive(false);
+        }
+        
     }
     public void ResetarPlayer()
     {
@@ -135,6 +142,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
+        canDeath = true;
     }
     void Rot()
     {
@@ -347,9 +355,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void AtirarSemParar()
     {
-        if (podeAtirarSemParar)
+
+        if (actualArma != null)
         {
-            if (actualArma != null)
+            if (podeAtirarSemParar)
             {
                 if (canShoot)
                 {

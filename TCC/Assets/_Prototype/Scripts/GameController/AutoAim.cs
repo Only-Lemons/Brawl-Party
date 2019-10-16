@@ -38,12 +38,13 @@ public class AutoAim : MonoBehaviour
                 foreach (PlayerController outro in GameManager.Instance.gameController.playerManager.playersControllers)
                 {
                     {
-                        if (Vector3.Distance(this.transform.position, outro.transform.position) <= Vector3.Distance(this.transform.position, um.transform.position))
-                        {
-                            prox = outro.transform.position;
-                            transform.LookAt(prox);
-                            mirandoRotacao = transform.rotation; //controle de rotação atual
-                        }
+                        if (outro.canDeath)
+                            if (Vector3.Distance(this.transform.position, outro.transform.position) <= Vector3.Distance(this.transform.position, um.transform.position))
+                            {
+                                prox = outro.transform.position;
+                                transform.LookAt(prox);
+                                mirandoRotacao = transform.rotation; //controle de rotação atual
+                            }
                     }
                 }
             }

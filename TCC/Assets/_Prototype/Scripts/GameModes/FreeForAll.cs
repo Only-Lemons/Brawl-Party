@@ -33,6 +33,8 @@ public class FreeForAll : IGameMode
             _gameController.playerManager.playerMortos.Add(player, _timeToRespawn);
             _gameController.playerManager.playerMortosPrefabs.Add(player);
             player.playerUI.Respawn.enabled = true;
+
+            player.canDeath = false;
         }
     }
     public void FinishGame()
