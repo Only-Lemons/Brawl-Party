@@ -34,6 +34,7 @@ public class FreeForAll : IGameMode
             _gameController.playerManager.playerMortosPrefabs.Add(player);
             player.playerUI.Respawn.enabled = true;
 
+            player.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
             player.canDeath = false;
         }
     }

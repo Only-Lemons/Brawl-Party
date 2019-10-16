@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     Material hp;
 
+    [HideInInspector]
+    public Mesh guardarMesh; //Permite controlar visibilidade do player
+
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Start()
     {
+        guardarMesh = this.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh;
+
         passiva = Instantiate(player.passiva);
         life = player.hp;
         speed = player.speed;
@@ -134,6 +139,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     public void ResetarPlayer()
     {
+
         this.transform.position = _base;
         actualArma = null;
         armaInventory = new Arma[2];
@@ -142,6 +148,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
+        this.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh = guardarMesh;
         canDeath = true;
     }
     void Rot()

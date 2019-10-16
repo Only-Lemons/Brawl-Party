@@ -115,6 +115,7 @@ public class CaptureTheFlag : IGameMode
                     GameObject.Instantiate(_flag, posAux + new Vector3(-2, 0, -2), Quaternion.identity);
             }
 
+            player.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
             player.canDeath = false;
         }
     }
