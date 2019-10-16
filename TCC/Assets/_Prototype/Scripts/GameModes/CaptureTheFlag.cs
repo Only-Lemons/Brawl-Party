@@ -105,14 +105,8 @@ public class CaptureTheFlag : IGameMode
             {
                 _auxPlayer = null;
                 bandeira[player] = false;
-                if (posAux.x < 0 && posAux.z < 0)
-                    GameObject.Instantiate(_flag, posAux + new Vector3(2, 0, 2), Quaternion.identity);
-                if (posAux.x < 0 && posAux.z > 0)
-                    GameObject.Instantiate(_flag, posAux + new Vector3(2, 0, -2), Quaternion.identity);
-                if (posAux.x > 0 && posAux.z < 0)
-                    GameObject.Instantiate(_flag, posAux + new Vector3(-2, 0, 2), Quaternion.identity);
-                if (posAux.x > 0 && posAux.z > 0)
-                    GameObject.Instantiate(_flag, posAux + new Vector3(-2, 0, -2), Quaternion.identity);
+                GameObject.Instantiate(_flag, posAux, Quaternion.identity);
+                
             }
 
             player.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
