@@ -74,11 +74,20 @@ public class TesteInstancias : MonoBehaviour
 
     public GameObject InstanciarArma(int b)
     {
-        int rnd = Random.Range(0, 1);
+        int contador = 3; //Usado para aumentar chances de drop da pistola comum em reação às outras armas
+        int rnd = Random.Range(0, 6);
+        if (rnd != 0)
+            for (int i = 0; i <= contador; i++)
+            {
+                rnd = Random.Range(0, 6);
+                if (rnd == 0)
+                    break;
+            }
+
         switch (rnd)
         {
             case 0:
-                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
             case 1:
                 go[b].GetComponent<ArmaController>().actualArma = new ArmaLazer();
@@ -97,7 +106,7 @@ public class TesteInstancias : MonoBehaviour
                 break;
 
             case 5:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
 
             default:
@@ -106,7 +115,7 @@ public class TesteInstancias : MonoBehaviour
         return go[b];
     }
 
-    
+
 
     void GetNormalTiles()
     {
