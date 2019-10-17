@@ -8,7 +8,7 @@ public class Shotgun : Arma
     public Shotgun()
     {
         fireRate = 1f;
-        ammoAmount = 4;
+        ammoAmount = 7;
         damage = 20;
         gunSprite = Resources.Load("Armas/Sprites/Shotgun") as Sprite;
         prefab = Resources.Load("Armas/Shotgun") as GameObject;

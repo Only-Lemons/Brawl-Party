@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Granade : Arma
+public class LancaGranada : Arma
 {
-    public Granade()
+    public LancaGranada()
     {
-        fireRate = 1f;
-        ammoAmount = 1;
-        damage = 100;
+        fireRate = 2.5f;
+        ammoAmount = 4;
+        damage = 35;
         gunSprite = Resources.Load("Armas/Sprites/Shotgun") as Sprite;
         prefab = Resources.Load("Armas/Shotgun") as GameObject;
-        ammunitionPrefab = Resources.Load("Municoes/ProjetilBazuca") as GameObject;
-        ammunitionPrefab.GetComponent<BulletBazuca>().damage = this.damage;
+        ammunitionPrefab = Resources.Load("Municoes/ProjetilGranada") as GameObject;
+        ammunitionPrefab.GetComponent<BulletGranade>().damage = this.damage;
        
 
     }
@@ -21,8 +21,8 @@ public class Granade : Arma
     public override void Shoot(Vector3 position, Quaternion rotation,Vector3 Forward, PlayerController player)
     {
         ammoAmount--;
-        ammunitionPrefab.GetComponent<BulletBazuca>().transformForward = Forward;
-        ammunitionPrefab.GetComponent<BulletBazuca>().player = player;
+        ammunitionPrefab.GetComponent<BulletGranade>().transformForward = Forward;
+        ammunitionPrefab.GetComponent<BulletGranade>().player = player;
         GameObject ob = Instantiate(ammunitionPrefab, position, rotation);
     }
 }

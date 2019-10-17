@@ -74,25 +74,29 @@ public class TesteInstancias : MonoBehaviour
 
     public GameObject InstanciarArma(int b)
     {
-        int rnd = Random.Range(0, 5);
+        int rnd = Random.Range(0, 1);
         switch (rnd)
         {
             case 0:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
             case 1:
-                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
+                go[b].GetComponent<ArmaController>().actualArma = new ArmaLazer();
                 break;
 
             case 2:
-                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
+                go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
 
             case 3:
-                go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
+                go[b].GetComponent<ArmaController>().actualArma = new Metralhadora();
                 break;
 
             case 4:
+                go[b].GetComponent<ArmaController>().actualArma = new LancaGranada();
+                break;
+
+            case 5:
                 go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
 

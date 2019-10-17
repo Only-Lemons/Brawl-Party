@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : Arma
+
+public class Metralhadora : Arma
 {
-    public Pistol()
+    public Metralhadora()
     {
-        fireRate = 0.25f;
-        ammoAmount = 14;
-        damage = 10;
+        fireRate = 0.1f;
+        ammoAmount = 35;
+        damage = 4;
         gunSprite = Resources.Load("Armas/Sprites/Pistol") as Sprite;
         prefab = Resources.Load("Armas/Pistol") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
         ammunitionPrefab.GetComponent<Bullet>().damage = this.damage;
+       
 
     }
 
-  
-
-    public override void Shoot(Vector3 position, Quaternion rotation, Vector3 Foward, PlayerController player)
+    public override void Shoot(Vector3 position, Quaternion rotation,Vector3 Forward, PlayerController player)
     {
         ammoAmount--;
-        ammunitionPrefab.GetComponent<Bullet>().transformForward = Foward;
+        ammunitionPrefab.GetComponent<Bullet>().transformForward = Forward;
         ammunitionPrefab.GetComponent<Bullet>().player = player;
-        Instantiate(ammunitionPrefab,position + player.transform.forward*1.5f,rotation);
+        Instantiate(ammunitionPrefab, position + player.transform.forward * 1.5f, rotation);
+
     }
 }

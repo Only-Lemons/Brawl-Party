@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBazucaExplosao : MonoBehaviour
+public class BulletGranadeExplosao : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject bulletBazuca;
-    float amplitude = 7;
+    float amplitude = 3;
+    GameObject bulletGranada;
     void Start()
     {
-        bulletBazuca = Resources.Load("Municoes/ProjetilBazuca") as GameObject;
+        bulletGranada = Resources.Load("Municoes/ProjetilGranada") as GameObject;
         Destroy(gameObject, 1);
     }
 
@@ -22,7 +22,7 @@ public class BulletBazucaExplosao : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<PlayerController>().ReceiveDamage(bulletBazuca.GetComponent<BulletBazuca>().damage / ((int)transform.localScale.x + 1), other.gameObject.GetComponent<PlayerController>());
+            other.GetComponent<PlayerController>().ReceiveDamage(bulletGranada.GetComponent<BulletGranade>().damage / ((int)transform.localScale.x + 1), other.gameObject.GetComponent<PlayerController>());
 
         }
     }
