@@ -116,10 +116,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             else
                 anim.SetBool("isMove", false);
 
-            this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime;
+            //this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime;
 
-            Rot();
-            passiva.AtivarPassiva(this);
+            //Rot();
+            GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
+            GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
+
+           passiva.AtivarPassiva(this);
             if (PowerUp == true)
                 VerificarPU();
             if (actualArma == null)
@@ -332,8 +335,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     #region InputSystemEvents
     public void OnMove(InputAction.CallbackContext context)
     {
-        _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
-        //_movementAxis *= ;
+        _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);  
         try
         {
             anim.SetFloat("x", context.ReadValue<Vector2>().x);

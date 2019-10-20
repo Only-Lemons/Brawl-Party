@@ -10,4 +10,6 @@ public interface  IGameMode
     void PointRule(PlayerController player);
     void WinRule();
     void DeathRule(PlayerController player);
+    void MovementRule(Vector3 dir, Transform player,float speed);
+    void RotationRule(Vector3 dir, Transform player);
 }
