@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ArmaLazer : Arma
+public class Lazer : Arma
 {
-    public ArmaLazer()
+    public Lazer()
     {
         fireRate = 0.05f;
         ammoAmount = 140;

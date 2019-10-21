@@ -75,14 +75,15 @@ public class TesteInstancias : MonoBehaviour
     public GameObject InstanciarArma(int b)
     {
         int contador = 3; //Usado para aumentar chances de drop da pistola comum em reação às outras armas
-        int rnd = Random.Range(0, 6);
-        if (rnd != 0)
-            for (int i = 0; i <= contador; i++)
-            {
-                rnd = Random.Range(0, 6);
-                if (rnd == 0)
-                    break;
-            }
+        int rnd = Random.Range(0, 9);
+        //if (rnd != 0)
+        //    for (int i = 0; i <= contador; i++)
+        //    {
+        //        rnd = Random.Range(0, 6);
+        //        if (rnd == 0)
+        //            break;
+        //    }
+        //rnd = 8;
 
         switch (rnd)
         {
@@ -90,23 +91,28 @@ public class TesteInstancias : MonoBehaviour
                 go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
             case 1:
-                go[b].GetComponent<ArmaController>().actualArma = new ArmaLazer();
+                go[b].GetComponent<ArmaController>().actualArma = new Lazer();
                 break;
-
             case 2:
                 go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
-
             case 3:
                 go[b].GetComponent<ArmaController>().actualArma = new Metralhadora();
                 break;
-
             case 4:
                 go[b].GetComponent<ArmaController>().actualArma = new LancaGranada();
                 break;
-
             case 5:
                 go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
+                break;
+            case 6:
+                go[b].GetComponent<ArmaController>().actualArma = new Bujing();
+                break;
+            case 7:
+                go[b].GetComponent<ArmaController>().actualArma = new Booming();
+                break;
+            case 8:
+                go[b].GetComponent<ArmaController>().actualArma = new Congelante();
                 break;
 
             default:
