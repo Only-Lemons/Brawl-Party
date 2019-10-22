@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         guardarMesh = this.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh;
 
-        passiva = Instantiate(player.passiva);
+      
         life = player.hp;
         speed = player.speed;
 
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             //GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
             //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
-           passiva.AtivarPassiva(this);
+           // passiva.AtivarPassiva(this);
             if (PowerUp == true)
                 VerificarPU();
             if (actualArma == null)
@@ -133,11 +133,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             AtirarSemParar();
         }
 
-        if (canDeath == false)
-        {
-            transform.position = Vector3.Lerp(transform.position, _base, 3*Time.deltaTime);
-            this.gameObject.SetActive(false);
-        }
+     
+            //PARA DE COLOCAR LERP NA MORTE TA ACHANDO QUE O CARA É MICHAEL JACKSON PARA IR DESLISANDO PARA BASE?????
+         
+       
         
     }
     public void ResetarPlayer()
@@ -165,22 +164,25 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     void TileInteract()
     {
-        float menorDistancia = float.MaxValue;
-        try
+        if (TerrainController.instance != null)
         {
-            for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
+            float menorDistancia = float.MaxValue;
+            try
             {
-                if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
+                for (int k = 0; k < TerrainController.instance.tilesInstanciados.Count; k++)
                 {
-                    menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
-                    _tileAtivo = TerrainController.instance.tilesInstanciados[k];
+                    if (Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position) < menorDistancia)
+                    {
+                        menorDistancia = Vector3.Distance(this.transform.position, TerrainController.instance.tilesInstanciados[k].Pivot.transform.position);
+                        _tileAtivo = TerrainController.instance.tilesInstanciados[k];
+                    }
                 }
+                _tileAtivo.Interagir(this);
             }
-            _tileAtivo.Interagir(this);
-        }
-        catch
-        {
-            Debug.Log("Tentando definir tiles interativos");
+            catch
+            {
+               
+            }
         }
     }
 
@@ -214,7 +216,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     void Death()
     {
-
         GameController.singleton.gameMode.DeathRule(this);
         if (this.transform.GetChild(2).childCount > 0)
             Destroy(this.transform.GetChild(2).GetChild(0).gameObject);

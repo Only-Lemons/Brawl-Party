@@ -11,6 +11,7 @@ public class GetItRock : IGameMode
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     bool adicionolPoint = false;
     int numwinner = 0;
+    float lasthit = 2;
     public GetItRock(GameController gameController, float time)
     {
         aux = gameController;
@@ -18,6 +19,9 @@ public class GetItRock : IGameMode
     }
     public void DeathRule(PlayerController player)
     {
+        player.ResetarPlayer();
+        player.gameObject.SetActive(false);
+
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
@@ -39,7 +43,7 @@ public class GetItRock : IGameMode
             }
             posicoes.Add(hammer);
             //TO-DO hammers[hammer].getComponent<Animation>()...
-
+          
         }
         brickHammer(posicoes);
 
@@ -49,7 +53,7 @@ public class GetItRock : IGameMode
         yield return new WaitForSeconds(2f);
         for (int i = 0; i < posicoes.Count; i++)
         {
-            //TO-DO hammers[posicoes[i]].getComponent<Animation>()...
+            hammers[i].GetComponent<Animator>().SetInteger("estate",2);
         }
 
     }
@@ -57,13 +61,18 @@ public class GetItRock : IGameMode
     {
         if (!adicionolPoint)
         {
+            lasthit -= Time.deltaTime;
             timeOfGame -= Time.deltaTime;
             if(timeOfGame <= 0)
             {
                 InsertWinners();
                 WinRule();
             }
-            fallRock();
+            if (lasthit <= 0)
+            {
+                fallRock();
+                lasthit = 2;
+            }
         }
     }
     void InsertWinners()

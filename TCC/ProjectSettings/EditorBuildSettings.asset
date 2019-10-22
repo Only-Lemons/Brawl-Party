@@ -6,25 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Prototype/_scenes/(0)FirsScene.unity
+    path: Assets/_Prototype/_Scenes/(0)FirsScene.unity
     guid: 92286d4d5424bef4ebba3b30f9842272
   - enabled: 1
-    path: Assets/_Prototype/_scenes/(1)MenuInicial.unity
+    path: Assets/_Prototype/_Scenes/(1)MenuInicial.unity
     guid: 8302328bd74ca8740a76bdf030f32270
   - enabled: 1
-    path: "Assets/_Prototype/_scenes/(2) Configura\xE7\xF5es.unity"
+    path: "Assets/_Prototype/_Scenes/(2) Configura\xE7\xF5es.unity"
     guid: ff055c03af8877a4aa5203a98871dd62
   - enabled: 1
-    path: Assets/_Prototype/_scenes/(3) Loading.unity
+    path: Assets/_Prototype/_Scenes/(3) Loading.unity
     guid: 5957c2f4c02e4674fb7cbfd95fc1363a
   - enabled: 1
-    path: Assets/_Prototype/_scenes/(4) MenuPersonagem.unity
+    path: Assets/_Prototype/_Scenes/(4) MenuPersonagem.unity
     guid: fbaecb1c6ea05fe4bb303269a05f02b1
   - enabled: 1
-    path: Assets/_Prototype/_scenes/(5) drawArena.unity
+    path: Assets/_Prototype/_Scenes/(5) drawArena.unity
     guid: 7d0ff75eb0b122442a066b3eb961b84b
   - enabled: 1
-    path: Assets/_Prototype/_scenes/(6) drawBoss.unity
+    path: Assets/_Prototype/_Scenes/(6) drawBoss.unity
     guid: 340a8de77fb87c04eb3e47181d1436a1
   - enabled: 1
     path: Assets/_Prototype/_Scenes/(7) Creditos.unity
@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Prototype/_Scenes/(8) Gelo.unity
     guid: 5b7b20a77d718464dbe67cb2ae78a68b
+  - enabled: 1
+    path: Assets/_Prototype/_Scenes/(9)GetItRock.unity
+    guid: 64bb90be2b133fe4eb25ef76888959a3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 75d13b8fd062eec44850361a199fe242,
       type: 2}

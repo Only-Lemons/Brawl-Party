@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playersPanels = new List<GameObject>();
     public int[] pontosGeral;
     public Vector3 lastPainel;
-
+    int oldScene = 0;
     #region LevelInteract
     public int nextLevel;
     #endregion  
@@ -58,12 +58,16 @@ public class GameManager : MonoBehaviour
                 break;
 
             default:
-                foreach (GameObject player in playersPanels)
+                if (oldScene != SceneManager.GetActiveScene().buildIndex)
                 {
-                    player.transform.GetChild(1).gameObject.SetActive(false);
-                    player.transform.GetChild(0).gameObject.SetActive(true);
+                    foreach (GameObject player in playersPanels)
+                    {
+                        player.transform.GetChild(1).gameObject.SetActive(false);
+                        player.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+                    transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                    oldScene = SceneManager.GetActiveScene().buildIndex;
                 }
-                transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                 break;
         }
     }
@@ -84,11 +88,14 @@ public class GameManager : MonoBehaviour
     {
         if (game == GameModes.CaptureTheFlag)
         {
-            gameController.gameMode = new CaptureTheFlag(gameController, TimeInGame);
+            gameController.gameMode = new CaptureTheFlag(gameController, 120);
         }
         else if (game == GameModes.FreeForAll)
         {
-            gameController.gameMode = new FreeForAll(gameController, TimeInGame);
+            gameController.gameMode = new FreeForAll(gameController, 50);
+        }else if(game == GameModes.GetItRock)
+        {
+            gameController.gameMode = new GetItRock(gameController, 45);
         }
     }
 

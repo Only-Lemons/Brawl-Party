@@ -15,6 +15,6 @@ public class SOPlayer : ScriptableObject
     public Material corProvisorio;
    public GameObject prefab;
    public Animator stateAnimation;
-   public SOPassive passiva;
+
   
 }

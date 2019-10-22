@@ -97,6 +97,7 @@ public class CaptureTheFlag : IGameMode
     {
         if (player.canDeath)
         {
+            player.gameObject.SetActive(false);
             _gameController.playerManager.playerMortos.Add(player, _timeToRespawn);
             _gameController.playerManager.playerMortosPrefabs.Add(player);
             player.playerUI.Respawn.enabled = true;
@@ -106,11 +107,8 @@ public class CaptureTheFlag : IGameMode
                 _auxPlayer = null;
                 bandeira[player] = false;
                 GameObject.Instantiate(_flag, posAux, Quaternion.identity);
-                
-            }
 
-            player.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
-            player.canDeath = false;
+             }
         }
     }
 
