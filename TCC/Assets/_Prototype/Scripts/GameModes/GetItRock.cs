@@ -33,7 +33,7 @@ public class GetItRock : IGameMode
     void fallRock()
     {
         List<int> posicoes = new List<int>();
-        int HammerQuant = Random.Range(0, 3);
+        int HammerQuant = Random.Range(1, 4);
         for (int i = 0; i < HammerQuant; i++)
         {
             int hammer = Random.Range(0, hammers.Length);
