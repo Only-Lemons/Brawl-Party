@@ -76,13 +76,13 @@ public class TesteInstancias : MonoBehaviour
     {
         int contador = 3; //Usado para aumentar chances de drop da pistola comum em reação às outras armas
         int rnd = Random.Range(0, 10);
-        //if (rnd != 0)
-        //    for (int i = 0; i <= contador; i++)
-        //    {
-        //        rnd = Random.Range(0, 11);
-        //        if (rnd == 0)
-        //            break;
-        //    }
+        if (rnd != 0)
+            for (int i = 0; i <= contador; i++)
+            {
+                rnd = Random.Range(0, 10);
+                if (rnd == 0)
+                    break;
+            }
         //rnd = 9;
 
         switch (rnd)
