@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 9007704314482219268}
   - component: {fileID: 3977963164243372844}
   - component: {fileID: 430355159841713022}
-  - component: {fileID: -8612855322772992845}
-  - component: {fileID: -7222717428614603152}
+  - component: {fileID: -1741491272162576985}
+  - component: {fileID: 113898068141290672}
   m_Layer: 0
-  m_Name: ExplosaoGranade
+  m_Name: DoomooEfeito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f5ab5aa84c7ea5429e5979681ef8586, type: 2}
+  - {fileID: 2100000, guid: cc458bb91ab1632489be71298b0688ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-8612855322772992845
+--- !u!114 &-1741491272162576985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,10 +89,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2236393400438116409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22acea3d4acd45340a2e78502840dfdb, type: 3}
+  m_Script: {fileID: 11500000, guid: 72de9b9250097924e832326aaa0cc9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &-7222717428614603152
+--- !u!135 &113898068141290672
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
