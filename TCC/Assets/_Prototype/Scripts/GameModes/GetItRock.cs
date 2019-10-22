@@ -32,6 +32,7 @@ public class GetItRock : IGameMode
     }
     void fallRock()
     {
+        
         List<int> posicoes = new List<int>();
         int HammerQuant = Random.Range(1, 4);
         for (int i = 0; i < HammerQuant; i++)
@@ -45,18 +46,41 @@ public class GetItRock : IGameMode
             //TO-DO hammers[hammer].getComponent<Animation>()...
           
         }
-        brickHammer(posicoes);
-
-    }
-    IEnumerator brickHammer(List<int> posicoes)
-    {
-        yield return new WaitForSeconds(2f);
         for (int i = 0; i < posicoes.Count; i++)
         {
-            hammers[i].GetComponent<Animator>().SetTrigger("estate");
+            hammers[i].GetComponent<hammer>().StartCoroutine(hammers[i].GetComponent<hammer>().brickHammer());
         }
-
     }
+    //IEnumerator brickHammer(List<int> posicoes)
+    //{
+    //    yield return new WaitForSeconds(2f);
+    //    for (int i = 0; i < posicoes.Count; i++)
+    //    {
+    //        //hammers[i].GetComponent<Animator>().SetTrigger("estate"); 
+    //        while(hammers[i].transform.position.y <= -4.31)
+    //        {
+    //            hammers[i].transform.position = Vector3.Lerp(hammers[i].transform.position, new Vector3(hammers[i].transform.position.x,-4.31f, hammers[i].transform.position.z), 2);
+    //        }
+    //        hammers[i].transform.position = new Vector3(hammers[i].transform.position.x, -4.31f, hammers[i].transform.position.z);
+    //    }
+    //     backHammer(posicoes);
+
+    //}
+    //IEnumerator backHammer(List<int> posicoes)
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    for (int i = 0; i < posicoes.Count; i++)
+    //    {
+    //        while (hammers[i].transform.position.y >= 7.23)
+    //        {
+    //            hammers[i].transform.position = Vector3.Lerp(hammers[i].transform.position, new Vector3(hammers[i].transform.position.x, 7.23f, hammers[i].transform.position.z), 2);
+    //        }
+    //        hammers[i].transform.position = new Vector3(hammers[i].transform.position.x, 7.23f, hammers[i].transform.position.z);
+    //        // hammers[i].GetComponent<Animator>().SetTrigger("estate");
+    //    }
+
+
+    //}
     public void FinishGame()
     {
         if (!adicionolPoint)
@@ -72,7 +96,7 @@ public class GetItRock : IGameMode
             if (lasthit <= 0)
             {
                 fallRock();
-                lasthit = 2;
+                lasthit = 5;
             }
         }
     }

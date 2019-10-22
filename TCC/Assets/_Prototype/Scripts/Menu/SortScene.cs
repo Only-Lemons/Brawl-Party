@@ -54,8 +54,8 @@ public class SortScene : MonoBehaviour
     }
     IEnumerator ChangeScene()
     {
-        GameManager.Instance.nextLevel = gameModes[sortGameM].Scene;
-        GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;      
+        GameManager.Instance.nextLevel = gameModes[2].Scene;
+        GameManager.Instance.newGameMode = gameModes[2].gameMode;      
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(3);
      
