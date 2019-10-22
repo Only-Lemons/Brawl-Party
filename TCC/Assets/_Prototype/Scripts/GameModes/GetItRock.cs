@@ -53,7 +53,7 @@ public class GetItRock : IGameMode
         yield return new WaitForSeconds(2f);
         for (int i = 0; i < posicoes.Count; i++)
         {
-            hammers[i].GetComponent<Animator>().SetInteger("estate",2);
+            hammers[i].GetComponent<Animator>().SetTrigger("estate");
         }
 
     }
@@ -63,7 +63,8 @@ public class GetItRock : IGameMode
         {
             lasthit -= Time.deltaTime;
             timeOfGame -= Time.deltaTime;
-            if(timeOfGame <= 0)
+            ShowTime();
+            if (timeOfGame <= 0)
             {
                 InsertWinners();
                 WinRule();
@@ -104,7 +105,8 @@ public class GetItRock : IGameMode
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
-        player.position += new Vector3(dir.x,0,0) * speed * Time.deltaTime;
+        player.transform.position += new Vector3(dir.x,0,0) * speed * Time.deltaTime;
+        player.transform.position = new Vector3(Mathf.Clamp(player.transform.position.x, -12f, 12f),player.position.y,player.position.z);
     }
 
 
@@ -131,6 +133,7 @@ public class GetItRock : IGameMode
     {
         foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
         {
+            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
             playerMortos.Add(player, false);
         }
     }

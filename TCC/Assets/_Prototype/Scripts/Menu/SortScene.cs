@@ -16,7 +16,7 @@ public class SortScene : MonoBehaviour
     void Start()
     {
      
-       sortGameM = Random.Range(0, gameModes.Length);
+       sortGameM = Random.Range(0, 3);
        StartCoroutine(StartScene());
     }
 

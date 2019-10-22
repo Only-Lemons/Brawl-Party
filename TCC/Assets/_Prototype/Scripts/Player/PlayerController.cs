@@ -74,15 +74,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         UIManager.onStartValues += uiStart;
     }
 
-    void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    void OnDisable()
-    {
-        controls.Disable();
-    }
+   
 
     void Start()
     {
@@ -91,7 +83,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
       
         life = player.hp;
         speed = player.speed;
-
+        speedTile = 0;
         canDeath = true;
         canShoot = true;
         PowerUp = false;
@@ -116,10 +108,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             else
                 anim.SetBool("isMove", false);
 
-            this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime; //Mais funcional
+            //this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime; //Mais funcional
 
             Rot(); //Mais funcional
-            //GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
+            if (GameController.singleton != null)
+            {
+                GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
+            }
             //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
            // passiva.AtivarPassiva(this);
@@ -150,7 +145,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
-        this.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh = guardarMesh;
         canDeath = true;
     }
     void Rot()

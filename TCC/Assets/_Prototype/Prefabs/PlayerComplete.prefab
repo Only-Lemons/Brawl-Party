@@ -943,6 +943,7 @@ MonoBehaviour:
   shield: 0
   passiva: {fileID: 0}
   canDeath: 0
+  guardarMesh: {fileID: 0}
 --- !u!114 &325746370698258448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,6 +959,7 @@ MonoBehaviour:
   distancia: 15
   sensibilidade: 0
   mirando: 0
+  mirandoRotacao: {x: 0, y: 0, z: 0, w: 0}
 --- !u!136 &186066715337892401
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -986,7 +988,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1001 &1134450786679847861
 PrefabInstance:
