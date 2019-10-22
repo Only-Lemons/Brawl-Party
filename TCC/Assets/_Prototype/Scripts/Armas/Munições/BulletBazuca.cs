@@ -13,7 +13,7 @@ public class BulletBazuca : MonoBehaviour
 
     void Start()
     {
-        explosaoEfeito = Resources.Load("Municoes/ExplosaoBazooka") as GameObject;
+        explosaoEfeito = Resources.Load("Municoes/Efeitos/ExplosaoBazooka") as GameObject;
         GetComponent<Rigidbody>().AddForce(transformForward * 400f * velocidadeDaBala, ForceMode.Acceleration);
         Destroy(this.gameObject, 5f);
 

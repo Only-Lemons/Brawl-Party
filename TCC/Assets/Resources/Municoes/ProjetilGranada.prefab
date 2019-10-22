@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 844f926f565c75046b497f026e74163f, type: 2}
+  - {fileID: 2100000, guid: ca1d851532fdaae4a8a286ff30bb8429, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,6 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 35
-  velocidadeDaBala: 1.3
+  velocidadeDaBala: 2.3
   transformForward: {x: -0.99980515, y: 0, z: -0.019741654}
   player: {fileID: 0}
