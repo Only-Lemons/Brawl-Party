@@ -11,7 +11,7 @@ public class JhonBeen : IGameMode
     float timeOfGame;
     float timeToSpawn = 0;
     GameObject _bird = Resources.Load("Mecanicas/Bird") as GameObject;
-    PlayerController[] winners = new PlayerController[4];
+    List<PlayerController> winners = new List<PlayerController>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, PositionsLR> playerPosition = new Dictionary<PlayerController, PositionsLR>();
     int numwinner = 0;
@@ -29,7 +29,7 @@ public class JhonBeen : IGameMode
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
-            winners[0] = player;
+            winners.Add( player);
             WinRule();
         }
     }
@@ -48,7 +48,7 @@ public class JhonBeen : IGameMode
         {
             timeOfGame -= Time.deltaTime;
             ShowTime();
-            goDownPlayers();
+            //goDownPlayers();
             if (timeOfGame <= 0)
             {
                 InsertWinners();
@@ -86,12 +86,13 @@ public class JhonBeen : IGameMode
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
        
-        if(dir.x > 0.4f)
+        if(dir.x > 0f)
         {
-            Debug.Log(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x);
+            Debug.Log(dir);
+            //player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
             player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
         }
-        if (dir.y < 0.4f)
+        if (dir.x < 0f)
         {
             player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].left.x, player.transform.position.y, player.transform.position.z);
         }
@@ -184,7 +185,7 @@ public class JhonBeen : IGameMode
     {
         if (!adicionolPoint)
         {
-            for (int i = 0; i < winners.Length; i++)
+            for (int i = 0; i < winners.Count; i++)
             {
                 GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
 

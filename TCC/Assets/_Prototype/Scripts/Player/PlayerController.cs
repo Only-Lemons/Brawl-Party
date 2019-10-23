@@ -111,10 +111,9 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             //this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime; //Mais funcional
 
             Rot(); //Mais funcional
-            if (GameController.singleton != null)
-            {
+           
                 GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
-            }
+    
             //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
            // passiva.AtivarPassiva(this);
@@ -414,6 +413,14 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         yield return new WaitForSeconds(fireRate);
         anim.SetBool("Shooting", false);
         canShoot = true;
+    }
+
+    public void OnAction(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            this.transform.position += new Vector3(0, 1f, 0);
+        }
     }
 }
 

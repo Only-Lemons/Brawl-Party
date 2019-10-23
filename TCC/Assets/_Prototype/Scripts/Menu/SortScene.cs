@@ -27,6 +27,8 @@ public class SortScene : MonoBehaviour
                 sortGameM = Random.Range(0, 4);
             }
         }
+
+        sortGameM = 3;
        StartCoroutine(StartScene());
     }
 

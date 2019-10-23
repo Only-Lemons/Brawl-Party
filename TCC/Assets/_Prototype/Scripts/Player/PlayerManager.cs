@@ -38,6 +38,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         _tileManager = GameController.singleton.tileManager;
+
         MovePlayerBase();
     }
     private void Update()
@@ -49,6 +50,8 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (PlayerController player in playersControllers)
         {
+            player.GetComponentInChildren<Camera>().enabled = false;
+            player.GetComponent<PlayerSelect>().enabled = false;
             player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)];
             player._base = _tileManager.bases[playersControllers.IndexOf(player)];
         }

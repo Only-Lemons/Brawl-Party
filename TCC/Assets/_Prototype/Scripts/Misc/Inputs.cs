@@ -88,6 +88,14 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Button"",
+                    ""id"": ""27123c6f-a94d-42eb-a186-5dd99b809eb2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
                 }
             ],
             ""bindings"": [
@@ -175,6 +183,17 @@ public class Inputs : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3656af12-0178-4b1f-b9d4-921eb872cee7"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -407,6 +426,28 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e90e24fd-519d-4b4e-a66a-9f6a7b24a169"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9644d2be-9099-44fd-ae5c-f7863a8b19ad"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1184,6 +1225,7 @@ public class Inputs : IInputActionCollection
         m_Player_Insert = m_Player.GetAction("Insert");
         m_Player_Switch = m_Player.GetAction("Switch");
         m_Player_Aim = m_Player.GetAction("Aim");
+        m_Player_Action = m_Player.GetAction("Action");
         // UI
         m_UI = asset.GetActionMap("UI");
         m_UI_Navigate = m_UI.GetAction("Navigate");
@@ -1261,6 +1303,7 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_Player_Insert;
     private readonly InputAction m_Player_Switch;
     private readonly InputAction m_Player_Aim;
+    private readonly InputAction m_Player_Action;
     public struct PlayerActions
     {
         private Inputs m_Wrapper;
@@ -1274,6 +1317,7 @@ public class Inputs : IInputActionCollection
         public InputAction @Insert => m_Wrapper.m_Player_Insert;
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
+        public InputAction @Action => m_Wrapper.m_Player_Action;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1310,6 +1354,9 @@ public class Inputs : IInputActionCollection
                 Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
+                Action.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
+                Action.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
+                Action.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1341,6 +1388,9 @@ public class Inputs : IInputActionCollection
                 Aim.started += instance.OnAim;
                 Aim.performed += instance.OnAim;
                 Aim.canceled += instance.OnAim;
+                Action.started += instance.OnAction;
+                Action.performed += instance.OnAction;
+                Action.canceled += instance.OnAction;
             }
         }
     }
@@ -1553,6 +1603,7 @@ public class Inputs : IInputActionCollection
         void OnInsert(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -354,8 +354,8 @@ MonoBehaviour:
     m_ActionName: SelectUI/Add[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnAdd
+      - m_Target: {fileID: 2136061040103969210}
+        m_MethodName: OnAction
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -426,6 +426,23 @@ MonoBehaviour:
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: ac149a4a-e81d-493b-b362-8f205f1904b4
     m_ActionName: Player/Aim[/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2136061040103969210}
+        m_MethodName: OnAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 27123c6f-a94d-42eb-a186-5dd99b809eb2
+    m_ActionName: Player/Action[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/c]
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b

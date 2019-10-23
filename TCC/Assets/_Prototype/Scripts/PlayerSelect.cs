@@ -64,5 +64,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     public void OnInsert(InputAction.CallbackContext context) { }
     public void OnSwitch(InputAction.CallbackContext context) { }
     public void OnAim(InputAction.CallbackContext context) { }
+
+    public void OnAction(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
     #endregion
 }
