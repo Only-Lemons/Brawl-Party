@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         PlayerController[] aux = GameObject.FindObjectsOfType<PlayerController>();
         for (int i = 0; i < aux.Length; i++)
         {
-            playersControllers.Add(aux[i]);
+            //playersControllers.Add(aux[i]);
 
             aux[i].playerUI = playersUI[i];
         }

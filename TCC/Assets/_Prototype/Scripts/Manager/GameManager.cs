@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject playerComplete in playersPanels)
         {
             if (!gameController.playerManager.playersControllers.Exists(x => x == playerComplete.transform.GetChild(0).GetComponent<PlayerController>()))
-                gameController.playerManager.playersControllers.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
+                gameController.playerManager.playersControllers.Add(playerComplete.GetComponent<PlayerController>());
             // gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
         }
         newScene(newGameMode);
