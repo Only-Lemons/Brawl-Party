@@ -155,10 +155,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7679595223161021341}
   - component: {fileID: 295378212682731239}
-  - component: {fileID: 6945476995209802759}
   m_Layer: 0
   m_Name: FallBrick
-  m_TagString: Untagged
+  m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,18 +197,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6945476995209802759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6685662856485687694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001143bedcba6af419639cb50f465809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7852647329264195270
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5244230662103767635}
   - component: {fileID: 3994321764588754402}
+  - component: {fileID: 2680542529930991197}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -284,3 +272,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01988758, y: 0.025479464, z: 0.022605008}
   m_Center: {x: -0.000079250334, y: 0.011028892, z: -0.00009116651}
+--- !u!114 &2680542529930991197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8510324113424668229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001143bedcba6af419639cb50f465809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

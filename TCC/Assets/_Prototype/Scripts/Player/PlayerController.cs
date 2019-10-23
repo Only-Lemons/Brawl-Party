@@ -74,13 +74,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         UIManager.onStartValues += uiStart;
     }
 
-   
+
 
     void Start()
     {
         guardarMesh = this.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh;
 
-      
+
         life = player.hp;
         speed = player.speed;
         speedTile = 0;
@@ -111,12 +111,12 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             //this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime; //Mais funcional
 
             Rot(); //Mais funcional
-           
-                GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
-    
+
+            GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
+
             //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
-           // passiva.AtivarPassiva(this);
+            // passiva.AtivarPassiva(this);
             if (PowerUp == true)
                 VerificarPU();
             if (actualArma == null)
@@ -127,11 +127,11 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             AtirarSemParar();
         }
 
-     
-            //PARA DE COLOCAR LERP NA MORTE TA ACHANDO QUE O CARA É MICHAEL JACKSON PARA IR DESLISANDO PARA BASE?????
-         
-       
-        
+
+        //PARA DE COLOCAR LERP NA MORTE TA ACHANDO QUE O CARA É MICHAEL JACKSON PARA IR DESLISANDO PARA BASE?????
+
+
+
     }
     public void ResetarPlayer()
     {
@@ -174,7 +174,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             }
             catch
             {
-               
+
             }
         }
     }
@@ -329,7 +329,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     #region InputSystemEvents
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(SceneManager.GetActiveScene().buildIndex!= 4)
+        if (SceneManager.GetActiveScene().buildIndex != 4)
         {
             _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
             try
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 Debug.Log("its not time yet folk calm down");
             }
         }
-    
+
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -419,7 +419,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            this.transform.position += new Vector3(0, 1f, 0);
+            GameController.singleton.gameMode.Action(this);
         }
     }
 }

@@ -127,4 +127,9 @@ public class CaptureTheFlag : IGameMode
         }
         player.rotation = Quaternion.Lerp(_targetRotation, Quaternion.identity, Time.deltaTime);
     }
+
+    public void Action(PlayerController player)
+    {
+        throw new System.NotImplementedException();
+    }
 }

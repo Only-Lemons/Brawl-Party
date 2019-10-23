@@ -7,7 +7,7 @@ public class hammer : MonoBehaviour
     bool canBrick = false;
     bool canUp = false;
     Vector3 posicaoInicial, posicaoFinal;
-    
+
     void Start()
     {
         canUp = false;
@@ -28,30 +28,30 @@ public class hammer : MonoBehaviour
             this.transform.position = Vector3.Lerp(transform.position, posicaoFinal, 4f * Time.deltaTime);
         }
 
-        if(transform.position.magnitude <= posicaoFinal.magnitude -1)
+        if (transform.position.magnitude <= posicaoFinal.magnitude - 1)
             canUp = true;
-        
-        if(canUp == true)
+
+        if (canUp == true)
         {
             transform.position = Vector3.Lerp(transform.position, posicaoInicial, 1f * Time.deltaTime);
-            if(transform.position == posicaoInicial)
+            if (transform.position == posicaoInicial)
                 canUp = false;
         }
     }
     public IEnumerator brickHammer()
     {
-        for(int i = 0; i< 6; i++)
+        for (int i = 0; i < 6; i++)
         {
-        transform.position = new Vector3(posicaoInicial.x-0.2f, posicaoInicial.y, posicaoInicial.z);
-        yield return new WaitForSeconds(0.1f);
-        transform.position = new Vector3(posicaoInicial.x+0.2f, posicaoInicial.y, posicaoInicial.z);
-        yield return new WaitForSeconds(0.1f);
+            transform.position = new Vector3(posicaoInicial.x - 0.2f, posicaoInicial.y, posicaoInicial.z);
+            yield return new WaitForSeconds(0.1f);
+            transform.position = new Vector3(posicaoInicial.x + 0.2f, posicaoInicial.y, posicaoInicial.z);
+            yield return new WaitForSeconds(0.1f);
         }
 
         //yield return new WaitForSeconds(2f);
         canBrick = true;
         StartCoroutine(backHammer());
-        
+
 
     }
     IEnumerator backHammer()

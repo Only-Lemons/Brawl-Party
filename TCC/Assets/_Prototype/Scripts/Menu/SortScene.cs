@@ -17,7 +17,7 @@ public class SortScene : MonoBehaviour
     {
         if (GameManager.Instance.lastGameModes.Count == gameModes.Length)
             SceneManager.LoadScene(1);
-       sortGameM = Random.Range(0, 4);
+        sortGameM = Random.Range(0, 4);
         if (!GameManager.Instance.lastGameModes.Contains(sortGameM))
             GameManager.Instance.lastGameModes.Add(sortGameM);
         else
@@ -28,11 +28,11 @@ public class SortScene : MonoBehaviour
             }
         }
 
-       
-       StartCoroutine(StartScene());
+        sortGameM = 0;
+        StartCoroutine(StartScene());
     }
 
-    
+
     IEnumerator ShowImageGameMode(GameMode[] gameMode, Image imagem, int Index)
     {
         yield return new WaitForSeconds(.1f);
@@ -53,11 +53,11 @@ public class SortScene : MonoBehaviour
             else prefabGMpos.sprite = gameMode[0].sprite;
         }
         Index++;
-        if (Index >= gameModes.Length * 5 && Index%gameModes.Length == sortGameM)
+        if (Index >= gameModes.Length * 5 && Index % gameModes.Length == sortGameM)
         {
-          
-                StartCoroutine(ChangeScene());
-            
+
+            StartCoroutine(ChangeScene());
+
         }
         else
         {
@@ -67,15 +67,15 @@ public class SortScene : MonoBehaviour
     IEnumerator ChangeScene()
     {
         GameManager.Instance.nextLevel = gameModes[sortGameM].Scene;
-        GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;      
+        GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(3);
-     
+
     }
     IEnumerator StartScene()
     {
         yield return new WaitForSeconds(0.5f);
-        StartCoroutine(ShowImageGameMode(gameModes,prefabGM,0));
+        StartCoroutine(ShowImageGameMode(gameModes, prefabGM, 0));
     }
 
 }

@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
                 foreach (GameObject player in playersPanels)
                 {
                     //player.transform.GetChild(0).gameObject.SetActive(false);
-                   // player.transform.GetChild(1).gameObject.SetActive(true);
+                    // player.transform.GetChild(1).gameObject.SetActive(true);
                 }
 
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
                 {
                     foreach (GameObject player in playersPanels)
                     {
-                       
+
                     }
-                   // transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                    // transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
                     oldScene = SceneManager.GetActiveScene().buildIndex;
                 }
                 break;
