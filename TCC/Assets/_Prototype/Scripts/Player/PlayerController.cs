@@ -419,7 +419,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            this.transform.position += new Vector3(0, 1f, 0);
+            GameController.singleton.gameMode.Action(this);
         }
     }
 }

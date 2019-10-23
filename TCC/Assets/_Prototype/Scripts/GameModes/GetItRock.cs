@@ -34,7 +34,7 @@ public class GetItRock : IGameMode
     {
         
         List<int> posicoes = new List<int>();
-        int HammerQuant = Random.Range(1, hammers.Length);
+        int HammerQuant = Random.Range(1, hammers.Length -1);
         for (int i = 0; i < HammerQuant; i++)
         {
             int hammer = Random.Range(0, hammers.Length);
@@ -48,39 +48,9 @@ public class GetItRock : IGameMode
         }
         for (int i = 0; i < posicoes.Count; i++)
         {
-            hammers[i].GetComponent<hammer>().StartCoroutine(hammers[i].GetComponent<hammer>().brickHammer());
+            hammers[i].GetComponent<Animator>().SetTrigger("fall");
         }
     }
-    //IEnumerator brickHammer(List<int> posicoes)
-    //{
-    //    yield return new WaitForSeconds(2f);
-    //    for (int i = 0; i < posicoes.Count; i++)
-    //    {
-    //        //hammers[i].GetComponent<Animator>().SetTrigger("estate"); 
-    //        while(hammers[i].transform.position.y <= -4.31)
-    //        {
-    //            hammers[i].transform.position = Vector3.Lerp(hammers[i].transform.position, new Vector3(hammers[i].transform.position.x,-4.31f, hammers[i].transform.position.z), 2);
-    //        }
-    //        hammers[i].transform.position = new Vector3(hammers[i].transform.position.x, -4.31f, hammers[i].transform.position.z);
-    //    }
-    //     backHammer(posicoes);
-
-    //}
-    //IEnumerator backHammer(List<int> posicoes)
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    for (int i = 0; i < posicoes.Count; i++)
-    //    {
-    //        while (hammers[i].transform.position.y >= 7.23)
-    //        {
-    //            hammers[i].transform.position = Vector3.Lerp(hammers[i].transform.position, new Vector3(hammers[i].transform.position.x, 7.23f, hammers[i].transform.position.z), 2);
-    //        }
-    //        hammers[i].transform.position = new Vector3(hammers[i].transform.position.x, 7.23f, hammers[i].transform.position.z);
-    //        // hammers[i].GetComponent<Animator>().SetTrigger("estate");
-    //    }
-
-
-    //}
     public void FinishGame()
     {
         if (!adicionolPoint)
@@ -131,7 +101,7 @@ public class GetItRock : IGameMode
     {
         
         player.transform.position += new Vector3(dir.x,0,0) * speed * Time.deltaTime;
-        player.transform.position = new Vector3(Mathf.Clamp(player.transform.position.x, -12f, 12f),player.position.y,player.position.z);
+        //player.transform.position = new Vector3(Mathf.Clamp(player.transform.position.x, -7.5f, 6f),player.position.y,player.position.z);
     }
 
 
@@ -152,7 +122,7 @@ public class GetItRock : IGameMode
     }
     void InsertHammersInDates()
     {
-        hammers = GameObject.FindGameObjectsWithTag("Martelo");
+        hammers = GameObject.FindGameObjectsWithTag("Brick");
     }
     void InsertPlayerInDates()
     {
@@ -174,5 +144,10 @@ public class GetItRock : IGameMode
             aux.FinishGame();
             adicionolPoint = true;
         }
+    }
+
+    public void Action(PlayerController player)
+    {
+        throw new System.NotImplementedException();
     }
 }

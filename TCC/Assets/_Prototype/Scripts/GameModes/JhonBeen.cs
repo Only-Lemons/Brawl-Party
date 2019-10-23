@@ -194,4 +194,9 @@ public class JhonBeen : IGameMode
             adicionolPoint = true;
         }
     }
+
+    public void Action(PlayerController player)
+    {
+        player.transform.position += new Vector3(0f, 1f, 0f);
+    }
 }
