@@ -13,15 +13,16 @@ public class ArmaController : MonoBehaviour
         {
             PlayerController playerController = other.GetComponentInParent<PlayerController>();
 
-           if (playerController.actualArma == null)
+           //if (playerController.actualArma == null)
            {
+                playerController.actualArma = null;
                 playerController.actualArma = actualArma;
                 playerController.playerUI.ammo.maxValue = actualArma.ammoAmount;
                 playerController.anim.SetBool("HasGun",true);
                 Instantiate(actualArma.prefab, playerController.hand.position, Quaternion.identity, playerController.hand.transform);
              
             }
-            else 
+           // else 
             {
                 //other.GetComponentInParent<PlayerController>().arma
             }    

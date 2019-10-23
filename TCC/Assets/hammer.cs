@@ -6,6 +6,14 @@ public class hammer : MonoBehaviour
 {
     bool canBrick = false;
     bool canUp = false;
+    Vector3 posicaoInicial, posicaoFinal;
+    
+    void Start()
+    {
+        canUp = false;
+        posicaoInicial = transform.position;
+        posicaoFinal = new Vector3(transform.position.x, -5f, transform.position.z);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null)
@@ -17,17 +25,30 @@ public class hammer : MonoBehaviour
     {
         if (canBrick)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, -4.31f, transform.position.z), 1f * Time.deltaTime);
-            if (transform.position == new Vector3(transform.position.x, -4.31f, this.transform.position.z) && canUp)
-            {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 5.57f, transform.position.z), 1f * Time.deltaTime);
-                
-            }
+            this.transform.position = Vector3.Lerp(transform.position, posicaoFinal, 4f * Time.deltaTime);
+        }
+
+        if(transform.position.magnitude <= posicaoFinal.magnitude -1)
+            canUp = true;
+        
+        if(canUp == true)
+        {
+            transform.position = Vector3.Lerp(transform.position, posicaoInicial, 1f * Time.deltaTime);
+            if(transform.position == posicaoInicial)
+                canUp = false;
         }
     }
     public IEnumerator brickHammer()
     {
-        yield return new WaitForSeconds(2f);
+        for(int i = 0; i< 6; i++)
+        {
+        transform.position = new Vector3(posicaoInicial.x-0.2f, posicaoInicial.y, posicaoInicial.z);
+        yield return new WaitForSeconds(0.1f);
+        transform.position = new Vector3(posicaoInicial.x+0.2f, posicaoInicial.y, posicaoInicial.z);
+        yield return new WaitForSeconds(0.1f);
+        }
+
+        //yield return new WaitForSeconds(2f);
         canBrick = true;
         StartCoroutine(backHammer());
         

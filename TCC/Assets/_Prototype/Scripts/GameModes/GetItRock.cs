@@ -7,7 +7,7 @@ public class GetItRock : IGameMode
     GameController aux;
     float timeOfGame;
     GameObject[] hammers = new GameObject[6];
-    PlayerController[] winners = new PlayerController[4];
+    List <PlayerController> winners = new List<PlayerController>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     bool adicionolPoint = false;
     int numwinner = 0;
@@ -34,7 +34,7 @@ public class GetItRock : IGameMode
     {
         
         List<int> posicoes = new List<int>();
-        int HammerQuant = Random.Range(1, 4);
+        int HammerQuant = Random.Range(1, hammers.Length);
         for (int i = 0; i < HammerQuant; i++)
         {
             int hammer = Random.Range(0, hammers.Length);
@@ -166,7 +166,7 @@ public class GetItRock : IGameMode
     {
         if (!adicionolPoint)
         {
-            for (int i = 0; i < winners.Length; i++)
+            for (int i = 0; i < winners.Count; i++)
             {
                 GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
                 
