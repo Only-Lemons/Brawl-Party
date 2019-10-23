@@ -15,8 +15,18 @@ public class SortScene : MonoBehaviour
 
     void Start()
     {
-     
-       sortGameM = Random.Range(0, 3);
+        if (GameManager.Instance.lastGameModes.Count == gameModes.Length)
+            SceneManager.LoadScene(1);
+       sortGameM = Random.Range(0, 4);
+        if (!GameManager.Instance.lastGameModes.Contains(sortGameM))
+            GameManager.Instance.lastGameModes.Add(sortGameM);
+        else
+        {
+            while (GameManager.Instance.lastGameModes.Contains(sortGameM))
+            {
+                sortGameM = Random.Range(0, 4);
+            }
+        }
        StartCoroutine(StartScene());
     }
 
@@ -54,8 +64,8 @@ public class SortScene : MonoBehaviour
     }
     IEnumerator ChangeScene()
     {
-        GameManager.Instance.nextLevel = gameModes[2].Scene;
-        GameManager.Instance.newGameMode = gameModes[2].gameMode;      
+        GameManager.Instance.nextLevel = gameModes[sortGameM].Scene;
+        GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;      
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(3);
      

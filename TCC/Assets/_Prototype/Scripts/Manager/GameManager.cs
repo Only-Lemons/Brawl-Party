@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public float TimeInGame = 120;
     public GameModes newGameMode;
+    public List<int> lastGameModes = new List<int>();
     public List<GameObject> playersPanels = new List<GameObject>();
     public int[] pontosGeral;
     public Vector3 lastPainel;
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
         gameController = GameObject.FindObjectOfType<GameController>();
         foreach (GameObject playerComplete in playersPanels)
         {
-            if (!gameController.playerManager.playersControllers.Exists(x => x == playerComplete.transform.GetChild(0).GetComponent<PlayerController>()))
+            if (!gameController.playerManager.playersControllers.Exists(x => x == playerComplete.GetComponent<PlayerController>()))
                 gameController.playerManager.playersControllers.Add(playerComplete.GetComponent<PlayerController>());
             // gameController.playerManager.Players.Add(playerComplete.transform.GetChild(0).GetComponent<PlayerController>());
         }
