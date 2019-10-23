@@ -6,34 +6,33 @@ using UnityEngine.InputSystem;
 
 public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 {
-    public List<SOPlayer> players= new List<SOPlayer>();
-    public SOPlayer selectPlayer;
-    public Image playerImage;
-    public Image playerBackround;
+    public List<Color> playerColor= new List<Color>();
+    public Material playerMaterial;
+    public Color atualColor;
     public bool isConfirmed = false;
     public PlayerController PlayerGame;
 
     private void Awake()
     {
-        playerBackround = transform.GetChild(0).GetComponent<Image>();
-        playerImage = transform.GetChild(0).GetChild(0).GetComponent<Image>(); // levando em conta que tem so player
+        playerMaterial = transform.GetChild(1).GetChild(0).GetComponent<Renderer>().material;
+       
     }
     private void Start()
     {
-        selectPlayer = players[0];
-        players.Remove(selectPlayer);
-        playerImage.sprite = selectPlayer.sprite;
-        players.Add(selectPlayer);
+        atualColor = playerColor[0];
+        playerColor.Remove(atualColor);
+        playerColor.Add(atualColor);
     }
     void Update()
     {
-        if (isConfirmed)
+        if (!isConfirmed)
         {
-            playerBackround.color = Color.green;
-            PlayerGame.player = selectPlayer;
+
+            playerMaterial.color = atualColor;
+
         }
-        else
-            playerBackround.color = Color.red;
+        else;
+            //playerBackround.color = Color.red;
     }
 
     #region InputSystem Events
@@ -41,10 +40,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if(context.started)
         {
-            selectPlayer = players[0];
-            players.Remove(selectPlayer);
-            playerImage.sprite = selectPlayer.sprite;
-            players.Add(selectPlayer);
+
+            atualColor = playerColor[0];
+            playerColor.Remove(atualColor);
+            playerColor.Add(atualColor);
         }
 
     }

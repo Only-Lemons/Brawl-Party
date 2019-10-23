@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         sairTiro = transform.GetChild(2);
         armaInventory = new Arma[2];
 
-        this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
+        //this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
     }
     private void FixedUpdate()
     {
@@ -330,21 +330,28 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     #region InputSystemEvents
     public void OnMove(InputAction.CallbackContext context)
     {
-        _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);  
-        try
+        if(SceneManager.GetActiveScene().buildIndex!= 4)
         {
-            anim.SetFloat("x", context.ReadValue<Vector2>().x);
-            anim.SetFloat("y", context.ReadValue<Vector2>().y);
+            _movementAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+            try
+            {
+                anim.SetFloat("x", context.ReadValue<Vector2>().x);
+                anim.SetFloat("y", context.ReadValue<Vector2>().y);
+            }
+            catch
+            {
+                Debug.Log("its not time yet folk calm down");
+            }
         }
-        catch
-        {
-            Debug.Log("its not time yet folk calm down");
-        }
+    
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        _rotationAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+        if (SceneManager.GetActiveScene().buildIndex != 4)
+        {
+            _rotationAxis = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+        }
     }
 
     bool podeAtirarSemParar = false;
