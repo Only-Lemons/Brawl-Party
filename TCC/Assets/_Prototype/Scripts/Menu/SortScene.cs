@@ -28,7 +28,7 @@ public class SortScene : MonoBehaviour
             }
         }
 
-        sortGameM = 3;
+       
        StartCoroutine(StartScene());
     }
 
