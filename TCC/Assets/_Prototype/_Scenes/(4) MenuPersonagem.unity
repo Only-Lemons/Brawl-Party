@@ -388,15 +388,11 @@ MonoBehaviour:
   - {fileID: 8400000, guid: 53478ac64b0e1314db7cbea6c8f8c075, type: 2}
   - {fileID: 8400000, guid: 9b3d9c473411555418dbf9f7c63e2e60, type: 2}
   - {fileID: 8400000, guid: 7de74229269e59e4c90e8a07927f1ec5, type: 2}
-  layers:
-  - serializedVersion: 2
-    m_Bits: 512
-  - serializedVersion: 2
-    m_Bits: 1024
-  - serializedVersion: 2
-    m_Bits: 2048
-  - serializedVersion: 2
-    m_Bits: 4096
+  pos:
+  - {x: 10000, y: 0, z: 0}
+  - {x: -10000, y: 0, z: 0}
+  - {x: 100, y: 0, z: 0}
+  - {x: -100, y: 0, z: 0}
 --- !u!114 &1099529857
 MonoBehaviour:
   m_ObjectHideFlags: 0
