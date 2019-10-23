@@ -100,7 +100,7 @@ public class JhonBeen : IGameMode
 
     public void PointRule(PlayerController player)
     {
-        winners[numwinner] = player;
+        winners.Add(player);
         numwinner++;
         WinRule();
     }

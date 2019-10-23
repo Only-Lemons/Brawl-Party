@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
             Rot(); //Mais funcional
            
-                GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
+            GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
     
             //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
