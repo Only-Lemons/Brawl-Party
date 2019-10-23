@@ -7,7 +7,7 @@ public class GetItRock : IGameMode
     GameController aux;
     float timeOfGame;
     GameObject[] hammers = new GameObject[6];
-    List <PlayerController> winners = new List<PlayerController>();
+    List<PlayerController> winners = new List<PlayerController>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     bool adicionolPoint = false;
     int numwinner = 0;
@@ -32,9 +32,9 @@ public class GetItRock : IGameMode
     }
     void fallRock()
     {
-        
+
         List<int> posicoes = new List<int>();
-        int HammerQuant = Random.Range(1, hammers.Length -1);
+        int HammerQuant = Random.Range(1, hammers.Length - 1);
         for (int i = 0; i < HammerQuant; i++)
         {
             int hammer = Random.Range(0, hammers.Length);
@@ -44,7 +44,7 @@ public class GetItRock : IGameMode
             }
             posicoes.Add(hammer);
             //TO-DO hammers[hammer].getComponent<Animation>()...
-          
+
         }
         for (int i = 0; i < posicoes.Count; i++)
         {
@@ -99,8 +99,8 @@ public class GetItRock : IGameMode
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
-        
-        player.transform.position += new Vector3(dir.x,0,0) * speed * Time.deltaTime;
+
+        player.transform.position += new Vector3(dir.x, 0, 0) * speed * Time.deltaTime;
         //player.transform.position = new Vector3(Mathf.Clamp(player.transform.position.x, -7.5f, 6f),player.position.y,player.position.z);
     }
 
@@ -139,7 +139,7 @@ public class GetItRock : IGameMode
             for (int i = 0; i < winners.Count; i++)
             {
                 GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
-                
+
             }
             aux.FinishGame();
             adicionolPoint = true;

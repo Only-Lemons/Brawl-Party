@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 {
-    public List<Color> playerColor= new List<Color>();
+    public List<Color> playerColor = new List<Color>();
     public Material playerMaterial;
     public Color atualColor;
     public bool isConfirmed = false;
@@ -15,7 +15,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     private void Awake()
     {
         playerMaterial = transform.GetChild(1).GetChild(0).GetComponent<Renderer>().material;
-       
+
     }
     private void Start()
     {
@@ -32,13 +32,13 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
         }
         else;
-            //playerBackround.color = Color.red;
+        //playerBackround.color = Color.red;
     }
 
     #region InputSystem Events
     public void OnUP(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
 
             atualColor = playerColor[0];

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 public class JhonBeen : IGameMode
 {
-    public class PositionsLR{
-       public Vector3 left;
-       public Vector3 right;
+    public class PositionsLR
+    {
+        public Vector3 left;
+        public Vector3 right;
     }
     GameController aux;
     float timeOfGame;
@@ -29,7 +30,7 @@ public class JhonBeen : IGameMode
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
-            winners.Add( player);
+            winners.Add(player);
             WinRule();
         }
     }
@@ -54,7 +55,7 @@ public class JhonBeen : IGameMode
                 InsertWinners();
                 WinRule();
             }
-         
+
         }
     }
     void InsertWinners()
@@ -85,8 +86,8 @@ public class JhonBeen : IGameMode
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
-       
-        if(dir.x > 0f)
+
+        if (dir.x > 0f)
         {
             Debug.Log(dir);
             //player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
@@ -107,7 +108,7 @@ public class JhonBeen : IGameMode
 
     public void RotationRule(Vector3 dir, Transform player)
     {
-      
+
     }
 
     public void StartGame()
@@ -136,7 +137,8 @@ public class JhonBeen : IGameMode
                     position = new Vector3(aux.tileManager.bases[i].x + 2, Random.Range(-15, 17.8f), aux.tileManager.bases[i].z);
                     //GameObject.Instantiate(_bird, new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y + Random.Range(-19, 17.8f), aux.tileManager.bases[i].z), Quaternion.identity);
                 }
-                while (posicoesInstance.Contains(position) && CanInstance(posicoesInstance)){
+                while (posicoesInstance.Contains(position) && CanInstance(posicoesInstance))
+                {
                     side = Random.Range(0, 2);
                     if (side == 0)
                     {
@@ -149,14 +151,14 @@ public class JhonBeen : IGameMode
                         //GameObject.Instantiate(_bird, new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y + Random.Range(-19, 17.8f), aux.tileManager.bases[i].z), Quaternion.identity);
                     }
                 }
-                GameObject.Instantiate(_bird,position, Quaternion.identity);
+                GameObject.Instantiate(_bird, position, Quaternion.identity);
             }
         }
 
     }
     bool CanInstance(List<Vector3> posicoes)
     {
-        foreach(Vector3 pos in posicoes)
+        foreach (Vector3 pos in posicoes)
         {
             for (int i = 0; i < posicoes.Count; i++)
             {
@@ -165,19 +167,19 @@ public class JhonBeen : IGameMode
                     return false;
                 }
             }
-           
+
         }
         return true;
     }
     void InsertPlayerInDates()
     {
-        for(int i = 0;i < GameController.singleton.playerManager.playersControllers.Count;i++)
+        for (int i = 0; i < GameController.singleton.playerManager.playersControllers.Count; i++)
         {
             playerMortos.Add(GameController.singleton.playerManager.playersControllers[i], false);
             PositionsLR auxLR = new PositionsLR();
             playerPosition.Add(GameController.singleton.playerManager.playersControllers[i], auxLR);
             playerPosition[GameController.singleton.playerManager.playersControllers[i]].left = aux.tileManager.bases[i];
-            playerPosition[GameController.singleton.playerManager.playersControllers[i]].right = new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y, aux.tileManager.bases[i].z );
+            playerPosition[GameController.singleton.playerManager.playersControllers[i]].right = new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y, aux.tileManager.bases[i].z);
         }
     }
 
