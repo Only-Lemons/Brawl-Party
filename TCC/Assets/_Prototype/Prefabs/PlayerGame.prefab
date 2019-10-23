@@ -449,6 +449,7 @@ MonoBehaviour:
   - {r: 0.16785331, g: 0.30540282, b: 0.8679245, a: 1}
   - {r: 0.21266466, g: 0.764151, b: 0.25495234, a: 1}
   playerMaterial: {fileID: 0}
+  atualColor: {r: 0, g: 0, b: 0, a: 0}
   isConfirmed: 0
   PlayerGame: {fileID: 0}
 --- !u!1 &2136061040119249578
@@ -515,7 +516,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 6a244864e21938843965a40af4499971, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
