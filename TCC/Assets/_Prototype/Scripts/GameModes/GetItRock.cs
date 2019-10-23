@@ -129,6 +129,7 @@ public class GetItRock : IGameMode
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
+        
         player.transform.position += new Vector3(dir.x,0,0) * speed * Time.deltaTime;
         player.transform.position = new Vector3(Mathf.Clamp(player.transform.position.x, -12f, 12f),player.position.y,player.position.z);
     }

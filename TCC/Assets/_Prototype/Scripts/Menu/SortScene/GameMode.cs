@@ -15,6 +15,7 @@ public enum GameModes
     FreeForAll,
     CaptureTheFlag,
     GetItRock,
+    JhonBeen,
     Boss
 }
   

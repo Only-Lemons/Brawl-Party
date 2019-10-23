@@ -17,10 +17,10 @@ public class hammer : MonoBehaviour
     {
         if (canBrick)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, -4.31f, transform.position.z), 0.2f * Time.deltaTime);
+            this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, -4.31f, transform.position.z), 1f * Time.deltaTime);
             if (transform.position == new Vector3(transform.position.x, -4.31f, this.transform.position.z) && canUp)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 5.57f, transform.position.z), 0.5f * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 5.57f, transform.position.z), 1f * Time.deltaTime);
                 
             }
         }

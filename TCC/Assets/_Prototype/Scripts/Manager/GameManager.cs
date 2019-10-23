@@ -85,18 +85,21 @@ public class GameManager : MonoBehaviour
     }
     public void newScene(GameModes game)
     {
-        if (game == GameModes.CaptureTheFlag)
+        switch (game)
         {
-            gameController.gameMode = new CaptureTheFlag(gameController, 120);
-        }
-        else if (game == GameModes.FreeForAll)
-        {
-            gameController.gameMode = new FreeForAll(gameController, 50);
-        }else if(game == GameModes.GetItRock)
-        {
-            gameController.gameMode = new GetItRock(gameController, 45);
+            case GameModes.CaptureTheFlag:
+                gameController.gameMode = new CaptureTheFlag(gameController, 120);
+                break;
+            case GameModes.FreeForAll:
+                gameController.gameMode = new FreeForAll(gameController, 50);
+                break;
+            case GameModes.GetItRock:
+                gameController.gameMode = new GetItRock(gameController, 45);
+                break;
+            case GameModes.JhonBeen:
+                gameController.gameMode = new JhonBeen(gameController, 60);
+                break;
         }
     }
-
 
 }
