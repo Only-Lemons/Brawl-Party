@@ -10,7 +10,7 @@ public class LancaGranada : Arma
         fireRate = 2.5f;
         ammoAmount = 4;
         damage = 35;
-        gunSprite = Resources.Load("Armas/Sprites/Shotgun") as Sprite;
+        gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
         prefab = Resources.Load("Armas/Shotgun") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilGranada") as GameObject;
         ammunitionPrefab.GetComponent<BulletGranade>().damage = this.damage;

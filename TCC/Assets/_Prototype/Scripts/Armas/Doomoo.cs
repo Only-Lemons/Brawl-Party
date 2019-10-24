@@ -10,7 +10,7 @@ public class Doomoo : Arma
         fireRate = 1f;
         ammoAmount = 1;
         damage = 1;
-        gunSprite = Resources.Load("Armas/Sprites/Shotgun") as Sprite;
+        gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
         prefab = Resources.Load("Armas/Bazuca") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilDoomoo") as GameObject;
         ammunitionPrefab.GetComponent<BulletDoomoo>().damage = this.damage;

@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     private void FixedUpdate()
     {
         TileInteract();
+        AcaoTrocarArma();
 
         if (canDeath == true)
         {
@@ -312,12 +313,14 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
             playerUI.ammo.value = actualArma.ammoAmount;
             playerUI.ammoText.text = actualArma.ammoAmount.ToString();
-            playerUI.gun.sprite = actualArma.gunSprite;
+            playerUI.gun.color = new Color(1,1,1,1);
         }
         else
         {
             playerUI.ammo.value = 0;
             playerUI.ammoText.text = "0";
+            playerUI.gun.color = new Color(0, 0, 0, 0);
+            playerUI.gun.sprite = null;
         }
 
 
@@ -422,6 +425,44 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             GameController.singleton.gameMode.Action(this);
         }
     }
+
+
+    //TESTES ARMAS
+    void AcaoTrocarArma()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            TrocarArma(0);
+            Debug.Log("troquei pra 0");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TrocarArma(1);
+            Debug.Log("troquei pra 1");
+        }
+    }
+
+    void TrocarArma(int id)
+    {
+        if (id == 0)
+        {
+            if (armaInventory[0] != null)
+            {
+                actualArma = armaInventory[0];
+                playerUI.gun.sprite = armaInventory[0].gunSprite;
+            }
+        }
+        else
+        {
+            if (armaInventory[1] != null)
+            {
+                actualArma = armaInventory[1];
+                playerUI.gun.sprite = armaInventory[1].gunSprite;
+            }
+        }
+    }
+
+    //FIM TESTES
 }
 
 

@@ -10,7 +10,7 @@ public class Lazer : Arma
         fireRate = 0.05f;
         ammoAmount = 140;
         damage = 1;
-        gunSprite = Resources.Load("Armas/Sprites/Pistol") as Sprite;
+        gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
         prefab = Resources.Load("Armas/Bazuca") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilLazer") as GameObject;
         ammunitionPrefab.GetComponent<BulletLazer>().damage = this.damage;

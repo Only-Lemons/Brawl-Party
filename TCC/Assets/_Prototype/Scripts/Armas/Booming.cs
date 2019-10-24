@@ -9,7 +9,7 @@ public class Booming : Arma
         fireRate = 0.60f;
         ammoAmount = 7;
         damage = 20;
-        gunSprite = Resources.Load("Armas/Sprites/Pistol") as Sprite;
+        gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
         prefab = Resources.Load("Armas/Pistol") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilBooming") as GameObject;
         ammunitionPrefab.GetComponent<BulletBooming>().damage = this.damage;

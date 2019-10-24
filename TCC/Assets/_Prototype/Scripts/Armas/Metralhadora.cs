@@ -10,7 +10,7 @@ public class Metralhadora : Arma
         fireRate = 0.1f;
         ammoAmount = 35;
         damage = 4;
-        gunSprite = Resources.Load("Armas/Sprites/Pistol") as Sprite;
+        gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
         prefab = Resources.Load("Armas/Pistol") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
         ammunitionPrefab.GetComponent<Bullet>().damage = this.damage;

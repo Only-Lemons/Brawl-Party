@@ -9,7 +9,7 @@ public class Bujing : Arma
         fireRate = 0.50f;
         ammoAmount = 14;
         damage = 10;
-        gunSprite = Resources.Load("Armas/Sprites/Pistol") as Sprite;
+        gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
         prefab = Resources.Load("Armas/Pistol") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilBujing") as GameObject;
         ammunitionPrefab.GetComponent<BulletBujing>().damage = this.damage;

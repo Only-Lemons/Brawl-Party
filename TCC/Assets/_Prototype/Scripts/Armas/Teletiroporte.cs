@@ -9,7 +9,7 @@ public class Teletiroporte : Arma
         fireRate = 2.0f;
         ammoAmount = 2;
         damage = 10;
-        gunSprite = Resources.Load("Armas/Sprites/Pistol") as Sprite;
+        gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
         prefab = Resources.Load("Armas/Pistol") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilTeletiroporte") as GameObject;
         ammunitionPrefab.GetComponent<BulletTeletiroporte>().damage = this.damage;

@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class ArmaController : MonoBehaviour
 {
-   public Arma actualArma;
-
+    public Arma actualArma;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             PlayerController playerController = other.GetComponentInParent<PlayerController>();
 
-           //if (playerController.actualArma == null)
-           {
-                playerController.actualArma = null;
-                playerController.actualArma = actualArma;
-                playerController.playerUI.ammo.maxValue = actualArma.ammoAmount;
-                playerController.anim.SetBool("HasGun",true);
-                Instantiate(actualArma.prefab, playerController.hand.position, Quaternion.identity, playerController.hand.transform);
-             
-            }
-           // else 
+            if (playerController.armaInventory[0] == null)
             {
-                //other.GetComponentInParent<PlayerController>().arma
-            }    
+                playerController.armaInventory[0] = actualArma;
+            }
+            else if (playerController.armaInventory[1] == null)
+            {
+                playerController.armaInventory[1] = actualArma;
+            }
+
+            if (playerController.armaInventory[0] != null && playerController.armaInventory[1] != null)
+            {
+                if (playerController.actualArma == playerController.armaInventory[0])
+                    playerController.armaInventory[0] = actualArma;
+                else if (playerController.actualArma == playerController.armaInventory[1])
+                    playerController.armaInventory[1] = actualArma;
+            }
+
+            playerController.actualArma = null;
+            playerController.actualArma = actualArma;
+
+            playerController.playerUI.ammo.maxValue = actualArma.ammoAmount;
+            playerController.playerUI.gun.sprite = actualArma.gunSprite;
+            playerController.anim.SetBool("HasGun", true);
+            Instantiate(actualArma.prefab, playerController.hand.position, Quaternion.identity, playerController.hand.transform);
+
             Destroy(this.gameObject);
-        }  
+        }
 
     }
 }
