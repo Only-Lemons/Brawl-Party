@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
         {
             pontos[i].text = GameManager.Instance.pontosGeral[i].ToString();
             personagens[i].sprite = playerManager.playersControllers[i].player.sprite;
+            playerManager.playersControllers[i].gameObject.SetActive(true);
             playerManager.playersControllers[i].ResetarPlayer();
         }
         painelPontos.SetActive(true);

@@ -131,8 +131,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     public void ResetarPlayer()
     {
-        this.gameObject.SetActive(true);
         this.transform.position = _base;
+        canDeath = true;
         actualArma = null;
         armaInventory.Clear();
         canShoot = true;
@@ -140,7 +140,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
-        canDeath = true;
     }
     void Rot()
     {
