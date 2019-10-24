@@ -58,8 +58,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     Material hp;
 
-    [HideInInspector]
-    public Mesh guardarMesh; //Permite controlar visibilidade do player
+    int idTrocouArma = 0;
 
     public PlayerController(SOPlayer jogador)
     {
@@ -78,8 +77,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     void Start()
     {
-        guardarMesh = this.gameObject.transform.GetChild(1).GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh;
-
 
         life = player.hp;
         speed = player.speed;
@@ -94,8 +91,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         _autoAim = GetComponent<AutoAim>();
         sairTiro = transform.GetChild(2);
         armaInventory = new Arma[2];
-
-        //this.transform.GetChild(1).GetComponentInChildren<Renderer>().material = player.corProvisorio;
     }
     private void FixedUpdate()
     {
@@ -313,12 +308,12 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
             playerUI.ammo.value = actualArma.ammoAmount;
             playerUI.ammoText.text = actualArma.ammoAmount.ToString();
-            playerUI.gun.color = new Color(1,1,1,1);
+            playerUI.gun.color = new Color(1, 1, 1, 1);
 
-            
+
         }
         else
-        {   
+        {
             playerUI.ammo.value = 0;
             playerUI.ammoText.text = "0";
             playerUI.gun.color = new Color(0, 0, 0, 0);
@@ -422,7 +417,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnInsert(InputAction.CallbackContext context) { }
 
-    public void OnSwitch(InputAction.CallbackContext context) { }
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        TrocarArma();
+    }
 
     public void OnAdd(InputAction.CallbackContext context) { }
 
@@ -452,22 +450,17 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     //TESTES ARMAS
     void AcaoTrocarArma()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            TrocarArma(0);
-            Debug.Log("troquei pra 0");
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TrocarArma(1);
-            Debug.Log("troquei pra 1");
+            TrocarArma();
         }
     }
 
-    void TrocarArma(int id)
+    void TrocarArma()
     {
-        if (id == 0)
+        if (idTrocouArma == 0)
         {
+            idTrocouArma = 1;
             if (armaInventory[0] != null)
             {
                 actualArma = armaInventory[0];
@@ -476,6 +469,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         }
         else
         {
+            idTrocouArma = 0;
             if (armaInventory[1] != null)
             {
                 actualArma = armaInventory[1];
