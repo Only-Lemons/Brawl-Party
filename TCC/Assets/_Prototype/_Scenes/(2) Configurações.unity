@@ -1594,6 +1594,7 @@ GameObject:
   - component: {fileID: 679538690}
   - component: {fileID: 679538694}
   - component: {fileID: 679538695}
+  - component: {fileID: 679538696}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1718,6 +1719,22 @@ MonoBehaviour:
   EffectsVolume: {fileID: 1948704302}
   MusicVolume: {fileID: 1505153931}
   audioGeral: {fileID: 24100000, guid: 6e26dbf8eaa6855419ea92a8f3385387, type: 2}
+--- !u!114 &679538696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679538689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29ba62d62a0baf499796a8807f04cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quantidyGames: {fileID: 132245375}
+  timeInGames: {fileID: 1752729110}
+  quantGames: {fileID: 400076070}
+  typeOfTime: {fileID: 718196757}
 --- !u!1 &718196755
 GameObject:
   m_ObjectHideFlags: 0

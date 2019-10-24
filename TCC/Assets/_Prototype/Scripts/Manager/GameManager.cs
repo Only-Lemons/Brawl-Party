@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
 
     public GameController gameController;
 
-    public float TimeInGame = 120;
+    public int TimeInGame = 1;
+    public int quantGames = 5;
     public GameModes newGameMode;
     public List<int> lastGameModes = new List<int>();
     public List<GameObject> playersPanels = new List<GameObject>();
@@ -89,16 +90,16 @@ public class GameManager : MonoBehaviour
         switch (game)
         {
             case GameModes.CaptureTheFlag:
-                gameController.gameMode = new CaptureTheFlag(gameController, 120);
+                gameController.gameMode = new CaptureTheFlag(gameController,40 * TimeInGame);
                 break;
             case GameModes.FreeForAll:
-                gameController.gameMode = new FreeForAll(gameController, 50);
+                gameController.gameMode = new FreeForAll(gameController, 30 * TimeInGame);
                 break;
             case GameModes.GetItRock:
-                gameController.gameMode = new GetItRock(gameController, 45);
+                gameController.gameMode = new GetItRock(gameController, 35 * TimeInGame);
                 break;
             case GameModes.JhonBeen:
-                gameController.gameMode = new JhonBeen(gameController, 60);
+                gameController.gameMode = new JhonBeen(gameController, 10 * TimeInGame);
                 break;
         }
     }
