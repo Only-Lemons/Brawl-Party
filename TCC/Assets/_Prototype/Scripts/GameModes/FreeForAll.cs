@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class FreeForAll : IGameMode
+public class FreeForAll : IBattleMode
 {
     bool adicionolPoint = false;
     GameController _gameController;
@@ -109,5 +109,25 @@ public class FreeForAll : IGameMode
     public void Action(PlayerController player)
     {
         throw new System.NotImplementedException();
+    }
+    public Arma ChangeL(List<Arma> armas)
+    {
+        Arma aux = armas[armas.Count];
+        armas.Remove(aux);
+        armas.Add(aux);
+        return aux;
+    }
+
+    public Arma ChangeR(List<Arma> armas)
+    {
+        Arma aux = armas[0];
+        armas.Remove(aux);
+        armas.Add(aux);
+        return aux;
+    }
+
+    public bool canShoot(bool canShoot)
+    {
+        return !canShoot;
     }
 }

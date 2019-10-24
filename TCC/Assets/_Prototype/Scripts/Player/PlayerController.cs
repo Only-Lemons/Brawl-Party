@@ -472,6 +472,16 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         }
     }
 
+    public void OnR(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnL(InputAction.CallbackContext context)
+    {
+        throw new System.NotImplementedException();
+    }
+
     //FIM TESTES
 }
 

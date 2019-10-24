@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CaptureTheFlag : IGameMode
+public class CaptureTheFlag : IBattleMode
 {
     bool adicionolPoint = false;
     GameController _gameController;
@@ -131,5 +131,26 @@ public class CaptureTheFlag : IGameMode
     public void Action(PlayerController player)
     {
         throw new System.NotImplementedException();
+    }
+
+    public Arma ChangeL(List<Arma> armas)
+    {
+        Arma aux = armas[armas.Count];
+        armas.Remove(aux);
+        armas.Add(aux);
+        return aux;
+    }
+
+    public Arma ChangeR(List<Arma> armas)
+    {
+        Arma aux = armas[0];
+        armas.Remove(aux);
+        armas.Add(aux);
+        return aux;
+    }
+
+    public bool canShoot(bool canShoot)
+    {
+        return !canShoot;
     }
 }
