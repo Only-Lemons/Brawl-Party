@@ -383,16 +383,28 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                     StartCoroutine(fireRate(actualArma.fireRate));
                     if (actualArma.ammoAmount <= 0)
                     {
-                        if (actualArma == armaInventory[0] && actualArma.ammoAmount == 0)
+                        if (actualArma == armaInventory[0] && actualArma.ammoAmount <= 0)
                         {
                             armaInventory[0] = null;
+                            if (armaInventory[1] != null)
+                            {
+                                actualArma = armaInventory[1];
+                                Debug.Log("entreiaquii0");
+                            }
                         }
-                        if (actualArma == armaInventory[1] && actualArma.ammoAmount == 0)
+                        if (actualArma == armaInventory[1] && actualArma.ammoAmount <= 0)
                         {
                             armaInventory[1] = null;
+                            if (armaInventory[0] != null)
+                            {
+                                actualArma = armaInventory[0];
+                                Debug.Log("entreiaquii1");
+                            }
                         }
 
-                        actualArma = null;
+                        if (armaInventory[0] == null && armaInventory[1] == null)
+                            actualArma = null;
+
                         canShoot = true;
                         Destroy(hand.GetChild(0).gameObject);
                     }
