@@ -58,13 +58,13 @@ public class FirstScene : MonoBehaviour
 
         if (subir)
         {
-            _timeRun += Time.deltaTime/1.5f;
-            textPress.gameObject.transform.localScale = new Vector3(_timeRun +.3f, _timeRun + .3f, _timeRun + .3f);
+            _timeRun += Time.deltaTime;
+            textPress.gameObject.transform.localScale = new Vector3(_timeRun + 1, _timeRun + 1, _timeRun + 1);
         }
         if (!subir)
         {
             _timeRun -= Time.deltaTime;
-            textPress.gameObject.transform.localScale = new Vector3(_timeRun + .3f, _timeRun + .3f, _timeRun + .3f);
+            textPress.gameObject.transform.localScale = new Vector3(_timeRun + 1, _timeRun + 1, _timeRun + 1);
         }
     }
 
