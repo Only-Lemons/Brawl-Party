@@ -314,15 +314,16 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             playerUI.ammo.value = actualArma.ammoAmount;
             playerUI.ammoText.text = actualArma.ammoAmount.ToString();
             playerUI.gun.color = new Color(1,1,1,1);
+
+            
         }
         else
-        {
+        {   
             playerUI.ammo.value = 0;
             playerUI.ammoText.text = "0";
             playerUI.gun.color = new Color(0, 0, 0, 0);
             playerUI.gun.sprite = null;
         }
-
 
         // mudar os outros trem aqui 
 
@@ -382,6 +383,15 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                     StartCoroutine(fireRate(actualArma.fireRate));
                     if (actualArma.ammoAmount <= 0)
                     {
+                        if (actualArma == armaInventory[0] && actualArma.ammoAmount == 0)
+                        {
+                            armaInventory[0] = null;
+                        }
+                        if (actualArma == armaInventory[1] && actualArma.ammoAmount == 0)
+                        {
+                            armaInventory[1] = null;
+                        }
+
                         actualArma = null;
                         canShoot = true;
                         Destroy(hand.GetChild(0).gameObject);
