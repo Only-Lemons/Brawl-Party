@@ -25,7 +25,7 @@ public class GetItRock : IGameMode
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
-            winners[numwinner] = player;
+            winners.Add(player);
             numwinner++;
             WinRule();
         }
@@ -34,6 +34,7 @@ public class GetItRock : IGameMode
     {
 
         List<int> posicoes = new List<int>();
+        posicoes.Clear();
         int HammerQuant = Random.Range(1, hammers.Length - 1);
         for (int i = 0; i < HammerQuant; i++)
         {
@@ -66,7 +67,7 @@ public class GetItRock : IGameMode
             if (lasthit <= 0)
             {
                 fallRock();
-                lasthit = 5;
+                lasthit = 2;
             }
         }
     }
@@ -90,11 +91,15 @@ public class GetItRock : IGameMode
     }
     bool VerifyPlayerMortos()
     {
+        int a = 0;
         for (int i = 0; i < playerMortos.Count; i++)
         {
             if (playerMortos[GameController.singleton.playerManager.playersControllers[i]] == false)
-                return false;
+                 a++;
         }
+        if (a > 1)
+            return false;
+
         return true;
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)

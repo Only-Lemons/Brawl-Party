@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     #region Arma
     [Header("Arma")]
     public Arma actualArma;
-    public Arma[] armaInventory;
+    public List<Arma> armaInventory;
     [HideInInspector]
     public bool canShoot;
     public Transform hand;
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         anim = GetComponentInChildren<Animator>();
         _autoAim = GetComponent<AutoAim>();
         sairTiro = transform.GetChild(2);
-        armaInventory = new Arma[2];
+        armaInventory.Clear();
     }
     private void FixedUpdate()
     {
@@ -131,10 +131,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     public void ResetarPlayer()
     {
-
+        this.gameObject.SetActive(true);
         this.transform.position = _base;
         actualArma = null;
-        armaInventory = new Arma[2];
+        armaInventory.Clear();
         canShoot = true;
         life = player.hp;
         speed = player.speed;
@@ -376,28 +376,23 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
                     actualArma.Shoot(sairTiro.position, this.transform.rotation, sairTiro.forward, this);
                     StartCoroutine(fireRate(actualArma.fireRate));
-                    if (actualArma.ammoAmount <= 0)
+                    if (actualArma.ammoAmount <= 0 && armaInventory.Count > 0)
                     {
                         if (actualArma == armaInventory[0] && actualArma.ammoAmount <= 0)
                         {
-                            armaInventory[0] = null;
-                            if (armaInventory[1] != null)
-                            {
-                                actualArma = armaInventory[1];
-                                Debug.Log("entreiaquii0");
-                            }
-                        }
-                        if (actualArma == armaInventory[1] && actualArma.ammoAmount <= 0)
-                        {
-                            armaInventory[1] = null;
-                            if (armaInventory[0] != null)
+                            armaInventory.RemoveAt(0);
+                            if (armaInventory.Count > 0 && armaInventory[0] != null)
                             {
                                 actualArma = armaInventory[0];
-                                Debug.Log("entreiaquii1");
                             }
+                        }else if (armaInventory.Count > 1 && actualArma == armaInventory[1] && actualArma.ammoAmount <= 0)
+                        {
+                            armaInventory.RemoveAt(1);
+                            actualArma = armaInventory[0];
+                        
                         }
 
-                        if (armaInventory[0] == null && armaInventory[1] == null)
+                        if (armaInventory.Count == 0)
                             actualArma = null;
 
                         canShoot = true;

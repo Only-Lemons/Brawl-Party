@@ -12,18 +12,13 @@ public class ArmaController : MonoBehaviour
         {
             PlayerController playerController = other.GetComponentInParent<PlayerController>();
 
-            
-            if (playerController.armaInventory[0] == null)
-            {
-                playerController.armaInventory[0] = actualArma;
-            }
-            else if (playerController.armaInventory[1] == null)
-            {
-                playerController.armaInventory[1] = actualArma;
-            }
 
-            else if (playerController.armaInventory[0] != null && playerController.armaInventory[1] != null)
+            if (playerController.armaInventory.Count < 2)
             {
+                playerController.armaInventory.Add(actualArma);
+            }
+            else if (playerController.armaInventory.Count == 2)
+            { 
                 if (playerController.actualArma == playerController.armaInventory[0])
                     playerController.armaInventory[0] = actualArma;
                 else if (playerController.actualArma == playerController.armaInventory[1])

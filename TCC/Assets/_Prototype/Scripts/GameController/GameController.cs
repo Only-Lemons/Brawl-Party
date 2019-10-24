@@ -37,13 +37,14 @@ public class GameController : MonoBehaviour
     }
     public void FinishGame()
     {
-        painelPontos.SetActive(true);
         for (int i = 0; i < playerManager.playersControllers.Count; i++)
         {
             pontos[i].text = GameManager.Instance.pontosGeral[i].ToString();
             personagens[i].sprite = playerManager.playersControllers[i].player.sprite;
             playerManager.playersControllers[i].ResetarPlayer();
         }
+        painelPontos.SetActive(true);
+      
         StartCoroutine(ChangeScene());
     }
     IEnumerator ChangeScene()
