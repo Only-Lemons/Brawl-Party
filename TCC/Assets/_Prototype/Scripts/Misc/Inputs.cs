@@ -96,6 +96,22 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Tap""
+                },
+                {
+                    ""name"": ""R"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee33ec7d-651c-4e19-bd68-7ff938c38afa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
+                },
+                {
+                    ""name"": ""L"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2d9cd92-4ccb-4a76-b0cc-c8c76fd54b7a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap""
                 }
             ],
             ""bindings"": [
@@ -448,6 +464,50 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fd5afb2-3cc3-4f8b-bd29-57093c450331"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e09df848-cf52-4d44-8f91-8930420f38dd"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2022647e-28fa-4a15-9f23-212e17ed2027"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""L"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10705696-5ec6-4a55-bcdc-4aa65aec71c8"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""L"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1226,6 +1286,8 @@ public class Inputs : IInputActionCollection
         m_Player_Switch = m_Player.GetAction("Switch");
         m_Player_Aim = m_Player.GetAction("Aim");
         m_Player_Action = m_Player.GetAction("Action");
+        m_Player_R = m_Player.GetAction("R");
+        m_Player_L = m_Player.GetAction("L");
         // UI
         m_UI = asset.GetActionMap("UI");
         m_UI_Navigate = m_UI.GetAction("Navigate");
@@ -1304,6 +1366,8 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_Player_Switch;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Action;
+    private readonly InputAction m_Player_R;
+    private readonly InputAction m_Player_L;
     public struct PlayerActions
     {
         private Inputs m_Wrapper;
@@ -1318,6 +1382,8 @@ public class Inputs : IInputActionCollection
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Action => m_Wrapper.m_Player_Action;
+        public InputAction @R => m_Wrapper.m_Player_R;
+        public InputAction @L => m_Wrapper.m_Player_L;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1357,6 +1423,12 @@ public class Inputs : IInputActionCollection
                 Action.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
                 Action.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
                 Action.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction;
+                R.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnR;
+                R.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnR;
+                R.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnR;
+                L.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnL;
+                L.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnL;
+                L.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnL;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1391,6 +1463,12 @@ public class Inputs : IInputActionCollection
                 Action.started += instance.OnAction;
                 Action.performed += instance.OnAction;
                 Action.canceled += instance.OnAction;
+                R.started += instance.OnR;
+                R.performed += instance.OnR;
+                R.canceled += instance.OnR;
+                L.started += instance.OnL;
+                L.performed += instance.OnL;
+                L.canceled += instance.OnL;
             }
         }
     }
@@ -1604,6 +1682,8 @@ public class Inputs : IInputActionCollection
         void OnSwitch(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
+        void OnR(InputAction.CallbackContext context);
+        void OnL(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
