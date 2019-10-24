@@ -83,7 +83,7 @@ public class TesteInstancias : MonoBehaviour
                 if (rnd == 0)
                     break;
             }
-        rnd = Random.Range(0,2);
+        //rnd = Random.Range(0,2);
 
         switch (rnd)
         {
