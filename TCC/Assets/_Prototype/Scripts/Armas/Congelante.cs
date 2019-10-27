@@ -10,7 +10,7 @@ public class Congelante : Arma
         ammoAmount = 5;
         damage = 10;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
-        prefab = Resources.Load("Armas/Pistol") as GameObject;
+        prefab = Resources.Load("Armas/Armas/Prefabs/Congelante") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilCongelante") as GameObject;
         ammunitionPrefab.GetComponent<BulletCongelante>().damage = this.damage;
 

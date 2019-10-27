@@ -11,7 +11,7 @@ public class Bazooka : Arma
         ammoAmount = 1;
         damage = 140;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
-        prefab = Resources.Load("Armas/Bazuca") as GameObject;
+        prefab = Resources.Load("Armas/Armas/Prefabs/Bazuca") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilBazuca") as GameObject;
         ammunitionPrefab.GetComponent<BulletBazuca>().damage = this.damage;
        

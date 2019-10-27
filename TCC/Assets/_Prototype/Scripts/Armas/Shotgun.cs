@@ -11,7 +11,7 @@ public class Shotgun : Arma
         ammoAmount = 7;
         damage = 20;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
-        prefab = Resources.Load("Armas/Shotgun") as GameObject;
+        prefab = Resources.Load("Armas/Armas/Prefabs/Shotgun") as GameObject;
         ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
         ammunitionPrefab.GetComponent<Bullet>().damage = this.damage;
        
