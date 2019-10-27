@@ -1,35 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TabuleiroControl : MonoBehaviour
 {
-    //public GameObject player; //test
-
     List<PlayerController> pl = new List<PlayerController>();
     PlayerController playerAtual;
     int pAtual;
 
-    //int idAtual;
     public List<PosicoesTabuleiro> posTab = new List<PosicoesTabuleiro>();
 
     GameObject atual;
     GameObject destino;
     bool andando;
-    //int direcao = 1;
 
     void Start()
     {
         andando = false;
 
-        foreach (PlayerController p in FindObjectsOfType<PlayerController>())
-        {
-            pl.Add(p);
-        }
+        DefinirJogadores();
 
-        playerAtual = pl[0];
-
-        //DefinirPosicoes();
+        DefinirPosicoes();
     }
 
     void Update()
@@ -37,17 +29,27 @@ public class TabuleiroControl : MonoBehaviour
         PodeAndar(atual, destino);
     }
 
-    //void DefinirPosicoes()
-    //{
-    //    posTab.Clear();
-    //    PosicoesTabuleiro[] pos;
-    //    pos = GameObject.FindObjectsOfType<PosicoesTabuleiro>();
+    void DefinirJogadores()
+    {
+        foreach (PlayerController p in FindObjectsOfType<PlayerController>())
+        {
+            pl.Add(p);
+        }
 
-    //    foreach (PosicoesTabuleiro i in pos)
-    //    {
-    //        posTab.Add(i);
-    //    }
-    //}
+        playerAtual = pl[0];
+    }
+
+    void DefinirPosicoes()
+    {
+        posTab.Clear();
+        
+        PosicoesTabuleiro[] posOrd = GameObject.FindObjectsOfType<PosicoesTabuleiro>();
+        posOrd = posOrd.OrderBy(x => x.id).ToArray();
+        foreach(PosicoesTabuleiro p in posOrd)
+        {
+            posTab.Add(p);
+        }
+    }
 
     void AndarNoTabuleiro(int id, PlayerController p)
     {
