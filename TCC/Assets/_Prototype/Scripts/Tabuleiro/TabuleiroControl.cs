@@ -5,6 +5,7 @@ using System.Linq;
 
 public class TabuleiroControl : MonoBehaviour
 {
+    public static TabuleiroControl tabControl;
     List<PlayerController> pl = new List<PlayerController>();
     PlayerController playerAtual;
     int pAtual;
@@ -15,8 +16,15 @@ public class TabuleiroControl : MonoBehaviour
     GameObject destino;
     bool andando;
 
+    int posicaoDado;
+
+    public bool travarTudo;
+
     void Start()
     {
+        tabControl = this;
+
+        travarTudo = true;
         andando = false;
 
         DefinirJogadores();
@@ -69,22 +77,31 @@ public class TabuleiroControl : MonoBehaviour
 
     public void JogarDado()
     {
-        if (!andando)
+        Dado.dadoControl.Jogar();
+    }
+
+    public void PodeIr()
+    {
+        if (!andando && !travarTudo)
         {
             JogadorQueJoga();
 
-            int posicaoDado = Random.Range(1, 7);
+            posicaoDado = Dado.dadoControl.dadoValor;
+
             if (playerAtual.GetComponent<DadoPlayer>().numDado + posicaoDado > posTab.Count)
                 posicaoDado = 1;
             else if (playerAtual.GetComponent<DadoPlayer>().numDado - posicaoDado < 0 && playerAtual.GetComponent<DadoPlayer>().direcaoPlayer == -1)
                 posicaoDado = 1;
+
             AndarNoTabuleiro(posicaoDado, playerAtual);
+            travarTudo = true;
         }
     }
 
+
     void PodeAndar(GameObject a, GameObject b)
     {
-        if (andando)
+        if (andando && Dado.dadoControl.dadoParado)
         {
             a.transform.position = Vector3.Lerp(a.transform.position, b.transform.position, Time.deltaTime * 5);
             if (Vector3.Distance(a.transform.position, b.transform.position) < 0.2f)
