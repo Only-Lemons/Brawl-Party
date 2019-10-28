@@ -108,7 +108,7 @@ public class FreeForAll : IBattleMode
 
     public void Action(PlayerController player)
     {
-        throw new System.NotImplementedException();
+      
     }
     public Arma ChangeL(List<Arma> armas)
     {
