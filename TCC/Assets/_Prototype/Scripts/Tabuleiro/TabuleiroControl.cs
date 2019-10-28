@@ -8,12 +8,13 @@ public class TabuleiroControl : MonoBehaviour
     public static TabuleiroControl tabControl;
     List<PlayerController> pl = new List<PlayerController>();
     PlayerController playerAtual;
-    int pAtual;
+    int playerAtualId;
 
     public List<PosicoesTabuleiro> posTab = new List<PosicoesTabuleiro>();
 
     GameObject atual;
-    GameObject destino;
+    public PosicoesTabuleiro proximaPos;
+    PosicoesTabuleiro destino;
     bool andando;
 
     int posicaoDado;
@@ -34,7 +35,8 @@ public class TabuleiroControl : MonoBehaviour
 
     void Update()
     {
-        PodeAndar(atual, destino);
+        //PodeAndar(atual, destino);
+        ContinueAndando(atual, destino);
     }
 
     void DefinirJogadores()
@@ -50,10 +52,10 @@ public class TabuleiroControl : MonoBehaviour
     void DefinirPosicoes()
     {
         posTab.Clear();
-        
+
         PosicoesTabuleiro[] posOrd = GameObject.FindObjectsOfType<PosicoesTabuleiro>();
         posOrd = posOrd.OrderBy(x => x.id).ToArray();
-        foreach(PosicoesTabuleiro p in posOrd)
+        foreach (PosicoesTabuleiro p in posOrd)
         {
             posTab.Add(p);
         }
@@ -71,7 +73,8 @@ public class TabuleiroControl : MonoBehaviour
         p.GetComponent<DadoPlayer>().numDado += id * p.GetComponent<DadoPlayer>().direcaoPlayer;
 
         atual = p.gameObject;
-        destino = posTab[p.GetComponent<DadoPlayer>().numDado].gameObject;
+        proximaPos = posTab[(p.GetComponent<DadoPlayer>().posAtual + (p.GetComponent<DadoPlayer>().numDado - (p.GetComponent<DadoPlayer>().numDado - 1)))];
+        destino = posTab[p.GetComponent<DadoPlayer>().numDado];
 
     }
 
@@ -98,6 +101,29 @@ public class TabuleiroControl : MonoBehaviour
         }
     }
 
+    void ContinueAndando(GameObject a, PosicoesTabuleiro f)
+    {
+        if (andando && Dado.dadoControl.dadoParado)
+        {
+            a.transform.position = Vector3.Lerp(a.transform.position, proximaPos.transform.position, Time.deltaTime * 5);
+
+            if (Vector3.Distance(a.transform.position, proximaPos.transform.position) < 0.2f)
+            {
+                if (proximaPos.transform.position == f.transform.position)
+                {
+                    a.GetComponent<DadoPlayer>().posAtual = f.id;
+                    andando = false;
+                    return;
+                }
+                else
+                {
+                    proximaPos = posTab[proximaPos.GetComponent<PosicoesTabuleiro>().id+1];
+                    return;
+                }
+            }
+        }
+    }
+
 
     void PodeAndar(GameObject a, GameObject b)
     {
@@ -111,10 +137,10 @@ public class TabuleiroControl : MonoBehaviour
 
     void JogadorQueJoga()
     {
-        playerAtual = pl[pAtual];
-        pAtual ++;
+        playerAtual = pl[playerAtualId];
+        playerAtualId++;
 
-        if (pAtual >= pl.Count)
-            pAtual = 0;
+        if (playerAtualId >= pl.Count)
+            playerAtualId = 0;
     }
 }
