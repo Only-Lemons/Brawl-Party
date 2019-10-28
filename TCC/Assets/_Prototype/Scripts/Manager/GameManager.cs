@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
                 gameController.gameMode = new JhonBeen(gameController, 10 * TimeInGame);
                 break;
             case GameModes.SnackAtack:
-                gameController.gameMode = new SnackAtack(gameController, 20 * TimeInGame);
+                gameController.gameMode = new SnackAtack(gameController, 40 * TimeInGame);
                 break;
         }
     }

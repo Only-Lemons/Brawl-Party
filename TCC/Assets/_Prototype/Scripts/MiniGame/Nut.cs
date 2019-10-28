@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class Nut : MonoBehaviour
 {
+    Vector3 position;
+    private void Start()
+    {
+        position = this.transform.position;
+        Destroy(this.gameObject, 2f);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "point")
+        if (other.gameObject.tag == "Point")
         {
             GameController.singleton.gameMode.PointRule(other.GetComponent<Basket>().player);
-            Destroy(other.gameObject);
+            Destroy(this.gameObject);
         }
-        
+   
+    }
+    private void Update()
+    {
+        this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(position.x, 0, position.z), 1 * Time.deltaTime);
     }
 }
