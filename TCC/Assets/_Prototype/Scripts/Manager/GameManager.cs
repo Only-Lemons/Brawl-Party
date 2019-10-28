@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerInputPrefab;
 
+    public AudioManager audioManager;
+
     public IGameMode gameMode;
 
     public GameController gameController;
@@ -35,6 +37,12 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
+
+    private void Awake()
+    {
+        audioManager = GetComponent<AudioManager>();
+    }
+
     private void FixedUpdate()
     {
         switch (SceneManager.GetActiveScene().buildIndex)

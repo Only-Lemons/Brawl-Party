@@ -204,6 +204,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     void Death()
     {
+        GameManager.Instance.audioManager.playDeath();
         GameController.singleton.gameMode.DeathRule(this);
         if (this.transform.GetChild(2).childCount > 0)
             Destroy(this.transform.GetChild(2).GetChild(0).gameObject);
