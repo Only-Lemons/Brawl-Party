@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6385850421048818744}
   - component: {fileID: 7691206867511745452}
   - component: {fileID: 4337039633748158215}
-  - component: {fileID: 6001182771501724702}
+  - component: {fileID: -1593551863169546177}
   m_Layer: 0
   m_Name: Cesta2
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,12 +88,12 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2734916153479281475}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6001182771501724702
+--- !u!114 &-1593551863169546177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

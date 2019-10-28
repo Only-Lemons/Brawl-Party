@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8717910407151195568}
   - component: {fileID: 2488544090709006367}
   - component: {fileID: 4502033443227199054}
+  - component: {fileID: 8428343048583053696}
   m_Layer: 14
   m_Name: Noz
-  m_TagString: Point
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8428343048583053696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224231123220456467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e9b9afa8df332b42a070263a97241a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

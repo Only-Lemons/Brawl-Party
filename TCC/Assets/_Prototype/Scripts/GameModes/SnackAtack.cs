@@ -85,7 +85,7 @@ public class SnackAtack : IGameMode
     {
         if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
         {
-            player.position += dir * speed * Time.deltaTime;
+            player.position += -dir * speed * Time.deltaTime;
         }
     }
 
@@ -130,14 +130,14 @@ public class SnackAtack : IGameMode
         InstanceNutTime -= Time.deltaTime;
         if(InstanceNutTime <= 0)
         {
-            GameObject aux  = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f,4.83f),8.96f,Random.Range(-4.37f, 6.26f)), Quaternion.identity);
-            InstanceNutTime = Random.Range(0.2f,0.5f);
+            GameObject aux  = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f,4.83f),8.96f,Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
+            InstanceNutTime = Random.Range(1f,3f);
         }
         if (InstanceHiveTime <= 0)
         {
-            GameObject aux = GameObject.Instantiate(_Hive, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity);
+            GameObject aux = GameObject.Instantiate(_Hive, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
      
-            InstanceHiveTime =Random.Range(1,3);
+            InstanceHiveTime =Random.Range(2,4);
         }
     }
     public void StartGame()
@@ -156,7 +156,7 @@ public class SnackAtack : IGameMode
             auxStun.canMove = true;
             auxStun.timeInStun = 0;
             canMove.Add(player, auxStun);
-            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z),Quaternion.identity,player.transform).gameObject as GameObject;
+            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z),Quaternion.identity,player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 0;
         }
@@ -167,6 +167,7 @@ public class SnackAtack : IGameMode
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in aux.playerManager.playersControllers)
         {
+            GameObject.Destroy(player.gameObject.GetComponentInParent<Basket>().gameObject);
             if (point[player] > maiorPonto)
             {
                 maiorPonto = point[player];
