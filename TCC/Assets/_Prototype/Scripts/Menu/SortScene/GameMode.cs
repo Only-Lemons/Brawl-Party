@@ -16,6 +16,7 @@ public enum GameModes
     CaptureTheFlag,
     GetItRock,
     JhonBeen,
+    SnackAtack,
     Boss
 }
   
