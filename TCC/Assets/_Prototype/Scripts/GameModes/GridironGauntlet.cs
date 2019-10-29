@@ -94,7 +94,9 @@ public class GridironGauntlet : IGameMode
             }
         }
     }
-    void IntanceObject() { }
+    void IntanceObject() { 
+    
+    }
     void InsertWinners()
     {
         for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)

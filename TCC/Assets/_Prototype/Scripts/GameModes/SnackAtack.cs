@@ -63,6 +63,7 @@ public class SnackAtack : IGameMode
 
         }
     }
+
     void removePlayersInStun()
     {
         foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
