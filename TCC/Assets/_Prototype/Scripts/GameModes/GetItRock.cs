@@ -38,10 +38,10 @@ public class GetItRock : IGameMode
         int HammerQuant = Random.Range(1, hammers.Length - 1);
         for (int i = 0; i < HammerQuant; i++)
         {
-            int hammer = Random.Range(0, hammers.Length);
+            int hammer = (int) (Random.value * (hammers.Length));
             while (posicoes.Contains(hammer))
             {
-                hammer = Random.Range(0, hammers.Length);
+                hammer = (int)(Random.value * (hammers.Length));
             }
             posicoes.Add(hammer);
             //TO-DO hammers[hammer].getComponent<Animation>()...
@@ -49,7 +49,7 @@ public class GetItRock : IGameMode
         }
         for (int i = 0; i < posicoes.Count; i++)
         {
-            hammers[i].GetComponent<Animator>().SetTrigger("fall");
+            hammers[posicoes[i]].GetComponent<Animator>().SetTrigger("fall");
         }
     }
     public void FinishGame()
@@ -128,6 +128,12 @@ public class GetItRock : IGameMode
     void InsertHammersInDates()
     {
         hammers = GameObject.FindGameObjectsWithTag("Brick");
+        int quantidade = 0;
+        foreach(GameObject objetos in hammers)
+        {
+            quantidade++;
+            Debug.Log(objetos.name + " E o numero de martelos encontrados foi: " + quantidade);
+        }
     }
     void InsertPlayerInDates()
     {
@@ -153,6 +159,6 @@ public class GetItRock : IGameMode
 
     public void Action(PlayerController player)
     {
-        throw new System.NotImplementedException();
+
     }
 }
