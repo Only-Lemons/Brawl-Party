@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9040945911841283490
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 1.31
+  threshold:
+    overrideState: 0
+    value: 1
+  softKnee:
+    overrideState: 0
+    value: 0.5
+  clamp:
+    overrideState: 0
+    value: 65472
+  diffusion:
+    overrideState: 0
+    value: 7
+  anamorphicRatio:
+    overrideState: 0
+    value: 0
+  color:
+    overrideState: 0
+    value: {r: 1, g: 1, b: 1, a: 1}
+  fastMode:
+    overrideState: 0
+    value: 0
+  dirtTexture:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  dirtIntensity:
+    overrideState: 0
+    value: 0
 --- !u!114 &-2631771571431025753
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -12,13 +59,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   focusDistance:
     overrideState: 1
-    value: 9.82
+    value: 15.46
   aperture:
     overrideState: 1
     value: 1.5
@@ -40,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -108,10 +155,10 @@ MonoBehaviour:
     value: 100
   mixerRedOutGreenIn:
     overrideState: 1
-    value: 24
+    value: 9
   mixerRedOutBlueIn:
     overrideState: 1
-    value: -2
+    value: -5
   mixerGreenOutRedIn:
     overrideState: 0
     value: 0
@@ -132,7 +179,7 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.9709755, y: 0.94195086, z: 1, w: 0}
+    value: {x: 0.8768208, y: 1, z: 0.9192582, w: 0}
   gamma:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
@@ -1357,6 +1404,7 @@ MonoBehaviour:
   - {fileID: 3022145796963611895}
   - {fileID: -888606088641703913}
   - {fileID: 149401675259705816}
+  - {fileID: -9040945911841283490}
 --- !u!114 &149401675259705816
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1406,10 +1454,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.93
+    value: 0.7
   color:
     overrideState: 1
-    value: {r: 0.4811321, g: 0, b: 0.34570792, a: 1}
+    value: {r: 0.9150943, g: 0.3663579, b: 0.038848326, a: 1}
   ambientOnly:
     overrideState: 0
     value: 1
@@ -1423,8 +1471,8 @@ MonoBehaviour:
     overrideState: 0
     value: -12
   thicknessModifier:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 1.71
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -1446,7 +1494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1455,7 +1503,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.1878954, g: 0.0033374808, b: 0.23584908, a: 1}
+    value: {r: 1, g: 1, b: 1, a: 1}
   center:
     overrideState: 0
     value: {x: 0.5, y: 0.5}
