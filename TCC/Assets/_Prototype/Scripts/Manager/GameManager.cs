@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     public GameController gameController;
 
+    public int quantTGames = 5;
     public int TimeInGame = 1;
     public int quantGames = 5;
     public GameModes newGameMode;

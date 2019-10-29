@@ -14,6 +14,7 @@ public class gameConfig : MonoBehaviour
 
     private void Start()
     {
+        quantidyGames.maxValue = GameManager.Instance.quantTGames;
         quantidyGames.value = GameManager.Instance.quantGames;
         timeInGames.value = GameManager.Instance.TimeInGame;
     }
