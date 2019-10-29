@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 public class JhonBeen : IGameMode
 {
+    class Stun
+    {
+        public bool canMove;
+        public float timeInStun;
+    }
     public class PositionsLR
     {
         public Vector3 left;
@@ -13,6 +18,7 @@ public class JhonBeen : IGameMode
     float timeToSpawn = 0;
     GameObject _bird = Resources.Load("Mecanicas/Bird") as GameObject;
     List<PlayerController> winners = new List<PlayerController>();
+    Dictionary<PlayerController, Stun> canMove = new Dictionary<PlayerController, Stun>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, PositionsLR> playerPosition = new Dictionary<PlayerController, PositionsLR>();
     int numwinner = 0;
@@ -24,32 +30,29 @@ public class JhonBeen : IGameMode
     }
     public void DeathRule(PlayerController player)
     {
-        player.ResetarPlayer();
-        player.gameObject.SetActive(false);
-
-        playerMortos[player] = true;
-        if (VerifyPlayerMortos())
-        {
-            winners.Add(player);
-            WinRule();
-        }
+        canMove[player].canMove = false;
+        canMove[player].timeInStun = 1;
     }
-    bool VerifyPlayerMortos()
+    void removePlayersInStun()
     {
-        for (int i = 0; i < playerMortos.Count; i++)
+        foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
         {
-            if (playerMortos[GameController.singleton.playerManager.playersControllers[i]] == false)
-                return false;
+            if (!canMove[player].canMove)
+            {
+                canMove[player].timeInStun -= Time.deltaTime;
+                if (canMove[player].timeInStun <= 0)
+                    canMove[player].canMove = true;
+            }
         }
-        return true;
     }
+   
     public void FinishGame()
     {
         if (!adicionolPoint)
         {
             timeOfGame -= Time.deltaTime;
             ShowTime();
-            //goDownPlayers();
+            removePlayersInStun();
             if (timeOfGame <= 0)
             {
                 InsertWinners();
@@ -86,16 +89,18 @@ public class JhonBeen : IGameMode
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
+        {
+            if (dir.x > 0f)
+            {
 
-        if (dir.x > 0f)
-        {
-            Debug.Log(dir);
-            //player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
-            player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
-        }
-        if (dir.x < 0f)
-        {
-            player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].left.x, player.transform.position.y, player.transform.position.z);
+                //player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
+                player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
+            }
+            if (dir.x < 0f)
+            {
+                player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].left.x, player.transform.position.y, player.transform.position.z);
+            }
         }
     }
 
@@ -180,6 +185,10 @@ public class JhonBeen : IGameMode
             playerPosition.Add(GameController.singleton.playerManager.playersControllers[i], auxLR);
             playerPosition[GameController.singleton.playerManager.playersControllers[i]].left = aux.tileManager.bases[i];
             playerPosition[GameController.singleton.playerManager.playersControllers[i]].right = new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y, aux.tileManager.bases[i].z);
+            Stun auxStun = new Stun();
+            auxStun.canMove = true;
+            auxStun.timeInStun = 0;
+            canMove.Add(GameController.singleton.playerManager.playersControllers[i], auxStun);
         }
     }
 
@@ -199,6 +208,9 @@ public class JhonBeen : IGameMode
 
     public void Action(PlayerController player)
     {
-        player.transform.position += new Vector3(0f, 1f, 0f);
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
+        {
+            player.transform.position += new Vector3(0f, 1f, 0f);
+        }
     }
 }
