@@ -128,12 +128,7 @@ public class GetItRock : IGameMode
     void InsertHammersInDates()
     {
         hammers = GameObject.FindGameObjectsWithTag("Brick");
-        int quantidade = 0;
-        foreach(GameObject objetos in hammers)
-        {
-            quantidade++;
-            Debug.Log(objetos.name + " E o numero de martelos encontrados foi: " + quantidade);
-        }
+   
     }
     void InsertPlayerInDates()
     {
