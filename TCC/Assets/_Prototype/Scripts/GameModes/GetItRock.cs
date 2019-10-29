@@ -72,14 +72,12 @@ public class GetItRock : IGameMode
         }
     }
     void InsertWinners()
-    {
-        int a = 0;
+    { 
         for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
         {
             if (playerMortos[aux.playerManager.playersControllers[i]])
             {
-                winners[a] = aux.playerManager.playersControllers[i];
-                a++;
+                winners.Add(aux.playerManager.playersControllers[i]);
             }
         }
     }
