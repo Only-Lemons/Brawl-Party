@@ -43,7 +43,7 @@ public class SnackAtack : IGameMode
             point[player] = 0;
         }
         player.playerUI.points.text = point[player].ToString();
-        UpdateBasket(player);
+        //UpdateBasket(player);
     }
 
     public void FinishGame()
@@ -93,7 +93,7 @@ public class SnackAtack : IGameMode
     {
         point[player] += 1;
         player.playerUI.points.text = point[player].ToString();
-        UpdateBasket(player);
+        //UpdateBasket(player);
     }
     public void UpdateBasket(PlayerController player)
     {
