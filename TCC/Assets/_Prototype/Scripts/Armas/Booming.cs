@@ -11,6 +11,7 @@ public class Booming : Arma
         damage = 20;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
         prefab = Resources.Load("Armas/Armas/Prefabs/Booming") as GameObject;
+        audio = Resources.Load("Municoes/Sons/Pistol") as AudioClip;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilBooming") as GameObject;
         ammunitionPrefab.GetComponent<BulletBooming>().damage = this.damage;
 
@@ -24,5 +25,7 @@ public class Booming : Arma
         ammunitionPrefab.GetComponent<BulletBooming>().transformForward = Foward;
         ammunitionPrefab.GetComponent<BulletBooming>().player = player;
         Instantiate(ammunitionPrefab,position + player.transform.forward*1.5f,rotation);
+        player.armaSom.clip = audio;
+        player.armaSom.Play();
     }
 }

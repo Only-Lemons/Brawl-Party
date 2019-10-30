@@ -11,6 +11,7 @@ public class Bujing : Arma
         damage = 10;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
         prefab = Resources.Load("Armas/Armas/Prefabs/Bujing") as GameObject;
+        audio = Resources.Load("Municoes/Sons/Pistol") as AudioClip;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilBujing") as GameObject;
         ammunitionPrefab.GetComponent<BulletBujing>().damage = this.damage;
 
@@ -24,5 +25,7 @@ public class Bujing : Arma
         ammunitionPrefab.GetComponent<BulletBujing>().transformForward = Foward;
         ammunitionPrefab.GetComponent<BulletBujing>().player = player;
         Instantiate(ammunitionPrefab,position + player.transform.forward*1.5f,rotation);
+        player.armaSom.clip = audio;
+        player.armaSom.Play();
     }
 }

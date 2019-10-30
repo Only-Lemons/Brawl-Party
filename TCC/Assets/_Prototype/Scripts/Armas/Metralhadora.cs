@@ -12,6 +12,7 @@ public class Metralhadora : Arma
         damage = 4;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Pistol");
         prefab = Resources.Load("Armas/Pistol") as GameObject;
+        audio = Resources.Load("Municoes/Sons/Pistol") as AudioClip;
         ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
         ammunitionPrefab.GetComponent<Bullet>().damage = this.damage;
        
@@ -24,6 +25,8 @@ public class Metralhadora : Arma
         ammunitionPrefab.GetComponent<Bullet>().transformForward = Forward;
         ammunitionPrefab.GetComponent<Bullet>().player = player;
         Instantiate(ammunitionPrefab, position + player.transform.forward * 1.5f, rotation);
+        player.armaSom.clip = audio;
+        player.armaSom.Play();
 
     }
 }

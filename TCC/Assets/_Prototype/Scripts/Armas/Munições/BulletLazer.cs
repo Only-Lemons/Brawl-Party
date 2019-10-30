@@ -8,9 +8,13 @@ public class BulletLazer : MonoBehaviour
     public float velocidadeDaBala = 3f;
     public Vector3 transformForward;
     public PlayerController player;
+    AudioSource source;
+    public AudioClip audio;
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
+        source.clip = audio;
         GetComponent<Rigidbody>().AddForce(transformForward * 400f * velocidadeDaBala, ForceMode.Acceleration);
         Destroy(this.gameObject, 5f);
 
@@ -18,6 +22,7 @@ public class BulletLazer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        source.Play();
         if (other.gameObject.tag == "Player")
         {
             Debug.Log(player);

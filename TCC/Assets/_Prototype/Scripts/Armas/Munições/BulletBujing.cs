@@ -8,7 +8,8 @@ public class BulletBujing : MonoBehaviour
     public int velocidadeDaBala = 3;
     public Vector3 transformForward;
     public PlayerController player;
-
+    AudioSource source;
+    public AudioClip audio;
     bool virar;
     bool iniciar;
     private float cont;
@@ -19,6 +20,8 @@ public class BulletBujing : MonoBehaviour
         virar = false;
         iniciar = false;
         cont = 0;
+        source = GetComponent<AudioSource>();
+        source.clip = audio;
         GetComponent<Rigidbody>().AddForce(transformForward * 600f * velocidadeDaBala, ForceMode.Acceleration);
         Destroy(this.gameObject, 5f);
     }
@@ -36,6 +39,7 @@ public class BulletBujing : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        source.Play();
         if (other.gameObject.tag == "Player")
         {
             Debug.Log(player);

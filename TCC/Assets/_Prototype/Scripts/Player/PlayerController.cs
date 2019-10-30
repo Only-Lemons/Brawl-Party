@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public Transform hand;
     AutoAim _autoAim;
     public Transform sairTiro;
+    public AudioSource armaSom;
     #endregion
 
     #region Interaçao Ambiente

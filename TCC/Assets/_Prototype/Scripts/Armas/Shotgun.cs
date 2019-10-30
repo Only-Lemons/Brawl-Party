@@ -12,6 +12,7 @@ public class Shotgun : Arma
         damage = 20;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
         prefab = Resources.Load("Armas/Armas/Prefabs/Shotgun") as GameObject;
+        audio = Resources.Load("Municoes/Sons/Pistol") as AudioClip;
         ammunitionPrefab = Resources.Load("Municoes/Projetil") as GameObject;
         ammunitionPrefab.GetComponent<Bullet>().damage = this.damage;
        
@@ -26,6 +27,7 @@ public class Shotgun : Arma
         Instantiate(ammunitionPrefab, position + player.transform.forward * 1.5f, rotation);
         Instantiate(ammunitionPrefab, position + player.transform.forward * 1.5f, new Quaternion(rotation.x,rotation.y - Random.Range(1f, 3f), rotation.z - Random.Range(1f,3f),rotation.w));
         Instantiate(ammunitionPrefab, position + player.transform.forward * 1.5f, new Quaternion(rotation.x, rotation.y + Random.Range(1f, 3f), rotation.z + Random.Range(1f,3f), rotation.w));
-
+        player.armaSom.clip = audio;
+        player.armaSom.Play();
     }
 }

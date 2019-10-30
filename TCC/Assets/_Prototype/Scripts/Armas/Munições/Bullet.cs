@@ -8,18 +8,24 @@ public class Bullet : MonoBehaviour
     public int velocidadeDaBala = 3;
     public Vector3 transformForward;
     public PlayerController player;
+    AudioSource source;
+    public AudioClip audio;
 
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(transformForward* 800f * velocidadeDaBala, ForceMode.Acceleration);
+        source = GetComponent<AudioSource>();
+        source.clip = audio;
         Destroy(this.gameObject,5f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        source.Play();
+        if (other.gameObject.tag == "Player")
         {
-            Debug.Log(player);
+            //Debug.Log(player);
+           
             other.GetComponent<PlayerController>().ReceiveDamage(damage,player);
       
             Destroy(this.gameObject);

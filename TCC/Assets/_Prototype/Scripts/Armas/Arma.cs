@@ -10,6 +10,7 @@ public abstract class Arma : ScriptableObject
     public GameObject ammunitionPrefab;
     public Sprite gunSprite;
     public GameObject prefab;
+    public AudioClip audio;
 
     public Arma()
     {
@@ -19,6 +20,7 @@ public abstract class Arma : ScriptableObject
         ammunitionPrefab = null;
         gunSprite = null;
         prefab = null;
+        audio = null;
     }
 
     public abstract void Shoot(Vector3 position,Quaternion rotation,Vector3 Foward, PlayerController player);

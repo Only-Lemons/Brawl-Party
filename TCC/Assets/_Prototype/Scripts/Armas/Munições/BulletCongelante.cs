@@ -8,7 +8,8 @@ public class BulletCongelante : MonoBehaviour
     public int velocidadeDaBala = 3;
     public Vector3 transformForward;
     public PlayerController player;
-
+    AudioSource source;
+    public AudioClip audio;
     bool iniciar;
     Vector3 posicao;
     private float cont;
@@ -21,6 +22,8 @@ public class BulletCongelante : MonoBehaviour
         geloEfeito = Resources.Load("Municoes/Efeitos/CuboGelo") as GameObject;
         iniciar = false;
         cont = 0;
+        source = GetComponent<AudioSource>();
+        source.clip = audio;
         GetComponent<Rigidbody>().AddForce(transformForward * 600f * velocidadeDaBala, ForceMode.Acceleration);
         Destroy(this.gameObject, 5f);
     }
@@ -44,6 +47,7 @@ public class BulletCongelante : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        source.Play();
         if (other.gameObject.tag == "Player")
         {
             Debug.Log(player);

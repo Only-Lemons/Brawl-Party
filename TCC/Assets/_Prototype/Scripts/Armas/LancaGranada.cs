@@ -12,6 +12,7 @@ public class LancaGranada : Arma
         damage = 35;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
         prefab = Resources.Load("Armas/Shotgun") as GameObject;
+        audio = Resources.Load("Municoes/Sons/Pistol") as AudioClip;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilGranada") as GameObject;
         ammunitionPrefab.GetComponent<BulletGranade>().damage = this.damage;
        
@@ -24,5 +25,7 @@ public class LancaGranada : Arma
         ammunitionPrefab.GetComponent<BulletGranade>().transformForward = Forward;
         ammunitionPrefab.GetComponent<BulletGranade>().player = player;
         GameObject ob = Instantiate(ammunitionPrefab, position, rotation);
+        player.armaSom.clip = audio;
+        player.armaSom.Play();
     }
 }

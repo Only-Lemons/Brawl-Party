@@ -12,6 +12,7 @@ public class Doomoo : Arma
         damage = 1;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
         prefab = Resources.Load("Armas/Armas/Prefabs/Doomoo") as GameObject;
+        audio = Resources.Load("Municoes/Sons/Pistol") as AudioClip;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilDoomoo") as GameObject;
         ammunitionPrefab.GetComponent<BulletDoomoo>().damage = this.damage;
        
@@ -25,5 +26,7 @@ public class Doomoo : Arma
         ammunitionPrefab.GetComponent<BulletDoomoo>().player = player;
         GameObject ob = Instantiate(ammunitionPrefab, position + player.transform.forward * 2f, rotation);
         ob.transform.localScale = new Vector3(1.4f,1.4f,1.4f);
+        player.armaSom.clip = audio;
+        player.armaSom.Play();
     }
 }

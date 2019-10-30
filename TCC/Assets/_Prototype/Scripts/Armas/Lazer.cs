@@ -12,6 +12,7 @@ public class Lazer : Arma
         damage = 1;
         gunSprite = Resources.Load<Sprite>("Armas/Sprites/Shotgun");
         prefab = Resources.Load("Armas/Armas/Prefabs/Lazer") as GameObject;
+        audio = Resources.Load("Municoes/Sons/Lazer") as AudioClip;
         ammunitionPrefab = Resources.Load("Municoes/ProjetilLazer") as GameObject;
         ammunitionPrefab.GetComponent<BulletLazer>().damage = this.damage;
        
@@ -24,5 +25,7 @@ public class Lazer : Arma
         ammunitionPrefab.GetComponent<BulletLazer>().transformForward = Forward;
         ammunitionPrefab.GetComponent<BulletLazer>().player = player;
         GameObject ob = Instantiate(ammunitionPrefab, position + player.transform.forward * 2f, rotation);
+        player.armaSom.clip = audio;
+        player.armaSom.Play();
     }
 }
