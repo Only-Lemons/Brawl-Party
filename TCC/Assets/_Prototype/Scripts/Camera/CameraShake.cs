@@ -8,7 +8,7 @@ public class CameraShake : MonoBehaviour
 
     public void Shake()
     {
-        CameraShaker.Instance.ShakeOnce(1f, 5f, .1f, 1f);
+        CameraShaker.Instance.ShakeOnce(1f, 8f, .1f, .5f);
     }
 
 }

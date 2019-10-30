@@ -58,7 +58,31 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.36581472
+        functionName: Shake
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3cd78233ce340114a8eac00e3063657e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.36581472
+        functionName: NewEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 3cd78233ce340114a8eac00e3063657e,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.32747602
+        functionName: PlayIndex
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 4ed6fe670c45f3543b1162a033f5afe3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
