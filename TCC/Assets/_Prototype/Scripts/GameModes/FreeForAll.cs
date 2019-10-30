@@ -19,7 +19,7 @@ public class FreeForAll : IBattleMode
         _timeToRespawn = 3;
     }
 
-    public void DeathRule(PlayerController player)
+    public void HitRule(PlayerController player)
     {
         if (player.canDeath)
         {
@@ -36,7 +36,7 @@ public class FreeForAll : IBattleMode
 
         }
     }
-    public void FinishGame()
+    public void Update()
     {
         if (adicionolPoint == false)
         {

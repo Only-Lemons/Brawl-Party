@@ -17,7 +17,7 @@ public class GetItRock : IGameMode
         aux = gameController;
         timeOfGame = time;
     }
-    public void DeathRule(PlayerController player)
+    public void HitRule(PlayerController player)
     {
         player.ResetarPlayer();
         player.gameObject.SetActive(false);
@@ -52,7 +52,7 @@ public class GetItRock : IGameMode
             hammers[posicoes[i]].GetComponent<Animator>().SetTrigger("fall");
         }
     }
-    public void FinishGame()
+    public void Update()
     {
         if (!adicionolPoint)
         {

@@ -28,7 +28,7 @@ public class JhonBeen : IGameMode
         timeOfGame = time;
         aux = gameController;
     }
-    public void DeathRule(PlayerController player)
+    public void HitRule(PlayerController player)
     {
         canMove[player].canMove = false;
         canMove[player].timeInStun = 1;
@@ -46,7 +46,7 @@ public class JhonBeen : IGameMode
         }
     }
    
-    public void FinishGame()
+    public void Update()
     {
         if (!adicionolPoint)
         {

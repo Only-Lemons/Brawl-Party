@@ -26,7 +26,7 @@ public class CaptureTheFlag : IBattleMode
         GameObject.Instantiate(_flag, new Vector3(0, 1, 0), Quaternion.identity);
         AddPlayerPoints();
     }
-    public void FinishGame()
+    public void Update()
     {
         if (adicionolPoint == false)
         {
@@ -93,7 +93,7 @@ public class CaptureTheFlag : IBattleMode
             adicionolPoint = true;
         }
     }
-    public void DeathRule(PlayerController player)
+    public void HitRule(PlayerController player)
     {
         if (player.canDeath)
         {

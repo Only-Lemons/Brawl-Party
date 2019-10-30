@@ -56,6 +56,6 @@ public class GameController : MonoBehaviour
     }
     private void Update()
     {
-        gameMode.FinishGame();
+        gameMode.Update();
     }
 }

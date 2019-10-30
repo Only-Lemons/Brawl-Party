@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Dominion : IGameMode
 {
-    public void DeathRule(PlayerController player)
+    public void HitRule(PlayerController player)
     {
       
     }
 
-    public void FinishGame()
+    public void Update()
     {
        
     }

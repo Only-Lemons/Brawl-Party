@@ -8,7 +8,7 @@ public class Bird : MonoBehaviour
     {
         if (other.GetComponent<PlayerController>() != null)
         {
-            GameController.singleton.gameMode.DeathRule(other.GetComponent<PlayerController>());
+            GameController.singleton.gameMode.HitRule(other.GetComponent<PlayerController>());
             Destroy(this.gameObject);
         }
     }

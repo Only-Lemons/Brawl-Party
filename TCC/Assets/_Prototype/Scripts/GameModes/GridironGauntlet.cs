@@ -41,7 +41,7 @@ public class GridironGauntlet : IGameMode
         player.gameObject.GetComponent<MeshRenderer>().enabled = true;
         canDamage[player] = true;
     }
-    public void DeathRule(PlayerController player)
+    public void HitRule(PlayerController player)
     {
         if (canDamage[player])
         {
@@ -81,7 +81,7 @@ public class GridironGauntlet : IGameMode
 
         return true;
     }
-    public void FinishGame()
+    public void Update()
     {
         if (!adicionolPoint)
         {

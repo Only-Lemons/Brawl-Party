@@ -29,7 +29,7 @@ public class SnackAtack : IGameMode
       
     }
 
-    public void DeathRule(PlayerController player)
+    public void HitRule(PlayerController player)
     {
         canMove[player.gameObject.GetComponent<PlayerController>()].canMove = false;
         canMove[player.gameObject.GetComponent<PlayerController>()].timeInStun = 1;
@@ -46,7 +46,7 @@ public class SnackAtack : IGameMode
         UpdateBasket(player);
     }
 
-    public void FinishGame()
+    public void Update()
     {
         if (!adicionolPoint)
         {
