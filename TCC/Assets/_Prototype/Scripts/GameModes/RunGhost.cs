@@ -50,7 +50,9 @@ public class RunGhost : IGameMode
 
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
-        player.position += dir * speed * Time.deltaTime;
+        if (!isGhost[player.GetComponent<PlayerController>()])
+            player.position += dir * speed * Time.deltaTime;
+        else player.position += dir * 10 * Time.deltaTime;
     }
 
     public void PointRule(PlayerController player)
