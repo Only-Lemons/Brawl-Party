@@ -8,6 +8,7 @@ public class RunGhost : IGameMode
     GameController aux;
     float timeOfGame;
     GameObject _Monster = Resources.Load("Mecanicas/Monster") as GameObject;
+    GameObject _Ghost = Resources.Load("Mecanicas/Ghost") as GameObject;
     Dictionary<PlayerController, int> pointPlayer = new Dictionary<PlayerController, int>();
     Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
     List<PlayerController> winners = new List<PlayerController>();
@@ -65,7 +66,14 @@ public class RunGhost : IGameMode
     public void StartGame()
     {
         AddPlayerInformations();
+        InstantiateGhost();
     }
+
+    private void InstantiateGhost()
+    {
+        GameObject.Instantiate(_Ghost, new Vector3(0, 0, 0), Quaternion.identity);
+    }
+
     void AddPlayerInformations()
     {
         foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
