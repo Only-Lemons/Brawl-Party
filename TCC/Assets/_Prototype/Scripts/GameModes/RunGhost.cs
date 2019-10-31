@@ -9,6 +9,7 @@ public class RunGhost : IGameMode
     float timeOfGame;
     GameObject _Monster = Resources.Load("Mecanicas/Monster") as GameObject;
     GameObject _Ghost = Resources.Load("Mecanicas/Ghost") as GameObject;
+    GhostController ghost;
     Dictionary<PlayerController, int> pointPlayer = new Dictionary<PlayerController, int>();
     Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
     List<PlayerController> winners = new List<PlayerController>();
@@ -71,7 +72,8 @@ public class RunGhost : IGameMode
 
     private void InstantiateGhost()
     {
-        GameObject.Instantiate(_Ghost, new Vector3(0, 0, 0), Quaternion.identity);
+       GameObject _ghost = GameObject.Instantiate(_Ghost, new Vector3(0, 0, 0), Quaternion.identity);
+       ghost = _ghost.GetComponent<GhostController>();
     }
 
     void AddPlayerInformations()
@@ -91,6 +93,7 @@ public class RunGhost : IGameMode
             timeOfGame -= Time.deltaTime;
             ShowTime();
             AddPointForPlayers();
+            MoveGhost();
             if (timeOfGame <= 0)
             { 
                 
@@ -98,6 +101,17 @@ public class RunGhost : IGameMode
                 WinRule();
             }
         }
+    }
+
+    private void MoveGhost()
+    {
+        PlayerController closerPlayer = aux.playerManager.playersControllers[0];
+        float DistanciaMin = float.MinValue;
+        foreach (PlayerController player in aux.playerManager.playersControllers) {
+            if (!isGhost[player] && DistanciaMin < Vector3.Distance(player.transform.position, ghost.transform.position))
+                closerPlayer = player;
+        }
+        ghost.FollowPlayer(closerPlayer);
     }
 
     private void AddPointForPlayers()
