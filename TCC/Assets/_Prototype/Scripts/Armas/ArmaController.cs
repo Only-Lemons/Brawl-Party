@@ -31,7 +31,7 @@ public class ArmaController : MonoBehaviour
             playerController.playerUI.ammo.maxValue = actualArma.ammoAmount;
             playerController.playerUI.gun.sprite = actualArma.gunSprite;
             playerController.anim.SetBool("HasGun", true);
-            Instantiate(actualArma.prefab, playerController.hand.position, Quaternion.identity, playerController.hand.transform);
+            Instantiate(actualArma.prefab, playerController.hand.position, playerController.hand.localRotation, playerController.hand.transform);
 
             Destroy(this.gameObject);
         }
