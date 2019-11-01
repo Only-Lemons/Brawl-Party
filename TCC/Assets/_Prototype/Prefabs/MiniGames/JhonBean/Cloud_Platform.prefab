@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7896338339917582046}
   - component: {fileID: 5440561725309317418}
   - component: {fileID: 8296175845669775900}
+  - component: {fileID: 5086027955502721127}
   m_Layer: 0
   m_Name: Cloud_Platform
   m_TagString: Untagged
@@ -92,3 +93,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15.161576, y: 3.6471388, z: 13.442444}
   m_Center: {x: -0.1194706, y: -0.27833807, z: 0.12439942}
+--- !u!114 &5086027955502721127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520274047215250735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296be63dadea1414a9776220f6594c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

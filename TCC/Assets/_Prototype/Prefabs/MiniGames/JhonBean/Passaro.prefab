@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8615824259350090307}
   - component: {fileID: 8020397671020434767}
   - component: {fileID: 7672202226114965743}
+  - component: {fileID: 8679305396716302816}
   m_Layer: 0
   m_Name: Passaro
   m_TagString: Untagged
@@ -92,3 +93,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.1583776, y: 2.408676, z: 5.0772486}
   m_Center: {x: 0.6517794, y: 0.12888813, z: 0.13762236}
+--- !u!114 &8679305396716302816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297080517802432129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a5e0a69a2019f46a0ea520dc3e472a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

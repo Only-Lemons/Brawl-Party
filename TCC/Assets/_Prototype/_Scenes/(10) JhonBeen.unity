@@ -2085,6 +2085,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ca4c20892c42913408eb92cc425a8791, type: 2}
+    - target: {fileID: 8296175845669775900, guid: 8a3809efa1bc9514f93c5a49114f2047,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a3809efa1bc9514f93c5a49114f2047, type: 3}
 --- !u!4 &79087941 stripped
@@ -4938,7 +4943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206202870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.5, y: 1.4, z: 0}
+  m_LocalPosition: {x: 552.73, y: -4.37, z: 29.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -34026,10 +34031,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesInstanciados: []
   bases:
-  - {x: -100.5, y: -20.21, z: -8.91}
-  - {x: -2, y: -20.21, z: -8.91}
-  - {x: 98.5, y: -20.21, z: -8.91}
-  - {x: 192.5, y: -20.21, z: -8.91}
+  - {x: -52.24, y: -4.37, z: 25.61}
+  - {x: 153.75, y: -4.37, z: 25.61}
+  - {x: 351.089, y: -4.37, z: 25.61}
+  - {x: 550.12, y: -4.37, z: 29.95}
 --- !u!114 &1250720452
 MonoBehaviour:
   m_ObjectHideFlags: 0
