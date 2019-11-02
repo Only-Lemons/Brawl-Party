@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
                 if (playersPanels.Count > 0 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == false))
                 {
-                    SceneManager.LoadScene(5); // provisorio
+                    SceneManager.LoadScene(6); // provisorio
                 }
 
 
