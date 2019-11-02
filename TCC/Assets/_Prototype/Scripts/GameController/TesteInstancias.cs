@@ -85,6 +85,8 @@ public class TesteInstancias : MonoBehaviour
             }
         rnd = Random.Range(0,10);
 
+        rnd = 9;
+
         switch (rnd)
         {
             case 0:
@@ -118,7 +120,7 @@ public class TesteInstancias : MonoBehaviour
                 go[b].GetComponent<ArmaController>().actualArma = new Doomoo();
                 break;
             case 10:
-                go[b].GetComponent<ArmaController>().actualArma = new Teletiroporte(); //Erros
+                go[b].GetComponent<ArmaController>().actualArma = new Teletiroporte(); //Erros //Possivel saída
                 break;
 
             default:

@@ -88,7 +88,6 @@ public class FreeForAll : IBattleMode
             _gameController.FinishGame();
             adicionolPoint = true;
         }
-
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {

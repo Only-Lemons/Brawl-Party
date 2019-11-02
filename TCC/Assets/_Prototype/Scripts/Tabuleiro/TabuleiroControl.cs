@@ -125,15 +125,15 @@ public class TabuleiroControl : MonoBehaviour
     }
 
 
-    void PodeAndar(GameObject a, GameObject b)
-    {
-        if (andando && Dado.dadoControl.dadoParado)
-        {
-            a.transform.position = Vector3.Lerp(a.transform.position, b.transform.position, Time.deltaTime * 5);
-            if (Vector3.Distance(a.transform.position, b.transform.position) < 0.2f)
-                andando = false;
-        }
-    }
+    //void PodeAndar(GameObject a, GameObject b)
+    //{
+    //    if (andando && Dado.dadoControl.dadoParado)
+    //    {
+    //        a.transform.position = Vector3.Lerp(a.transform.position, b.transform.position, Time.deltaTime * 5);
+    //        if (Vector3.Distance(a.transform.position, b.transform.position) < 0.2f)
+    //            andando = false;
+    //    }
+    //}
 
     void JogadorQueJoga()
     {

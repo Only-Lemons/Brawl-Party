@@ -24,7 +24,7 @@ public class BulletDoomooEfeito : MonoBehaviour
         if (transform.localScale.magnitude < tamanhoMax)
             transform.localScale = new Vector3(transform.localScale.x + Time.deltaTime * velocidadeExpansao, transform.localScale.y + Time.deltaTime * velocidadeExpansao, transform.localScale.z + Time.deltaTime * velocidadeExpansao);
 
-        if(entrou)
+        if (entrou)
         {
             cont += Time.deltaTime;
         }
@@ -38,14 +38,6 @@ public class BulletDoomooEfeito : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            other.transform.position = Vector3.Lerp(other.transform.position, transform.position, Time.deltaTime * 2);
-        }
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -55,6 +47,8 @@ public class BulletDoomooEfeito : MonoBehaviour
                 other.GetComponent<PlayerController>().ReceiveDamage(bulletDoomoo.GetComponent<BulletDoomoo>().damage, other.gameObject.GetComponent<PlayerController>());
                 cont = 0;
             }
+
+            other.transform.position = Vector3.Lerp(other.transform.position, transform.position, Time.deltaTime);
         }
     }
 }
