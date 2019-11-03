@@ -14,13 +14,16 @@ public class Dado : MonoBehaviour
     Vector3 posicaoInicial;
     public void Jogar()
     {
-        dadoNoAr = true;
-        dadoParado = false;
-        TabuleiroControl.tabControl.travarTudo = false;
+        if (!dadoNoAr && dadoParado)
+        {
+            dadoNoAr = true;
+            dadoParado = false;
+            TabuleiroControl.tabControl.travarTudo = false;
 
-        random = Random.Range(0, 360);
-        GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.Impulse);
-        
+            random = Random.Range(0, 360);
+            GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.Impulse);
+            CameraTabuleiro.camTab.FocoNoDado(Dado.dadoControl.gameObject);
+        }
     }
 
     private void Start()
@@ -38,7 +41,7 @@ public class Dado : MonoBehaviour
     {
         if(dadoNoAr)
         {
-            transform.Rotate(random * Time.deltaTime, random * Time.deltaTime, random * Time.deltaTime);
+            transform.Rotate(Random.Range(75,361) * Time.deltaTime, Random.Range(75, 361) * Time.deltaTime, Random.Range(75,361) * Time.deltaTime);
         }
 
         VoltarPraOrigem();

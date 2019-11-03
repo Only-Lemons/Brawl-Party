@@ -20,6 +20,8 @@ public class TabuleiroControl : MonoBehaviour
     int posicaoDado;
 
     public bool travarTudo;
+    [HideInInspector]
+    public bool comecou;
 
     void Start()
     {
@@ -27,6 +29,8 @@ public class TabuleiroControl : MonoBehaviour
 
         travarTudo = true;
         andando = false;
+        comecou = false;
+        recebeBonus = false;
 
         DefinirJogadores();
 
@@ -37,6 +41,8 @@ public class TabuleiroControl : MonoBehaviour
     {
         //PodeAndar(atual, destino);
         ContinueAndando(atual, destino);
+        PausaParaReceberBonus();
+
     }
 
     void DefinirJogadores()
@@ -80,7 +86,11 @@ public class TabuleiroControl : MonoBehaviour
 
     public void JogarDado()
     {
-        Dado.dadoControl.Jogar();
+        if (andando == false)
+        {
+            comecou = true;
+            Dado.dadoControl.Jogar();
+        }
     }
 
     public void PodeIr()
@@ -97,6 +107,7 @@ public class TabuleiroControl : MonoBehaviour
                 posicaoDado = 1;
 
             AndarNoTabuleiro(posicaoDado, playerAtual);
+
             travarTudo = true;
         }
     }
@@ -106,34 +117,31 @@ public class TabuleiroControl : MonoBehaviour
         if (andando && Dado.dadoControl.dadoParado)
         {
             a.transform.position = Vector3.Lerp(a.transform.position, proximaPos.transform.position, Time.deltaTime * 5);
+            CameraTabuleiro.camTab.FocoNoJogador(atual);
 
             if (Vector3.Distance(a.transform.position, proximaPos.transform.position) < 0.2f)
             {
                 if (proximaPos.transform.position == f.transform.position)
                 {
                     a.GetComponent<DadoPlayer>().posAtual = f.id;
+                    proximaPos.ReceberBonus(playerAtual);
+                    recebeBonus = true;
                     andando = false;
                     return;
                 }
                 else
                 {
-                    proximaPos = posTab[proximaPos.GetComponent<PosicoesTabuleiro>().id+1];
+                    proximaPos = posTab[proximaPos.GetComponent<PosicoesTabuleiro>().id + 1];
                     return;
                 }
             }
         }
+
+        else if (!andando && Dado.dadoControl.dadoParado && comecou && !recebeBonus)
+        {
+            CameraTabuleiro.camTab.FocoNoProximoJogador(pl[playerAtualId].gameObject);
+        }
     }
-
-
-    //void PodeAndar(GameObject a, GameObject b)
-    //{
-    //    if (andando && Dado.dadoControl.dadoParado)
-    //    {
-    //        a.transform.position = Vector3.Lerp(a.transform.position, b.transform.position, Time.deltaTime * 5);
-    //        if (Vector3.Distance(a.transform.position, b.transform.position) < 0.2f)
-    //            andando = false;
-    //    }
-    //}
 
     void JogadorQueJoga()
     {
@@ -142,5 +150,20 @@ public class TabuleiroControl : MonoBehaviour
 
         if (playerAtualId >= pl.Count)
             playerAtualId = 0;
+    }
+
+    float pInicial = 0;
+    bool recebeBonus;
+    void PausaParaReceberBonus()
+    {
+        if (recebeBonus)
+        {
+            pInicial += Time.deltaTime;
+            if (pInicial >= 2)
+            {
+                recebeBonus = false;
+                pInicial = 0;
+            }
+        }
     }
 }

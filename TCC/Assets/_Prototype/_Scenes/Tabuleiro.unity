@@ -226,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14153258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23, y: 0.5, z: -2.5}
+  m_LocalPosition: {x: -11.5, y: 0.5, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 381971915}
@@ -284,6 +284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &112584455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -314,7 +317,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -390,6 +393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 21
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &218604273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -420,7 +426,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -662,7 +668,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -718,6 +724,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 6
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &381971914
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +818,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 17
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &401110174
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -839,7 +851,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -915,6 +927,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 15
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &410572308
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -945,7 +960,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1038,7 +1053,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1094,6 +1109,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &443275668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1200,6 +1218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &477154940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,6 +1254,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 28
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &477154942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1263,7 +1287,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1317,6 +1341,7 @@ GameObject:
   - component: {fileID: 531536342}
   - component: {fileID: 531536341}
   - component: {fileID: 531536340}
+  - component: {fileID: 531536343}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1382,13 +1407,25 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531536339}
-  m_LocalRotation: {x: 0, y: 0.77907544, z: -0.62693024, w: 0}
-  m_LocalPosition: {x: -11.95, y: 14.05, z: 0.54}
+  m_LocalRotation: {x: 0, y: 0.8503522, z: -0.5262139, w: 0}
+  m_LocalPosition: {x: 0, y: 14, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 77.648, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 63.5, y: 180, z: 0}
+--- !u!114 &531536343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531536339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0b92198b1965441a1b27b0909e9e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &551756834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1476,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1495,6 +1532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 10
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &556376625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,6 +1568,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 18
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &556376627
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1558,7 +1601,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1758,7 +1801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641212080}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 13.570001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 112584458}
@@ -1884,6 +1927,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 16
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &729731459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1914,7 +1960,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1990,6 +2036,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 24
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &741664444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2020,7 +2069,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2113,7 +2162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2169,6 +2218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 9
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &807621310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2277,7 +2329,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2333,6 +2385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 8
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &896690582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,6 +2421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 23
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &896690584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2396,7 +2454,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2472,6 +2530,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 19
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &913564474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2502,7 +2563,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2560,7 +2621,7 @@ PrefabInstance:
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: 9.77
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
@@ -2689,7 +2750,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2745,6 +2806,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 4
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &1056785065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2859,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2851,6 +2915,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &1074592826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,7 +2977,9 @@ MonoBehaviour:
   - {fileID: 1212995525}
   - {fileID: 1841419709}
   - {fileID: 477154941}
+  proximaPos: {fileID: 0}
   travarTudo: 0
+  comecou: 0
 --- !u!4 &1074592828
 Transform:
   m_ObjectHideFlags: 0
@@ -3061,6 +3130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numDado: 0
   direcaoPlayer: 1
+  posAtual: 0
 --- !u!1 &1177669981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,6 +3164,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 13
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &1177669983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3124,7 +3197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3200,6 +3273,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 26
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &1212995526
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3230,7 +3306,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3372,6 +3448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 14
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &1412939052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3402,7 +3481,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3533,7 +3612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457963668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.19, y: 0, z: -2.33}
+  m_LocalPosition: {x: -11.62, y: 0, z: -2.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3585,6 +3664,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 20
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &1469805105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3615,7 +3697,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3673,7 +3755,7 @@ PrefabInstance:
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: 9.77
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
@@ -3785,6 +3867,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 12
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &1651099243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3815,7 +3900,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3878,6 +3963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numDado: 0
   direcaoPlayer: 1
+  posAtual: 0
 --- !u!1 &1817109066
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,7 +4014,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3984,6 +4070,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &1841419708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4017,6 +4106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 27
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &1841419710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4047,7 +4139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4105,7 +4197,7 @@ PrefabInstance:
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: 9.77
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
@@ -4234,7 +4326,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4290,6 +4382,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &1963767005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4340,7 +4435,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4396,6 +4491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 11
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!1 &1998179921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4607,6 +4705,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 22
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &2068570941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4637,7 +4738,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4700,6 +4801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numDado: 0
   direcaoPlayer: 1
+  posAtual: 0
 --- !u!1001 &2097272410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4715,7 +4817,7 @@ PrefabInstance:
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8
+      value: 9.77
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969209, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
@@ -4814,6 +4916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numDado: 0
   direcaoPlayer: 1
+  posAtual: 0
 --- !u!1 &2143698912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4847,6 +4950,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 25
+  ouroB: 10
+  velMovimentoB: 10
+  escudoB: 10
 --- !u!65 &2143698914
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4877,7 +4983,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3677a51a7d1f99c41bfa5e39467d9820, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
