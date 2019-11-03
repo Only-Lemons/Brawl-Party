@@ -17,6 +17,7 @@ public enum GameModes
     GetItRock,
     JhonBeen,
     SnackAtack,
+    RunGhost,
     Boss
 }
   

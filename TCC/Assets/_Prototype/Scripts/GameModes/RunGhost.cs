@@ -41,7 +41,7 @@ public class RunGhost : IGameMode
     public void HitRule(PlayerController player)
     {
         isGhost[player] = true;
-        player.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        player.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
         player.gameObject.GetComponent<Collider>().enabled = false;
         GameObject.Instantiate(_Monster, player.transform.position, Quaternion.identity, player.transform);
         if (VerifyPlayerMortos())
@@ -74,8 +74,7 @@ public class RunGhost : IGameMode
 
     private void InstantiateGhost()
     {
-       GameObject _ghost = GameObject.Instantiate(_Ghost, new Vector3(0, 0, 0), Quaternion.identity);
-       ghost = _ghost.GetComponent<GhostController>();
+       ghost = GameObject.FindObjectOfType<GhostController>();
     }
 
     void AddPlayerInformations()
@@ -94,8 +93,8 @@ public class RunGhost : IGameMode
         {
             timeOfGame -= Time.deltaTime;
             ShowTime();
-            AddPointForPlayers();
             MoveGhost();
+            AddPointForPlayers();
             if (timeOfGame <= 0)
             { 
                 

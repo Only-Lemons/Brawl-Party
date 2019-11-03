@@ -108,10 +108,13 @@ public class GameManager : MonoBehaviour
                 gameController.gameMode = new GetItRock(gameController, 35 * TimeInGame);
                 break;
             case GameModes.JhonBeen:
-                gameController.gameMode = new JhonBeen(gameController, 10 * TimeInGame);
+                gameController.gameMode = new JhonBeen(gameController, 40 * TimeInGame);
                 break;
             case GameModes.SnackAtack:
                 gameController.gameMode = new SnackAtack(gameController, 40 * TimeInGame);
+                break;
+            case GameModes.RunGhost:
+                gameController.gameMode = new RunGhost(gameController, 40 * TimeInGame);
                 break;
         }
     }
