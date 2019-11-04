@@ -786,10 +786,10 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": """",
                     ""id"": ""9de91075-032f-4f58-a430-fb1872008004"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -797,10 +797,10 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": """",
                     ""id"": ""60f18a0f-76c6-466e-a4c6-0e1770853d7a"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
