@@ -71,16 +71,23 @@ public class TabuleiroControl : MonoBehaviour
     {
         andando = true;
 
-        if (p.GetComponent<DadoPlayer>().numDado + id >= posTab.Count)
-            p.GetComponent<DadoPlayer>().direcaoPlayer = -1;
-        if (p.GetComponent<DadoPlayer>().numDado - id <= 0)
-            p.GetComponent<DadoPlayer>().direcaoPlayer = 1;
-
-        p.GetComponent<DadoPlayer>().numDado += id * p.GetComponent<DadoPlayer>().direcaoPlayer;
+        p.GetComponent<DadoPlayer>().numDado += id;
 
         atual = p.gameObject;
-        proximaPos = posTab[(p.GetComponent<DadoPlayer>().posAtual + (p.GetComponent<DadoPlayer>().numDado - (p.GetComponent<DadoPlayer>().numDado - 1)))];
-        destino = posTab[p.GetComponent<DadoPlayer>().numDado];
+        proximaPos = posTab[(p.GetComponent<DadoPlayer>().posAtual + p.GetComponent<DadoPlayer>().direcaoPlayer)];
+        destino = null;
+        int valor = p.GetComponent<DadoPlayer>().numDado + p.GetComponent<DadoPlayer>().posAtual;
+        Debug.Log(valor);
+
+        if (valor >= posTab.Count || valor <= 0)
+        {
+            int resto;
+            resto = valor - (posTab.Count % p.GetComponent<DadoPlayer>().posAtual);
+            Debug.Log(resto);
+            destino = posTab[resto];
+        }
+        else
+            destino = posTab[valor];
 
     }
 
@@ -102,9 +109,9 @@ public class TabuleiroControl : MonoBehaviour
             posicaoDado = Dado.dadoControl.dadoValor;
 
             if (playerAtual.GetComponent<DadoPlayer>().numDado + posicaoDado > posTab.Count)
-                posicaoDado = 1;
+                posicaoDado = playerAtual.GetComponent<DadoPlayer>().numDado - (playerAtual.GetComponent<DadoPlayer>().numDado % posTab.Count);
             else if (playerAtual.GetComponent<DadoPlayer>().numDado - posicaoDado < 0 && playerAtual.GetComponent<DadoPlayer>().direcaoPlayer == -1)
-                posicaoDado = 1;
+                posicaoDado = playerAtual.GetComponent<DadoPlayer>().numDado - (playerAtual.GetComponent<DadoPlayer>().numDado % posTab.Count);
 
             AndarNoTabuleiro(posicaoDado, playerAtual);
 
@@ -116,6 +123,13 @@ public class TabuleiroControl : MonoBehaviour
     {
         if (andando && Dado.dadoControl.dadoParado)
         {
+            if (a.GetComponent<DadoPlayer>().posAtual >= posTab.Count - 1)
+                a.GetComponent<DadoPlayer>().direcaoPlayer = -1;
+            else if (a.GetComponent<DadoPlayer>().posAtual <= 0)
+                a.GetComponent<DadoPlayer>().direcaoPlayer = 1;
+
+            a.GetComponent<DadoPlayer>().posAtual = proximaPos.id;
+
             a.transform.position = Vector3.Lerp(a.transform.position, proximaPos.transform.position, Time.deltaTime * 5);
             CameraTabuleiro.camTab.FocoNoJogador(atual);
 
@@ -131,7 +145,8 @@ public class TabuleiroControl : MonoBehaviour
                 }
                 else
                 {
-                    proximaPos = posTab[proximaPos.GetComponent<PosicoesTabuleiro>().id + 1];
+
+                    proximaPos = posTab[proximaPos.GetComponent<PosicoesTabuleiro>().id + 1 * a.GetComponent<DadoPlayer>().direcaoPlayer];
                     return;
                 }
             }
