@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
 public class JhonBeen : IGameMode
 {
     class Stun
@@ -18,6 +19,7 @@ public class JhonBeen : IGameMode
     float timeToSpawn = 0;
     GameObject _bird = Resources.Load("Mecanicas/Bird") as GameObject;
     List<PlayerController> winners = new List<PlayerController>();
+    GameObject[] cameras;
     Dictionary<PlayerController, Stun> canMove = new Dictionary<PlayerController, Stun>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, PositionsLR> playerPosition = new Dictionary<PlayerController, PositionsLR>();
@@ -50,6 +52,7 @@ public class JhonBeen : IGameMode
     {
         if (!adicionolPoint)
         {
+            UpdatePositionCamera();
             timeOfGame -= Time.deltaTime;
             ShowTime();
             removePlayersInStun();
@@ -59,6 +62,17 @@ public class JhonBeen : IGameMode
                 WinRule();
             }
 
+        }
+    }
+
+    private void UpdatePositionCamera()
+    {
+        for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
+        {
+            if(aux.playerManager.playersControllers[i].transform.position.y > 0)
+                cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14);
+            else
+                cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14);
         }
     }
     void InsertWinners()
@@ -178,8 +192,11 @@ public class JhonBeen : IGameMode
     }
     void InsertPlayerInDates()
     {
+        cameras = GameObject.FindGameObjectsWithTag("Point");
         for (int i = 0; i < GameController.singleton.playerManager.playersControllers.Count; i++)
         {
+          
+           
             playerMortos.Add(GameController.singleton.playerManager.playersControllers[i], false);
             PositionsLR auxLR = new PositionsLR();
             playerPosition.Add(GameController.singleton.playerManager.playersControllers[i], auxLR);
@@ -196,6 +213,7 @@ public class JhonBeen : IGameMode
     {
         if (!adicionolPoint)
         {
+       
             for (int i = 0; i < winners.Count; i++)
             {
                 GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;

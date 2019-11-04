@@ -22,7 +22,6 @@ public class GameController : MonoBehaviour
     void OnEnable()
     {
         singleton = this;
-
     }
     private void Start()
     {
@@ -40,6 +39,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < playerManager.playersControllers.Count; i++)
         {
             pontos[i].text = GameManager.Instance.pontosGeral[i].ToString();
+            pontos[i].color = playerManager.playersControllers[i].gameObject.GetComponent<PlayerSelect>().playerMaterial.color;
             personagens[i].sprite = playerManager.playersControllers[i].player.sprite;
             playerManager.playersControllers[i].gameObject.SetActive(true);
             playerManager.playersControllers[i].ResetarPlayer();

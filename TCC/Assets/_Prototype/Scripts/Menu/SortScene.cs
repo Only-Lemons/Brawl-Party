@@ -29,7 +29,7 @@ public class SortScene : MonoBehaviour
             }
         }
 
-        sortGameM = 0;
+        //QUANDO FAZER COLLAB FAVOR TIRAR A PARTE DA CENA DIRECIONADA
       
         StartCoroutine(StartScene());
     }
