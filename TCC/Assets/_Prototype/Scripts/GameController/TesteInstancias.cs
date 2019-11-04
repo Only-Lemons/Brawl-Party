@@ -85,7 +85,6 @@ public class TesteInstancias : MonoBehaviour
             }
         rnd = Random.Range(0,10);
 
-        rnd = 9;
 
         switch (rnd)
         {

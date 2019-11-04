@@ -76,15 +76,22 @@ public class TabuleiroControl : MonoBehaviour
         atual = p.gameObject;
         proximaPos = posTab[(p.GetComponent<DadoPlayer>().posAtual + p.GetComponent<DadoPlayer>().direcaoPlayer)];
         destino = null;
-        int valor = p.GetComponent<DadoPlayer>().numDado + p.GetComponent<DadoPlayer>().posAtual;
+        int valor = (p.GetComponent<DadoPlayer>().posAtual + id);
+        int vetor = posTab.Count - 1;
         Debug.Log(valor);
 
-        if (valor >= posTab.Count || valor <= 0)
+        if (valor >= vetor)
         {
+            p.GetComponent<DadoPlayer>().dirAux = -1;
             int resto;
-            resto = valor - (posTab.Count % p.GetComponent<DadoPlayer>().posAtual);
+            resto = vetor - (valor - vetor);
             Debug.Log(resto);
             destino = posTab[resto];
+        }
+        else if (valor <= 0)
+        {
+            p.GetComponent<DadoPlayer>().dirAux = 1;
+            destino = posTab[valor * -1];
         }
         else
             destino = posTab[valor];
@@ -108,10 +115,10 @@ public class TabuleiroControl : MonoBehaviour
 
             posicaoDado = Dado.dadoControl.dadoValor;
 
-            if (playerAtual.GetComponent<DadoPlayer>().numDado + posicaoDado > posTab.Count)
-                posicaoDado = playerAtual.GetComponent<DadoPlayer>().numDado - (playerAtual.GetComponent<DadoPlayer>().numDado % posTab.Count);
-            else if (playerAtual.GetComponent<DadoPlayer>().numDado - posicaoDado < 0 && playerAtual.GetComponent<DadoPlayer>().direcaoPlayer == -1)
-                posicaoDado = playerAtual.GetComponent<DadoPlayer>().numDado - (playerAtual.GetComponent<DadoPlayer>().numDado % posTab.Count);
+            //if (playerAtual.GetComponent<DadoPlayer>().numDado + posicaoDado > posTab.Count)
+            //    posicaoDado = playerAtual.GetComponent<DadoPlayer>().numDado - (playerAtual.GetComponent<DadoPlayer>().numDado % posTab.Count);
+            //else if (playerAtual.GetComponent<DadoPlayer>().numDado - posicaoDado < 0 && playerAtual.GetComponent<DadoPlayer>().direcaoPlayer == -1)
+            //    posicaoDado = playerAtual.GetComponent<DadoPlayer>().numDado - (playerAtual.GetComponent<DadoPlayer>().numDado % posTab.Count);
 
             AndarNoTabuleiro(posicaoDado, playerAtual);
 
@@ -137,6 +144,7 @@ public class TabuleiroControl : MonoBehaviour
             {
                 if (proximaPos.transform.position == f.transform.position)
                 {
+                    a.GetComponent<DadoPlayer>().direcaoPlayer = a.GetComponent<DadoPlayer>().dirAux;
                     a.GetComponent<DadoPlayer>().posAtual = f.id;
                     proximaPos.ReceberBonus(playerAtual);
                     recebeBonus = true;
