@@ -145,6 +145,10 @@ public class GetItRock : IGameMode
                 GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
 
             }
+            foreach (PlayerController player in aux.playerManager.playersControllers)
+            {
+                player.gameObject.SetActive(true);
+            }
             aux.FinishGame();
             adicionolPoint = true;
         }
