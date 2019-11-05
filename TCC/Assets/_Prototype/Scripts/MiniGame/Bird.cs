@@ -9,9 +9,10 @@ public class Bird : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            this.GetComponent<ParticlePlayer>().Play(.5F);
-            GameController.singleton.gameMode.HitRule(other.GetComponent<PlayerController>());
-            Destroy(this.gameObject, .5F);
+            GameController.singleton.gameMode.HitRule(other.GetComponent<PlayerController>()); 
+            this.GetComponent<ParticlePlayer>().Play(.2F);
+            
+            Destroy(this.gameObject, .2F);
         }
     }
 }
