@@ -30,4 +30,40 @@ public class AudioConfig : MonoBehaviour
         audioGeral.SetFloat("VolumeM", MusicVolume.value);
         audioGeral.SetFloat("VolumeE", EffectsVolume.value);
     }
+
+    #region mute/unmute Geral
+    public void muteAudioGeral()
+    {
+        audioGeral.SetFloat("Volume", 0);
+    }
+
+    public void unmuteAudioGeral()
+    {
+        audioGeral.SetFloat("Volume", GeralVolume.value);
+    }
+    #endregion
+
+    #region mute/unmute Music
+    public void muteAudioM()
+    {
+        audioGeral.SetFloat("VolumeM", 0);
+    }
+
+    public void unmuteAudioM()
+    {
+        audioGeral.SetFloat("VolumeM", MusicVolume.value);
+    }
+    #endregion
+
+    #region mute/unmute Efeitos
+    public void muteAudioE()
+    {
+        audioGeral.SetFloat("VolumeE", 0);
+    }
+
+    public void unmuteAudioE()
+    {
+        audioGeral.SetFloat("VolumeE", EffectsVolume.value);
+    }
+    #endregion
 }
