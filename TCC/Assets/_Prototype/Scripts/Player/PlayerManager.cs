@@ -89,12 +89,8 @@ public class PlayerManager : MonoBehaviour
     }
     public void RemovePlayerofDeath()
     {
-
         for (int i = 0; i < playerMortos.Count; i++)
         {
-                playerMortosPrefabs[i].playerUI.Respawn.enabled = false;
-                playerMortosPrefabs[i].ResetarPlayer();
-                playerMortosPrefabs[i].gameObject.SetActive(true);
                 playerMortos.Remove(playerMortosPrefabs[i]);
                 playerMortosPrefabs.Remove(playerMortosPrefabs[i]);
         }

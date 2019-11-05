@@ -81,6 +81,9 @@ public class CaptureTheFlag : IBattleMode
         float maiorPonto = int.MinValue;
         foreach (PlayerController player in _gameController.playerManager.playersControllers)
         {
+            player.gameObject.SetActive(true);
+            player.playerUI.Respawn.enabled = false;
+            player.ResetarPlayer();
             if (pontos[player] > maiorPonto)
             {
                 maiorPonto = pontos[player];

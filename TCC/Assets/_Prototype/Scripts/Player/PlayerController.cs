@@ -139,6 +139,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
+        for (int i = 0; i < hand.transform.childCount; i++)
+        {
+            Destroy(hand.transform.GetChild(i).gameObject);
+        }
     }
     void Rot()
     {
