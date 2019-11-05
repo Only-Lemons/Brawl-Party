@@ -8,6 +8,10 @@ public class GameController : MonoBehaviour
 {
     public static GameController singleton;
 
+    public bool comecouContar;
+    public bool comecou;
+    float timeComecar;
+
     public IGameMode gameMode;
     [HideInInspector]
     public TerrainController tileManager;
@@ -22,6 +26,9 @@ public class GameController : MonoBehaviour
     void OnEnable()
     {
         singleton = this;
+        timeComecar = 4;
+        comecou = false;
+        comecouContar = false;
     }
     private void Start()
     {
@@ -32,6 +39,7 @@ public class GameController : MonoBehaviour
 
         GameManager.Instance.TryGetGameController();
         gameMode.StartGame();
+        comecouContar = true;
 
     }
     public void FinishGame()
@@ -45,7 +53,7 @@ public class GameController : MonoBehaviour
             playerManager.playersControllers[i].ResetarPlayer();
         }
         painelPontos.SetActive(true);
-      
+
         StartCoroutine(ChangeScene());
     }
     IEnumerator ChangeScene()
@@ -56,6 +64,27 @@ public class GameController : MonoBehaviour
     }
     private void Update()
     {
-        gameMode.Update();
+        if (comecou)
+            gameMode.Update();
+        ComecarJogo();
+    }
+
+    public void ComecarJogo()
+    {
+        if (comecouContar)
+        {
+            timeComecar -= Time.deltaTime;
+            time.text = timeComecar.ToString("0");
+            if (timeComecar <= 0.8f)
+            {
+                time.text = "COMEÇOU!";
+                if (timeComecar <= 0)
+                {
+                    comecou = true;
+                    timeComecar = 4;
+                    comecouContar = false;
+                }
+            }
+        }
     }
 }
