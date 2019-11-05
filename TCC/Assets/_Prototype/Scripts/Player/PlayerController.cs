@@ -105,9 +105,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             else
                 anim.SetBool("isMove", false);
 
-            //this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime; //Mais funcional
-
-            //Rot(); //Mais funcional
+            Rot(); //Mais funcional
 
             GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
 
@@ -141,6 +139,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
+        for (int i = 0; i < hand.transform.childCount; i++)
+        {
+            Destroy(hand.transform.GetChild(i).gameObject);
+        }
     }
     void Rot()
     {

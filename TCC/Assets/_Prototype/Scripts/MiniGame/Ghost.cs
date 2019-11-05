@@ -6,7 +6,7 @@ public class Ghost : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<PlayerController>() != null)
-            GameController.singleton.gameMode.HitRule(other.gameObject.GetComponentInParent<PlayerController>());
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+            GameController.singleton.gameMode.HitRule(other.gameObject.GetComponent<PlayerController>());
     }
 }

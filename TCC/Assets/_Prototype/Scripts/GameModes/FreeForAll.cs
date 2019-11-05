@@ -77,7 +77,9 @@ public class FreeForAll : IBattleMode
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in _gameController.playerManager.playersControllers)
         {
-
+            player.gameObject.SetActive(true);
+            player.playerUI.Respawn.enabled = false;
+            player.ResetarPlayer();
             if (pontos[player] > maiorPonto)
             {
                 maiorPonto = pontos[player];
@@ -86,7 +88,8 @@ public class FreeForAll : IBattleMode
         }
         if (adicionolPoint == false)
         {
-            GameManager.Instance.pontosGeral[_gameController.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
+            if(maiorPonto > 0)
+                GameManager.Instance.pontosGeral[_gameController.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
             _gameController.FinishGame();
             adicionolPoint = true;
         }
