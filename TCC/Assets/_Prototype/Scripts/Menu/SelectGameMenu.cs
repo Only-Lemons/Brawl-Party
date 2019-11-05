@@ -10,7 +10,9 @@ public class SelectGameMenu : MonoBehaviour
 
     public void mudar()
     {
-        StartCoroutine(ChangeScene());
+        GameManager.Instance.nextLevel = modoJogo.Scene;
+        GameManager.Instance.newGameMode = modoJogo.gameMode;
+        SceneManager.LoadScene(4);
     }
 
      IEnumerator ChangeScene()

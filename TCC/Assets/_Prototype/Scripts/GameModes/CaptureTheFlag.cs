@@ -76,6 +76,7 @@ public class CaptureTheFlag : IBattleMode
     }
     public void WinRule()
     {
+        _gameController.playerManager.RemovePlayerofDeath();
         PlayerController playerMaior = null;
         float maiorPonto = int.MinValue;
         foreach (PlayerController player in _gameController.playerManager.playersControllers)

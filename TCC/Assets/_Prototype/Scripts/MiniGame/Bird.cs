@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerController>() != null)
+        if (other.tag == "Player")
         {
-            GameController.singleton.gameMode.HitRule(other.GetComponent<PlayerController>());
-            Destroy(this.gameObject);
+            GameController.singleton.gameMode.HitRule(other.GetComponent<PlayerController>()); 
+            this.GetComponent<ParticlePlayer>().Play(.2F);
+            
+            Destroy(this.gameObject, .2F);
         }
     }
 }
