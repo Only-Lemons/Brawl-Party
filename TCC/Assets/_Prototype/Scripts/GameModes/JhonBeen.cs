@@ -105,18 +105,22 @@ public class JhonBeen : IGameMode
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
+        
         if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
         {
             if (dir.x > 0f)
             {
+                player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
 
                 //player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
                 player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
             }
             if (dir.x < 0f)
             {
+                player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
                 player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].left.x, player.transform.position.y, player.transform.position.z);
             }
+           
         }
     }
 
@@ -203,7 +207,7 @@ public class JhonBeen : IGameMode
             PositionsLR auxLR = new PositionsLR();
             playerPosition.Add(GameController.singleton.playerManager.playersControllers[i], auxLR);
             playerPosition[GameController.singleton.playerManager.playersControllers[i]].left = aux.tileManager.bases[i];
-            playerPosition[GameController.singleton.playerManager.playersControllers[i]].right = new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y, aux.tileManager.bases[i].z);
+            playerPosition[GameController.singleton.playerManager.playersControllers[i]].right = new Vector3(aux.tileManager.bases[i].x + 2f, aux.tileManager.bases[i].y, aux.tileManager.bases[i].z);
             Stun auxStun = new Stun();
             auxStun.canMove = true;
             auxStun.timeInStun = 0;
@@ -230,6 +234,7 @@ public class JhonBeen : IGameMode
     {
         if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
         {
+            player.anim.SetTrigger("Climb");
             player.transform.position += new Vector3(0f, 1f, 0f);
         }
     }

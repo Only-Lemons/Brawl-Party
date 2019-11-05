@@ -102,8 +102,22 @@ public class GetItRock : IGameMode
     }
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
+        if(dir.x > 0)
+        {
+            player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
+        }
+        else if( dir.x < 0)
+        {
+            player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
+        }
+        else
+        {
+            player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.zero), Quaternion.identity, Time.deltaTime);
+        }
 
         player.transform.position += new Vector3(dir.x, 0, 0) * speed * Time.deltaTime;
+
+
         //player.transform.position = new Vector3(Mathf.Clamp(player.transform.position.x, -7.5f, 6f),player.position.y,player.position.z);
     }
 

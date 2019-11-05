@@ -107,11 +107,11 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
             //this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime; //Mais funcional
 
-            Rot(); //Mais funcional
+            //Rot(); //Mais funcional
 
             GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
 
-            //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
+            GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
             // passiva.AtivarPassiva(this);
             if (PowerUp == true)
@@ -205,6 +205,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     void Death()
     {
+        anim.SetTrigger("Death");
         GameManager.Instance.audioManager.playDeath();
         GameController.singleton.gameMode.HitRule(this);
         if (this.transform.GetChild(2).childCount > 0)

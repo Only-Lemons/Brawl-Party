@@ -14,7 +14,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     private void Awake()
     {
-        playerMaterial = transform.GetChild(1).GetChild(0).GetComponent<Renderer>().material;
+        playerMaterial = transform.GetChild(1).GetChild(1).GetComponent<Renderer>().material;
 
     }
     private void Start()
