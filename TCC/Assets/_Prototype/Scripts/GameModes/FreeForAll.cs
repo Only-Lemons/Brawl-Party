@@ -88,7 +88,8 @@ public class FreeForAll : IBattleMode
         }
         if (adicionolPoint == false)
         {
-            GameManager.Instance.pontosGeral[_gameController.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
+            if(maiorPonto > 0)
+                GameManager.Instance.pontosGeral[_gameController.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
             _gameController.FinishGame();
             adicionolPoint = true;
         }
