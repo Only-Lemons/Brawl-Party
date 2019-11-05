@@ -35,24 +35,22 @@ public class RunGhost : IGameMode
     }
     public void Action(PlayerController player)
     {
-       
+
     }
 
     public void HitRule(PlayerController player)
     {
         isGhost[player] = true;
-        player.gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+        player.transform.GetChild(1).gameObject.SetActive(false);
         player.gameObject.GetComponent<Collider>().enabled = false;
-        GameObject.Instantiate(_Monster, player.transform.position, Quaternion.identity, player.transform);
+        GameObject.Instantiate(_Monster, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform);
         if (VerifyPlayerMortos())
             WinRule();
     }
 
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
-        if (!isGhost[player.GetComponent<PlayerController>()])
-            player.position += dir * speed * Time.deltaTime;
-        else player.position += dir * 10 * Time.deltaTime;
+        player.position += dir * speed * Time.deltaTime;
     }
 
     public void PointRule(PlayerController player)
@@ -63,7 +61,7 @@ public class RunGhost : IGameMode
 
     public void RotationRule(Vector3 dir, Transform player)
     {
-       
+
     }
 
     public void StartGame()
@@ -74,7 +72,7 @@ public class RunGhost : IGameMode
 
     private void InstantiateGhost()
     {
-       ghost = GameObject.FindObjectOfType<GhostController>();
+        ghost = GameObject.FindObjectOfType<GhostController>();
     }
 
     void AddPlayerInformations()
@@ -84,7 +82,7 @@ public class RunGhost : IGameMode
             pointPlayer.Add(player, 0);
             player.playerUI.points.text = pointPlayer[player].ToString();
             isGhost.Add(player, false);
-        
+
         }
     }
     public void Update()
@@ -96,8 +94,8 @@ public class RunGhost : IGameMode
             MoveGhost();
             AddPointForPlayers();
             if (timeOfGame <= 0)
-            { 
-                
+            {
+
                 InsertWinners();
                 WinRule();
             }
@@ -108,9 +106,13 @@ public class RunGhost : IGameMode
     {
         PlayerController closerPlayer = aux.playerManager.playersControllers[0];
         float DistanciaMin = float.MinValue;
-        foreach (PlayerController player in aux.playerManager.playersControllers) {
+        foreach (PlayerController player in aux.playerManager.playersControllers)
+        {
             if (!isGhost[player] && DistanciaMin < Vector3.Distance(player.transform.position, ghost.transform.position))
+            {
                 closerPlayer = player;
+                DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
+            }
         }
         ghost.FollowPlayer(closerPlayer);
     }
@@ -146,7 +148,7 @@ public class RunGhost : IGameMode
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in aux.playerManager.playersControllers)
         {
-            player.gameObject.GetComponent<MeshRenderer>().enabled = true;
+            player.transform.GetChild(1).gameObject.SetActive(true);
             player.gameObject.GetComponent<Collider>().enabled = true;
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Ghost>().gameObject);
             if (pointPlayer[player] > maiorPonto)
