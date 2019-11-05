@@ -72,10 +72,12 @@ public class FreeForAll : IBattleMode
     }
     public void WinRule()
     {
+        _gameController.playerManager.RemovePlayerofDeath();
         PlayerController playerMaior = null;
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in _gameController.playerManager.playersControllers)
         {
+
             if (pontos[player] > maiorPonto)
             {
                 maiorPonto = pontos[player];
