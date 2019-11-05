@@ -12,12 +12,13 @@ public class GhostController : MonoBehaviour
     }
     public void FollowPlayer(PlayerController player)
     {
-        this.thisAgent.Move(player.transform.position);
+        this.thisAgent.SetDestination(player.transform.position);
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<PlayerController>() != null)
-            GameController.singleton.gameMode.HitRule(other.gameObject.GetComponentInParent<PlayerController>());
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+            GameController.singleton.gameMode.HitRule(other.gameObject.GetComponent<PlayerController>());
     }
 
 }
