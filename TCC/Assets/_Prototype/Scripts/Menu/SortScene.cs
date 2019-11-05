@@ -26,6 +26,7 @@ public class SortScene : MonoBehaviour
             while (GameManager.Instance.lastGameModes.Contains(sortGameM))
             {
                 sortGameM = Random.Range(0, 4);
+                Debug.Log("Foi " + sortGameM);
             }
         }
 
