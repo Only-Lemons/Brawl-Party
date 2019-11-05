@@ -71,12 +71,12 @@ public class TabuleiroControl : MonoBehaviour
     {
         andando = true;
 
-        p.GetComponent<DadoPlayer>().numDado += id;
+        p.GetComponent<DadoPlayer>().numDado = p.GetComponent<DadoPlayer>().numDado + (id * p.GetComponent<DadoPlayer>().direcaoPlayer);
 
         atual = p.gameObject;
         proximaPos = posTab[(p.GetComponent<DadoPlayer>().posAtual + p.GetComponent<DadoPlayer>().direcaoPlayer)];
         destino = null;
-        int valor = (p.GetComponent<DadoPlayer>().posAtual + id);
+        int valor = (p.GetComponent<DadoPlayer>().posAtual + (id * p.GetComponent<DadoPlayer>().direcaoPlayer));
         int vetor = posTab.Count - 1;
         Debug.Log(valor);
 
