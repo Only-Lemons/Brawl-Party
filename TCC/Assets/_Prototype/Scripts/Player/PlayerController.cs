@@ -95,31 +95,34 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     private void FixedUpdate()
     {
-        TileInteract();
-        AcaoTrocarArma();
-
-        if (canDeath == true)
+        if (GameController.singleton.comecou)
         {
-            if (_movementAxis != Vector3.zero)
-                anim.SetBool("isMove", true);
-            else
-                anim.SetBool("isMove", false);
+            TileInteract();
+            AcaoTrocarArma();
 
-            Rot(); //Mais funcional
+            if (canDeath == true)
+            {
+                if (_movementAxis != Vector3.zero)
+                    anim.SetBool("isMove", true);
+                else
+                    anim.SetBool("isMove", false);
 
-            GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
+                Rot(); //Mais funcional
 
-            //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
+                GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
 
-            // passiva.AtivarPassiva(this);
-            if (PowerUp == true)
-                VerificarPU();
-            if (actualArma == null)
-                anim.SetBool("HasGun", false);
-            else
-                anim.SetBool("HasGun", true);
+                //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
-            AtirarSemParar();
+                // passiva.AtivarPassiva(this);
+                if (PowerUp == true)
+                    VerificarPU();
+                if (actualArma == null)
+                    anim.SetBool("HasGun", false);
+                else
+                    anim.SetBool("HasGun", true);
+
+                AtirarSemParar();
+            }
         }
 
 
