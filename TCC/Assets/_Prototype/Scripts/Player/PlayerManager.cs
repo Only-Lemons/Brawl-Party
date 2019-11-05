@@ -74,7 +74,7 @@ public class PlayerManager : MonoBehaviour
             {
                 playerMortos[playerMortosPrefabs[i]] -= Time.deltaTime;
                 playerMortosPrefabs[i].playerUI.Respawn.fillAmount =  playerMortos[playerMortosPrefabs[i]] / timeRespawn;
-                if (playerMortos[playerMortosPrefabs[i]] <= 0)
+                if (playerMortos[playerMortosPrefabs[i]] <= 0 )
                 {
                     playerMortosPrefabs[i].playerUI.Respawn.enabled = false;
                     playerMortosPrefabs[i].ResetarPlayer();
@@ -85,6 +85,18 @@ public class PlayerManager : MonoBehaviour
 
 
             }
+        }
+    }
+    public void RemovePlayerofDeath()
+    {
+
+        for (int i = 0; i < playerMortos.Count; i++)
+        {
+                playerMortosPrefabs[i].playerUI.Respawn.enabled = false;
+                playerMortosPrefabs[i].ResetarPlayer();
+                playerMortosPrefabs[i].gameObject.SetActive(true);
+                playerMortos.Remove(playerMortosPrefabs[i]);
+                playerMortosPrefabs.Remove(playerMortosPrefabs[i]);
         }
     }
 }
