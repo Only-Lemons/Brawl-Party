@@ -40,16 +40,23 @@ public class GameController : MonoBehaviour
         GameManager.Instance.TryGetGameController();
         gameMode.StartGame();
         comecouContar = true;
-
+        for (int i = 0; i < playerManager.playersControllers.Count; i++)
+        {
+            playerManager.playersControllers[i].gameObject.SetActive(true);
+        }
     }
+
+
+
     public void FinishGame()
     {
         for (int i = 0; i < playerManager.playersControllers.Count; i++)
         {
+            playerManager.playersControllers[i].gameObject.SetActive(true);
             pontos[i].text = GameManager.Instance.pontosGeral[i].ToString();
             pontos[i].color = playerManager.playersControllers[i].gameObject.GetComponent<PlayerSelect>().playerMaterial.color;
             personagens[i].sprite = playerManager.playersControllers[i].player.sprite;
-            playerManager.playersControllers[i].gameObject.SetActive(true);
+    
             playerManager.playersControllers[i].ResetarPlayer();
         }
         painelPontos.SetActive(true);

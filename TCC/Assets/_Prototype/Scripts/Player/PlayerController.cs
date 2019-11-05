@@ -107,19 +107,14 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 else
                     anim.SetBool("isMove", false);
 
-<<<<<<< HEAD
-                Rot(); //Mais funcional
-=======
-            //Rot(); //Mais funcional
->>>>>>> 0c6cd142cf79d172ccd7d21305a8f471f390392a
+               // Rot(); //Mais funcional
+
 
                 GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
 
-<<<<<<< HEAD
-                //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
-=======
+
             GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
->>>>>>> 0c6cd142cf79d172ccd7d21305a8f471f390392a
+
 
                 // passiva.AtivarPassiva(this);
                 if (PowerUp == true)
