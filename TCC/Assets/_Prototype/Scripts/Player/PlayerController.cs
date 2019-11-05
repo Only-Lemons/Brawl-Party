@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         this.transform.position = _base;
         canDeath = true;
-        Destroy(hand.GetChild(hand.childCount));
         actualArma = null;
         armaInventory.Clear();
         canShoot = true;
