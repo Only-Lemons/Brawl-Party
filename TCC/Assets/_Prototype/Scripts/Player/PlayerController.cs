@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
             GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
 
-            //GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
+            GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
             // passiva.AtivarPassiva(this);
             if (PowerUp == true)
@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         this.transform.position = _base;
         canDeath = true;
-        Destroy(hand.GetChild(hand.childCount));
         actualArma = null;
         armaInventory.Clear();
         canShoot = true;
@@ -140,6 +139,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         shield = 0;
         _SOpowerUps.Clear();
+        for (int i = 0; i < hand.transform.childCount; i++)
+        {
+            Destroy(hand.transform.GetChild(i).gameObject);
+        }
     }
     void Rot()
     {
@@ -204,6 +207,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
     void Death()
     {
+        anim.SetTrigger("Death");
         GameManager.Instance.audioManager.playDeath();
         GameController.singleton.gameMode.HitRule(this);
         if (this.transform.GetChild(2).childCount > 0)
