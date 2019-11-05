@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             else
                 anim.SetBool("isMove", false);
 
-            Rot(); //Mais funcional
+            //Rot(); //Mais funcional
 
             GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
 
