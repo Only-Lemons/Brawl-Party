@@ -9813,11 +9813,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fantasma
       objectReference: {fileID: 0}
-    - target: {fileID: 8411557221602498672, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8411557221602498676, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9873,50 +9868,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8411557221602498679, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8, type: 3}
---- !u!1 &8411557222385371884 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8411557221602498672, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 8411557222385371883}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &8411557222385371885
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411557222385371884}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 3
-  avoidancePriority: 50
-  m_AngularSpeed: 10
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 3
-  m_ObstacleAvoidanceType: 4
---- !u!114 &8411557222385371886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411557222385371884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87f42675075452b499d5f6131f9daeb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

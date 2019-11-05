@@ -32,6 +32,7 @@ public class JhonBeen : IGameMode
     }
     public void HitRule(PlayerController player)
     {
+        player.GetComponent<ParticlePlayer>().Play(1f); // tempo da particula de stun aqui
         canMove[player].canMove = false;
         canMove[player].timeInStun = 1;
     }

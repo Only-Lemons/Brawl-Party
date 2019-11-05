@@ -15,6 +15,7 @@ public class Nut : MonoBehaviour
     {
         if (other.gameObject.tag == "Point")
         {
+            this.GetComponent<ParticlePlayer>().Play(5f);
             GameController.singleton.gameMode.PointRule(other.GetComponent<Basket>().player);
             Destroy(this.gameObject);
         }

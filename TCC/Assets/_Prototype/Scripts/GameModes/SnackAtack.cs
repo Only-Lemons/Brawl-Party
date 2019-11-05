@@ -31,8 +31,9 @@ public class SnackAtack : IGameMode
 
     public void HitRule(PlayerController player)
     {
-        canMove[player.gameObject.GetComponent<PlayerController>()].canMove = false;
-        canMove[player.gameObject.GetComponent<PlayerController>()].timeInStun = 1;
+        player.GetComponent<ParticlePlayer>().Play(1f);
+        canMove[player].canMove = false;
+        canMove[player].timeInStun = 1;
         if(point[player] > 3)
         {
             point[player] -= 3;

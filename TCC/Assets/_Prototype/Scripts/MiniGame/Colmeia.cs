@@ -16,6 +16,7 @@ public class Colmeia : MonoBehaviour
         if (other.gameObject.tag == "Point")
         {
             GameController.singleton.gameMode.HitRule(other.GetComponent<Basket>().player);
+
             Destroy(this.gameObject);
         }
     }
