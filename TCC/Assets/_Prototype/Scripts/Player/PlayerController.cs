@@ -105,8 +105,6 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             else
                 anim.SetBool("isMove", false);
 
-            //this.transform.position += _movementAxis * (speed + speedTile) * Time.deltaTime; //Mais funcional
-
             Rot(); //Mais funcional
 
             GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
@@ -134,6 +132,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         this.transform.position = _base;
         canDeath = true;
+        Destroy(hand.GetChild(hand.childCount));
         actualArma = null;
         armaInventory.Clear();
         canShoot = true;
