@@ -1,0 +1,359 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7041361900525385754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4358016661777565924}
+  - component: {fileID: 3791804067088369428}
+  - component: {fileID: 7383490892583416474}
+  m_Layer: 0
+  m_Name: PlayerFinal
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4358016661777565924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041361900525385754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 640.0349, y: 252.39148, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3791804067088369428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041361900525385754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5496847c02242cb4a9515a24e2bed161,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceLostEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceRegainedEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: a84250f7-2471-4e35-a4d4-955ec33ff11d
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 33612110-46f5-44e7-b94f-5c56f98e21db
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: d0a05ba7-d68f-4f5d-b099-543705f53838
+    m_ActionName: Player/Fire[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 97a4d398-30b5-4a45-9fd4-2b88e286edfc
+    m_ActionName: Player/Insert
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 6d28fee9-9236-48f7-851d-a0f767a58858
+    m_ActionName: Player/Switch[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 32e026f2-d1a3-451b-9264-ed3f3a993737
+    m_ActionName: UI/Navigate
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 43ffcc9f-a6e5-4b31-9117-48710c88cee0
+    m_ActionName: UI/Submit
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 22339c79-42a0-4b20-b3cc-1e8529df9b48
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: c7da65fe-79e8-4c26-a63a-8d2d49c2c4da
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 07b9d6a5-1e07-4fc1-9865-623e542a5c3c
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 622492f5-a3dd-46c5-8cbc-063a27b6ff8e
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: e274cfe4-e5a8-46b3-8be7-31f3c06439a8
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: eb52c786-7084-4137-a6bd-fcf8d6bd5823
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: f821ace4-7e30-494d-ba72-ab9ce3614e39
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 3a07559a-eff8-46c8-aa9c-acb4d14e5a67
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: d94b5f98-48ee-4af4-b1a4-3d90dfbe8b43
+    m_ActionName: UI/TrackedDeviceSelect
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7041361900525385754}
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 5c051ee0-0e32-40be-b64f-4b4d525c3f91
+    m_ActionName: SelectUI/UP[/Keyboard/w,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7041361900525385754}
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 2dd6a005-e796-4838-af5d-3a30a66b9920
+    m_ActionName: SelectUI/Confirmed[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: a2145048-2876-4b8a-a260-776b06d3ebd1
+    m_ActionName: SelectUI/Add[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnAdd
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 5cac40f4-eacd-4aed-a203-635a41614410
+    m_ActionName: Player/Add[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnConfirmed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 1180468d-8dff-41c7-aed7-413cdf886c5f
+    m_ActionName: Player/Confirmed[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnUP
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: c6cb16ca-edb2-4bd9-9d04-82327cb906c9
+    m_ActionName: Player/UP[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: ef2e8b7f-5b08-41d9-9960-7e0db65ed0a4
+    m_ActionName: SelectUI/UP1[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: ac149a4a-e81d-493b-b362-8f205f1904b4
+    m_ActionName: Player/Aim[/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 27123c6f-a94d-42eb-a186-5dd99b809eb2
+    m_ActionName: Player/Action[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: ee33ec7d-651c-4e19-bd68-7ff938c38afa
+    m_ActionName: Player/R[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: a2d9cd92-4ccb-4a76-b0cc-c8c76fd54b7a
+    m_ActionName: Player/L[/Keyboard/q]
+  m_AutoSwitchControlScheme: 0
+  m_DefaultControlScheme: Gamepad
+  m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &7383490892583416474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041361900525385754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899a038d15f72bf489c9a7770d42d4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor:
+  - {r: 0.7830189, g: 0.19575472, b: 0.19575472, a: 1}
+  - {r: 0.745283, g: 0.20741367, b: 0.71429455, a: 1}
+  - {r: 0.16785331, g: 0.30540282, b: 0.8679245, a: 1}
+  - {r: 0.21266466, g: 0.764151, b: 0.25495234, a: 1}
+  playerMaterial: {fileID: 2100000, guid: ca25e3126e74e5848b0726e56eeb3843, type: 2}
+  atualColor: {r: 0, g: 0, b: 0, a: 0}
+  isConfirmed: 0
+  PlayerGame: {fileID: 0}

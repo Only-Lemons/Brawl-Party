@@ -40,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         _tileManager = GameController.singleton.tileManager;
-
+       // adcionarPlayerControlador();
         MovePlayerBase();
     }
 
@@ -48,13 +48,12 @@ public class PlayerManager : MonoBehaviour
     {
         DeathPlayerVerifity();
     }
-
     void MovePlayerBase()
     {
         foreach (PlayerController player in playersControllers)
         {
-            player.GetComponentInChildren<Camera>().enabled = false;
-            player.GetComponent<PlayerSelect>().enabled = false;
+            //player.GetComponentInChildren<Camera>().enabled = false;
+            //player.GetComponent<PlayerSelect>().enabled = false;
             player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)].position;
             player._base = _tileManager.bases[playersControllers.IndexOf(player)].position;
         }
@@ -96,6 +95,23 @@ public class PlayerManager : MonoBehaviour
         {
                 playerMortos.Remove(playerMortosPrefabs[i]);
                 playerMortosPrefabs.Remove(playerMortosPrefabs[i]);
+        }
+    }
+
+
+   public void adcionarPlayerControlador()
+    {
+        for (int i = 0; i < playersControllers.Count; i++)
+        {
+            if(i < GameManager.Instance.playersPanels.Count)
+            {
+               playersControllers[i].transform.SetParent(GameManager.Instance.playersPanels[i].transform);
+                playersControllers[i].transform.GetChild(1).GetComponentInChildren<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().atualColor;
+            }
+            else
+            {
+                Destroy(playersControllers[i].gameObject);
+            }
         }
     }
 }

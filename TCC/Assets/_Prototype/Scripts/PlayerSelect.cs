@@ -18,7 +18,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     private void Awake()
     {
-        playerMaterial = transform.GetChild(1).GetChild(1).GetComponent<Renderer>().material;
+      //  playerMaterial = transform.GetChild(1).GetChild(1).GetComponent<Renderer>().material;
 
     }
     private void Start()
@@ -32,12 +32,12 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         if (!isConfirmed)
         {
 
-            playerMaterial.color = atualColor;
-            transform.GetChild(1).localScale = errado;
+           // playerMaterial.color = atualColor;
+           // transform.GetChild(1).localScale = errado;
         }
         else
         {
-            transform.GetChild(1).localScale = certo;
+           // transform.GetChild(1).localScale = certo;
         }
         //playerBackround.color = Color.red;
     }
@@ -64,27 +64,62 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 isConfirmed = true;
         }
     }
-    public void OnAdd(InputAction.CallbackContext context) { }
-    public void OnMove(InputAction.CallbackContext context) { }
-    public void OnLook(InputAction.CallbackContext context) { }
-    public void OnFire(InputAction.CallbackContext context) { }
-    public void OnInsert(InputAction.CallbackContext context) { }
-    public void OnSwitch(InputAction.CallbackContext context) { }
-    public void OnAim(InputAction.CallbackContext context) { }
+
+
+    public void OnAdd(InputAction.CallbackContext context)
+    {
+
+    }
+
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        GetComponentInChildren<PlayerController>().OnMove(context);
+    }
+
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        GetComponentInChildren<PlayerController>().OnLook(context);
+    }
+
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        GetComponentInChildren<PlayerController>().OnFire(context);
+    }
+
+
+    public void OnInsert(InputAction.CallbackContext context)
+    {
+        GetComponentInChildren<PlayerController>().OnInsert(context);
+    }
+
+
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        GetComponentInChildren<PlayerController>().OnSwitch(context);
+    }
+
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        GetComponentInChildren<PlayerController>().OnAim(context);
+    }
 
     public void OnAction(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        GetComponentInChildren<PlayerController>().OnAction(context);
     }
 
     public void OnR(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        GetComponentInChildren<PlayerController>().OnR(context);
     }
 
     public void OnL(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        GetComponentInChildren<PlayerController>().OnL(context);
     }
     #endregion
 }

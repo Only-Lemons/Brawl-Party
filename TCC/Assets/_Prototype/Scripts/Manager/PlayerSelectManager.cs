@@ -26,8 +26,8 @@ public class PlayerSelectManager : MonoBehaviour
             if (!players.Exists(x => x == jogadores[i]))
             {
                 players.Add(jogadores[i]);
-                jogadores[i].GetComponentInChildren<Camera>().targetTexture = renderTextures[i];
-                jogadores[i].transform.position = pos[i];
+                //jogadores[i].GetComponentInChildren<Camera>().targetTexture = renderTextures[i];
+                // jogadores[i].transform.position = pos[i];
             }
 
 
@@ -39,7 +39,7 @@ public class PlayerSelectManager : MonoBehaviour
             {
 
                 GameObject acualRenderPlayer = Instantiate(renderPlayer, this.transform);
-                acualRenderPlayer.GetComponent<RawImage>().texture = player.GetComponentInChildren<Camera>().targetTexture;
+                //acualRenderPlayer.GetComponent<RawImage>().texture = player.GetComponentInChildren<Camera>().targetTexture;
 
 
                 player.transform.SetParent(GameManager.Instance.transform);

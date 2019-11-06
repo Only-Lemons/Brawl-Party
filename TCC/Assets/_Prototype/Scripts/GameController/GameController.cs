@@ -39,7 +39,12 @@ public class GameController : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
 
+
+        pegarPlayerScene(GameObject.FindGameObjectsWithTag("Player"));
+      
         GameManager.Instance.TryGetGameController();
+        playerManager.adcionarPlayerControlador();
+
         gameMode.StartGame();
         comecouContar = true;
 
@@ -107,4 +112,18 @@ public class GameController : MonoBehaviour
             timeComecarText.text = "ACABOU!";
 
     }
+
+    void pegarPlayerScene(GameObject[] players)
+    {
+        playerManager.playersControllers.Clear();
+        for (int i = 0; i < players.Length; i++)
+        {
+            PlayerController aux = players[i].GetComponent<PlayerController>();
+
+            if (players[i].TryGetComponent<PlayerController>(out aux))
+            playerManager.playersControllers.Add(aux);
+        }
+    }
+
+
 }
