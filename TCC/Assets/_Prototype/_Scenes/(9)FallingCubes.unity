@@ -1493,6 +1493,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: playerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1790045201212499861, guid: b44e717a0df58cf438eac7478d7e9ec1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1790045201212499860, guid: b44e717a0df58cf438eac7478d7e9ec1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1641,17 +1646,17 @@ PrefabInstance:
     - target: {fileID: 1790045201212499863, guid: b44e717a0df58cf438eac7478d7e9ec1,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.30647027
+      value: 0.46907264
       objectReference: {fileID: 0}
     - target: {fileID: 1790045201212499863, guid: b44e717a0df58cf438eac7478d7e9ec1,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.6698113
+      value: 0.7830189
       objectReference: {fileID: 0}
     - target: {fileID: 1790045201212499863, guid: b44e717a0df58cf438eac7478d7e9ec1,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.33385783
+      value: 0.49270296
       objectReference: {fileID: 0}
     - target: {fileID: 1790045200353525231, guid: b44e717a0df58cf438eac7478d7e9ec1,
         type: 3}
@@ -1792,6 +1797,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 186233630}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &186233643 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1790045201212499863, guid: b44e717a0df58cf438eac7478d7e9ec1,
+    type: 3}
+  m_PrefabInstance: {fileID: 186233630}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186233642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &187561952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7640166239526508703, guid: f3fe15a807c093943a72dba484a7a5cb,
@@ -2321,6 +2338,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 236227530}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &236227543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1790045201212499863, guid: b44e717a0df58cf438eac7478d7e9ec1,
+    type: 3}
+  m_PrefabInstance: {fileID: 236227530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236227542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &237874915
 GameObject:
   m_ObjectHideFlags: 0
@@ -6258,6 +6287,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &912689624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1790045201212499863, guid: b44e717a0df58cf438eac7478d7e9ec1,
+    type: 3}
+  m_PrefabInstance: {fileID: 912689611}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912689612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &914117456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7640166239526508703, guid: f3fe15a807c093943a72dba484a7a5cb,
@@ -9368,7 +9409,8 @@ MonoBehaviour:
   playersControllers: []
   playerMortosPrefabs: []
   playersUI:
-  - points: {fileID: 186233633}
+  - colorBase: {fileID: 186233643}
+    points: {fileID: 186233633}
     hp: {fileID: 186233639}
     hpText: {fileID: 186233638}
     ammo: {fileID: 186233635}
@@ -9378,7 +9420,8 @@ MonoBehaviour:
     Respawn: {fileID: 186233632}
     gun: {fileID: 186233640}
     character: {fileID: 186233641}
-  - points: {fileID: 1765957681}
+  - colorBase: {fileID: 1765957691}
+    points: {fileID: 1765957681}
     hp: {fileID: 1765957687}
     hpText: {fileID: 1765957686}
     ammo: {fileID: 1765957683}
@@ -9388,7 +9431,8 @@ MonoBehaviour:
     Respawn: {fileID: 1765957680}
     gun: {fileID: 1765957688}
     character: {fileID: 1765957689}
-  - points: {fileID: 236227533}
+  - colorBase: {fileID: 236227543}
+    points: {fileID: 236227533}
     hp: {fileID: 236227539}
     hpText: {fileID: 236227538}
     ammo: {fileID: 236227535}
@@ -9398,7 +9442,8 @@ MonoBehaviour:
     Respawn: {fileID: 236227532}
     gun: {fileID: 236227540}
     character: {fileID: 236227541}
-  - points: {fileID: 912689615}
+  - colorBase: {fileID: 912689624}
+    points: {fileID: 912689615}
     hp: {fileID: 912689621}
     hpText: {fileID: 912689620}
     ammo: {fileID: 912689617}
@@ -12627,6 +12672,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1765957678}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1765957691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1790045201212499863, guid: b44e717a0df58cf438eac7478d7e9ec1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1765957678}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765957690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1769253697 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9030778383281903328, guid: 61f493174d6f67a4f8ef8b724200b025,
