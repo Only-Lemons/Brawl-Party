@@ -1663,6 +1663,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.69999695
       objectReference: {fileID: 0}
+    - target: {fileID: 1909011779203023522, guid: b44e717a0df58cf438eac7478d7e9ec1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.2656975
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b44e717a0df58cf438eac7478d7e9ec1, type: 3}
 --- !u!224 &186233631 stripped
@@ -2203,6 +2208,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909011779203023522, guid: b44e717a0df58cf438eac7478d7e9ec1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.2656975
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b44e717a0df58cf438eac7478d7e9ec1, type: 3}
@@ -5524,6 +5534,7 @@ GameObject:
   - component: {fileID: 840292557}
   - component: {fileID: 840292559}
   - component: {fileID: 840292558}
+  - component: {fileID: 840292560}
   m_Layer: 5
   m_Name: pointsPainel
   m_TagString: Untagged
@@ -5551,7 +5562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000005722, y: 0}
   m_SizeDelta: {x: -292.4, y: -87.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &840292558
@@ -5592,6 +5603,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840292556}
   m_CullTransparentMesh: 0
+--- !u!95 &840292560
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840292556}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d06a05a5dfa26044b740556f9178d29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &848791451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7199635551709540671, guid: 9fadfb1efc91ab34fa51bea7f4d0c836,
@@ -9419,6 +9449,7 @@ MonoBehaviour:
     passiveText: {fileID: 186233636}
     Respawn: {fileID: 186233632}
     gun: {fileID: 186233640}
+    gun2: {fileID: 0}
     character: {fileID: 186233641}
   - colorBase: {fileID: 1765957691}
     points: {fileID: 1765957681}
@@ -9430,6 +9461,7 @@ MonoBehaviour:
     passiveText: {fileID: 1765957684}
     Respawn: {fileID: 1765957680}
     gun: {fileID: 1765957688}
+    gun2: {fileID: 0}
     character: {fileID: 1765957689}
   - colorBase: {fileID: 236227543}
     points: {fileID: 236227533}
@@ -9441,6 +9473,7 @@ MonoBehaviour:
     passiveText: {fileID: 236227536}
     Respawn: {fileID: 236227532}
     gun: {fileID: 236227540}
+    gun2: {fileID: 0}
     character: {fileID: 236227541}
   - colorBase: {fileID: 912689624}
     points: {fileID: 912689615}
@@ -9452,6 +9485,7 @@ MonoBehaviour:
     passiveText: {fileID: 912689618}
     Respawn: {fileID: 912689614}
     gun: {fileID: 912689622}
+    gun2: {fileID: 0}
     character: {fileID: 912689623}
   timeRespawn: 0
 --- !u!4 &1353603043
@@ -12537,6 +12571,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.69999695
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909011779203023522, guid: b44e717a0df58cf438eac7478d7e9ec1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.2656975
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b44e717a0df58cf438eac7478d7e9ec1, type: 3}

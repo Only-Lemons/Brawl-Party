@@ -102,5 +102,9 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+
+        if (time.text == "00:00")
+            timeComecarText.text = "ACABOU!";
+
     }
 }
