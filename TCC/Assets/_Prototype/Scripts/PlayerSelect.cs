@@ -11,6 +11,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     public Color atualColor;
     public bool isConfirmed = false;
     public PlayerController PlayerGame;
+    Vector3 certo = new Vector3(1, 1, 1);
+    Vector3 errado = new Vector3(.7f, .7f, .7f);
+
+
 
     private void Awake()
     {
@@ -29,9 +33,12 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         {
 
             playerMaterial.color = atualColor;
-
+            transform.GetChild(1).localScale = errado;
         }
-        else;
+        else
+        {
+            transform.GetChild(1).localScale = certo;
+        }
         //playerBackround.color = Color.red;
     }
 
