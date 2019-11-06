@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameConfig : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class gameConfig : MonoBehaviour
                 typeOfTime.text = "Lento";
                 break;
         }
+    }
 
+    public void mudarScena()
+    {
+        SceneManager.LoadScene(6);
     }
 }

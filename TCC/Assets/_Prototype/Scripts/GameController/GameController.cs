@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
         timeComecar = 4;
         comecou = false;
         comecouContar = false;
+     
     }
     private void Start()
     {
@@ -40,10 +41,7 @@ public class GameController : MonoBehaviour
         GameManager.Instance.TryGetGameController();
         gameMode.StartGame();
         comecouContar = true;
-        for (int i = 0; i < playerManager.playersControllers.Count; i++)
-        {
-            playerManager.playersControllers[i].gameObject.SetActive(true);
-        }
+     
     }
 
 
