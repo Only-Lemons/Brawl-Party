@@ -9,6 +9,7 @@ public class CaptureTheFlag : IBattleMode
     GameController _gameController;
     PlayerController _auxPlayer = null;
     GameObject _flag = Resources.Load("Mecanicas/Flag") as GameObject;
+    GameObject _Coroa = Resources.Load("Mecanicas/Coroa") as GameObject;
     float _timeToRespawn = 3;
     float _actualtime = 5;
     public Dictionary<PlayerController, float> pontos = new Dictionary<PlayerController, float>();
@@ -23,7 +24,7 @@ public class CaptureTheFlag : IBattleMode
 
     public void StartGame()
     {
-        GameObject.Instantiate(_flag, new Vector3(0, 1, 0), Quaternion.identity);
+        GameObject.Instantiate(_flag, new Vector3(0, 0, 0), Quaternion.identity);
         AddPlayerPoints();
     }
     public void Update()
@@ -59,6 +60,7 @@ public class CaptureTheFlag : IBattleMode
         {
             bandeira[player] = true;
             _auxPlayer = player;
+            GameObject.Instantiate(_Coroa,new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z),Quaternion.identity,player.transform);
             foreach (PlayerController playerm in GameController.singleton.playerManager.playersControllers)
             {
                 if (playerm != player)
@@ -77,6 +79,8 @@ public class CaptureTheFlag : IBattleMode
     public void WinRule()
     {
         _gameController.playerManager.RemovePlayerofDeath();
+        if(_auxPlayer != null)
+            GameObject.Destroy(GameObject.FindGameObjectWithTag("Point"));
         PlayerController playerMaior = null;
         float maiorPonto = int.MinValue;
         foreach (PlayerController player in _gameController.playerManager.playersControllers)
@@ -102,6 +106,7 @@ public class CaptureTheFlag : IBattleMode
     {
         if (player.canDeath)
         {
+           
             player.gameObject.SetActive(false);
             _gameController.playerManager.playerMortos.Add(player, _timeToRespawn);
             _gameController.playerManager.playerMortosPrefabs.Add(player);
@@ -109,9 +114,10 @@ public class CaptureTheFlag : IBattleMode
             Vector3 posAux = player.transform.position;
             if (bandeira[player])
             {
+                GameObject.Destroy(GameObject.FindGameObjectWithTag("Point"));
                 _auxPlayer = null;
                 bandeira[player] = false;
-                GameObject.Instantiate(_flag, posAux, Quaternion.identity);
+                GameObject.Instantiate(_flag,posAux, Quaternion.identity);
 
              }
         }

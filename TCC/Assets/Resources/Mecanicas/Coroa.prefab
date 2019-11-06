@@ -11,11 +11,9 @@ GameObject:
   - component: {fileID: 5012340705047787235}
   - component: {fileID: 4095021035745021141}
   - component: {fileID: 7775718214681391148}
-  - component: {fileID: 1468332114297673033}
-  - component: {fileID: 3817449726712210582}
   m_Layer: 0
-  m_Name: Flag
-  m_TagString: Untagged
+  m_Name: Coroa
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,28 +80,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1468332114297673033
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8346349372212790512}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.85985404, y: 0.7260587, z: 0.8422381}
-  m_Center: {x: 0, y: 1.1838807, z: 0}
---- !u!114 &3817449726712210582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8346349372212790512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0ce6db8eb91a1478d30cbf6aa2785a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
