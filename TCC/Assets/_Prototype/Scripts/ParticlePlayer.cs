@@ -31,10 +31,13 @@ public class ParticlePlayer : MonoBehaviour
 
     IEnumerator playParticle(float sec)
     {
-        particle.Play();
-        yield return new WaitForSeconds(sec);
-        particle.Clear();
-        particle.Stop();
+        if (particle != null)
+        {
+            particle.Play();
+            yield return new WaitForSeconds(sec);
+            particle.Clear();
+            particle.Stop();
+        }
     }
 
 }
