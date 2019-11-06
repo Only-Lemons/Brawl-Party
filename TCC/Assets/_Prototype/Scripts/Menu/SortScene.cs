@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SortScene : MonoBehaviour
 {
     public List<GameMode> gameModes;
+    List<GameMode> auxMod;
     public Image prefabScene;
     public Image prefabGM;
     public Image prefabGMante, prefabGMpos;
@@ -15,26 +16,33 @@ public class SortScene : MonoBehaviour
 
     void Start()
     {
-
+        auxMod = gameModes;
         GameManager.Instance.quantTGames = gameModes.Count;
         foreach(GameMode Index in GameManager.Instance.lastGameModes)
         {
-            gameModes.Remove(Index);
+            auxMod.Remove(Index);
         }
         if (GameManager.Instance.lastGameModes.Count == GameManager.Instance.quantGames)
         {
             Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(1);
         }
-        sortGameM = Random.Range(0, gameModes.Count);
-        GameManager.Instance.lastGameModes.Add(gameModes[sortGameM]);
+        sortGameM = returnNewGameMode();
+        GameManager.Instance.lastGameModes.Add(auxMod[sortGameM]);
+      
        
 
         //QUANDO FAZER COLLAB FAVOR TIRAR A PARTE DA CENA DIRECIONADA
       
         StartCoroutine(StartScene());
     }
-
+    int returnNewGameMode()
+    {
+        int aux = Random.Range(0, auxMod.Count);
+        if (GameManager.Instance.lastGameModes.Contains(auxMod[sortGameM]))
+            return returnNewGameMode();
+        else return aux;
+    }
 
     IEnumerator ShowImageGameMode(List<GameMode> gameMode, Image imagem, int Index)
     {
@@ -69,8 +77,8 @@ public class SortScene : MonoBehaviour
     }
     IEnumerator ChangeScene()
     {
-        GameManager.Instance.nextLevel = gameModes[sortGameM].Scene;
-        GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;
+        GameManager.Instance.nextLevel = auxMod[sortGameM].Scene;
+        GameManager.Instance.newGameMode = auxMod[sortGameM].gameMode;
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(3);
 
