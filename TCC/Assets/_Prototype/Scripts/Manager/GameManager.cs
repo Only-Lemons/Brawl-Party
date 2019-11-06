@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public int TimeInGame = 1;
     public int quantGames = 5;
     public GameModes newGameMode;
-    public List<int> lastGameModes = new List<int>();
+    public List<GameMode> lastGameModes = new List<GameMode>();
     public List<GameObject> playersPanels = new List<GameObject>();
     public int[] pontosGeral;
     public Vector3 lastPainel;

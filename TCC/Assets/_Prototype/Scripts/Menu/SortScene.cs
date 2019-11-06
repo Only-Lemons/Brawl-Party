@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class SortScene : MonoBehaviour
 {
-    public GameMode[] gameModes;
+    public List<GameMode> gameModes;
     public Image prefabScene;
     public Image prefabGM;
     public Image prefabGMante, prefabGMpos;
@@ -15,26 +15,19 @@ public class SortScene : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.quantTGames = gameModes.Length;
+
+        GameManager.Instance.quantTGames = gameModes.Count;
+        foreach(GameMode Index in GameManager.Instance.lastGameModes)
+        {
+            gameModes.Remove(Index);
+        }
         if (GameManager.Instance.lastGameModes.Count == GameManager.Instance.quantGames)
         {
             Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(1);
         }        
-            
-        sortGameM = Random.Range(0, gameModes.Length);
-        if (!GameManager.Instance.lastGameModes.Contains(sortGameM))
-        {
-            GameManager.Instance.lastGameModes.Add(sortGameM);
-        }
-        else
-        {
-            while (GameManager.Instance.lastGameModes.Contains(sortGameM))
-            {
-                sortGameM = Random.Range(0, GameManager.Instance.quantTGames);
-                Debug.Log("Foi " + sortGameM);
-            }
-        }
+        GameManager.Instance.lastGameModes.Add(gameModes[sortGameM]);
+       
 
         //QUANDO FAZER COLLAB FAVOR TIRAR A PARTE DA CENA DIRECIONADA
       
@@ -42,27 +35,27 @@ public class SortScene : MonoBehaviour
     }
 
 
-    IEnumerator ShowImageGameMode(GameMode[] gameMode, Image imagem, int Index)
+    IEnumerator ShowImageGameMode(List<GameMode> gameMode, Image imagem, int Index)
     {
         yield return new WaitForSeconds(.1f);
-        if (Index % gameMode.Length + 1 >= gameMode.Length)
+        if (Index % gameMode.Count + 1 >= gameMode.Count)
         {
             prefabScene.sprite = gameMode[0].spriteScene;
             imagem.sprite = gameMode[0].sprite;
-            prefabGMante.sprite = gameMode[gameModes.Length - 1].sprite;
+            prefabGMante.sprite = gameMode[gameModes.Count - 1].sprite;
             prefabGMpos.sprite = gameMode[1].sprite;
         }
         else
         {
-            prefabScene.sprite = gameMode[Index % gameMode.Length + 1].spriteScene;
-            imagem.sprite = gameMode[Index % gameMode.Length + 1].sprite;
-            prefabGMante.sprite = gameMode[Index % gameMode.Length].sprite;
-            if (Index % gameMode.Length + 2 < gameMode.Length)
-                prefabGMpos.sprite = gameMode[Index % gameMode.Length + 2].sprite;
+            prefabScene.sprite = gameMode[Index % gameMode.Count + 1].spriteScene;
+            imagem.sprite = gameMode[Index % gameMode.Count + 1].sprite;
+            prefabGMante.sprite = gameMode[Index % gameMode.Count].sprite;
+            if (Index % gameMode.Count + 2 < gameMode.Count)
+                prefabGMpos.sprite = gameMode[Index % gameMode.Count + 2].sprite;
             else prefabGMpos.sprite = gameMode[0].sprite;
         }
         Index++;
-        if (Index >= gameModes.Length * 5 && Index % gameModes.Length == sortGameM)
+        if (Index >= gameModes.Count * 5 && Index % gameModes.Count == sortGameM)
         {
 
             StartCoroutine(ChangeScene());
