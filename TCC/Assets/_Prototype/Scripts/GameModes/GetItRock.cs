@@ -22,13 +22,19 @@ public class GetItRock : IGameMode
         player.ResetarPlayer();
         player.gameObject.SetActive(false);
 
+        tempoMorteAtual = timeOfGame;
+        
+
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
             winners.Add(player);
+            TempoMorte();
             numwinner++;
             WinRule();
         }
+        else
+            TempoUltimaMorte();
     }
     void fallRock()
     {
@@ -38,7 +44,7 @@ public class GetItRock : IGameMode
         int HammerQuant = Random.Range(1, hammers.Length - 1);
         for (int i = 0; i < HammerQuant; i++)
         {
-            int hammer = (int) (Random.value * (hammers.Length));
+            int hammer = (int)(Random.value * (hammers.Length));
             while (posicoes.Contains(hammer))
             {
                 hammer = (int)(Random.value * (hammers.Length));
@@ -62,6 +68,7 @@ public class GetItRock : IGameMode
             if (timeOfGame <= 0)
             {
                 InsertWinners();
+
                 WinRule();
             }
             if (lasthit <= 0)
@@ -72,7 +79,7 @@ public class GetItRock : IGameMode
         }
     }
     void InsertWinners()
-    { 
+    {
         for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
         {
             if (playerMortos[aux.playerManager.playersControllers[i]])
@@ -83,8 +90,8 @@ public class GetItRock : IGameMode
     }
     public void ShowTime()
     {
-        string minute = ((int)(timeOfGame / 60)).ToString("00"); ;
-        string seconds = ((int)(timeOfGame % 60)).ToString("00"); ;
+        string minute = ((int)(timeOfGame / 60)).ToString("00");
+        string seconds = ((int)(timeOfGame % 60)).ToString("00");
         aux.time.text = minute + ":" + seconds;
     }
     bool VerifyPlayerMortos()
@@ -93,20 +100,21 @@ public class GetItRock : IGameMode
         for (int i = 0; i < playerMortos.Count; i++)
         {
             if (playerMortos[GameController.singleton.playerManager.playersControllers[i]] == false)
-                 a++;
+                a++;
         }
-        if (a > 1)
+        if (a >= 1)
             return false;
 
         return true;
     }
+
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
-        if(dir.x > 0)
+        if (dir.x > 0)
         {
             player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
         }
-        else if( dir.x < 0)
+        else if (dir.x < 0)
         {
             player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
         }
@@ -134,13 +142,15 @@ public class GetItRock : IGameMode
 
     public void StartGame()
     {
+        falha = false;
+        tempoUltimaMorte = 10000;
         InsertPlayerInDates();
         InsertHammersInDates();
     }
     void InsertHammersInDates()
     {
         hammers = GameObject.FindGameObjectsWithTag("Brick");
-   
+
     }
     void InsertPlayerInDates()
     {
@@ -150,15 +160,38 @@ public class GetItRock : IGameMode
             playerMortos.Add(player, false);
         }
     }
+
+    float tempoMorteAtual;
+    float tempoUltimaMorte;
+    bool falha = false;
+
+    void TempoMorte()
+    {
+        if (tempoUltimaMorte - tempoMorteAtual < 0.05f)
+        {
+            falha = true;
+            //verificar quantos players restam
+        }
+
+        Debug.Log("ultima morte: " + tempoUltimaMorte);
+        Debug.Log("morte atual: " + tempoMorteAtual);
+        Debug.Log("falha " + falha);
+    }
+    void TempoUltimaMorte()
+    {
+        tempoUltimaMorte = tempoMorteAtual;
+    }
+
     public void WinRule()
     {
         if (!adicionolPoint)
         {
-            for (int i = 0; i < winners.Count; i++)
-            {
-                GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
+            if (!falha)
+                for (int i = 0; i < winners.Count; i++)
+                {
 
-            }
+                    GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
+                }
             foreach (PlayerController player in aux.playerManager.playersControllers)
             {
                 player.gameObject.SetActive(true);
