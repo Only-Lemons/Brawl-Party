@@ -146,6 +146,7 @@ public class GetItRock : IGameMode
         tempoUltimaMorte = 10000;
         InsertPlayerInDates();
         InsertHammersInDates();
+        GameController.singleton.uIManager.SumirTudo();
     }
     void InsertHammersInDates()
     {

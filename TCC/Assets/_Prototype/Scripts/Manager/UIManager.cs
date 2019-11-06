@@ -39,4 +39,12 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    public void SumirTudo()
+    {
+        for (int i = 0; i < playersHide.Length; i++)
+        {
+            playersHide[i].SetActive(false);
+        }
+    }
 }

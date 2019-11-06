@@ -69,6 +69,7 @@ public class RunGhost : IGameMode
     {
         AddPlayerInformations();
         InstantiateGhost();
+        GameController.singleton.uIManager.SumirTudo();
     }
 
     private void InstantiateGhost()

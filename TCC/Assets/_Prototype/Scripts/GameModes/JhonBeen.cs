@@ -77,6 +77,20 @@ public class JhonBeen : IGameMode
                 cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 10);
         }
     }
+
+    void CancelarCameras()
+    {
+        for (int i = 0; i < cameras.Length; i++)
+        {
+            cameras[i].GetComponent<Camera>().fieldOfView = 0;
+        }
+
+        for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
+        {
+            cameras[i].GetComponent<Camera>().fieldOfView = 28.41141f;
+        }
+    }
+
     void InsertWinners()
     {
         int a = 0;
@@ -139,6 +153,8 @@ public class JhonBeen : IGameMode
     public void StartGame()
     {
         InsertPlayerInDates();
+        GameController.singleton.uIManager.SumirTudo();
+        CancelarCameras();
         //spawnBirds();
 
     }

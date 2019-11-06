@@ -147,6 +147,7 @@ public class SnackAtack : IGameMode
         AddPlayerInformations();
         InstanceHiveTime = Random.Range(2, 4);
         InstanceNutTime = 0.5f;
+        GameController.singleton.uIManager.SumirTudo();
     }
     void AddPlayerInformations()
     {
