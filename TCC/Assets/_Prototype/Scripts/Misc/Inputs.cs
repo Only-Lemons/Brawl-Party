@@ -218,7 +218,7 @@ public class Inputs : IInputActionCollection
                     ""name"": """",
                     ""id"": ""0f01a908-98d2-4e54-b879-ada6c49a11ea"",
                     ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Fire"",

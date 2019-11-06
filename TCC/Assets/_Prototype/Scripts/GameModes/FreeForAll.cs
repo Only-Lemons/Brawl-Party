@@ -99,9 +99,10 @@ public class FreeForAll : IBattleMode
         player.position += dir * speed * Time.deltaTime;
     }
 
+    Quaternion _targetRotation = Quaternion.identity;
     public void RotationRule(Vector3 dir, Transform player)
     {
-        Quaternion _targetRotation = Quaternion.identity;
+        
         if (dir != Vector3.zero)
         {
             _targetRotation = Quaternion.LookRotation(dir);

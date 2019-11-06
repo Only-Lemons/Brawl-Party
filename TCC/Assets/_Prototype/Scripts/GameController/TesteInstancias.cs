@@ -75,15 +75,15 @@ public class TesteInstancias : MonoBehaviour
     public GameObject InstanciarArma(int b)
     {
         int contador = 3; //Usado para aumentar chances de drop da pistola comum em reação às outras armas
-        int rnd = Random.Range(0, 10);
+        int rnd = Random.Range(0, 8);
         if (rnd != 0)
             for (int i = 0; i <= contador; i++)
             {
-                rnd = Random.Range(0, 10);
+                rnd = Random.Range(0, 8);
                 if (rnd == 0)
                     break;
             }
-        rnd = Random.Range(0,10);
+        rnd = Random.Range(0,8);
 
 
         switch (rnd)
@@ -98,28 +98,19 @@ public class TesteInstancias : MonoBehaviour
                 go[b].GetComponent<ArmaController>().actualArma = new Shotgun();
                 break;
             case 3:
-                go[b].GetComponent<ArmaController>().actualArma = new Metralhadora();
-                break;
-            case 4:
-                go[b].GetComponent<ArmaController>().actualArma = new LancaGranada();
-                break;
-            case 5:
                 go[b].GetComponent<ArmaController>().actualArma = new Bazooka();
                 break;
-            case 6:
+            case 4:
                 go[b].GetComponent<ArmaController>().actualArma = new Bujing();
                 break;
-            case 7:
+            case 5:
                 go[b].GetComponent<ArmaController>().actualArma = new Booming();
                 break;
-            case 8:
+            case 6:
                 go[b].GetComponent<ArmaController>().actualArma = new Congelante();
                 break;
-            case 9:
+            case 7:
                 go[b].GetComponent<ArmaController>().actualArma = new Doomoo();
-                break;
-            case 10:
-                go[b].GetComponent<ArmaController>().actualArma = new Teletiroporte(); //Erros //Possivel saída
                 break;
 
             default:

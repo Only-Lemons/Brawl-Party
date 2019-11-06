@@ -107,13 +107,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 else
                     anim.SetBool("isMove", false);
 
-               // Rot(); //Mais funcional
+                Rot(); //Usado apenas pra desbugar rotação em autoAIM
 
 
                 GameController.singleton.gameMode.MovementRule(_movementAxis, this.transform, speed + speedTile);
 
 
-            GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
+                GameController.singleton.gameMode.RotationRule(_rotationAxis, this.transform);
 
 
                 // passiva.AtivarPassiva(this);
@@ -154,10 +154,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (_rotationAxis != Vector3.zero)
         {
-            _targetRotation = Quaternion.LookRotation(_rotationAxis);
             GetComponent<AutoAim>().mirando = false;
         }
-        transform.rotation = Quaternion.Lerp(_targetRotation, Quaternion.identity, Time.deltaTime);
     }
     void TileInteract()
     {
@@ -368,7 +366,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            podeAtirarSemParar = !podeAtirarSemParar;
+            if (actualArma != null)
+                podeAtirarSemParar = !podeAtirarSemParar;
+            //AtirarSemParar();
+            else podeAtirarSemParar = false;
         }
 
     }
@@ -396,11 +397,12 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                             {
                                 actualArma = armaInventory[0];
                             }
-                        }else if (armaInventory.Count > 1 && actualArma == armaInventory[1] && actualArma.ammoAmount <= 0)
+                        }
+                        else if (armaInventory.Count > 1 && actualArma == armaInventory[1] && actualArma.ammoAmount <= 0)
                         {
                             armaInventory.RemoveAt(1);
                             actualArma = armaInventory[0];
-                        
+
                         }
 
                         if (armaInventory.Count == 0)
