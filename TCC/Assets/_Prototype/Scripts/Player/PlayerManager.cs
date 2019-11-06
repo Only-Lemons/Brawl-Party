@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 [System.Serializable]
 public struct playerUIElements
 {
+    public Image colorBase;
     public Text points;
     public Slider hp;
     public Text hpText;
@@ -41,6 +42,7 @@ public class PlayerManager : MonoBehaviour
 
         MovePlayerBase();
     }
+
     private void Update()
     {
         DeathPlayerVerifity();

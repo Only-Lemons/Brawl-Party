@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public bool comecouContar;
     public bool comecou;
     float timeComecar;
+    public Text timeComecarText;
 
     public IGameMode gameMode;
     [HideInInspector]
@@ -41,7 +42,9 @@ public class GameController : MonoBehaviour
         GameManager.Instance.TryGetGameController();
         gameMode.StartGame();
         comecouContar = true;
-     
+
+        timeComecarText.CrossFadeAlpha(0, 5, false);
+
     }
 
 
@@ -80,11 +83,19 @@ public class GameController : MonoBehaviour
         {
             timeComecar -= Time.deltaTime;
             time.text = timeComecar.ToString("0");
+
+            timeComecarText.text = timeComecar.ToString("0");
+            
+            
             if (timeComecar <= 0.8f)
             {
                 time.text = "COMEÇOU!";
+                timeComecarText.text = "COMEÇOU!";
+                timeComecarText.CrossFadeAlpha(1, 0.1f, false);
+
                 if (timeComecar <= 0)
                 {
+                    timeComecarText.text = "";
                     comecou = true;
                     timeComecar = 4;
                     comecouContar = false;
