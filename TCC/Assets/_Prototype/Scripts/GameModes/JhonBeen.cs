@@ -154,12 +154,12 @@ public class JhonBeen : IGameMode
                 Vector3 position;
                 if (side == 0)
                 {
-                    position = new Vector3(aux.tileManager.bases[i].x, Random.Range(-15, 17.8f), aux.tileManager.bases[i].z);
+                    position = new Vector3(aux.tileManager.bases[i].position.x, Random.Range(-15, 17.8f), aux.tileManager.bases[i].position.z);
                     //GameObject.Instantiate(_bird, new Vector3(aux.tileManager.bases[i].x, aux.tileManager.bases[i].y + Random.Range(-19, 17.8f), aux.tileManager.bases[i].z), Quaternion.identity);
                 }
                 else
                 {
-                    position = new Vector3(aux.tileManager.bases[i].x + 2, Random.Range(-15, 17.8f), aux.tileManager.bases[i].z);
+                    position = new Vector3(aux.tileManager.bases[i].position.x + 2, Random.Range(-15, 17.8f), aux.tileManager.bases[i].position.z);
                     //GameObject.Instantiate(_bird, new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y + Random.Range(-19, 17.8f), aux.tileManager.bases[i].z), Quaternion.identity);
                 }
                 while (posicoesInstance.Contains(position) && CanInstance(posicoesInstance))
@@ -167,12 +167,12 @@ public class JhonBeen : IGameMode
                     side = Random.Range(0, 2);
                     if (side == 0)
                     {
-                        position = new Vector3(aux.tileManager.bases[i].x, Random.Range(-15, 17.8f), aux.tileManager.bases[i].z);
+                        position = new Vector3(aux.tileManager.bases[i].position.x, Random.Range(-15, 17.8f), aux.tileManager.bases[i].position.z);
                         //GameObject.Instantiate(_bird, new Vector3(aux.tileManager.bases[i].x, aux.tileManager.bases[i].y + Random.Range(-19, 17.8f), aux.tileManager.bases[i].z), Quaternion.identity);
                     }
                     else
                     {
-                        position = new Vector3(aux.tileManager.bases[i].x + 2, Random.Range(-15, 17.8f), aux.tileManager.bases[i].z);
+                        position = new Vector3(aux.tileManager.bases[i].position.x + 2, Random.Range(-15, 17.8f), aux.tileManager.bases[i].position.z);
                         //GameObject.Instantiate(_bird, new Vector3(aux.tileManager.bases[i].x + 2, aux.tileManager.bases[i].y + Random.Range(-19, 17.8f), aux.tileManager.bases[i].z), Quaternion.identity);
                     }
                 }
@@ -206,8 +206,8 @@ public class JhonBeen : IGameMode
             playerMortos.Add(GameController.singleton.playerManager.playersControllers[i], false);
             PositionsLR auxLR = new PositionsLR();
             playerPosition.Add(GameController.singleton.playerManager.playersControllers[i], auxLR);
-            playerPosition[GameController.singleton.playerManager.playersControllers[i]].left = aux.tileManager.bases[i];
-            playerPosition[GameController.singleton.playerManager.playersControllers[i]].right = new Vector3(aux.tileManager.bases[i].x + 2f, aux.tileManager.bases[i].y, aux.tileManager.bases[i].z);
+            playerPosition[GameController.singleton.playerManager.playersControllers[i]].left = aux.tileManager.bases[i].position;
+            playerPosition[GameController.singleton.playerManager.playersControllers[i]].right = new Vector3(aux.tileManager.bases[i].position.x + 2f, aux.tileManager.bases[i].position.y, aux.tileManager.bases[i].position.z);
             Stun auxStun = new Stun();
             auxStun.canMove = true;
             auxStun.timeInStun = 0;
@@ -232,7 +232,7 @@ public class JhonBeen : IGameMode
 
     public void Action(PlayerController player)
     {
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && aux.comecou)
         {
             player.anim.SetTrigger("Climb");
             player.transform.position += new Vector3(0f, 1f, 0f);

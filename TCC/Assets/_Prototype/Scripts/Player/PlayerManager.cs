@@ -55,8 +55,8 @@ public class PlayerManager : MonoBehaviour
         {
             player.GetComponentInChildren<Camera>().enabled = false;
             player.GetComponent<PlayerSelect>().enabled = false;
-            player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)];
-            player._base = _tileManager.bases[playersControllers.IndexOf(player)];
+            player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)].position;
+            player._base = _tileManager.bases[playersControllers.IndexOf(player)].position;
         }
     }
     void setPlayerInScene()
