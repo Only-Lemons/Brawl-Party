@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
             onChangeValues();
     }
 
-    public void SumirPlayers()
+    void SumirPlayers()
     {
         for (int i = 0; i < playersHide.Length; i++)
         {
@@ -37,14 +37,6 @@ public class UIManager : MonoBehaviour
             {
                 playersHide[i].SetActive(false);
             }
-        }
-    }
-
-    public void SumirTodos()
-    {
-        for (int i = 0; i < playersHide.Length; i++)
-        {
-            playersHide[i].SetActive(false);
         }
     }
 }

@@ -62,14 +62,13 @@ public class RunGhost : IGameMode
     public void RotationRule(Vector3 dir, Transform player)
     {
 
-        player.rotation = Quaternion.Lerp(player.rotation, Quaternion.Euler(dir.x, dir.y, dir.z), Time.deltaTime);
+        player.rotation = Quaternion.Lerp(player.rotation,Quaternion.Euler(dir.x,dir.y,dir.z), Time.deltaTime);
     }
 
     public void StartGame()
     {
         AddPlayerInformations();
         InstantiateGhost();
-        UIManager.instance.SumirTodos();
     }
 
     private void InstantiateGhost()
@@ -106,8 +105,7 @@ public class RunGhost : IGameMode
 
     private void MoveGhost()
     {
-        foreach (GhostController ghost in ghost)
-        {
+        foreach (GhostController ghost in ghost) {
             PlayerController closerPlayer = aux.playerManager.playersControllers[0];
             float DistanciaMin = float.MinValue;
             foreach (PlayerController player in aux.playerManager.playersControllers)
@@ -156,7 +154,6 @@ public class RunGhost : IGameMode
             player.transform.GetChild(1).gameObject.SetActive(true);
             player.gameObject.GetComponent<Collider>().enabled = true;
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Ghost>().gameObject);
-
             if (pointPlayer[player] > maiorPonto)
             {
                 maiorPonto = pointPlayer[player];

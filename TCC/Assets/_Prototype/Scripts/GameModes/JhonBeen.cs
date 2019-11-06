@@ -77,19 +77,6 @@ public class JhonBeen : IGameMode
                 cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 10);
         }
     }
-
-    void DesativarCameras()
-    {
-        for (int i = 0; i < cameras.Length; i++)
-        {
-            cameras[i].GetComponent<Camera>().fieldOfView = 0;
-        }
-
-        for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
-        {
-            cameras[i].GetComponent<Camera>().fieldOfView = 28.41141f;
-        }
-    }
     void InsertWinners()
     {
         int a = 0;
@@ -152,8 +139,6 @@ public class JhonBeen : IGameMode
     public void StartGame()
     {
         InsertPlayerInDates();
-        UIManager.instance.SumirTodos();
-        DesativarCameras();
         //spawnBirds();
 
     }
@@ -247,7 +232,7 @@ public class JhonBeen : IGameMode
 
     public void Action(PlayerController player)
     {
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && GameController.singleton.comecou)
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
         {
             player.anim.SetTrigger("Climb");
             player.transform.position += new Vector3(0f, 1f, 0f);
