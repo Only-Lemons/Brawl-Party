@@ -469,8 +469,17 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             idTrocouArma = 1;
             if (armaInventory[0] != null)
             {
+                for (int i = 0; i < hand.transform.childCount; i++)
+                {
+                    Destroy(hand.transform.GetChild(i).gameObject);
+                }
                 actualArma = armaInventory[0];
                 playerUI.gun.sprite = armaInventory[0].gunSprite;
+
+                if (armaInventory[1] != null)
+                    playerUI.gun2.sprite = armaInventory[1].gunSprite;
+
+                Instantiate(actualArma.prefab, hand);
             }
         }
         else
@@ -478,8 +487,17 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             idTrocouArma = 0;
             if (armaInventory[1] != null)
             {
+                for (int i = 0; i < hand.transform.childCount; i++)
+                {
+                    Destroy(hand.transform.GetChild(i).gameObject);
+                }
                 actualArma = armaInventory[1];
                 playerUI.gun.sprite = armaInventory[1].gunSprite;
+
+                if (armaInventory[0] != null)
+                    playerUI.gun2.sprite = armaInventory[0].gunSprite;
+
+                Instantiate(actualArma.prefab, hand.position, hand.rotation, hand);
             }
         }
     }

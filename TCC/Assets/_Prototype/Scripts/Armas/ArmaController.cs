@@ -12,13 +12,19 @@ public class ArmaController : MonoBehaviour
         {
             PlayerController playerController = other.GetComponentInParent<PlayerController>();
 
+            for (int i = 0; i < playerController.hand.transform.childCount; i++)
+            {
+                Destroy(playerController.hand.transform.GetChild(i).gameObject);
+            }
 
             if (playerController.armaInventory.Count < 2)
             {
                 playerController.armaInventory.Add(actualArma);
+                if (playerController.armaInventory.Count > 1)
+                    playerController.playerUI.gun2.sprite = playerController.armaInventory[0].gunSprite;
             }
             else if (playerController.armaInventory.Count == 2)
-            { 
+            {
                 if (playerController.actualArma == playerController.armaInventory[0])
                     playerController.armaInventory[0] = actualArma;
                 else if (playerController.actualArma == playerController.armaInventory[1])

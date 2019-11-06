@@ -17,6 +17,7 @@ public struct playerUIElements
     public Text passiveText;
     public Image Respawn;
     public Image gun;
+    public Image gun2;
     public Image character;
     
     //adcionar aqui outros elementos da ui
