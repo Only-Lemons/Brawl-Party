@@ -25,7 +25,8 @@ public class SortScene : MonoBehaviour
         {
             Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(1);
-        }        
+        }
+        sortGameM = Random.Range(0, gameModes.Count);
         GameManager.Instance.lastGameModes.Add(gameModes[sortGameM]);
        
 

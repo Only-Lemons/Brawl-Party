@@ -9,7 +9,7 @@ public class RunGhost : IGameMode
     float timeOfGame;
     GameObject _Monster = Resources.Load("Mecanicas/Monster") as GameObject;
     GameObject _Ghost = Resources.Load("Mecanicas/Ghost") as GameObject;
-    GhostController ghost;
+    GhostController[] ghost;
     Dictionary<PlayerController, int> pointPlayer = new Dictionary<PlayerController, int>();
     Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
     List<PlayerController> winners = new List<PlayerController>();
@@ -62,6 +62,7 @@ public class RunGhost : IGameMode
     public void RotationRule(Vector3 dir, Transform player)
     {
 
+        player.rotation = Quaternion.Lerp(player.rotation,Quaternion.Euler(dir.x,dir.y,dir.z), Time.deltaTime);
     }
 
     public void StartGame()
@@ -72,7 +73,7 @@ public class RunGhost : IGameMode
 
     private void InstantiateGhost()
     {
-        ghost = GameObject.FindObjectOfType<GhostController>();
+        ghost = GameObject.FindObjectsOfType<GhostController>();
     }
 
     void AddPlayerInformations()
@@ -104,17 +105,19 @@ public class RunGhost : IGameMode
 
     private void MoveGhost()
     {
-        PlayerController closerPlayer = aux.playerManager.playersControllers[0];
-        float DistanciaMin = float.MinValue;
-        foreach (PlayerController player in aux.playerManager.playersControllers)
-        {
-            if (!isGhost[player] && DistanciaMin < Vector3.Distance(player.transform.position, ghost.transform.position))
+        foreach (GhostController ghost in ghost) {
+            PlayerController closerPlayer = aux.playerManager.playersControllers[0];
+            float DistanciaMin = float.MinValue;
+            foreach (PlayerController player in aux.playerManager.playersControllers)
             {
-                closerPlayer = player;
-                DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
+                if (!isGhost[player] && DistanciaMin < Vector3.Distance(player.transform.position, ghost.transform.position))
+                {
+                    closerPlayer = player;
+                    DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
+                }
             }
+            ghost.FollowPlayer(closerPlayer);
         }
-        ghost.FollowPlayer(closerPlayer);
     }
 
     private void AddPointForPlayers()
