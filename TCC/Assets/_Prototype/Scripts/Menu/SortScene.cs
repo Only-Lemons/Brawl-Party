@@ -17,7 +17,11 @@ public class SortScene : MonoBehaviour
     {
         GameManager.Instance.quantTGames = gameModes.Length;
         if (GameManager.Instance.lastGameModes.Count == GameManager.Instance.quantGames)
+        {
+            Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(1);
+        }        
+            
         sortGameM = Random.Range(0, gameModes.Length);
         if (!GameManager.Instance.lastGameModes.Contains(sortGameM))
         {

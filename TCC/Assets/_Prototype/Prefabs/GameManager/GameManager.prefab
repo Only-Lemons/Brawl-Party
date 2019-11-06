@@ -148,13 +148,15 @@ GameObject:
   - component: {fileID: 4344593517675862185}
   - component: {fileID: 3658684374007790248}
   - component: {fileID: 458482670}
+  - component: {fileID: 1474074609}
+  - component: {fileID: 1474074610}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4344593517675862190
 Transform:
   m_ObjectHideFlags: 0
@@ -186,6 +188,7 @@ MonoBehaviour:
     type: 3}
   audioManager: {fileID: 0}
   gameController: {fileID: 0}
+  quantTGames: 5
   TimeInGame: 1
   quantGames: 5
   newGameMode: 0
@@ -305,6 +308,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &1474074609
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344593517675862184}
+  m_Enabled: 1
+--- !u!114 &1474074610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344593517675862184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MovementRange: 50
+  m_ControlPath: 
 --- !u!1 &6310559682075679244
 GameObject:
   m_ObjectHideFlags: 0
