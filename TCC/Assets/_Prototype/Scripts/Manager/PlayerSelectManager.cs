@@ -43,7 +43,8 @@ public class PlayerSelectManager : MonoBehaviour
 
 
                 player.transform.SetParent(GameManager.Instance.transform);
-                GameManager.Instance.playersPanels.Add(player);
+                if(!GameManager.Instance.playersPanels.Exists(x => x  == player))
+                    GameManager.Instance.playersPanels.Add(player);
             }
         }
     }
