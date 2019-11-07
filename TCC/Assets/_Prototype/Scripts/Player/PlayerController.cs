@@ -301,9 +301,11 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         playerUI.hp.maxValue = player.hp;
         playerUI.character.sprite = player.sprite;
-        playerUI.colorBase.color = GetComponent<Renderer>().material.color;
-
-
+        try
+        {
+            playerUI.colorBase.color = GetComponent<Renderer>().material.color;
+        }
+        catch { }
 
     }
     void uiUpdate()
