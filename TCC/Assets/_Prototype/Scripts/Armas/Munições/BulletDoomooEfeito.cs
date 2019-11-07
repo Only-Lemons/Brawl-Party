@@ -48,7 +48,7 @@ public class BulletDoomooEfeito : MonoBehaviour
                 cont = 0;
             }
 
-            other.transform.position = Vector3.Lerp(other.transform.position, transform.position, Time.deltaTime);
+            other.transform.position = Vector3.Lerp(other.transform.position,new Vector3( transform.position.x, transform.position.y, transform.position.z), Time.deltaTime);
         }
     }
 }

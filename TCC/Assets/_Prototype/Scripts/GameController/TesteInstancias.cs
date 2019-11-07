@@ -110,7 +110,7 @@ public class TesteInstancias : MonoBehaviour
                 go[b].GetComponent<ArmaController>().actualArma = new Congelante();
                 break;
             case 7:
-                go[b].GetComponent<ArmaController>().actualArma = new Doomoo();
+                go[b].GetComponent<ArmaController>().actualArma = new Pistol();
                 break;
 
             default:
