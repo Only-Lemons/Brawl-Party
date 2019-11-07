@@ -112,23 +112,18 @@ public class RunGhost : IGameMode
     private void MoveGhost()
     {
         foreach (GhostController ghost in ghost) {
-                canFollow[ghost] -= Time.deltaTime;
+               
                 PlayerController closerPlayer = aux.playerManager.playersControllers[0];
-                float DistanciaMin = float.MinValue;
+                float DistanciaMin = float.MaxValue;
                 foreach (PlayerController player in aux.playerManager.playersControllers)
                 {
-                    if (!isGhost[player] && DistanciaMin < Vector3.Distance(player.transform.position, ghost.transform.position) && canFollow[ghost] <= 0)
+                    if (!isGhost[player] && DistanciaMin > Vector3.Distance(player.transform.position, ghost.transform.position))
                     {
-                        canFollow[ghost] = 3;
                         closerPlayer = player;
                         DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
                     }
-                    else
-                    {
-                    
-                    }
-                 }
-                 ghost.FollowPlayer(closerPlayer);      
+                }
+                ghost.FollowPlayer(closerPlayer);
         }
     }
 

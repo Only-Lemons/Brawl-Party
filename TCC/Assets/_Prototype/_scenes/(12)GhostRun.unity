@@ -280,7 +280,12 @@ PrefabInstance:
     - target: {fileID: 8411557222385371885, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
       propertyPath: m_Speed
-      value: 10
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8411557222385371885, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
+        type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8, type: 3}
@@ -301,6 +306,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 931781585ed15344b9222e4ef9c4b1c5,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b1ea2adb013661343864c42f6dd82f39, type: 2}
     - target: {fileID: -4216859302048453862, guid: 931781585ed15344b9222e4ef9c4b1c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -356,11 +366,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 931781585ed15344b9222e4ef9c4b1c5,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b1ea2adb013661343864c42f6dd82f39, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 931781585ed15344b9222e4ef9c4b1c5, type: 3}
 --- !u!1 &116075277
