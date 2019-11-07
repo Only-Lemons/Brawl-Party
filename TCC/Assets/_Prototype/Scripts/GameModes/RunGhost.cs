@@ -163,9 +163,6 @@ public class RunGhost : IGameMode
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in aux.playerManager.playersControllers)
         {
-            player.transform.GetChild(1).gameObject.SetActive(true);
-            player.gameObject.GetComponent<Collider>().enabled = true;
-            GameObject.Destroy(player.gameObject.GetComponentInChildren<Ghost>().gameObject);
             if (pointPlayer[player] > maiorPonto)
             {
                 maiorPonto = pointPlayer[player];
