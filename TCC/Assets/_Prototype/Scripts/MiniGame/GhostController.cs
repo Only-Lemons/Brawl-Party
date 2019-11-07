@@ -12,8 +12,9 @@ public class GhostController : MonoBehaviour
     }
     public void FollowPlayer(PlayerController player)
     {
+        this.thisAgent.ResetPath();
         this.thisAgent.SetDestination(player.transform.position);
-
+      
     }
     private void OnTriggerEnter(Collider other)
     {
