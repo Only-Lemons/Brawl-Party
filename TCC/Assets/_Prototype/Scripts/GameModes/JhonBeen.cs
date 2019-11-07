@@ -70,11 +70,15 @@ public class JhonBeen : IGameMode
     {
         for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
         {
-            if (aux.playerManager.playersControllers[i].transform.position.y > 0)
-                //cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14);
-                cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14), Time.deltaTime * 3);
-            else
-                cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 10);
+            if(aux.playerManager.playersControllers[i] != null)
+            {
+                if (aux.playerManager.playersControllers[i].transform.position.y > 0)
+                    //cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14);
+                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14), Time.deltaTime * 3);
+                else
+                    cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 10);
+            }
+      
         }
     }
 

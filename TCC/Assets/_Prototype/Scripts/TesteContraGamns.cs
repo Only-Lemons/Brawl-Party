@@ -15,7 +15,7 @@ public class TesteContraGamns : MonoBehaviour
 
         for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
         {
-            Destroy(GameManager.Instance.playersPanels[i].gameObject);
+            Destroy(GameManager.Instance.playersPanels[i].transform.GetChild(0).gameObject);
         }
     }
 

@@ -109,6 +109,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnAction(InputAction.CallbackContext context)
     {
+        Debug.Log("Show");
         GetComponentInChildren<PlayerController>().OnAction(context);
     }
 

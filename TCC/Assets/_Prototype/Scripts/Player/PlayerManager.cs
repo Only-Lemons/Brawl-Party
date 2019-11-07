@@ -110,8 +110,16 @@ public class PlayerManager : MonoBehaviour
             }
             else
             {
-                Destroy(playersControllers[i].gameObject);
+                //playersControllers.Remove(playersControllers[i]);
+                playersControllers[i].gameObject.SetActive(false);
             }
         }
+        List<PlayerController> aux = playersControllers.FindAll(x => !x.gameObject.activeSelf);
+
+        foreach (var auxP in aux)
+        {
+            playersControllers.Remove(playersControllers.Find(x => x == auxP));
+        }
+
     }
 }
