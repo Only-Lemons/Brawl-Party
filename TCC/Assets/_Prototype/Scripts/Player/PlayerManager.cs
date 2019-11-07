@@ -106,7 +106,8 @@ public class PlayerManager : MonoBehaviour
             if(i < GameManager.Instance.playersPanels.Count)
             {
                playersControllers[i].transform.SetParent(GameManager.Instance.playersPanels[i].transform);
-                playersControllers[i].transform.GetChild(1).GetComponentInChildren<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().atualColor;
+               playersControllers[i].transform.GetChild(1).GetComponentInChildren<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().atualColor;
+               playersControllers[i].playerSprite = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().actualPlayerRealSprite;
             }
             else
             {

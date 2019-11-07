@@ -1897,11 +1897,11 @@ MonoBehaviour:
   players: []
   renderPlayer: {fileID: 1398155411075739759, guid: d3bd21f5e86c64b4f8cc2ba52f54088f,
     type: 3}
-  renderTextures:
-  - {fileID: 8400000, guid: 6a244864e21938843965a40af4499971, type: 2}
-  - {fileID: 8400000, guid: 53478ac64b0e1314db7cbea6c8f8c075, type: 2}
-  - {fileID: 8400000, guid: 9b3d9c473411555418dbf9f7c63e2e60, type: 2}
-  - {fileID: 8400000, guid: 7de74229269e59e4c90e8a07927f1ec5, type: 2}
+  playerSprite:
+  - {fileID: -5981799735998663958, guid: 14719f04fb734244cb2702237c09153c, type: 3}
+  - {fileID: -6652450549663868262, guid: 14719f04fb734244cb2702237c09153c, type: 3}
+  - {fileID: -7712160669255332773, guid: 14719f04fb734244cb2702237c09153c, type: 3}
+  - {fileID: 6339143219616517777, guid: 14719f04fb734244cb2702237c09153c, type: 3}
   pos:
   - {x: 10000, y: 0, z: 0}
   - {x: -10000, y: 0, z: 0}

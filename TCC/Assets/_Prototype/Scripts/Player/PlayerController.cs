@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
     public SOPlayer player;
+    public Sprite playerSprite;
+
     CharacterController _cc;
     [HideInInspector]
     public Animator anim;

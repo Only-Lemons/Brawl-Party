@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
                 playerManager.playersControllers[i].gameObject.SetActive(true);
                 pontos[i].text = GameManager.Instance.pontosGeral[i].ToString();
                 pontos[i].color = playerManager.playersControllers[i].gameObject.GetComponent<PlayerSelect>().playerMaterial.color;
-                personagens[i].sprite = playerManager.playersControllers[i].player.sprite;
+                personagens[i].sprite = playerManager.playersControllers[i].playerSprite;
 
                 playerManager.playersControllers[i].ResetarPlayer();
        

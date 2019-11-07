@@ -8,7 +8,7 @@ public class PlayerSelectManager : MonoBehaviour
 {
     public List<GameObject> players = new List<GameObject>();
     public GameObject renderPlayer;
-    public List<RenderTexture> renderTextures = new List<RenderTexture>();
+    public List<Image> playerSprite = new List<Image>();
     public List<Vector3> pos = new List<Vector3>();
 
     public void addPlayerToCanvas()
@@ -26,7 +26,7 @@ public class PlayerSelectManager : MonoBehaviour
             if (!players.Exists(x => x == jogadores[i]))
             {
                 players.Add(jogadores[i]);
-                //jogadores[i].GetComponentInChildren<Camera>().targetTexture = renderTextures[i];
+
                 // jogadores[i].transform.position = pos[i];
             }
 
@@ -43,8 +43,13 @@ public class PlayerSelectManager : MonoBehaviour
 
 
                 player.transform.SetParent(GameManager.Instance.transform);
-                if(!GameManager.Instance.playersPanels.Exists(x => x  == player))
+                player.GetComponent<PlayerSelect>().actualPlayerSprite = acualRenderPlayer.GetComponent<Image>();
+                if (!GameManager.Instance.playersPanels.Exists(x => x  == player))
+                {
                     GameManager.Instance.playersPanels.Add(player);
+                 
+                }
+                    
             }
         }
     }

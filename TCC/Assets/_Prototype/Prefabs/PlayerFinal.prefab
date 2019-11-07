@@ -320,13 +320,35 @@ MonoBehaviour:
     m_ActionId: 27123c6f-a94d-42eb-a186-5dd99b809eb2
     m_ActionName: Player/Action[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/c]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnR
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: ee33ec7d-651c-4e19-bd68-7ff938c38afa
     m_ActionName: Player/R[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7383490892583416474}
+        m_MethodName: OnR
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: a2d9cd92-4ccb-4a76-b0cc-c8c76fd54b7a
@@ -348,12 +370,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899a038d15f72bf489c9a7770d42d4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColor:
-  - {r: 0.7830189, g: 0.19575472, b: 0.19575472, a: 1}
-  - {r: 0.745283, g: 0.20741367, b: 0.71429455, a: 1}
-  - {r: 0.16785331, g: 0.30540282, b: 0.8679245, a: 1}
-  - {r: 0.21266466, g: 0.764151, b: 0.25495234, a: 1}
+  playersUI:
+  - cor: {r: 0.9150943, g: 0.7953258, b: 0.20287468, a: 1}
+    sprite: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
+  - cor: {r: 0.8584906, g: 0.31990921, b: 0.7664517, a: 1}
+    sprite: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+  - cor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+    sprite: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
+  - cor: {r: 0.10484158, g: 0.7169812, b: 0.1103084, a: 1}
+    sprite: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
   playerMaterial: {fileID: 2100000, guid: ca25e3126e74e5848b0726e56eeb3843, type: 2}
+  actualPlayerSprite: {fileID: 0}
   atualColor: {r: 0, g: 0, b: 0, a: 0}
   isConfirmed: 0
   PlayerGame: {fileID: 0}
