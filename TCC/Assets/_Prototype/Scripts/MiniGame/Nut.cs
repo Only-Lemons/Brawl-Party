@@ -10,6 +10,7 @@ public class Nut : MonoBehaviour
     {
         position = this.transform.position;
         Destroy(this.gameObject, 5f);
+
     }
     private void OnTriggerEnter(Collider other)
     {
