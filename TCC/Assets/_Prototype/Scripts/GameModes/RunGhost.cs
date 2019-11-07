@@ -11,6 +11,7 @@ public class RunGhost : IGameMode
     GameObject _Ghost = Resources.Load("Mecanicas/Ghost") as GameObject;
     GhostController[] ghost;
     Dictionary<PlayerController, int> pointPlayer = new Dictionary<PlayerController, int>();
+    Dictionary<GhostController, float> canFollow = new Dictionary<GhostController, float>();
     Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
     List<PlayerController> winners = new List<PlayerController>();
     bool adicionolPoint = false;
@@ -75,6 +76,10 @@ public class RunGhost : IGameMode
     private void InstantiateGhost()
     {
         ghost = GameObject.FindObjectsOfType<GhostController>();
+        foreach(GhostController newGhost in ghost)
+        {
+            canFollow.Add(newGhost, 0);
+        }
     }
 
     void AddPlayerInformations()
@@ -107,17 +112,23 @@ public class RunGhost : IGameMode
     private void MoveGhost()
     {
         foreach (GhostController ghost in ghost) {
-            PlayerController closerPlayer = aux.playerManager.playersControllers[0];
-            float DistanciaMin = float.MinValue;
-            foreach (PlayerController player in aux.playerManager.playersControllers)
-            {
-                if (!isGhost[player] && DistanciaMin < Vector3.Distance(player.transform.position, ghost.transform.position))
+                canFollow[ghost] -= Time.deltaTime;
+                PlayerController closerPlayer = aux.playerManager.playersControllers[0];
+                float DistanciaMin = float.MinValue;
+                foreach (PlayerController player in aux.playerManager.playersControllers)
                 {
-                    closerPlayer = player;
-                    DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
-                }
-            }
-            ghost.FollowPlayer(closerPlayer);
+                    if (!isGhost[player] && DistanciaMin < Vector3.Distance(player.transform.position, ghost.transform.position) && canFollow[ghost] <= 0)
+                    {
+                        canFollow[ghost] = 3;
+                        closerPlayer = player;
+                        DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
+                    }
+                    else
+                    {
+                    
+                    }
+                 }
+                 ghost.FollowPlayer(closerPlayer);      
         }
     }
 
