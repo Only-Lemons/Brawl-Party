@@ -19,22 +19,14 @@ public class GetItRock : IGameMode
     }
     public void HitRule(PlayerController player)
     {
-        player.ResetarPlayer();
         player.gameObject.SetActive(false);
-
-        tempoMorteAtual = timeOfGame;
-        
-
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
             winners.Add(player);
-            TempoMorte();
             numwinner++;
             WinRule();
         }
-        else
-            TempoUltimaMorte();
     }
     void fallRock()
     {
@@ -174,9 +166,6 @@ public class GetItRock : IGameMode
             //verificar quantos players restam
         }
 
-        Debug.Log("ultima morte: " + tempoUltimaMorte);
-        Debug.Log("morte atual: " + tempoMorteAtual);
-        Debug.Log("falha " + falha);
     }
     void TempoUltimaMorte()
     {
@@ -187,11 +176,11 @@ public class GetItRock : IGameMode
     {
         if (!adicionolPoint)
         {
-            if (!falha)
-                for (int i = 0; i < winners.Count; i++)
-                {
+           
+            for (int i = 0; i < winners.Count; i++)
+            {
                     GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
-                }
+            }
             aux.FinishGame();
             adicionolPoint = true;
         }

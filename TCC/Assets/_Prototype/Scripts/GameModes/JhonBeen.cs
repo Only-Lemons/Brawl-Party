@@ -73,56 +73,15 @@ public class JhonBeen : IGameMode
             if(aux.playerManager.playersControllers[i] != null)
             {
                 if (aux.playerManager.playersControllers[i].transform.position.y > 0)
-                    //cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14);
-                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - zoomCam), Time.deltaTime * 3);
+                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14), Time.deltaTime * 3);
                 else
-                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - (zoomCam - 4)), Time.deltaTime);
+                    cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14);
             }
       
         }
     }
 
-    float zoomCam = 14f;
-    void CancelarCameras()
-    {
-        for (int i = 0; i < cameras.Length; i++)
-        {
-            cameras[i].GetComponent<Camera>().fieldOfView = 0;
-            //cameras[i].GetComponent<Camera>().rect = new Rect(0, 0, 0, 0);
-        }
-
-        for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
-        {
-            cameras[i].GetComponent<Camera>().fieldOfView = 28.41141f;
-        }
-
-
-        int qtdPlayersJogando = aux.playerManager.playersControllers.Count;
-        //switch (qtdPlayersJogando)
-        //{
-        //    case 1:
-        //        cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
-        //        zoomCam = 30;
-        //        break;
-        //    case 3:
-        //        cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.5f, 1);
-        //        cameras[1].GetComponent<Camera>().rect = new Rect(0.5f, 0, 0.5f, 1);
-        //        zoomCam = 25;
-        //        break;
-        //    case 4:
-        //        cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.333f, 1);
-        //        cameras[1].GetComponent<Camera>().rect = new Rect(0.333f, 0, 0.333f, 1);
-        //        cameras[2].GetComponent<Camera>().rect = new Rect(0.667f, 0, 0.334f, 1);
-        //        zoomCam = 20;
-        //        break;
-        //    case 5:
-        //        cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.25f, 1);
-        //        cameras[1].GetComponent<Camera>().rect = new Rect(0.25f, 0, 0.25f, 1);
-        //        cameras[2].GetComponent<Camera>().rect = new Rect(0.50f, 0, 0.25f, 1);
-        //        cameras[3].GetComponent<Camera>().rect = new Rect(0.75f, 0, 0.25f, 1);
-        //        break;
-        //}
-    }
+    
 
     void InsertWinners()
     {
@@ -158,8 +117,6 @@ public class JhonBeen : IGameMode
             if (dir.x > 0f)
             {
                 player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
-
-                //player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
                 player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
             }
             if (dir.x < 0f)
@@ -187,8 +144,7 @@ public class JhonBeen : IGameMode
     {
         InsertPlayerInDates();
         GameController.singleton.uIManager.SumirTudo();
-        CancelarCameras();
-        //spawnBirds();
+     
 
     }
     void spawnBirds()
@@ -281,7 +237,7 @@ public class JhonBeen : IGameMode
 
     public void Action(PlayerController player)
     {
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && aux.comecou)
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && aux.comecou && !adicionolPoint)
         {
             player.anim.SetTrigger("Climb");
             player.transform.position += new Vector3(0f, 1f, 0f);
@@ -290,10 +246,6 @@ public class JhonBeen : IGameMode
 
     void SubidaSuave()
     {
-        //Vector3 posNova = player.transform.position + new Vector3(0f, 1f, 0f);
-        //if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
-        //{
-        //    player.transform.position += new Vector3(0f, 1f, 0f);
-        //}
+       
     }
 }
