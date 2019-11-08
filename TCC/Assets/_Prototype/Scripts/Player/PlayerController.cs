@@ -63,6 +63,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     int idTrocouArma = 0;
 
+    
+
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
@@ -127,6 +129,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                     anim.SetBool("HasGun", true);
 
                 AtirarSemParar();
+
+                NoAr();
             }
         }
 
@@ -507,6 +511,29 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             }
         }
     }
+
+    #region ControleGetItRock
+    void NoAr()
+    {
+        if (pulou == true)
+        {
+            if (transform.position.y <= 0.4f)
+            {
+                pulou = false;
+                descer = false;
+            }
+            else
+                descer = true;
+        }
+        if (descer)
+            transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime*3, transform.position.z);
+    }
+
+    public bool pulou = false;
+    public int contPulos = 0;
+    bool descer = false;
+    public int direc = 1;
+    #endregion
 
     public void OnR(InputAction.CallbackContext context)
     {

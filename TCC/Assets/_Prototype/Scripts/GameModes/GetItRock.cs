@@ -104,10 +104,12 @@ public class GetItRock : IGameMode
     {
         if (dir.x > 0)
         {
+            player.gameObject.GetComponent<PlayerController>().direc = 1;
             player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
         }
         else if (dir.x < 0)
         {
+            player.gameObject.GetComponent<PlayerController>().direc = -1;
             player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
         }
         else
@@ -149,7 +151,7 @@ public class GetItRock : IGameMode
     {
         foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
         {
-            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+            //player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
             playerMortos.Add(player, false);
         }
     }
@@ -188,6 +190,19 @@ public class GetItRock : IGameMode
 
     public void Action(PlayerController player)
     {
+        if (player.pulou == false && GameController.singleton.comecou)
+        {
+            player.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x, 0.41f, player.gameObject.transform.position.z);
+            player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 11.5f * (player.gameObject.GetComponent<Rigidbody>().mass), ForceMode.Impulse);
+            player.pulou = true;
+            Debug.Log("PULEI");
+            player.contPulos++;
+        }
 
+        else if (player.pulou && player.contPulos > 0)
+        {
+            player.gameObject.GetComponent<Rigidbody>().AddForce((Vector3.right * player.direc) * 7 * (player.gameObject.GetComponent<Rigidbody>().mass), ForceMode.Impulse);
+            player.contPulos = 0;
+        }
     }
 }
