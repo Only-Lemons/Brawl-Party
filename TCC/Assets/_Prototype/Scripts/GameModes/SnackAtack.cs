@@ -19,7 +19,6 @@ public class SnackAtack : IGameMode
     GameObject _basket1 = Resources.Load("Mecanicas/Cesta1") as GameObject;
     GameObject _basket2 = Resources.Load("Mecanicas/Cesta2") as GameObject;
     GameObject _basket3 = Resources.Load("Mecanicas/Cesta3") as GameObject;
-    GameObject _sombra = Resources.Load("Mecanicas/Sombra") as GameObject;
     public SnackAtack(GameController controller, float time)
     {
         aux = controller;
@@ -135,13 +134,11 @@ public class SnackAtack : IGameMode
         if(InstanceNutTime <= 0)
         {
             GameObject aux  = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f,4.83f),8.96f,Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
-            GameObject.Instantiate(_sombra, new Vector3(aux.transform.position.x, 0.2f, aux.transform.position.z), Quaternion.identity, GameObject.Find("TRANSFORMZ").transform);
             InstanceNutTime = Random.Range(1f,3f);
         }
         if (InstanceHiveTime <= 0)
         {
             GameObject aux = GameObject.Instantiate(_Hive, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
-            GameObject.Instantiate(_sombra, new Vector3(aux.transform.position.x, 0.2f, aux.transform.position.z), Quaternion.identity, GameObject.Find("TRANSFORMZ").transform);
             InstanceHiveTime =Random.Range(2,4);
         }
     }
