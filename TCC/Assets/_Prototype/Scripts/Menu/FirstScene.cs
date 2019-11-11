@@ -27,7 +27,7 @@ public class FirstScene : MonoBehaviour
 
     void CrossTextColor()
     {
-        textPress.color = new Color(1/_timeRun, _timeRun, 0);
+        textPress.color = new Color(1/(_timeRun/2), 1/(_timeRun/2), _timeRun+0.5f);
     }
     void PiscarLetreiro()
     {
@@ -49,23 +49,23 @@ public class FirstScene : MonoBehaviour
 
     void ScalarLetreiro()
     {
-        if (_timeRun >= 1)
+        if (_timeRun >= 0.5f)
         {
             subir = false;
         }
-        else if (_timeRun <= 0.3f)
+        else if (_timeRun <= 0.35f)
             subir = true;
 
         if (subir)
         {
-            _timeRun += Time.deltaTime;
-            textPress.gameObject.transform.localScale = new Vector3(_timeRun + 1, _timeRun + 1, _timeRun + 1);
+            _timeRun += Time.deltaTime/3;
         }
         if (!subir)
         {
-            _timeRun -= Time.deltaTime;
-            textPress.gameObject.transform.localScale = new Vector3(_timeRun + 1, _timeRun + 1, _timeRun + 1);
+            _timeRun -= Time.deltaTime/3;
         }
+
+        textPress.gameObject.transform.localScale = new Vector3(textPress.gameObject.transform.localScale.x * _timeRun + 0.5f, textPress.gameObject.transform.localScale.y * _timeRun + 0.5f, textPress.gameObject.transform.localScale.z * _timeRun + 0.5f);
     }
 
 }

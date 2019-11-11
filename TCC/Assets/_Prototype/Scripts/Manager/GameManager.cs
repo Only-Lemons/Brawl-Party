@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
@@ -25,9 +26,13 @@ public class GameManager : MonoBehaviour
     public int[] pontosGeral;
     public Vector3 lastPainel;
     int oldScene = 0;
+    int maisPl = 0;
     #region LevelInteract
     public int nextLevel;
     #endregion  
+
+    public Text necessarioMaisJogadores;
+
     private void OnEnable()
     {
         if (Instance != null)
@@ -56,10 +61,14 @@ public class GameManager : MonoBehaviour
                 }
 
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-                if (playersPanels.Count > 0 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == false))
+
+                if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == false))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
+                    necessarioMaisJogadores.text = "";
                 }
+                else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == false))
+                    necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
 
 
                 break;
