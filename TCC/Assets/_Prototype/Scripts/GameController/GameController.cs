@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
     }
     IEnumerator ChangeScene()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene(5);
 
     }

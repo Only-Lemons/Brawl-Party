@@ -208,7 +208,7 @@ public class GetItRock : IGameMode
             player.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x, 0.41f, player.gameObject.transform.position.z);
             player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 11.5f * (player.gameObject.GetComponent<Rigidbody>().mass), ForceMode.Impulse);
             player.pulou = true;
-            Debug.Log("PULEI");
+            //Debug.Log("PULEI");
             player.contPulos++;
         }
 
