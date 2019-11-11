@@ -81,43 +81,71 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        GetComponentInChildren<PlayerController>().OnMove(context);
+        try
+        {
+            GetComponentInChildren<PlayerController>().OnMove(context);
+        }
+        catch { }
     }
 
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        GetComponentInChildren<PlayerController>().OnLook(context);
+        try
+        {
+            GetComponentInChildren<PlayerController>().OnLook(context);
+        }
+        catch { }
     }
 
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        GetComponentInChildren<PlayerController>().OnFire(context);
+        try
+        {
+            GetComponentInChildren<PlayerController>().OnFire(context);
+        }
+        catch { }
     }
 
 
     public void OnInsert(InputAction.CallbackContext context)
     {
-        GetComponentInChildren<PlayerController>().OnInsert(context);
+        try
+        {
+            GetComponentInChildren<PlayerController>().OnInsert(context);
+        }
+        catch { }
     }
 
 
     public void OnSwitch(InputAction.CallbackContext context)
     {
-        GetComponentInChildren<PlayerController>().OnSwitch(context);
+        try
+        {
+            GetComponentInChildren<PlayerController>().OnSwitch(context);
+        }
+        catch { }
     }
 
 
     public void OnAim(InputAction.CallbackContext context)
     {
-        GetComponentInChildren<PlayerController>().OnAim(context);
+        try
+        {
+            GetComponentInChildren<PlayerController>().OnAim(context);
+        }
+        catch { }
     }
 
     public void OnAction(InputAction.CallbackContext context)
     {
-        Debug.Log("Show");
-        GetComponentInChildren<PlayerController>().OnAction(context);
+        try
+        {
+            Debug.Log("Show");
+            GetComponentInChildren<PlayerController>().OnAction(context);
+        }
+        catch { }
     }
 
     public void OnR(InputAction.CallbackContext context)
