@@ -4,13 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public struct playerUI
 {
-    public Sprite splash,selectedSplash;
+
+
+    public Sprite splash, selectedSplash;
     public string charName;
     public Color charColor;
+
+    public playerUI(Sprite splash, Sprite selectedSplash, string charName, Color charColor)
+    {
+        this.splash = splash;
+        this.selectedSplash = selectedSplash;
+        this.charName = charName;
+        this.charColor = charColor;
+    }
 }
 
 
@@ -21,12 +32,15 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     public PlayerController PlayerGame;
 
 
-    private int selectedCharIndex;
+    public int selectedCharIndex=0;
     [HideInInspector]
     public Color desiredColor;
-    [HideInInspector]
+
     public bool hasEntered = false,
-             canNavigate = true;
+             isConfirmed = true;
+
+
+    public Sprite selectSprite;
 
     [Header("Default Sprites")]
     [SerializeField] private string defaultName;
@@ -43,6 +57,15 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         OnEnter();
     }
 
+    private void FixedUpdate()
+    {
+       if(SceneManager.GetActiveScene().buildIndex == 14 && isConfirmed)
+            UpdateCharSelectUi();
+
+
+        
+    }
+
     public void OnEnter()
     {
         if (!hasEntered)
@@ -51,6 +74,8 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
             characterSplash.sprite = playersUI[0].splash;
             backgroundColor.color = playersUI[0].charColor;
             hasEntered = true;
+
+
         }
     }
 
@@ -70,19 +95,26 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     #region InputSystem Events
     public void OnUP(InputAction.CallbackContext context)
     {
-      
+
 
     }
     public void OnConfirmed(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && SceneManager.GetActiveScene().buildIndex == 14)
         {
-            if (hasEntered)
+            if (isConfirmed)
             {
                 backgroundColor.color = Color.green;
-                playersUI.Remove(playersUI[selectedCharIndex]);
+                selectSprite = characterSplash.sprite;
+
                 //Debug.Log("Removed" + charList[selectedCharIndex].charName);
-                canNavigate = false;
+                isConfirmed = false;
+            }
+            else
+            {
+                selectSprite = null;
+                backgroundColor.color = playersUI[selectedCharIndex].charColor;
+                isConfirmed = true;
             }
         }
     }
@@ -165,37 +197,25 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnR(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && isConfirmed && hasEntered)
         {
-            if (canNavigate)
-            {
-                if (hasEntered)
-                {
-                    selectedCharIndex++;
-                    if (selectedCharIndex == playersUI.Count)
+                    if (selectedCharIndex == playersUI.Count - 1)
                         selectedCharIndex = 0;
-
+                    selectedCharIndex++;
                     UpdateCharSelectUi();
-                }
-            }
         }
     }
 
     public void OnL(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && isConfirmed && hasEntered)
         {
-            if (canNavigate)
-            {
-                if (hasEntered)
-                {
-                    selectedCharIndex--;
-                    if (selectedCharIndex < 0)
-                        selectedCharIndex = playersUI.Count - 1;
 
+            if (selectedCharIndex == 0)
+                        selectedCharIndex = playersUI.Count - 1;
+                    selectedCharIndex--;
                     UpdateCharSelectUi();
-                }
-            }
+         
         }
     }
     #endregion

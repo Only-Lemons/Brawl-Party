@@ -339,7 +339,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7383490892583416474}
-        m_MethodName: OnR
+        m_MethodName: OnL
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -391,7 +391,7 @@ MonoBehaviour:
   PlayerGame: {fileID: 0}
   desiredColor: {r: 0, g: 0, b: 0, a: 0}
   hasEntered: 0
-  canNavigate: 1
+  isConfirmed: 1
   defaultName: Press Enter
   defaultSplash: {fileID: 21300000, guid: 15db0ca3b795ae541b13ec69d194fd7b, type: 3}
   defaultColor: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 0}

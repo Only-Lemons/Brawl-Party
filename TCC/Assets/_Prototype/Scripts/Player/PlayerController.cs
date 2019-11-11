@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     int idTrocouArma = 0;
 
-    
+    public int playerSelectIndex=0;
 
     public PlayerController(SOPlayer jogador)
     {
@@ -391,8 +391,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             {
                 if (canShoot)
                 {
-                    if (GetComponent<AutoAim>().mirando)
-                        transform.rotation = GetComponent<AutoAim>().mirandoRotacao; //permite que a rotacao seja corrigida
+                   
 
                     actualArma.Shoot(sairTiro.position, this.transform.rotation, sairTiro.forward, this);
                     StartCoroutine(fireRate(actualArma.fireRate));

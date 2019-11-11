@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         switch (SceneManager.GetActiveScene().buildIndex)
         {
-            case 4: // Menu do Personagem
+            case 14: // Menu do Personagem
                 foreach (GameObject player in playersPanels)
                 {
                     //player.transform.GetChild(0).gameObject.SetActive(false);
@@ -62,12 +62,12 @@ public class GameManager : MonoBehaviour
 
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
 
-                if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().canNavigate == false))
+                if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
                     necessarioMaisJogadores.text = "";
                 }
-                else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().canNavigate == false))
+                else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
 
 

@@ -107,7 +107,7 @@ public class PlayerManager : MonoBehaviour
             {
                playersControllers[i].transform.SetParent(GameManager.Instance.playersPanels[i].transform);
                playersControllers[i].transform.GetChild(1).GetComponentInChildren<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor;
-               playersControllers[i].playerSprite = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().characterSplash.sprite;
+               playersControllers[i].playerSprite = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectSprite;
             }
             else
             {
