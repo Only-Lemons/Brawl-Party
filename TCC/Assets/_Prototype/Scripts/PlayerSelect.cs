@@ -32,7 +32,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     public PlayerController PlayerGame;
 
 
-    public int selectedCharIndex=0;
+    public int selectedCharIndex = 0;
     [HideInInspector]
     public Color desiredColor;
 
@@ -59,11 +59,11 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     private void FixedUpdate()
     {
-       if(SceneManager.GetActiveScene().buildIndex == 14 && isConfirmed)
+        if (SceneManager.GetActiveScene().buildIndex == 14 && isConfirmed)
             UpdateCharSelectUi();
 
 
-        
+
     }
 
     public void OnEnter()
@@ -100,22 +100,29 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     }
     public void OnConfirmed(InputAction.CallbackContext context)
     {
-        if (context.started && SceneManager.GetActiveScene().buildIndex == 14)
+        if (context.started)
         {
-            if (isConfirmed)
+            if (SceneManager.GetActiveScene().buildIndex == 14)
             {
-                backgroundColor.color = Color.green;
-                selectSprite = characterSplash.sprite;
+                if (isConfirmed)
+                {
+                    backgroundColor.color = Color.green;
+                    selectSprite = characterSplash.sprite;
 
-                //Debug.Log("Removed" + charList[selectedCharIndex].charName);
-                isConfirmed = false;
+                    //Debug.Log("Removed" + charList[selectedCharIndex].charName);
+                    isConfirmed = false;
+                }
+                else
+                {
+                    selectSprite = null;
+                    backgroundColor.color = playersUI[selectedCharIndex].charColor;
+                    isConfirmed = true;
+                }
+
             }
-            else
-            {
-                selectSprite = null;
-                backgroundColor.color = playersUI[selectedCharIndex].charColor;
-                isConfirmed = true;
-            }
+            else if (GameManager.Instance.gameController.comecou)
+                GameManager.Instance.PressStart();
+
         }
     }
 
@@ -199,10 +206,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started && isConfirmed && hasEntered)
         {
-                    if (selectedCharIndex == playersUI.Count - 1)
-                        selectedCharIndex = 0;
-                    selectedCharIndex++;
-                    UpdateCharSelectUi();
+            if (selectedCharIndex == playersUI.Count - 1)
+                selectedCharIndex = 0;
+            selectedCharIndex++;
+            UpdateCharSelectUi();
         }
     }
 
@@ -212,10 +219,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         {
 
             if (selectedCharIndex == 0)
-                        selectedCharIndex = playersUI.Count - 1;
-                    selectedCharIndex--;
-                    UpdateCharSelectUi();
-         
+                selectedCharIndex = playersUI.Count - 1;
+            selectedCharIndex--;
+            UpdateCharSelectUi();
+
         }
     }
     #endregion

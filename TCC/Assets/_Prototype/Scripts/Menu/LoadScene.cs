@@ -15,6 +15,8 @@ public class LoadScene : MonoBehaviour
     public Text comoJogar,
                 controles;
 
+    
+
     public GameModes game;
 
 

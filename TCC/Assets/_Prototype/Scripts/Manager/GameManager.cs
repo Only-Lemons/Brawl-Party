@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
 
     }
+
     public void newScene(GameModes game)
     {
         switch (game)
@@ -129,6 +130,24 @@ public class GameManager : MonoBehaviour
                 gameController.gameMode = new RunGhost(gameController, 40 * TimeInGame);
                 break;
         }
+    }
+
+
+    public void PressStart()
+    {
+        this.transform.GetChild(1).gameObject.SetActive(!this.transform.GetChild(1).gameObject.activeSelf);
+        if (this.transform.GetChild(1).gameObject.activeSelf)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+    }
+
+
+    public void VoltarMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        Destroy(this.gameObject);
     }
 
 }
