@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerSelectManager : MonoBehaviour
 {
@@ -43,7 +44,9 @@ public class PlayerSelectManager : MonoBehaviour
 
 
                 player.transform.SetParent(GameManager.Instance.transform);
-                player.GetComponent<PlayerSelect>().actualPlayerSprite = acualRenderPlayer.GetComponent<Image>();
+                player.GetComponent<PlayerSelect>().characterSplash = acualRenderPlayer.transform.GetChild(1).GetComponent<Image>();
+                player.GetComponent<PlayerSelect>().backgroundColor = acualRenderPlayer.transform.GetChild(0).GetComponent<Image>();
+                player.GetComponent<PlayerSelect>().characterName = acualRenderPlayer.GetComponentInChildren<TextMeshProUGUI>();
                 if (!GameManager.Instance.playersPanels.Exists(x => x  == player))
                 {
                     GameManager.Instance.playersPanels.Add(player);

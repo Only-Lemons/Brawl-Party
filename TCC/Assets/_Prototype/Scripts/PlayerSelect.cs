@@ -3,57 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
+using TMPro;
 
 [System.Serializable]
 public struct playerUI
 {
-    public Color cor;
-    public Sprite sprite;
+    public Sprite splash,selectedSplash;
+    public string charName;
+    public Color charColor;
 }
 
 
 public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 {
-
     public List<playerUI> playersUI = new List<playerUI>();
-    //public List<Color> playerColor = new List<Color>();
     public Material playerMaterial;
-    public Image actualPlayerSprite;
-    public Sprite actualPlayerRealSprite;
-    //public List<Sprite> playerSprites = new List<Sprite>();
-    public Color atualColor;
-    public bool isConfirmed = false;
     public PlayerController PlayerGame;
-    Vector3 certo = new Vector3(1, 1, 1);
-    Vector3 errado = new Vector3(.7f, .7f, .7f);
+
+
+    private int selectedCharIndex;
+    [HideInInspector]
+    public Color desiredColor;
+    [HideInInspector]
+    public bool hasEntered = false,
+             canNavigate = true;
+
+    [Header("Default Sprites")]
+    [SerializeField] private string defaultName;
+    [SerializeField] private Sprite defaultSplash;
+    [SerializeField] private Color defaultColor;
+
+    [Header("UI References")]
+    [SerializeField] public TextMeshProUGUI characterName;
+    [SerializeField] public Image characterSplash;
+    [SerializeField] public Image backgroundColor;
 
     private void Start()
     {
-        actualPlayerRealSprite = playersUI[0].sprite;
-        atualColor = playersUI[0].cor;
-        playersUI.Remove(playersUI[0]);
-        playerUI aux;
-        aux.cor = atualColor;
-        aux.sprite = actualPlayerRealSprite;
-        playersUI.Add(aux);
-
-
+        OnEnter();
     }
-    void Update()
+
+    public void OnEnter()
     {
-        if (!isConfirmed)
+        if (!hasEntered)
         {
-            actualPlayerRealSprite = playersUI[0].sprite;
-            actualPlayerSprite.sprite = actualPlayerRealSprite;
-            atualColor = playersUI[0].cor;
+            characterName.text = playersUI[0].charName;
+            characterSplash.sprite = playersUI[0].splash;
+            backgroundColor.color = playersUI[0].charColor;
+            hasEntered = true;
         }
-        else
-        {
-           // transform.GetChild(1).localScale = certo;
-        }
-        //playerBackround.color = Color.red;
     }
+
+
+
+    public void UpdateCharSelectUi()
+    {
+        characterSplash.sprite = playersUI[selectedCharIndex].splash;
+        characterName.text = playersUI[selectedCharIndex].charName;
+        desiredColor = playersUI[selectedCharIndex].charColor;
+        backgroundColor.color = desiredColor;
+    }
+
+
+
 
     #region InputSystem Events
     public void OnUP(InputAction.CallbackContext context)
@@ -65,10 +77,13 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            if (isConfirmed)
-                isConfirmed = false;
-            else
-                isConfirmed = true;
+            if (hasEntered)
+            {
+                backgroundColor.color = Color.green;
+                playersUI.Remove(playersUI[selectedCharIndex]);
+                //Debug.Log("Removed" + charList[selectedCharIndex].charName);
+                canNavigate = false;
+            }
         }
     }
 
@@ -152,13 +167,17 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            actualPlayerRealSprite = playersUI[0].sprite;
-            atualColor = playersUI[0].cor;
-            playersUI.Remove(playersUI[0]);
-            playerUI aux;
-            aux.cor = atualColor;
-            aux.sprite = actualPlayerRealSprite;
-            playersUI.Add(aux);
+            if (canNavigate)
+            {
+                if (hasEntered)
+                {
+                    selectedCharIndex++;
+                    if (selectedCharIndex == playersUI.Count)
+                        selectedCharIndex = 0;
+
+                    UpdateCharSelectUi();
+                }
+            }
         }
     }
 
@@ -166,13 +185,17 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            actualPlayerRealSprite = playersUI[0].sprite;
-            atualColor = playersUI[0].cor;
-            playersUI.Remove(playersUI[0]);
-            playerUI aux;
-            aux.cor = atualColor;
-            aux.sprite = actualPlayerRealSprite;
-            playersUI.Add(aux);
+            if (canNavigate)
+            {
+                if (hasEntered)
+                {
+                    selectedCharIndex--;
+                    if (selectedCharIndex < 0)
+                        selectedCharIndex = playersUI.Count - 1;
+
+                    UpdateCharSelectUi();
+                }
+            }
         }
     }
     #endregion

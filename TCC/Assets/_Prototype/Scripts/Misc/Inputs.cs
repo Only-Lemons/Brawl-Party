@@ -473,7 +473,7 @@ public class Inputs : IInputActionCollection
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""R"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -481,10 +481,10 @@ public class Inputs : IInputActionCollection
                 {
                     ""name"": """",
                     ""id"": ""e09df848-cf52-4d44-8f91-8930420f38dd"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""R"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

@@ -371,17 +371,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersUI:
-  - cor: {r: 0.9150943, g: 0.7953258, b: 0.20287468, a: 1}
-    sprite: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
-  - cor: {r: 0.8584906, g: 0.31990921, b: 0.7664517, a: 1}
-    sprite: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
-  - cor: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
-    sprite: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
-  - cor: {r: 0.10484158, g: 0.7169812, b: 0.1103084, a: 1}
-    sprite: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
+  - splash: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+    selectedSplash: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+    charName: Bruxinha
+    charColor: {r: 0.8962264, g: 0.29169634, b: 0.8258973, a: 1}
+  - splash: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
+    selectedSplash: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
+    charName: Rei Momo
+    charColor: {r: 0.8490566, g: 0.7704526, b: 0.244304, a: 1}
+  - splash: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
+    selectedSplash: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
+    charName: Robozinho
+    charColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  - splash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
+    selectedSplash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
+    charName: Chupa-ku
+    charColor: {r: 0.08655597, g: 0.6132076, b: 0.049172312, a: 1}
   playerMaterial: {fileID: 2100000, guid: ca25e3126e74e5848b0726e56eeb3843, type: 2}
-  actualPlayerSprite: {fileID: 0}
-  actualPlayerRealSprite: {fileID: 0}
-  atualColor: {r: 0, g: 0, b: 0, a: 0}
-  isConfirmed: 0
   PlayerGame: {fileID: 0}
+  desiredColor: {r: 0, g: 0, b: 0, a: 0}
+  hasEntered: 0
+  canNavigate: 1
+  defaultName: Press Enter
+  defaultSplash: {fileID: 21300000, guid: 15db0ca3b795ae541b13ec69d194fd7b, type: 3}
+  defaultColor: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 0}
+  characterName: {fileID: 0}
+  characterSplash: {fileID: 0}
+  backgroundColor: {fileID: 0}

@@ -62,12 +62,12 @@ public class GameManager : MonoBehaviour
 
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
 
-                if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == false))
+                if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().canNavigate == false))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
                     necessarioMaisJogadores.text = "";
                 }
-                else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == false))
+                else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().canNavigate == false))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
 
 
