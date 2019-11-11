@@ -19,11 +19,15 @@ public class GetItRock : IGameMode
     }
     public void HitRule(PlayerController player)
     {
+        TempoUltimaMorte();
+        tempoMorteAtual = timeOfGame;
         player.gameObject.SetActive(false);
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
-            winners.Add(player);
+            TempoMorte();
+            //winners.Add(player);
+            InsertWinners();
             numwinner++;
             WinRule();
         }
@@ -74,7 +78,7 @@ public class GetItRock : IGameMode
     {
         for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
         {
-            if (playerMortos[aux.playerManager.playersControllers[i]])
+            if (!playerMortos[aux.playerManager.playersControllers[i]])
             {
                 winners.Add(aux.playerManager.playersControllers[i]);
             }
@@ -89,15 +93,21 @@ public class GetItRock : IGameMode
     bool VerifyPlayerMortos()
     {
         int a = 0;
+        bool boleano;
+
         for (int i = 0; i < playerMortos.Count; i++)
         {
             if (playerMortos[GameController.singleton.playerManager.playersControllers[i]] == false)
                 a++;
         }
-        if (a >= 1)
-            return false;
+        if (a == 1)
+            boleano = true;
+        else boleano = false;
 
-        return true;
+        qtdUltimos = a;
+
+        Debug.Log(a.ToString() + " " + playerMortos.Count.ToString() + " " + boleano.ToString());
+        return boleano;
     }
 
     public void MovementRule(Vector3 dir, Transform player, float speed)
@@ -158,13 +168,15 @@ public class GetItRock : IGameMode
 
     float tempoMorteAtual;
     float tempoUltimaMorte;
+    int qtdUltimos;
     bool falha = false;
 
     void TempoMorte()
     {
         if (tempoUltimaMorte - tempoMorteAtual < 0.05f)
         {
-            falha = true;
+            if(qtdUltimos < 2)
+                falha = true;
             //verificar quantos players restam
         }
 
@@ -178,9 +190,10 @@ public class GetItRock : IGameMode
     {
         if (!adicionolPoint)
         {
-           
+
             for (int i = 0; i < winners.Count; i++)
             {
+                if (!falha)
                     GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
             }
             aux.FinishGame();
