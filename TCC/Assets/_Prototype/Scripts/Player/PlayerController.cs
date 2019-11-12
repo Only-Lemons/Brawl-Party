@@ -519,18 +519,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             if (transform.position.y <= 0.4f)
             {
                 pulou = false;
-                descer = false;
             }
-            else
-                descer = true;
+            else if(transform.position.y > 3f)
+                gameObject.GetComponent<Rigidbody>().AddForce(Vector3.down * 10f, ForceMode.VelocityChange);
         }
-        if (descer)
-            transform.position = new Vector3(transform.position.x, transform.position.y - Time.deltaTime*3, transform.position.z);
     }
 
     public bool pulou = false;
-    public int contPulos = 0;
-    bool descer = false;
     public int direc = 1;
     #endregion
 
