@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
 
     public GameController gameController;
 
-    public int quantTGames = 5;
+    public int quantTGames = 4;
     public int TimeInGame = 1;
-    public int quantGames = 5;
+    public int quantGames = 4;
     public GameModes newGameMode;
     public List<int> lastGameModes = new List<int>();
     public List<GameObject> playersPanels = new List<GameObject>();

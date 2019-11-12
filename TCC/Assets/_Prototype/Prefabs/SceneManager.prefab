@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9791b6388984acf4a947b77185819a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitPanel: {fileID: 0}
 --- !u!114 &-7082222713703743249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,7 +58,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 5496847c02242cb4a9515a24e2bed161,
     type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -245,6 +244,23 @@ MonoBehaviour:
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: a2145048-2876-4b8a-a260-776b06d3ebd1
     m_ActionName: SelectUI/Add[/Keyboard/space,/XInputControllerWindows/start,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3723403232242304973}
+        m_MethodName: sceneChange
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: (1)MenuInicial
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 4c600dda-652b-45e4-af04-f5ad374b55a8
+    m_ActionName: UI/Return[/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: c42b9ce7-08f5-4dc2-9cdd-d8ffeb53a924

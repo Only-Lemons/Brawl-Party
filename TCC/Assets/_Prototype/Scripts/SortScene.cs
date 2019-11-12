@@ -22,10 +22,10 @@ public class SortScene : MonoBehaviour
         {
             auxMod.Add(gameModes[Index]);
         }
-        foreach(GameMode games in auxMod)
-        {
-            gameModes.Remove(games);
-        }
+        //foreach(GameMode games in auxMod)
+        //{
+        //    gameModes.Remove(games);
+        //}
         if (GameManager.Instance.lastGameModes.Count == GameManager.Instance.quantGames)
         {
             Destroy(GameManager.Instance.gameObject);

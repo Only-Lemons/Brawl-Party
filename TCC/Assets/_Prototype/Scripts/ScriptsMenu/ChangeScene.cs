@@ -3,33 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-
-    public GameObject quitPanel;
-
-
-    private void Update()
-    {
-        confirmQuit();
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene("01_MainMenu");
-    }
+    
 
     public void sceneChange(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    public void confirmQuit()
+    public void OnReturn()
     {
-        if (Input.GetKeyDown(KeyCode.B) && !quitPanel.activeSelf)
-            quitPanel.SetActive(true);
-
-        if (Input.GetKeyDown(KeyCode.X) && quitPanel.activeSelf)
-            quitPanel.SetActive(false);
+        SceneManager.LoadScene("(1)MenuInicial");
     }
-
 
 }

@@ -604,6 +604,14 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c600dda-652b-45e4-af04-f5ad374b55a8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -923,6 +931,17 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TrackedDeviceSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e172838-c345-48b1-a3fa-d3dddb665e0f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Return"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1301,6 +1320,7 @@ public class Inputs : IInputActionCollection
         m_UI_TrackedDevicePosition = m_UI.GetAction("TrackedDevicePosition");
         m_UI_TrackedDeviceOrientation = m_UI.GetAction("TrackedDeviceOrientation");
         m_UI_TrackedDeviceSelect = m_UI.GetAction("TrackedDeviceSelect");
+        m_UI_Return = m_UI.GetAction("Return");
         // SelectUI
         m_SelectUI = asset.GetActionMap("SelectUI");
         m_SelectUI_UP = m_SelectUI.GetAction("UP");
@@ -1488,6 +1508,7 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_TrackedDeviceSelect;
+    private readonly InputAction m_UI_Return;
     public struct UIActions
     {
         private Inputs m_Wrapper;
@@ -1503,6 +1524,7 @@ public class Inputs : IInputActionCollection
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @TrackedDeviceSelect => m_Wrapper.m_UI_TrackedDeviceSelect;
+        public InputAction @Return => m_Wrapper.m_UI_Return;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1545,6 +1567,9 @@ public class Inputs : IInputActionCollection
                 TrackedDeviceSelect.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceSelect;
+                Return.started -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
+                Return.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
+                Return.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1582,6 +1607,9 @@ public class Inputs : IInputActionCollection
                 TrackedDeviceSelect.started += instance.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.performed += instance.OnTrackedDeviceSelect;
                 TrackedDeviceSelect.canceled += instance.OnTrackedDeviceSelect;
+                Return.started += instance.OnReturn;
+                Return.performed += instance.OnReturn;
+                Return.canceled += instance.OnReturn;
             }
         }
     }
@@ -1698,6 +1726,7 @@ public class Inputs : IInputActionCollection
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTrackedDeviceSelect(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
     public interface ISelectUIActions
     {

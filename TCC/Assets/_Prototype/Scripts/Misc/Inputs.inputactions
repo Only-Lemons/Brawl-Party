@@ -592,6 +592,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Return",
+                    "type": "Button",
+                    "id": "4c600dda-652b-45e4-af04-f5ad374b55a8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -911,6 +919,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TrackedDeviceSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e172838-c345-48b1-a3fa-d3dddb665e0f",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Return",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
