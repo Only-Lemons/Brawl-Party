@@ -74,10 +74,7 @@ public class JhonBeen : IGameMode
             {
                 if (aux.playerManager.playersControllers[i].transform.position.y > 0)
                     cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y + 5, aux.playerManager.playersControllers[i].transform.position.z - zoomCam), Time.deltaTime * 3);
-                else
-                    cameras[i].transform.position = new Vector3(aux.playerManager.playersControllers[i].transform.position.x, cameras[i].transform.position.y, aux.playerManager.playersControllers[i].transform.position.z - 14);
             }
-      
         }
     }
 
@@ -86,8 +83,6 @@ public class JhonBeen : IGameMode
     {
         for (int i = 0; i < cameras.Length; i++)
         {
-            //cameras[i].GetComponent<Camera>().fieldOfView = 0;
-            //cameras[i].GetComponent<Camera>().rect = new Rect(0, 0, 0, 0);
             cameras[i].GetComponent<Camera>().enabled = false;
         }
 
@@ -113,8 +108,8 @@ public class JhonBeen : IGameMode
                 break;
             case 3:
                 cameras[0].GetComponent<Camera>().rect = new Rect(0, 0, 0.333f, 1);
-                cameras[1].GetComponent<Camera>().rect = new Rect(0.333f, 0, 0.333f, 1);
-                cameras[2].GetComponent<Camera>().rect = new Rect(0.667f, 0, 0.334f, 1);
+                cameras[1].GetComponent<Camera>().rect = new Rect(0.333f, 0, 0.334f, 1);
+                cameras[2].GetComponent<Camera>().rect = new Rect(0.667f, 0, 0.333f, 1);
                 zoomCam = 16;
                 break;
             case 4:
@@ -191,6 +186,7 @@ public class JhonBeen : IGameMode
     {
         InsertPlayerInDates();
         GameController.singleton.uIManager.SumirTudo();
+        UpdatePositionCamera();
         CancelarCameras();
      
 

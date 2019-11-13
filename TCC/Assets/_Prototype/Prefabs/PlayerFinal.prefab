@@ -353,6 +353,12 @@ MonoBehaviour:
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: a2d9cd92-4ccb-4a76-b0cc-c8c76fd54b7a
     m_ActionName: Player/L[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 4c600dda-652b-45e4-af04-f5ad374b55a8
+    m_ActionName: UI/Return[/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b
@@ -385,13 +391,39 @@ MonoBehaviour:
     charColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   - splash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
     selectedSplash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
-    charName: Chupa-ku
+    charName: Alien
     charColor: {r: 0.39144683, g: 0.6415094, b: 0.26326096, a: 1}
+  - splash: {fileID: 8163494095188252940, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    selectedSplash: {fileID: 8163494095188252940, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    charName: Ksabar
+    charColor: {r: 0.08899963, g: 0.10773947, b: 0.754717, a: 1}
+  - splash: {fileID: 4037833166851039263, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    selectedSplash: {fileID: 4037833166851039263, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    charName: Captain Eagle
+    charColor: {r: 0.9150943, g: 0.15970986, b: 0.20315517, a: 1}
+  - splash: {fileID: 8716251932417823705, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    selectedSplash: {fileID: 8716251932417823705, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    charName: Humanu
+    charColor: {r: 0.9056604, g: 0.7756962, b: 0.49982202, a: 1}
+  - splash: {fileID: 7739555948055091260, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    selectedSplash: {fileID: 7739555948055091260, guid: 4653c30c5b539c548ba17201c6ffae76,
+      type: 3}
+    charName: Samy
+    charColor: {r: 1, g: 0.45336083, b: 0, a: 1}
   playerMaterial: {fileID: 2100000, guid: ca25e3126e74e5848b0726e56eeb3843, type: 2}
   PlayerGame: {fileID: 0}
+  selectedCharIndex: 0
   desiredColor: {r: 0, g: 0, b: 0, a: 0}
   hasEntered: 0
   isConfirmed: 1
+  selectSprite: {fileID: 0}
   defaultName: Press Enter
   defaultSplash: {fileID: 21300000, guid: 15db0ca3b795ae541b13ec69d194fd7b, type: 3}
   defaultColor: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 0}
