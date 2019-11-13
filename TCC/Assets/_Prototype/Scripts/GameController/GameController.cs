@@ -16,7 +16,6 @@ public class GameController : MonoBehaviour
     public IGameMode gameMode;
     [HideInInspector]
     public TerrainController tileManager;
-    [HideInInspector]
     public PlayerManager playerManager;
     [HideInInspector]
     public UIManager uIManager;

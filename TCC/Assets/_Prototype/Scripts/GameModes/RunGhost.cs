@@ -29,7 +29,7 @@ public class RunGhost : IGameMode
             if (isGhost[GameController.singleton.playerManager.playersControllers[i]] == false)
                 a++;
         }
-        if (a >= 1)
+        if (a > 1)
             return false;
 
         return true;

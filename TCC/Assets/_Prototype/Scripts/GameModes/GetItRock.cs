@@ -25,8 +25,8 @@ public class GetItRock : IGameMode
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
-            TempoMorte();
             //winners.Add(player);
+            TempoMorte();
             InsertWinners();
             numwinner++;
             WinRule();
@@ -56,6 +56,7 @@ public class GetItRock : IGameMode
     }
     public void Update()
     {
+
         if (!adicionolPoint)
         {
             lasthit -= Time.deltaTime;
@@ -101,13 +102,12 @@ public class GetItRock : IGameMode
                 a++;
         }
 
-        if (a == 1)
+        if (a <= 1)
             boleano = true;
         else boleano = false;
 
-        qtdUltimos = a;
+        qtdVivos = a;
 
-        //Debug.Log(a.ToString() + " " + playerMortos.Count.ToString() + " " + boleano.ToString());
         return boleano;
     }
 
@@ -148,8 +148,8 @@ public class GetItRock : IGameMode
     public void StartGame()
     {
         falha = false;
-        tempoUltimaMorte = 10000;
-        tempoMorteAtual = 0;
+        tempoUltimaMorte = 10001;
+        tempoMorteAtual = 10000;
         InsertPlayerInDates();
         InsertHammersInDates();
         GameController.singleton.uIManager.SumirTudo();
@@ -170,15 +170,18 @@ public class GetItRock : IGameMode
 
     float tempoMorteAtual;
     float tempoUltimaMorte;
-    int qtdUltimos;
     bool falha = false;
+    int qtdVivos;
 
     void TempoMorte()
     {
-        if (tempoUltimaMorte - tempoMorteAtual < 0.05f)
+        Debug.Log("atual: " + tempoMorteAtual + ". ultima: " + tempoUltimaMorte);
+        Debug.Log(tempoUltimaMorte - tempoMorteAtual);
+        if ((tempoUltimaMorte - tempoMorteAtual) <= 0.1f)
         {
-            Debug.Log("atual: " + tempoMorteAtual + ". ultima: " + tempoUltimaMorte);
+            if (qtdVivos < 1)
                 falha = true;
+            Debug.Log(falha);
             //verificar quantos players restam
         }
 
@@ -192,7 +195,6 @@ public class GetItRock : IGameMode
     {
         if (!adicionolPoint)
         {
-
             for (int i = 0; i < winners.Count; i++)
             {
                 if (!falha)
@@ -208,10 +210,8 @@ public class GetItRock : IGameMode
         if (player.pulou == false && GameController.singleton.comecou)
         {
             player.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x, 0.41f, player.gameObject.transform.position.z);
-            //player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 8.5f * (player.gameObject.GetComponent<Rigidbody>().mass), ForceMode.Impulse);
-            player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f,ForceMode.VelocityChange);
+            player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.VelocityChange);
             player.pulou = true;
-            //Debug.Log("PULEI");
         }
     }
 }
