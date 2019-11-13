@@ -19,18 +19,17 @@ public class GetItRock : IGameMode
     }
     public void HitRule(PlayerController player)
     {
-        TempoUltimaMorte();
-        tempoMorteAtual = timeOfGame;
         player.gameObject.SetActive(false);
         playerMortos[player] = true;
         if (VerifyPlayerMortos())
         {
             //winners.Add(player);
-            TempoMorte();
             InsertWinners();
             numwinner++;
-            WinRule();
+            //WinRule();
         }
+
+        
     }
     void fallRock()
     {
@@ -56,6 +55,15 @@ public class GetItRock : IGameMode
     }
     public void Update()
     {
+        ContarFalha();
+
+        if (tempoVerificacao < 0 && qtdVivos < 1)
+        {
+            falha = true;
+            WinRule();
+        }
+        else if (tempoVerificacao < 0 && qtdVivos >= 1)
+            WinRule();
 
         if (!adicionolPoint)
         {
@@ -103,7 +111,10 @@ public class GetItRock : IGameMode
         }
 
         if (a <= 1)
+        {
             boleano = true;
+            tempoIniciar = true;
+        }
         else boleano = false;
 
         qtdVivos = a;
@@ -148,8 +159,8 @@ public class GetItRock : IGameMode
     public void StartGame()
     {
         falha = false;
-        tempoUltimaMorte = 10001;
-        tempoMorteAtual = 10000;
+        tempoIniciar = false;
+        tempoVerificacao = 0.3f;
         InsertPlayerInDates();
         InsertHammersInDates();
         GameController.singleton.uIManager.SumirTudo();
@@ -168,27 +179,18 @@ public class GetItRock : IGameMode
         }
     }
 
-    float tempoMorteAtual;
-    float tempoUltimaMorte;
+    float tempoVerificacao;
+    bool tempoIniciar = false;
     bool falha = false;
     int qtdVivos;
 
-    void TempoMorte()
+    void ContarFalha()
     {
-        Debug.Log("atual: " + tempoMorteAtual + ". ultima: " + tempoUltimaMorte);
-        Debug.Log(tempoUltimaMorte - tempoMorteAtual);
-        if ((tempoUltimaMorte - tempoMorteAtual) <= 0.1f)
+        if (tempoIniciar)
         {
-            if (qtdVivos < 1)
-                falha = true;
-            Debug.Log(falha);
-            //verificar quantos players restam
+            tempoVerificacao -= Time.deltaTime;
         }
 
-    }
-    void TempoUltimaMorte()
-    {
-        tempoUltimaMorte = tempoMorteAtual;
     }
 
     public void WinRule()

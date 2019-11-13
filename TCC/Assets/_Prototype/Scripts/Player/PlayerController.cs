@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
     public SOPlayer player;
     public Sprite playerSprite;
+    public Color playerColor;
 
     CharacterController _cc;
     [HideInInspector]

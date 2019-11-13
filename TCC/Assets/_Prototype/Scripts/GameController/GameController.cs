@@ -4,6 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public struct playerPoints
+{
+    public Text pontos;
+    public Image image;
+    public Image background;
+
+}
+
+
 public class GameController : MonoBehaviour
 {
     public static GameController singleton;
@@ -22,6 +32,7 @@ public class GameController : MonoBehaviour
     public Text time;
     public List<Text> pontos;
     public List<Image> personagens;
+    public List<playerPoints> players = new List<playerPoints>();
     public GameObject painelPontos;
     void OnEnable()
     {
@@ -29,7 +40,7 @@ public class GameController : MonoBehaviour
         timeComecar = 4;
         comecou = false;
         comecouContar = false;
-     
+
     }
     private void Start()
     {
@@ -40,7 +51,7 @@ public class GameController : MonoBehaviour
 
 
         pegarPlayerScene(GameObject.FindGameObjectsWithTag("Player"));
-      
+
         GameManager.Instance.TryGetGameController();
         playerManager.adcionarPlayerControlador();
 
@@ -57,15 +68,9 @@ public class GameController : MonoBehaviour
     {
         for (int i = 0; i < playerManager.playersControllers.Count; i++)
         {
-       
-               
-                pontos[i].text = GameManager.Instance.pontosGeral[i].ToString();
-                //pontos[i].color = playerManager.playersControllers[i].gameObject.GetComponent<PlayerSelect>().desiredColor;
-                personagens[i].sprite = playerManager.playersControllers[i].playerSprite;
-
-                
-       
-           
+            players[i].image.sprite = playerManager.playersControllers[i].playerSprite;
+            players[i].background.color = playerManager.playersControllers[i].playerColor;
+            players[i].pontos.text = GameManager.Instance.pontosGeral[i].ToString();
         }
         painelPontos.SetActive(true);
 
@@ -92,8 +97,8 @@ public class GameController : MonoBehaviour
             time.text = timeComecar.ToString("0");
 
             timeComecarText.text = timeComecar.ToString("0");
-            
-            
+
+
             if (timeComecar <= 0.8f)
             {
                 time.text = "COMEÇOU!";
@@ -123,7 +128,7 @@ public class GameController : MonoBehaviour
             PlayerController aux = players[i].GetComponent<PlayerController>();
 
             if (players[i].TryGetComponent<PlayerController>(out aux))
-            playerManager.playersControllers.Add(aux);
+                playerManager.playersControllers.Add(aux);
         }
     }
 
