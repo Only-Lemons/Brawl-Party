@@ -154,19 +154,15 @@ public class RunGhost : IGameMode
     }
     public void WinRule()
     {
-        PlayerController playerMaior = null;
-        int maiorPonto = int.MinValue;
         foreach (PlayerController player in aux.playerManager.playersControllers)
         {
-            if (pointPlayer[player] > maiorPonto)
+            if (isGhost[player] == false)
             {
-                maiorPonto = pointPlayer[player];
-                playerMaior = player;
+                GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += 1;
             }
         }
         if (adicionolPoint == false)
         {
-            GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
             aux.FinishGame();
             adicionolPoint = true;
         }

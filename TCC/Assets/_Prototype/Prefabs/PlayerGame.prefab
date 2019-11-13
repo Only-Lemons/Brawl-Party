@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2136061040103969209}
   - component: {fileID: 2136061040103969210}
-  - component: {fileID: 2136061040103969211}
   - component: {fileID: 2136061040103969205}
   - component: {fileID: 7276563842000310551}
   - component: {fileID: 7951850855571585331}
@@ -87,6 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 345d71ede5530bf4184213f70cf1238d, type: 2}
   playerSprite: {fileID: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
   anim: {fileID: 0}
   playerUI:
     colorBase: {fileID: 0}
@@ -116,25 +116,9 @@ MonoBehaviour:
   shield: 0
   passiva: {fileID: 0}
   canDeath: 0
+  playerSelectIndex: 0
   pulou: 0
-  contPulos: 0
   direc: 0
---- !u!114 &2136061040103969211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2136061040103969206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f5b5c653a750442be241830d1b4f83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distancia: 15
-  sensibilidade: 0
-  mirando: 0
-  mirandoRotacao: {x: 0, y: 0, z: 0, w: 0}
 --- !u!54 &2136061040103969205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -450,6 +434,12 @@ MonoBehaviour:
       Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: a2d9cd92-4ccb-4a76-b0cc-c8c76fd54b7a
     m_ActionName: Player/L[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
+      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
+    m_ActionId: 4c600dda-652b-45e4-af04-f5ad374b55a8
+    m_ActionName: UI/Return[/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
   m_AutoSwitchControlScheme: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: 545b8236-6bd5-405f-b4c5-863d8652879b
@@ -469,11 +459,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playersUI: []
   playerMaterial: {fileID: 2100000, guid: ca25e3126e74e5848b0726e56eeb3843, type: 2}
-  actualPlayerSprite: {fileID: 0}
-  actualPlayerRealSprite: {fileID: 0}
-  atualColor: {r: 0, g: 0, b: 0, a: 0}
-  isConfirmed: 0
   PlayerGame: {fileID: 0}
+  selectedCharIndex: 0
+  desiredColor: {r: 0, g: 0, b: 0, a: 0}
+  hasEntered: 0
+  isConfirmed: 0
+  selectSprite: {fileID: 0}
+  defaultName: 
+  defaultSplash: {fileID: 0}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  characterName: {fileID: 0}
+  characterSplash: {fileID: 0}
+  backgroundColor: {fileID: 0}
 --- !u!65 &1159071949952337969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -851,10 +848,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7811199142763156424}
     m_Modifications:
-    - target: {fileID: 100002, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
-      propertyPath: m_Name
-      value: BlobShadowProjector
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -899,6 +892,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
+      propertyPath: m_Name
+      value: BlobShadowProjector
+      objectReference: {fileID: 0}
     - target: {fileID: 11900000, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
       propertyPath: m_FieldOfView
       value: 61
@@ -929,11 +926,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BrawlParty_CharMale_v1
       objectReference: {fileID: 0}
-    - target: {fileID: -2588740359533366230, guid: 931781585ed15344b9222e4ef9c4b1c5,
+    - target: {fileID: -6057140222963153312, guid: 931781585ed15344b9222e4ef9c4b1c5,
         type: 3}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b1ea2adb013661343864c42f6dd82f39, type: 2}
     - target: {fileID: -4216859302048453862, guid: 931781585ed15344b9222e4ef9c4b1c5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1004,11 +1001,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 931781585ed15344b9222e4ef9c4b1c5,
+    - target: {fileID: -2588740359533366230, guid: 931781585ed15344b9222e4ef9c4b1c5,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b1ea2adb013661343864c42f6dd82f39, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 5261615709408869434, guid: 931781585ed15344b9222e4ef9c4b1c5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
