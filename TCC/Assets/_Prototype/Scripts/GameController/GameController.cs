@@ -34,6 +34,10 @@ public class GameController : MonoBehaviour
     public List<Image> personagens;
     public List<playerPoints> players = new List<playerPoints>();
     public GameObject painelPontos;
+    public List<Sprite> spritePersonagens = new List<Sprite>();
+    public List<Slider> posicoesPersonagens = new List<Slider>();
+
+
     void OnEnable()
     {
         singleton = this;
@@ -42,8 +46,17 @@ public class GameController : MonoBehaviour
         comecouContar = false;
 
     }
+
+    void SetarSprites()
+    {
+        foreach (PlayerController p in GameController.singleton.playerManager.playersControllers)
+        {
+            spritePersonagens.Add(p.playerSprite);
+        }
+    }
     private void Start()
     {
+        
         painelPontos.SetActive(false);
         tileManager = GetComponent<TerrainController>();
         playerManager = GetComponent<PlayerManager>();
@@ -59,7 +72,7 @@ public class GameController : MonoBehaviour
         comecouContar = true;
 
         timeComecarText.CrossFadeAlpha(0, 5, false);
-
+        SetarSprites();
     }
 
 

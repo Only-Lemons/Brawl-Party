@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (_rotationAxis != Vector3.zero)
         {
-            GetComponent<AutoAim>().mirando = false;
+
         }
     }
     void TileInteract()

@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnackAtack : IGameMode
 {
     class Stun
     {
-       public bool canMove;
-       public float timeInStun;
+        public bool canMove;
+        public float timeInStun;
     }
     bool adicionolPoint = false;
     float timeOfGame, InstanceHiveTime, InstanceNutTime;
@@ -19,6 +20,9 @@ public class SnackAtack : IGameMode
     GameObject _basket1 = Resources.Load("Mecanicas/Cesta1") as GameObject;
     GameObject _basket2 = Resources.Load("Mecanicas/Cesta2") as GameObject;
     GameObject _basket3 = Resources.Load("Mecanicas/Cesta3") as GameObject;
+
+    float maiorPontuacao = 0;
+
     public SnackAtack(GameController controller, float time)
     {
         aux = controller;
@@ -26,7 +30,7 @@ public class SnackAtack : IGameMode
     }
     public void Action(PlayerController player)
     {
-      
+
     }
 
     public void HitRule(PlayerController player)
@@ -34,10 +38,10 @@ public class SnackAtack : IGameMode
         player.GetComponent<ParticlePlayer>().Play(1f);
         canMove[player].canMove = false;
         canMove[player].timeInStun = 1;
-        if(point[player] > 3)
+        if (point[player] > 3)
         {
             point[player] -= 3;
-           
+
         }
         else
         {
@@ -45,10 +49,47 @@ public class SnackAtack : IGameMode
         }
         player.playerUI.points.text = point[player].ToString();
         UpdateBasket(player);
+
+    }
+
+    void AtualizarPosicao()
+    {
+        for (int i = 0; i < aux.spritePersonagens.Count; i++)
+        {
+            aux.posicoesPersonagens[i].value = Mathf.Lerp(aux.posicoesPersonagens[i].value, float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text), Time.deltaTime);
+            if (float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text) > maiorPontuacao)
+            {
+                maiorPontuacao = Mathf.Lerp(maiorPontuacao, float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text), Time.deltaTime*2);
+            }
+            aux.posicoesPersonagens[i].maxValue = maiorPontuacao;
+            Debug.Log(maiorPontuacao);
+        }
+    }
+    
+    bool setei = false;
+
+    void SetarSpritesInGame()
+    {
+        if (!setei)
+        {
+            for (int i = 0; i < aux.spritePersonagens.Count; i++)
+            {
+                aux.posicoesPersonagens[i].transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = aux.spritePersonagens[i];
+            }
+
+            for (int i = 0; i < aux.posicoesPersonagens.Count; i++)
+            {
+                if (aux.posicoesPersonagens[i].transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite == null)
+                    aux.posicoesPersonagens[i].gameObject.SetActive(false);
+            }
+            setei = true;
+        }
     }
 
     public void Update()
     {
+        AtualizarPosicao();
+        SetarSpritesInGame();
         if (!adicionolPoint)
         {
             timeOfGame -= Time.deltaTime;
@@ -58,12 +99,14 @@ public class SnackAtack : IGameMode
             //goDownPlayers();
             if (timeOfGame <= 0)
             {
-               
+
                 WinRule();
             }
 
         }
     }
+
+
 
     void removePlayersInStun()
     {
@@ -103,7 +146,7 @@ public class SnackAtack : IGameMode
         {
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Basket>().gameObject);
             GameObject obj = GameObject.Instantiate(_basket2, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
-            
+
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 1;
         }
@@ -114,32 +157,32 @@ public class SnackAtack : IGameMode
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 2;
         }
-        else if(point[player] == 0 && player.gameObject.GetComponentInChildren<Basket>().type != 0)
+        else if (point[player] == 0 && player.gameObject.GetComponentInChildren<Basket>().type != 0)
         {
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Basket>().gameObject);
             GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 0;
         }
-      
+
     }
     public void RotationRule(Vector3 dir, Transform player)
     {
-        
+
     }
     public void IntanceObject()
     {
         InstanceHiveTime -= Time.deltaTime;
         InstanceNutTime -= Time.deltaTime;
-        if(InstanceNutTime <= 0)
+        if (InstanceNutTime <= 0)
         {
-            GameObject aux  = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f,4.83f),8.96f,Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
-            InstanceNutTime = Random.Range(1f,3f);
+            GameObject aux = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
+            InstanceNutTime = Random.Range(1f, 3f);
         }
         if (InstanceHiveTime <= 0)
         {
             GameObject aux = GameObject.Instantiate(_Hive, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
-            InstanceHiveTime =Random.Range(2,4);
+            InstanceHiveTime = Random.Range(2, 4);
         }
     }
     public void StartGame()
@@ -159,14 +202,14 @@ public class SnackAtack : IGameMode
             auxStun.canMove = true;
             auxStun.timeInStun = 0;
             canMove.Add(player, auxStun);
-            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z),Quaternion.identity,player.transform).gameObject as GameObject;
+            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 0;
         }
     }
     public void WinRule()
     {
-       
+
         PlayerController playerMaior = null;
         int maiorPonto = int.MinValue;
         foreach (PlayerController player in aux.playerManager.playersControllers)
