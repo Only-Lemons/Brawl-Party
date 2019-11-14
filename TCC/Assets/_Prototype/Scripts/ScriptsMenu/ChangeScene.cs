@@ -11,6 +11,9 @@ public class ChangeScene : MonoBehaviour
 
     public void sceneChange(string sceneName)
     {
+        if (sceneName == "(6) selectMode")
+            GameManager.Instance.quantGames = 0;
+
         SceneManager.LoadScene(sceneName);
     }
 

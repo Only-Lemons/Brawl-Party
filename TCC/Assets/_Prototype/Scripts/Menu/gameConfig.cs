@@ -24,23 +24,25 @@ public class gameConfig : MonoBehaviour
         GameManager.Instance.quantGames = (int)quantidyGames.value;
         quantGames.text = quantidyGames.value.ToString("0");
 
+
         GameManager.Instance.TimeInGame = (int)timeInGames.value;
         switch (timeInGames.value)
         {
             case 1:
-                typeOfTime.text = "Rápido";
+                typeOfTime.text = "30 à 40 segundos";
                 break;
             case 2:
-                typeOfTime.text = "Medio";
+                typeOfTime.text = "60 à 80 segundos";
                 break;
             case 3:
-                typeOfTime.text = "Lento";
+                typeOfTime.text = "90 à 120 segundos";
                 break;
         }
     }
 
     public void mudarScena()
     {
-        SceneManager.LoadScene(6);
+        GameManager.Instance.nextLevel = 5;
+        SceneManager.LoadScene(14);
     }
 }
