@@ -26,16 +26,18 @@ public class SortScene : MonoBehaviour
         //{
         //    gameModes.Remove(games);
         //}
-        if (GameManager.Instance.lastGameModes.Count == GameManager.Instance.quantGames)
+        if (GameManager.Instance.lastGameModes.Count >= GameManager.Instance.quantGames)
         {
             Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(1);
         }
-        do
+        else
         {
-            sortGameM = Random.Range(0, gameModes.Count);
-        } while (GameManager.Instance.lastGameModes.Contains(sortGameM));
-
+            do
+            {
+                sortGameM = Random.Range(0, gameModes.Count);
+            } while (GameManager.Instance.lastGameModes.Contains(sortGameM));
+        }
         GameManager.Instance.lastGameModes.Add(sortGameM);
 
 
