@@ -87,13 +87,27 @@ public class GameController : MonoBehaviour
         }
         painelPontos.SetActive(true);
 
+        int maiorPonto = 0;
+        int maiorPos = 0;
+        for (int i = 0; i < GameManager.Instance.pontosGeral.Length; i++)
+        {
+            if (GameManager.Instance.pontosGeral[i] >= maiorPonto)
+            {
+                maiorPonto = GameManager.Instance.pontosGeral[i];
+                maiorPos = i;
+            }
+        }
+        GameManager.Instance.corVencedor = playerManager.playersControllers[maiorPos].playerColor;
+
         StartCoroutine(ChangeScene());
+
     }
     IEnumerator ChangeScene()
     {
+
+
         yield return new WaitForSeconds(4f);
         SceneManager.LoadScene(5);
-
     }
     private void Update()
     {

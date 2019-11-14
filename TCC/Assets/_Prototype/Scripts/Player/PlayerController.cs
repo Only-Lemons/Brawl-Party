@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 {
@@ -371,6 +372,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
 
     bool podeAtirarSemParar = false;
+
     public void OnFire(InputAction.CallbackContext context)
     {
         if (context.started)

@@ -28,8 +28,8 @@ public class SortScene : MonoBehaviour
         //}
         if (GameManager.Instance.lastGameModes.Count >= GameManager.Instance.quantGames)
         {
-            Destroy(GameManager.Instance.gameObject);
-            SceneManager.LoadScene(1);
+            
+            SceneManager.LoadScene(15);
         }
         else
         {

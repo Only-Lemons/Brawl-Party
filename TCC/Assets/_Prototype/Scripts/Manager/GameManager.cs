@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     #endregion  
 
     public Text necessarioMaisJogadores;
+    public Color corVencedor;
+   
 
     private void OnEnable()
     {
@@ -118,16 +120,16 @@ public class GameManager : MonoBehaviour
                 gameController.gameMode = new FreeForAll(gameController, 30 * TimeInGame);
                 break;
             case GameModes.GetItRock:
-                gameController.gameMode = new GetItRock(gameController, 35 * TimeInGame);
+                gameController.gameMode = new GetItRock(gameController, 30 * TimeInGame);
                 break;
             case GameModes.JhonBeen:
                 gameController.gameMode = new JhonBeen(gameController, 40 * TimeInGame);
                 break;
             case GameModes.SnackAtack:
-                gameController.gameMode = new SnackAtack(gameController, 40 * TimeInGame);
+                gameController.gameMode = new SnackAtack(gameController, 30 * TimeInGame);
                 break;
             case GameModes.RunGhost:
-                gameController.gameMode = new RunGhost(gameController, 40 * TimeInGame);
+                gameController.gameMode = new RunGhost(gameController, 30 * TimeInGame);
                 break;
         }
     }
