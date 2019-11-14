@@ -1581,7 +1581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0.0022707346, b: 0.2830189, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4654,7 +4654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0.0022707346, b: 0.2830189, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4795,7 +4795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1243102195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4999,11 +4999,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: "Resolu\xE7\xE3o: Alta"
       m_Image: {fileID: 0}
-    - m_Text: Option B
+    - m_Text: "Resolu\xE7\xE3o: M\xE9dia"
       m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: "Resolu\xE7\xE3o: Baixa"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5624,11 +5624,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: 'Sombras: Alta'
       m_Image: {fileID: 0}
-    - m_Text: Option B
+    - m_Text: "Sombras: M\xE9dia"
       m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: 'Sombras: Baixa'
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
