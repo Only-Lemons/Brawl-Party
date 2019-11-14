@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public int playerSelectIndex=0;
 
+    public int morreuAgora = 0;
+
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;

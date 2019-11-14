@@ -223,6 +223,11 @@ public class SnackAtack : IGameMode
         }
         if (adicionolPoint == false)
         {
+            for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
+            {
+                GameManager.Instance.pontosGeral[i] += int.Parse(aux.playerManager.playersControllers[i].playerUI.points.text)/2;
+            }
+
             GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
             aux.FinishGame();
             adicionolPoint = true;

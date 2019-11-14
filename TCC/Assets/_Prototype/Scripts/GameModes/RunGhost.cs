@@ -16,6 +16,7 @@ public class RunGhost : IGameMode
     List<PlayerController> winners = new List<PlayerController>();
     bool adicionolPoint = false;
     int numwinner = 0;
+    int morreuAgoraMsm = 0;
     public RunGhost(GameController gameController, float time)
     {
         aux = gameController;
@@ -42,6 +43,8 @@ public class RunGhost : IGameMode
     public void HitRule(PlayerController player)
     {
         isGhost[player] = true;
+        morreuAgoraMsm--;
+        player.morreuAgora += morreuAgoraMsm;
         player.transform.GetChild(1).gameObject.SetActive(false);
         player.gameObject.GetComponent<Collider>().enabled = false;
         GameObject.Instantiate(_Monster, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform);
@@ -71,6 +74,7 @@ public class RunGhost : IGameMode
         AddPlayerInformations();
         InstantiateGhost();
         GameController.singleton.uIManager.SumirTudo();
+        morreuAgoraMsm = aux.playerManager.playersControllers.Count-1;
     }
 
     private void InstantiateGhost()
@@ -158,7 +162,11 @@ public class RunGhost : IGameMode
         {
             if (isGhost[player] == false)
             {
-                GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += 1;
+                GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += aux.playerManager.playersControllers.Count - 1;
+            }
+            else
+            {
+                GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += (aux.playerManager.playersControllers.Count-2) - player.morreuAgora;
             }
         }
         if (adicionolPoint == false)
