@@ -29,13 +29,13 @@ public class gameConfig : MonoBehaviour
         switch (timeInGames.value)
         {
             case 1:
-                typeOfTime.text = "30 à 40 segundos";
+                typeOfTime.text = "30 to 40 seconds";
                 break;
             case 2:
-                typeOfTime.text = "60 à 80 segundos";
+                typeOfTime.text = "60 to 80 seconds";
                 break;
             case 3:
-                typeOfTime.text = "90 à 120 segundos";
+                typeOfTime.text = "90 to 120 seconds";
                 break;
         }
     }

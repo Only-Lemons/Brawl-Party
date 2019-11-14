@@ -3959,11 +3959,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969205, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_UseGravity
@@ -4008,6 +4003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.70212424
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a96104aacb2f0e24789502fc1dd2af47, type: 3}
@@ -4332,7 +4332,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &557707634
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6937,7 +6937,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &925511446
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8919,11 +8919,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969205, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_UseGravity
@@ -8968,6 +8963,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.6957252
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a96104aacb2f0e24789502fc1dd2af47, type: 3}
@@ -9380,11 +9380,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969205, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_UseGravity
@@ -9429,6 +9424,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.70980084
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a96104aacb2f0e24789502fc1dd2af47, type: 3}
@@ -10070,6 +10070,8 @@ MonoBehaviour:
     image: {fileID: 4230857}
     background: {fileID: 1698368362}
   painelPontos: {fileID: 840292556}
+  spritePersonagens: []
+  posicoesPersonagens: []
 --- !u!114 &1353603042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12276,7 +12278,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &1593331586
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14660,7 +14662,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &1908403704
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15892,11 +15894,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969205, guid: a96104aacb2f0e24789502fc1dd2af47,
         type: 3}
       propertyPath: m_UseGravity
@@ -15941,6 +15938,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.7126553
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136061040103969211, guid: a96104aacb2f0e24789502fc1dd2af47,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a96104aacb2f0e24789502fc1dd2af47, type: 3}

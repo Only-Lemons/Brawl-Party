@@ -114,8 +114,8 @@ public class GameController : MonoBehaviour
 
             if (timeComecar <= 0.8f)
             {
-                time.text = "COMEÇOU!";
-                timeComecarText.text = "COMEÇOU!";
+                time.text = "BEGIN!";
+                timeComecarText.text = "BEGIN!";
                 timeComecarText.CrossFadeAlpha(1, 0.1f, false);
 
                 if (timeComecar <= 0)
@@ -129,7 +129,7 @@ public class GameController : MonoBehaviour
         }
 
         if (time.text == "00:00")
-            timeComecarText.text = "ACABOU!";
+            timeComecarText.text = "FINISH!";
 
     }
 

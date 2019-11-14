@@ -359,7 +359,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &47002155
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2344,7 +2344,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &540689488
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7485,6 +7485,8 @@ MonoBehaviour:
     image: {fileID: 1153709609}
     background: {fileID: 818036403}
   painelPontos: {fileID: 1501530877}
+  spritePersonagens: []
+  posicoesPersonagens: []
 --- !u!114 &1397247024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7975,7 +7977,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &1490972059
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8153,7 +8155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'pontos:'
+  m_Text: 'POINTS:'
 --- !u!222 &1505409705
 CanvasRenderer:
   m_ObjectHideFlags: 0

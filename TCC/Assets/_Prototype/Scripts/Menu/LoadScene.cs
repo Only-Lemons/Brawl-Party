@@ -44,29 +44,29 @@ public class LoadScene : MonoBehaviour
         {
             case 9:
                 Debug.Log(1);
-                comoJogar.text = "Fuja das Luva";
-                controles.text = "Anda";
+                comoJogar.text = "Punch Escape!";
+                controles.text = "Walk and Jump!\nButton A, Left Analog";
                 videoPlayer.clip = videosGameplay[0];
                 break;
 
             case 10:
                 Debug.Log(2);
-                comoJogar.text = "Sobe até o Topo";
-                controles.text = "Aperta";
+                comoJogar.text = "Climb To The Top!";
+                controles.text = "Press 'A' Fast!\nButton A, Left Analog";
                 videoPlayer.clip = videosGameplay[1];
                 break;
 
             case 12:
                 Debug.Log(3);
-                comoJogar.text = "Foge dos Fantasma";
-                controles.text = "Anda";
+                comoJogar.text = "Don't Touch The Ghosts!";
+                controles.text = "Run From The Ghosts!\nLeft Analog";
                 videoPlayer.clip = videosGameplay[2];
                 break;
 
             case 11:
                 Debug.Log(4);
-                comoJogar.text = "Pega as comida";
-                controles.text = "Anda";
+                comoJogar.text = "Get The Food!";
+                controles.text = "Walk!\nLeft Analog";
                 videoPlayer.clip = videosGameplay[3];
                 break;
 
