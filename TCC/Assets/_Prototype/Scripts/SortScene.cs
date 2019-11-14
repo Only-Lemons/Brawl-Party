@@ -16,9 +16,9 @@ public class SortScene : MonoBehaviour
 
     void Start()
     {
-     
+
         GameManager.Instance.quantTGames = gameModes.Count;
-        foreach(int Index in GameManager.Instance.lastGameModes)
+        foreach (int Index in GameManager.Instance.lastGameModes)
         {
             auxMod.Add(gameModes[Index]);
         }
@@ -31,13 +31,17 @@ public class SortScene : MonoBehaviour
             Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(1);
         }
-        sortGameM = Random.Range(0,gameModes.Count);
+        do
+        {
+            sortGameM = Random.Range(0, gameModes.Count);
+        } while (GameManager.Instance.lastGameModes.Contains(sortGameM));
+
         GameManager.Instance.lastGameModes.Add(sortGameM);
-      
-       
+
+
 
         //QUANDO FAZER COLLAB FAVOR TIRAR A PARTE DA CENA DIRECIONADA
-      
+
         StartCoroutine(StartScene());
     }
 
