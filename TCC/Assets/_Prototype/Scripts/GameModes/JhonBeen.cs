@@ -155,7 +155,7 @@ public class JhonBeen : IGameMode
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
         
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && !player.gameObject.GetComponent<PlayerController>().travar)
         {
             if (dir.x > 0f)
             {
@@ -171,15 +171,21 @@ public class JhonBeen : IGameMode
         }
     }
 
+    int vencedorPlaca = 0;
     public void PointRule(PlayerController player)
     {
         //winners.Add(player);
         //numwinner++;
         //WinRule();
-        
+
+        player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
+
         GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += vencedor;
         player.travar = true;
         vencedor--;
+
+        GameObject.Instantiate(player.vencedor[vencedorPlaca], new Vector3(player.transform.position.x,player.transform.position.y + 10, player.transform.position.z), Quaternion.identity, player.gameObject.transform);
+        vencedorPlaca++;
 
         if (vencedor <= 0)
             WinRule();
