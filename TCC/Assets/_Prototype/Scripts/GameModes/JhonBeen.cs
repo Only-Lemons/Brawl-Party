@@ -23,8 +23,9 @@ public class JhonBeen : IGameMode
     Dictionary<PlayerController, Stun> canMove = new Dictionary<PlayerController, Stun>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, PositionsLR> playerPosition = new Dictionary<PlayerController, PositionsLR>();
-    int numwinner = 0;
     bool adicionolPoint = false;
+
+    int vencedor;
     public JhonBeen(GameController gameController, float time)
     {
         timeOfGame = time;
@@ -172,9 +173,16 @@ public class JhonBeen : IGameMode
 
     public void PointRule(PlayerController player)
     {
-        winners.Add(player);
-        numwinner++;
-        WinRule();
+        //winners.Add(player);
+        //numwinner++;
+        //WinRule();
+        
+        GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += vencedor;
+        player.travar = true;
+        vencedor--;
+
+        if (vencedor <= 0)
+            WinRule();
     }
 
     public void RotationRule(Vector3 dir, Transform player)
@@ -188,7 +196,7 @@ public class JhonBeen : IGameMode
         GameController.singleton.uIManager.SumirTudo();
         UpdatePositionCamera();
         CancelarCameras();
-     
+        vencedor = aux.playerManager.playersControllers.Count - 1;
 
     }
     void spawnBirds()
@@ -281,7 +289,7 @@ public class JhonBeen : IGameMode
 
     public void Action(PlayerController player)
     {
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && aux.comecou && !adicionolPoint)
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && aux.comecou && !adicionolPoint && !player.travar)
         {
             player.anim.SetTrigger("Climb");
             player.transform.position += new Vector3(0f, 1f, 0f);

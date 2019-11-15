@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public int morreuAgora = 0;
 
+    public bool travar = false;
+
     public PlayerController(SOPlayer jogador)
     {
         player = jogador;
@@ -100,6 +102,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         _autoAim = GetComponent<AutoAim>();
         sairTiro = transform.GetChild(2);
         armaInventory.Clear();
+
+        travar = false;
     }
     private void FixedUpdate()
     {
