@@ -149,7 +149,7 @@ public class SnackAtack : IGameMode
 
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 1;
-            player.pontosSnack = 1;
+            player.pontosGenericos = 1;
         }
         else if (point[player] >= 6 && player.gameObject.GetComponentInChildren<Basket>().type != 2)
         {
@@ -157,7 +157,7 @@ public class SnackAtack : IGameMode
             GameObject obj = GameObject.Instantiate(_basket3, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 2;
-            player.pontosSnack = 2;
+            player.pontosGenericos = 2;
         }
         else if (point[player] == 0 && player.gameObject.GetComponentInChildren<Basket>().type != 0)
         {
@@ -165,7 +165,7 @@ public class SnackAtack : IGameMode
             GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 0;
-            player.pontosSnack = 0;
+            player.pontosGenericos = 0;
         }
 
     }
@@ -232,7 +232,7 @@ public class SnackAtack : IGameMode
         {
             for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
             {
-                GameManager.Instance.pontosGeral[i] += aux.playerManager.playersControllers[i].pontosSnack;
+                GameManager.Instance.pontosGeral[i] += aux.playerManager.playersControllers[i].pontosGenericos;
             }
 
             GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(playerMaior)] += 1;

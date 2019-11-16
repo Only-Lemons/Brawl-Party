@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public bool travar = false;
 
-    //controle snack attack
-    public int pontosSnack = 0;
+    //controle pontos genericos Snack e Falling
+    public int pontosGenericos = 0;
 
     public GameObject[] vencedor;
 

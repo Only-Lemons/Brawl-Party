@@ -14,6 +14,8 @@ public class GetItRock : IGameMode
     float lasthit = 2;
 
     int dificuldade = 0;
+
+    int pontoTotal;
     public GetItRock(GameController gameController, float time)
     {
         aux = gameController;
@@ -24,6 +26,8 @@ public class GetItRock : IGameMode
     {
         player.gameObject.SetActive(false);
         playerMortos[player] = true;
+        player.pontosGenericos -= pontoTotal;
+        pontoTotal-=1;
         if (VerifyPlayerMortos())
         {
             //winners.Add(player);
@@ -164,6 +168,9 @@ public class GetItRock : IGameMode
         InsertPlayerInDates();
         InsertHammersInDates();
         GameController.singleton.uIManager.SumirTudo();
+
+        pontoTotal = aux.playerManager.playersControllers.Count;
+        
     }
     void InsertHammersInDates()
     {
@@ -175,6 +182,7 @@ public class GetItRock : IGameMode
         foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
         {
             playerMortos.Add(player, false);
+            player.pontosGenericos = aux.playerManager.playersControllers.Count;
         }
     }
 
@@ -196,10 +204,25 @@ public class GetItRock : IGameMode
     {
         if (!adicionolPoint)
         {
-            for (int i = 0; i < winners.Count; i++)
+            if (!falha)
             {
-                if (!falha)
-                    GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] += 1;
+                for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
+                {
+                    GameManager.Instance.pontosGeral[i] += aux.playerManager.playersControllers[i].pontosGenericos;
+                }
+
+                for (int i = 0; i < winners.Count; i++)
+                {
+                    GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(winners[i])] -= 1;
+                }
+            }
+
+            if (falha)
+            {
+                for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
+                {
+                    GameManager.Instance.pontosGeral[i] += 1;
+                }
             }
             aux.FinishGame();
             adicionolPoint = true;
