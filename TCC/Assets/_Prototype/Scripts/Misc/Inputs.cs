@@ -617,7 +617,7 @@ public class Inputs : IInputActionCollection
                     ""name"": ""Credits"",
                     ""type"": ""Button"",
                     ""id"": ""92048212-14f1-4bdb-a89b-46c443fdd1f1"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -812,6 +812,17 @@ public class Inputs : IInputActionCollection
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e4afca4b-86d9-4b53-a0c0-e2c6aff91131"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""60f18a0f-76c6-466e-a4c6-0e1770853d7a"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
@@ -959,7 +970,18 @@ public class Inputs : IInputActionCollection
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Credits"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""705efebe-1a74-4d24-811d-7ee9c992355b"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Credits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
