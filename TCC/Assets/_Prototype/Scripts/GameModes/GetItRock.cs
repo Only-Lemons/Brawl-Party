@@ -12,11 +12,14 @@ public class GetItRock : IGameMode
     bool adicionolPoint = false;
     int numwinner = 0;
     float lasthit = 2;
+
+    int dificuldade = 0;
     public GetItRock(GameController gameController, float time)
     {
         aux = gameController;
         timeOfGame = time;
     }
+
     public void HitRule(PlayerController player)
     {
         player.gameObject.SetActive(false);
@@ -28,30 +31,29 @@ public class GetItRock : IGameMode
             numwinner++;
             //WinRule();
         }
-
         
     }
-    void fallRock()
-    {
 
+    void Falling()
+    {
         List<int> posicoes = new List<int>();
         posicoes.Clear();
-        int HammerQuant = Random.Range(1, hammers.Length - 1);
-        for (int i = 0; i < HammerQuant; i++)
+        
+        int random;
+        for (int i = 0; i < 3; i++)
         {
-            int hammer = (int)(Random.value * (hammers.Length));
-            while (posicoes.Contains(hammer))
+            do
             {
-                hammer = (int)(Random.value * (hammers.Length));
+                random = Random.Range(0, hammers.Length);
             }
-            posicoes.Add(hammer);
-            //TO-DO hammers[hammer].getComponent<Animation>()...
+            while (posicoes.Contains(random));
 
+            posicoes.Add(random);
+
+            hammers[random].GetComponent<Animator>().SetTrigger("fall");
         }
-        for (int i = 0; i < posicoes.Count; i++)
-        {
-            hammers[posicoes[i]].GetComponent<Animator>().SetTrigger("fall");
-        }
+
+        dificuldade++;
     }
     public void Update()
     {
@@ -78,8 +80,8 @@ public class GetItRock : IGameMode
             }
             if (lasthit <= 0)
             {
-                fallRock();
-                lasthit = 2;
+                Falling();
+                lasthit = 5 - (dificuldade / 6);
             }
         }
     }
@@ -141,8 +143,6 @@ public class GetItRock : IGameMode
 
         player.transform.position += new Vector3(dir.x, 0, 0) * speed * Time.deltaTime;
 
-
-        //player.transform.position = new Vector3(Mathf.Clamp(player.transform.position.x, -7.5f, 6f),player.position.y,player.position.z);
     }
 
 
@@ -174,7 +174,6 @@ public class GetItRock : IGameMode
     {
         foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
         {
-            //player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
             playerMortos.Add(player, false);
         }
     }
