@@ -67,11 +67,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public int playerSelectIndex=0;
 
-    //metodos jhon bean
+    //controle jhon bean
     public int morreuAgora = 0;
 
     public bool travar = false;
-    //mjb
+
+    //controle snack attack
+    public int pontosSnack = 0;
 
     public GameObject[] vencedor;
 

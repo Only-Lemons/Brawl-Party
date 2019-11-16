@@ -149,13 +149,15 @@ public class SnackAtack : IGameMode
 
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 1;
+            player.pontosSnack = 1;
         }
-        else if (point[player] > 6 && player.gameObject.GetComponentInChildren<Basket>().type != 2)
+        else if (point[player] >= 6 && player.gameObject.GetComponentInChildren<Basket>().type != 2)
         {
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Basket>().gameObject);
             GameObject obj = GameObject.Instantiate(_basket3, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 2;
+            player.pontosSnack = 2;
         }
         else if (point[player] == 0 && player.gameObject.GetComponentInChildren<Basket>().type != 0)
         {
@@ -163,6 +165,7 @@ public class SnackAtack : IGameMode
             GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 0;
+            player.pontosSnack = 0;
         }
 
     }
@@ -176,8 +179,12 @@ public class SnackAtack : IGameMode
         InstanceNutTime -= Time.deltaTime;
         if (InstanceNutTime <= 0)
         {
-            GameObject aux = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
-            InstanceNutTime = Random.Range(1f, 3f);
+            for (int i = 0; i < aux.playerManager.playersControllers.Count-1; i++)
+            {
+                GameObject aux = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
+            }
+            
+            InstanceNutTime = Random.Range(2f, 4f);
         }
         if (InstanceHiveTime <= 0)
         {
@@ -225,7 +232,7 @@ public class SnackAtack : IGameMode
         {
             for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
             {
-                GameManager.Instance.pontosGeral[i] += int.Parse(aux.playerManager.playersControllers[i].playerUI.points.text)/2;
+                GameManager.Instance.pontosGeral[i] += aux.playerManager.playersControllers[i].pontosSnack;
             }
 
             GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(playerMaior)] += 1;
