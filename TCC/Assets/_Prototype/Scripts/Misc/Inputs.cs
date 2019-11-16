@@ -612,6 +612,14 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Credits"",
+                    ""type"": ""Button"",
+                    ""id"": ""92048212-14f1-4bdb-a89b-46c443fdd1f1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -942,6 +950,17 @@ public class Inputs : IInputActionCollection
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6651b288-6215-4edd-ac44-ebdf2d0d88a7"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Credits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1321,6 +1340,7 @@ public class Inputs : IInputActionCollection
         m_UI_TrackedDeviceOrientation = m_UI.GetAction("TrackedDeviceOrientation");
         m_UI_TrackedDeviceSelect = m_UI.GetAction("TrackedDeviceSelect");
         m_UI_Return = m_UI.GetAction("Return");
+        m_UI_Credits = m_UI.GetAction("Credits");
         // SelectUI
         m_SelectUI = asset.GetActionMap("SelectUI");
         m_SelectUI_UP = m_SelectUI.GetAction("UP");
@@ -1509,6 +1529,7 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_TrackedDeviceSelect;
     private readonly InputAction m_UI_Return;
+    private readonly InputAction m_UI_Credits;
     public struct UIActions
     {
         private Inputs m_Wrapper;
@@ -1525,6 +1546,7 @@ public class Inputs : IInputActionCollection
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @TrackedDeviceSelect => m_Wrapper.m_UI_TrackedDeviceSelect;
         public InputAction @Return => m_Wrapper.m_UI_Return;
+        public InputAction @Credits => m_Wrapper.m_UI_Credits;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1570,6 +1592,9 @@ public class Inputs : IInputActionCollection
                 Return.started -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
                 Return.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
                 Return.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnReturn;
+                Credits.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCredits;
+                Credits.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCredits;
+                Credits.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCredits;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1610,6 +1635,9 @@ public class Inputs : IInputActionCollection
                 Return.started += instance.OnReturn;
                 Return.performed += instance.OnReturn;
                 Return.canceled += instance.OnReturn;
+                Credits.started += instance.OnCredits;
+                Credits.performed += instance.OnCredits;
+                Credits.canceled += instance.OnCredits;
             }
         }
     }
@@ -1727,6 +1755,7 @@ public class Inputs : IInputActionCollection
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnTrackedDeviceSelect(InputAction.CallbackContext context);
         void OnReturn(InputAction.CallbackContext context);
+        void OnCredits(InputAction.CallbackContext context);
     }
     public interface ISelectUIActions
     {

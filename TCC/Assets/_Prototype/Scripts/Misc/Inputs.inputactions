@@ -600,6 +600,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Credits",
+                    "type": "Button",
+                    "id": "92048212-14f1-4bdb-a89b-46c443fdd1f1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -930,6 +938,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6651b288-6215-4edd-ac44-ebdf2d0d88a7",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Credits",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
