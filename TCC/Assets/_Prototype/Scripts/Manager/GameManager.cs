@@ -76,8 +76,12 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            case 7:
-
+            case 3:
+                if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
+                {
+                    SceneManager.LoadScene(nextLevel); // provisorio
+                    
+                }
                 break;
 
             default:

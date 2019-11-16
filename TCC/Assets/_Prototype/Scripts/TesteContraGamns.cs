@@ -13,10 +13,10 @@ public class TesteContraGamns : MonoBehaviour
         //    GameManager.Instance.gameController.playerManager.playersControllers[i].gameObject.SetActive(true);
         //}
 
-        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
-        {
-            Destroy(GameManager.Instance.playersPanels[i].transform.GetChild(0).gameObject);
-        }
+        //for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        //{
+        //    Destroy(GameManager.Instance.playersPanels[i].transform.GetChild(0).gameObject);
+        //}
     }
 
 }

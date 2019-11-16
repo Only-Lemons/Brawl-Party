@@ -120,7 +120,19 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 }
 
             }
-            else if (GameManager.Instance.gameController.comecou)
+            else if(SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                if (isConfirmed)
+                {  
+                    isConfirmed = false;
+                }
+                else
+                { 
+                    isConfirmed = true;
+                }
+
+
+            } else if (GameManager.Instance.gameController.comecou)
                 GameManager.Instance.PressStart();
 
         }

@@ -22,9 +22,14 @@ public class LoadScene : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(GameManager.Instance.nextLevel);
+        // Debug.Log(GameManager.Instance.nextLevel);
+        foreach (GameObject panel in GameManager.Instance.playersPanels)
+        {
+            panel.GetComponentInChildren<PlayerSelect>().isConfirmed = true;
+        }
+
         updateLoading(GameManager.Instance.nextLevel);
-        StartCoroutine(LoadAsynchronously(GameManager.Instance.nextLevel));
+        //StartCoroutine(LoadAsynchronously(GameManager.Instance.nextLevel));
     }
 
     IEnumerator LoadAsynchronously(int scene)
