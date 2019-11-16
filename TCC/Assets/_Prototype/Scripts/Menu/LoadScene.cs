@@ -19,6 +19,9 @@ public class LoadScene : MonoBehaviour
 
     public GameModes game;
 
+    public Image[] sprites;
+    public Text[] ok;
+
 
     void Awake()
     {
@@ -29,6 +32,8 @@ public class LoadScene : MonoBehaviour
         }
 
         updateLoading(GameManager.Instance.nextLevel);
+
+        AtualizarSprites();
         //StartCoroutine(LoadAsynchronously(GameManager.Instance.nextLevel));
     }
 
@@ -41,6 +46,11 @@ public class LoadScene : MonoBehaviour
             sliderLoad.value = operation.progress / 9;
             yield return null;
         }
+    }
+
+    private void Update()
+    {
+        ConfirmarTutorial();
     }
 
     public void updateLoading(int val)
@@ -82,6 +92,25 @@ public class LoadScene : MonoBehaviour
                 videoPlayer.clip = videosGameplay[4];
                 break;
 
+        }
+    }
+
+    void AtualizarSprites()
+    {
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            sprites[i].sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
+        }
+         
+    }
+    void ConfirmarTutorial()
+    {
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            if (!GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().isConfirmed)
+                ok[i].text = "OK!";
+            else
+                ok[i].text = "Waiting...";
         }
     }
 }

@@ -509,7 +509,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 5c9b530ed632203488ee701bb872b9e5, type: 3}
     m_FontSize: 45
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 51
     m_Alignment: 4
@@ -518,7 +518,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OK
+  m_Text: 
 --- !u!222 &168262035
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1371,7 +1371,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 5c9b530ed632203488ee701bb872b9e5, type: 3}
     m_FontSize: 45
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 51
     m_Alignment: 4
@@ -1380,7 +1380,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OK
+  m_Text: 
 --- !u!222 &590839716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1446,7 +1446,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+  m_Sprite: {fileID: 3128145301084039129, guid: 5b2b1692e95f05141810d80adc39cd95,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1541,7 +1542,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 5c9b530ed632203488ee701bb872b9e5, type: 3}
     m_FontSize: 45
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 51
     m_Alignment: 4
@@ -1550,7 +1551,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OK
+  m_Text: 
 --- !u!222 &761584451
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1616,7 +1617,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+  m_Sprite: {fileID: 3128145301084039129, guid: 5b2b1692e95f05141810d80adc39cd95,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1758,6 +1760,16 @@ MonoBehaviour:
   comoJogar: {fileID: 1753574322}
   controles: {fileID: 1401800705}
   game: 0
+  sprites:
+  - {fileID: 899629843}
+  - {fileID: 743478554}
+  - {fileID: 1796516224}
+  - {fileID: 2107915388}
+  ok:
+  - {fileID: 168262034}
+  - {fileID: 761584450}
+  - {fileID: 1727882792}
+  - {fileID: 590839715}
 --- !u!1 &1151518425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,7 +2449,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 5c9b530ed632203488ee701bb872b9e5, type: 3}
     m_FontSize: 45
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 51
     m_Alignment: 4
@@ -2446,7 +2458,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OK
+  m_Text: 
 --- !u!222 &1727882793
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2931,7 +2943,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+  m_Sprite: {fileID: 3128145301084039129, guid: 5b2b1692e95f05141810d80adc39cd95,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3283,7 +3296,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+  m_Sprite: {fileID: 3128145301084039129, guid: 5b2b1692e95f05141810d80adc39cd95,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

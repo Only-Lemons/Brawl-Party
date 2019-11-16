@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public Text necessarioMaisJogadores;
     public Color corVencedor;
     public bool empatou;
-   
 
     private void OnEnable()
     {
