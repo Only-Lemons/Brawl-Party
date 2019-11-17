@@ -131,6 +131,11 @@ public class SnackAtack : IGameMode
         if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
         {
             player.position += -dir * speed * Time.deltaTime;
+
+            if (dir != Vector3.zero)
+            {
+                player.rotation = Quaternion.Lerp(player.rotation, Quaternion.LookRotation(-dir), Time.deltaTime* 20);
+            }
         }
     }
 
@@ -171,7 +176,7 @@ public class SnackAtack : IGameMode
     }
     public void RotationRule(Vector3 dir, Transform player)
     {
-
+        
     }
     public void IntanceObject()
     {

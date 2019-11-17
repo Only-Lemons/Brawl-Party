@@ -55,6 +55,10 @@ public class RunGhost : IGameMode
     public void MovementRule(Vector3 dir, Transform player, float speed)
     {
         player.position += dir * speed * Time.deltaTime;
+        if (dir != Vector3.zero)
+        {
+            player.rotation = Quaternion.Lerp(player.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 20);
+        }
     }
 
     public void PointRule(PlayerController player)
@@ -66,7 +70,7 @@ public class RunGhost : IGameMode
     public void RotationRule(Vector3 dir, Transform player)
     {
 
-        player.rotation = Quaternion.Lerp(player.rotation,Quaternion.Euler(dir.x,dir.y,dir.z), Time.deltaTime);
+        //player.rotation = Quaternion.Lerp(player.rotation,Quaternion.Euler(dir.x,dir.y,dir.z), Time.deltaTime);
     }
 
     public void StartGame()
