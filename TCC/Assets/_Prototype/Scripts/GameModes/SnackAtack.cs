@@ -145,7 +145,7 @@ public class SnackAtack : IGameMode
         if (point[player] > 0 && point[player] < 6 && player.gameObject.GetComponentInChildren<Basket>().type != 1)
         {
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Basket>().gameObject);
-            GameObject obj = GameObject.Instantiate(_basket2, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
+            GameObject obj = GameObject.Instantiate(_basket2, new Vector3(player.transform.position.x, player.transform.position.y + 2.1f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
 
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 1;
@@ -154,7 +154,7 @@ public class SnackAtack : IGameMode
         else if (point[player] >= 6 && player.gameObject.GetComponentInChildren<Basket>().type != 2)
         {
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Basket>().gameObject);
-            GameObject obj = GameObject.Instantiate(_basket3, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
+            GameObject obj = GameObject.Instantiate(_basket3, new Vector3(player.transform.position.x, player.transform.position.y + 2.1f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 2;
             player.pontosGenericos = 2;
@@ -162,7 +162,7 @@ public class SnackAtack : IGameMode
         else if (point[player] == 0 && player.gameObject.GetComponentInChildren<Basket>().type != 0)
         {
             GameObject.Destroy(player.gameObject.GetComponentInChildren<Basket>().gameObject);
-            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
+            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.1f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 0;
             player.pontosGenericos = 0;
@@ -209,7 +209,7 @@ public class SnackAtack : IGameMode
             auxStun.canMove = true;
             auxStun.timeInStun = 0;
             canMove.Add(player, auxStun);
-            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.5f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
+            GameObject obj = GameObject.Instantiate(_basket1, new Vector3(player.transform.position.x, player.transform.position.y + 2.1f, player.transform.position.z), Quaternion.identity, player.transform).gameObject as GameObject;
             obj.GetComponent<Basket>().player = player;
             obj.GetComponent<Basket>().type = 0;
         }
