@@ -48,7 +48,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     [SerializeField] private Color defaultColor;
 
     [Header("UI References")]
-    [SerializeField] public TextMeshProUGUI characterName;
+    [SerializeField] public Text characterName;
     [SerializeField] public Image characterSplash;
     [SerializeField] public Image backgroundColor;
 

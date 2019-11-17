@@ -34,9 +34,9 @@ public class PlayerSelectManager : MonoBehaviour
             {
                 players[i].transform.SetParent(GameManager.Instance.transform);
 
-                players[i].GetComponent<PlayerSelect>().characterSplash = renderPlayer[i].transform.GetChild(4).GetComponent<Image>();
+                players[i].GetComponent<PlayerSelect>().characterSplash = renderPlayer[i].transform.GetChild(3).GetComponent<Image>();
                 players[i].GetComponent<PlayerSelect>().backgroundColor = renderPlayer[i].transform.GetChild(1).GetComponent<Image>();
-                players[i].GetComponent<PlayerSelect>().characterName = renderPlayer[i].GetComponentInChildren<TextMeshProUGUI>();
+                players[i].GetComponent<PlayerSelect>().characterName = renderPlayer[i].transform.GetChild(2).GetComponent<Text>();
 
                 if (!GameManager.Instance.playersPanels.Exists(x => x == players[i]))
                 {
