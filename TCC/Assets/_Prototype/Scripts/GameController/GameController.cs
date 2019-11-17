@@ -79,6 +79,8 @@ public class GameController : MonoBehaviour
 
     public void FinishGame()
     {
+        comecou = false;
+        Time.timeScale = 1;
         for (int i = 0; i < playerManager.playersControllers.Count; i++)
         {
             players[i].image.sprite = playerManager.playersControllers[i].playerSprite;
