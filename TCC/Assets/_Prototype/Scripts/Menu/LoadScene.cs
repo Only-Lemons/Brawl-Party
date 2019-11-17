@@ -10,17 +10,19 @@ public class LoadScene : MonoBehaviour
     public Slider sliderLoad;
 
     public VideoClip[] videosGameplay = new VideoClip[4];
+    public Sprite[] spritesMinigames = new Sprite[4];
     public VideoPlayer videoPlayer;
 
-    public Text comoJogar,
-                controles;
+    public Text minigameName,
+                minigameDescription;
 
-    
+    public Image spriteMinigameP,
+                 spriteMinigameG;
 
     public GameModes game;
 
-    public Image[] sprites;
-    public Text[] ok;
+    public Image[] spritePlayer;
+    public Text[] confirmPlayer;
 
 
     void Awake()
@@ -59,36 +61,44 @@ public class LoadScene : MonoBehaviour
         {
             case 9:
                 Debug.Log(1);
-                comoJogar.text = "Punch Escape!";
-                controles.text = "Walk and Jump!\nButton A, Left Analog";
+                minigameName.text = "Punch Escape";
+                minigameDescription.text = "Escape os the gloves, walk with the left analog and jump with 'A'";
                 videoPlayer.clip = videosGameplay[0];
+                spriteMinigameP.sprite = spritesMinigames[0];
+                spriteMinigameG.sprite = spritesMinigames[0];
                 break;
 
             case 10:
                 Debug.Log(2);
-                comoJogar.text = "Climb To The Top!";
-                controles.text = "Press 'A' Fast!\nButton A, Left Analog";
+                minigameName.text = "Jhon Bean";
+                minigameDescription.text = "Climb fast to the top, press 'A' to go faster, and avoid of the obstacles with the Left Analog";
                 videoPlayer.clip = videosGameplay[1];
+                spriteMinigameP.sprite = spritesMinigames[1];
+                spriteMinigameG.sprite = spritesMinigames[1];
                 break;
 
             case 12:
                 Debug.Log(3);
-                comoJogar.text = "Don't Touch The Ghosts!";
-                controles.text = "Run From The Ghosts!\nLeft Analog";
+                minigameName.text = "Ghost Run";
+                minigameDescription.text = "Run From The Ghosts! stay alive to win the game";
                 videoPlayer.clip = videosGameplay[2];
+                spriteMinigameP.sprite = spritesMinigames[2];
+                spriteMinigameG.sprite = spritesMinigames[2];
                 break;
 
             case 11:
                 Debug.Log(4);
-                comoJogar.text = "Get The Food!";
-                controles.text = "Walk!\nLeft Analog";
+                minigameName.text = "Nut Rain";
+                minigameDescription.text = "Get the nuts that are falling to gain points. But, avoid of the Hives";
                 videoPlayer.clip = videosGameplay[3];
+                spriteMinigameP.sprite = spritesMinigames[3];
+                spriteMinigameG.sprite = spritesMinigames[3];
                 break;
 
             default:
                 Debug.Log("Default");
-                comoJogar.text = "Deu Ruim";
-                controles.text = "Demais";
+                minigameName.text = "Deu Ruim";
+                minigameDescription.text = "Demais";
                 videoPlayer.clip = videosGameplay[4];
                 break;
 
@@ -99,7 +109,7 @@ public class LoadScene : MonoBehaviour
     {
         for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
         {
-            sprites[i].sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
+            spritePlayer[i].sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
         }
          
     }
@@ -108,9 +118,9 @@ public class LoadScene : MonoBehaviour
         for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
         {
             if (!GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().isConfirmed)
-                ok[i].text = "OK!";
+                confirmPlayer[i].text = "OK!";
             else
-                ok[i].text = "Waiting...";
+                confirmPlayer[i].text = "Waiting...";
         }
     }
 }
