@@ -801,7 +801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051503930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 422, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -883,8 +883,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
-  renderPlayer: {fileID: 1398155411075739759, guid: d3bd21f5e86c64b4f8cc2ba52f54088f,
-    type: 3}
+  renderPlayer:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerSprite:
   - {fileID: 0}
   - {fileID: 0}

@@ -11,6 +11,10 @@ public class VolumeConfigs : MonoBehaviour
 
     public GameObject[] toggles;
 
+    public Image bgToogle;
+
+    public Sprite spriteOn, spriteOff;
+
     public AudioMixer volume;
     private int aux = 7,
                 vol = 0;
@@ -55,11 +59,13 @@ public class VolumeConfigs : MonoBehaviour
             volume.SetFloat(nomeParametro, -28);
             go.transform.GetChild(0).gameObject.SetActive(false);
             go.transform.GetChild(1).gameObject.SetActive(true);
+            bgToogle.sprite = spriteOff;
         }
         else{
-            volume.SetFloat(nomeParametro, 0);
+            volume.SetFloat(nomeParametro, vol);
             go.transform.GetChild(1).gameObject.SetActive(false);
             go.transform.GetChild(0).gameObject.SetActive(true);
+            bgToogle.sprite = spriteOn;
         }
       
     }
