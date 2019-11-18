@@ -39,8 +39,6 @@ public class VolumeConfigs : MonoBehaviour
 
         this.volumeObjs[aux + 1].SetActive(false);
         volume.SetFloat(nomeParametro, vol);
-
-
     }
 
 

@@ -20,11 +20,11 @@ public class VideoConfig : MonoBehaviour
             qindex++;
 
         QualitySettings.SetQualityLevel(qindex);
-        textQuality.text = qualityTxt[qindex + 1];
+        textQuality.text = qualityTxt[qindex];
     }
     public void QualityChangeDown()
     {
-        if (qindex > 2)
+        if (qindex > 1)
             qindex--;
         QualitySettings.SetQualityLevel(qindex);
         textQuality.text = qualityTxt[qindex];
