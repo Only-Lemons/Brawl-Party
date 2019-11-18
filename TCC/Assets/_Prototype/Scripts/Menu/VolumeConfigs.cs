@@ -8,11 +8,16 @@ public class VolumeConfigs : MonoBehaviour
 {
     [Header ("Volume Settings")]
     public GameObject[] volumeObjs = new GameObject[8];
+
+    public GameObject[] toggles;
+
     public AudioMixer volume;
     private int aux = 7,
                 vol = 0;
 
     public string nomeParametro;
+
+
 
     public void volumeUp()
     {
@@ -40,6 +45,26 @@ public class VolumeConfigs : MonoBehaviour
         this.volumeObjs[aux + 1].SetActive(false);
         volume.SetFloat(nomeParametro, vol);
     }
+
+
+    public void mute(GameObject go)
+    {
+
+        if(go.transform.GetChild(0).gameObject.activeSelf)
+        {
+            volume.SetFloat(nomeParametro, -28);
+            go.transform.GetChild(0).gameObject.SetActive(false);
+            go.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else{
+            volume.SetFloat(nomeParametro, 0);
+            go.transform.GetChild(1).gameObject.SetActive(false);
+            go.transform.GetChild(0).gameObject.SetActive(true);
+        }
+      
+    }
+
+
 
 
 }

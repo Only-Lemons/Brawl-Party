@@ -201,7 +201,7 @@ public class JhonBeen : IGameMode
         InsertPlayerInDates();
         GameController.singleton.uIManager.SumirTudo();
         UpdatePositionCamera();
-        CancelarCameras();
+        //CancelarCameras();
         vencedor = aux.playerManager.playersControllers.Count - 1;
 
     }
