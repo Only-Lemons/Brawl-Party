@@ -103,10 +103,8 @@ public class SnackAtack : IGameMode
             ShowTime();
             removePlayersInStun();
             IntanceObject();
-            //goDownPlayers();
             if (timeOfGame <= 0)
             {
-
                 WinRule();
             }
 

@@ -165,7 +165,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 77193735}
-  - component: {fileID: 77193734}
   m_Layer: 0
   m_Name: SceneControl
   m_TagString: Untagged
@@ -173,21 +172,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &77193734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 77193733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f459b317bf8e50341913d56e157e0992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panels:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!4 &77193735
 Transform:
   m_ObjectHideFlags: 0
@@ -858,7 +842,7 @@ MonoBehaviour:
           m_MethodName: set_sprite
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: -8468315610544368307, guid: e43eb451d8f4928488ccb461df3772e9,
+            m_ObjectArgument: {fileID: 21300000, guid: bfd80b9d263a66948a2ebcfad067542b,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
@@ -1077,7 +1061,7 @@ MonoBehaviour:
           m_MethodName: set_sprite
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 7719596976410993096, guid: e43eb451d8f4928488ccb461df3772e9,
+            m_ObjectArgument: {fileID: 21300000, guid: d3385211dacdece4aa14dd0049b4154c,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
@@ -2007,7 +1991,7 @@ MonoBehaviour:
           m_MethodName: set_sprite
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 3547381763761409659, guid: e43eb451d8f4928488ccb461df3772e9,
+            m_ObjectArgument: {fileID: 21300000, guid: a83da077b36534d45afaa776a6921ba8,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0
@@ -2843,7 +2827,7 @@ MonoBehaviour:
           m_MethodName: set_sprite
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 3048925395330779877, guid: e43eb451d8f4928488ccb461df3772e9,
+            m_ObjectArgument: {fileID: 21300000, guid: 1f378f82dfbf81743b22f455c1579bb4,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
             m_IntArgument: 0

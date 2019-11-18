@@ -74,7 +74,7 @@ public class JhonBeen : IGameMode
             if(aux.playerManager.playersControllers[i] != null)
             {
                 if (aux.playerManager.playersControllers[i].transform.position.y > 0)
-                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y + 5, aux.playerManager.playersControllers[i].transform.position.z - zoomCam), Time.deltaTime * 3);
+                    cameras[i].transform.position =  new Vector3(aux.playerManager.playersControllers[i].transform.position.x, aux.playerManager.playersControllers[i].transform.position.y + 5, aux.playerManager.playersControllers[i].transform.position.z - zoomCam);
             }
         }
     }
