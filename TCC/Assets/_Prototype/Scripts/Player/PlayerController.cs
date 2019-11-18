@@ -145,6 +145,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
                 AtirarSemParar();
 
                 NoAr();
+
+                ContarExplosao();
             }
         }
 
@@ -555,6 +557,32 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     }
 
     //FIM TESTES
+
+    //Teste explosaoPower
+
+    float contExplosaoPower;
+    public bool explode = false;
+    public void ExplosaoPower()
+    {
+        if(explode == true)
+        {
+            Debug.Log("EXPLODIU");
+            contExplosaoPower = 0;
+            explode = false;
+        }
+    }
+
+    void ContarExplosao()
+    {
+        if (explode == false)
+        {
+            contExplosaoPower += Time.deltaTime;
+            if(contExplosaoPower >= 5)
+            {
+                explode = true;
+            }
+        }
+    }
 }
 
 

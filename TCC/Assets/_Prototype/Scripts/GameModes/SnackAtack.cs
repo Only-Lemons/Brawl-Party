@@ -30,7 +30,10 @@ public class SnackAtack : IGameMode
     }
     public void Action(PlayerController player)
     {
-
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
+        {
+            player.ExplosaoPower();
+        }
     }
 
     public void HitRule(PlayerController player)
@@ -59,13 +62,17 @@ public class SnackAtack : IGameMode
             aux.posicoesPersonagens[i].value = Mathf.Lerp(aux.posicoesPersonagens[i].value, float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text), Time.deltaTime);
             if (float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text) > maiorPontuacao)
             {
-                maiorPontuacao = Mathf.Lerp(maiorPontuacao, float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text), Time.deltaTime*2);
+                maiorPontuacao = Mathf.Lerp(maiorPontuacao, float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text), Time.deltaTime * 2);
             }
             aux.posicoesPersonagens[i].maxValue = maiorPontuacao;
-            Debug.Log(maiorPontuacao);
+
+            if (aux.playerManager.playersControllers[i].explode)
+                aux.powerSpritePersonagem[i].gameObject.SetActive(true);
+            else
+                aux.powerSpritePersonagem[i].gameObject.SetActive(false);
         }
     }
-    
+
     bool setei = false;
 
     void SetarSpritesInGame()
@@ -134,7 +141,7 @@ public class SnackAtack : IGameMode
 
             if (dir != Vector3.zero)
             {
-                player.rotation = Quaternion.Lerp(player.rotation, Quaternion.LookRotation(-dir), Time.deltaTime* 20);
+                player.rotation = Quaternion.Lerp(player.rotation, Quaternion.LookRotation(-dir), Time.deltaTime * 20);
             }
         }
     }
@@ -176,7 +183,7 @@ public class SnackAtack : IGameMode
     }
     public void RotationRule(Vector3 dir, Transform player)
     {
-        
+
     }
     public void IntanceObject()
     {
@@ -184,11 +191,11 @@ public class SnackAtack : IGameMode
         InstanceNutTime -= Time.deltaTime;
         if (InstanceNutTime <= 0)
         {
-            for (int i = 0; i < aux.playerManager.playersControllers.Count-1; i++)
+            for (int i = 0; i < aux.playerManager.playersControllers.Count - 1; i++)
             {
                 GameObject aux = GameObject.Instantiate(_Nut, new Vector3(Random.Range(-6.57f, 4.83f), 8.96f, Random.Range(-4.37f, 6.26f)), Quaternion.identity).gameObject as GameObject;
             }
-            
+
             InstanceNutTime = Random.Range(2f, 4f);
         }
         if (InstanceHiveTime <= 0)

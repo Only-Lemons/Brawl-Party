@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
     public List<playerPoints> players = new List<playerPoints>();
     public GameObject painelPontos;
     public List<Sprite> spritePersonagens = new List<Sprite>();
+    public List<Image> powerSpritePersonagem = new List<Image>();
     public List<Slider> posicoesPersonagens = new List<Slider>();
 
 
