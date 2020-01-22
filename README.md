@@ -1,4 +1,4 @@
-![Logo](https://imgur.com/szIXLyg)
+![Logo](https://i.imgur.com/szIXLyg.png)
 
 ## Table of contents
 * [General info](#general-info)
@@ -14,7 +14,7 @@
 Add more general information about project. What the purpose of the project is? Motivation?
 
 ## Screenshots
-![Example screenshot](https://imgur.com/KqY4DLD)
+![Example screenshot](https://i.imgur.com/KqY4DLD.png)
 
 ## Technologies
 * Unity Engine - version 2019.3
@@ -42,7 +42,7 @@ Project is: _in progress;
 Add here credits. Project inspired by..., based on...
 
 ## Contact
-![Logo](https://imgur.com/Ap40EvR)
+![Logo](https://i.imgur.com/Ap40EvR.png)
 
 
 Created by [Only Lemons](https://www.facebook.com/onlemons/) - feel free to contact us!
