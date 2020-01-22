@@ -1,4 +1,4 @@
-![Logo](./TCC/Assets/_Prototype/Sprites/Logo_BrawlParty_sFundo.png)
+![Logo](https://imgur.com/szIXLyg)
 
 ## Table of contents
 * [General info](#general-info)
@@ -14,7 +14,7 @@
 Add more general information about project. What the purpose of the project is? Motivation?
 
 ## Screenshots
-![Example screenshot](./TCC/Assets/_Prototype/Sprites/Logo_BrawlParty_sFundo.png)
+![Example screenshot](https://imgur.com/KqY4DLD)
 
 ## Technologies
 * Unity Engine - version 2019.3
@@ -42,7 +42,7 @@ Project is: _in progress;
 Add here credits. Project inspired by..., based on...
 
 ## Contact
-![Logo](./TCC/Assets/_Prototype/Sprites/OnlyLemons_Logo.png)
+![Logo](https://imgur.com/Ap40EvR)
 
 
 Created by [Only Lemons](https://www.facebook.com/onlemons/) - feel free to contact us!
