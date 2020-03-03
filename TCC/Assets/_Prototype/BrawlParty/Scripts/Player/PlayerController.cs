@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     CharacterController _cc;
     [HideInInspector]
-    public Animator anim;
+    public Animator anim;   
     [HideInInspector]
     public playerUIElements playerUI;
     [HideInInspector]
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public SOPassive passiva;
     public bool canDeath;
     #endregion
-
+                                            
     Material hp;
 
     int idTrocouArma = 0;
