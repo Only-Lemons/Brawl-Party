@@ -62,6 +62,7 @@ public class SnackAtack : IGameMode
                 maiorPontuacao = Mathf.Lerp(maiorPontuacao, float.Parse(aux.playerManager.playersControllers[i].playerUI.points.text), Time.deltaTime*2);
             }
             aux.posicoesPersonagens[i].maxValue = maiorPontuacao;
+            Debug.Log(maiorPontuacao);
         }
     }
     
