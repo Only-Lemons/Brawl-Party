@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/_Prototype/Scripts/Misc/Inputs.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/_Prototype/BrawlParty/Scripts/Misc/Inputs.inputactions'
 
 using System.Collections;
 using System.Collections.Generic;
