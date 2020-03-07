@@ -25,7 +25,6 @@ public class GameController : MonoBehaviour
 
     public IGameMode gameMode;
     [HideInInspector]
-    public TerrainController tileManager;
     public PlayerManager playerManager;
     [HideInInspector]
     public UIManager uIManager;
@@ -59,7 +58,7 @@ public class GameController : MonoBehaviour
     {
         
         painelPontos.SetActive(false);
-        tileManager = GetComponent<TerrainController>();
+       
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
 

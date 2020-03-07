@@ -113,9 +113,9 @@ public class GridironGauntlet : IGameMode
         string seconds = ((int)(timeOfGame % 60)).ToString("00"); ;
         aux.time.text = minute + ":" + seconds;
     }
-    public void MovementRule(Vector3 dir, Transform player, float speed)
+    public void MovementRule(PlayerController player)
     {
-        player.position += -dir * speed * Time.deltaTime;
+        player.transform.position += -player._movementAxis * player.speed * Time.deltaTime;
     }
 
     public void PointRule(PlayerController player)
@@ -123,7 +123,7 @@ public class GridironGauntlet : IGameMode
 
     }
 
-    public void RotationRule(Vector3 dir, Transform player)
+    public void RotationRule(PlayerController player)
     {
 
     }

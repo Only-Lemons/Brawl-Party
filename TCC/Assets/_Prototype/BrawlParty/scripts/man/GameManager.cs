@@ -117,12 +117,6 @@ public class GameManager : MonoBehaviour
     {
         switch (game)
         {
-            case GameModes.CaptureTheFlag:
-                gameController.gameMode = new CaptureTheFlag(gameController,40 * TimeInGame);
-                break;
-            case GameModes.FreeForAll:
-                gameController.gameMode = new FreeForAll(gameController, 30 * TimeInGame);
-                break;
             case GameModes.GetItRock:
                 gameController.gameMode = new GetItRock(gameController, 30 * TimeInGame);
                 break;

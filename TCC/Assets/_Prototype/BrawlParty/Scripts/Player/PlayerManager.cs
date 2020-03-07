@@ -30,7 +30,6 @@ public class PlayerManager : MonoBehaviour
     public List<PlayerController> playerMortosPrefabs = new List<PlayerController>();
     public List<playerUIElements> playersUI = new List<playerUIElements>();
     public float timeRespawn;
-    TerrainController _tileManager;
 
 
     void Awake()
@@ -39,7 +38,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        _tileManager = GameController.singleton.tileManager;
+        
        // adcionarPlayerControlador();
         MovePlayerBase();
     }
@@ -54,8 +53,8 @@ public class PlayerManager : MonoBehaviour
         {
             //player.GetComponentInChildren<Camera>().enabled = false;
             //player.GetComponent<PlayerSelect>().enabled = false;
-            player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)].position;
-            player._base = _tileManager.bases[playersControllers.IndexOf(player)].position;
+            //player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)].position;
+            //player._base = _tileManager.bases[playersControllers.IndexOf(player)].position;
         }
     }
     void setPlayerInScene()

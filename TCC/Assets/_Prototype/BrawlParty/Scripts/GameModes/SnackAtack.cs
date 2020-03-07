@@ -131,15 +131,15 @@ public class SnackAtack : IGameMode
         string seconds = ((int)(timeOfGame % 60)).ToString("00"); ;
         aux.time.text = minute + ":" + seconds;
     }
-    public void MovementRule(Vector3 dir, Transform player, float speed)
+    public void MovementRule(PlayerController player)
     {
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove)
+        if (canMove[player].canMove)
         {
-            player.position += -dir * speed * Time.deltaTime;
+            player.transform.position += -player._movementAxis * player.speed * Time.deltaTime;
 
-            if (dir != Vector3.zero)
+            if (player._movementAxis != Vector3.zero)
             {
-                player.rotation = Quaternion.Lerp(player.rotation, Quaternion.LookRotation(-dir), Time.deltaTime * 20);
+                player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(-player._movementAxis), Time.deltaTime * 20);
             }
         }
     }
@@ -179,7 +179,7 @@ public class SnackAtack : IGameMode
         }
 
     }
-    public void RotationRule(Vector3 dir, Transform player)
+    public void RotationRule(PlayerController player)
     {
 
     }

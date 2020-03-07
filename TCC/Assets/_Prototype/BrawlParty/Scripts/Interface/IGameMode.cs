@@ -9,10 +9,8 @@ public interface  IGameMode
     void Update();
     void PointRule(PlayerController player);
     void WinRule();
-
     void Action(PlayerController player);
-
     void HitRule(PlayerController player);
-    void MovementRule(Vector3 dir, Transform player,float speed);
-    void RotationRule(Vector3 dir, Transform player);
+    void MovementRule(PlayerController player);
+    void RotationRule(PlayerController player);
 }

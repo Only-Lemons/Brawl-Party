@@ -158,24 +158,22 @@ public class JhonBeen : IGameMode
             player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3 * Time.deltaTime, player.transform.position.z);
         }
     }
-    public void MovementRule(Vector3 dir, Transform player, float speed)
+    public void MovementRule(PlayerController player)
     {
-        
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && !player.gameObject.GetComponent<PlayerController>().travar)
+        if (canMove[player].canMove && !player.travar)
         {
-            if (dir.x > 0f)
+            if (player._movementAxis.x > 0f)
             {
-                player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
-                player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].right.x, player.transform.position.y, player.transform.position.z);
+                player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
+                player.transform.position = new Vector3(playerPosition[player].right.x, player.transform.position.y, player.transform.position.z);
             }
-            if (dir.x < 0f)
+            if (player._movementAxis.x < 0f)
             {
-                player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
-                player.position = new Vector3(playerPosition[player.gameObject.GetComponent<PlayerController>()].left.x, player.transform.position.y, player.transform.position.z);
+                player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
+                player.transform.position = new Vector3(playerPosition[player].left.x, player.transform.position.y, player.transform.position.z);
             }
-
             else 
-            player.position = player.position;
+            player.transform.position = player.transform.position;
            
         }
     }
@@ -200,7 +198,7 @@ public class JhonBeen : IGameMode
             WinRule();
     }
 
-    public void RotationRule(Vector3 dir, Transform player)
+    public void RotationRule(PlayerController player)
     {
 
     }
@@ -232,6 +230,8 @@ public class JhonBeen : IGameMode
             {
                 int side = Random.Range(0, 2);
                 Vector3 position;
+
+                /*
                 if (side == 0)
                 {
                     position = new Vector3(aux.tileManager.bases[i].position.x, Random.Range(-15, 17.8f), aux.tileManager.bases[i].position.z);
@@ -257,6 +257,9 @@ public class JhonBeen : IGameMode
                     }
                 }
                 GameObject.Instantiate(_bird, position, Quaternion.identity);
+                */
+
+
             }
         }
 
