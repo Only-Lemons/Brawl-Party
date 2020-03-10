@@ -5,6 +5,8 @@ using UnityEngine;
 public class Spacenaut : MiniGame
 {
     public List<PlayerController> players= new List<PlayerController>();
+  
+
 
     void Start()
     {
@@ -46,6 +48,7 @@ public class Spacenaut : MiniGame
     {
         throw new System.NotImplementedException();
     }
+
 
 
 }

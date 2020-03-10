@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public Vector3 _movementAxis;
     Vector3 _rotationAxis;
     Quaternion _targetRotation;
+    Rigidbody rb;
     #endregion
 
     #region Interaçao Ambiente
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         speed = player.speed;
         _cc = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-
+        rb = GetComponent<Rigidbody>();
         travar = false;
         
     }
@@ -262,4 +263,25 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
             }
         }
     }
+
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Planet"))
+        {
+            rb.drag = 1f;
+        }
+
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Planet"))
+        {
+            rb.drag = .2f;
+        }
+    }
+
 }
