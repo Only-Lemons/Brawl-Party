@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public Vector3 _movementAxis;
     Vector3 _rotationAxis;
     Quaternion _targetRotation;
-    Rigidbody rb;
+    public Rigidbody rb;
     #endregion
 
     #region Interaçao Ambiente
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            GameController.singleton.gameMode.Action(this);
+            actualGameMode.Action(this);
         }
     }
 

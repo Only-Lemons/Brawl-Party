@@ -12,13 +12,13 @@ public class Planet : MonoBehaviour
         float gravitationalPower = gravityScale / planetRadius;
         float dist = Vector3.Distance(obj.transform.position, transform.position);
 
-        if (dist > (planetRadius + gravityMinRange))
-        {
-            float min = planetRadius + gravityMinRange + 0.5f;
-            gravitationalPower = gravitationalPower * (((min + gravityMaxRange) - dist) / gravityMaxRange);
-        }
+        //if (dist > (planetRadius + gravityMinRange))
+        //{
+        //    float min = planetRadius + gravityMinRange + 0.5f;
+        //    gravitationalPower = gravitationalPower * (((min + gravityMaxRange) - dist) / gravityMaxRange);
+        //}
 
-        Vector3 dir = (transform.position - obj.transform.position) * gravitationalPower;
+        Vector3 dir = (transform.position - obj.transform.position) * gravityScale;
         obj.GetComponent<Rigidbody>().AddForce(dir);
 
         if (obj.CompareTag("Player"))

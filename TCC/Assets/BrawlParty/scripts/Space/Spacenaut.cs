@@ -20,7 +20,8 @@ public class Spacenaut : MiniGame
     
     public override void Action(PlayerController player)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Pulei");
+        player.rb.AddForce(Vector3.up * 15f,ForceMode.Impulse);
     }
 
     public override void HitRule(PlayerController player)
