@@ -15,9 +15,7 @@ public class Spacenaut : MiniGame
             player.actualGameMode = this;
         }
 
-
-        StartCoroutine(OxygenLoss());
-
+       // StartCoroutine(OxygenLoss());
     }
 
     private void Update()
@@ -29,7 +27,7 @@ public class Spacenaut : MiniGame
     public override void Action(PlayerController player)
     {
         //Pular
-        player.rb.AddForce(Vector3.up * 15f,ForceMode.Impulse);
+        player.rb.AddForce(player.transform.up * 15f, ForceMode.Impulse);
     }
 
     public override void HitRule(PlayerController player)
@@ -40,8 +38,10 @@ public class Spacenaut : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-        
-        player.transform.position += player._movementAxis * player.speed * Time.fixedDeltaTime;
+        player.rb.AddForce(Vector3.right * player._movementAxis.x * player.speed);
+
+       // player.transform.position += (player._movementAxis).normalized * player.speed * Time.fixedDeltaTime;
+        //player.transform.Translate(player._movementAxis * player.speed * Time.fixedDeltaTime, Camera.main.transform);
     }
 
     public override void PointRule(PlayerController player)
