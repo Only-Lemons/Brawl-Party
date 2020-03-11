@@ -13,6 +13,8 @@ public class SharkEater : MiniGame
     Dictionary<PlayerController, float> blooding = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, float> timeInBlooding = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, Shark> sharkPerPlayer = new Dictionary<PlayerController, Shark>();
+    // PODE SER NO MINIGAME
+    Dictionary<PlayerController, int> point = new Dictionary<PlayerController, int>();
     float timeToEat = 0;
     bool playerWin;
 
@@ -48,6 +50,19 @@ public class SharkEater : MiniGame
     public override void HitRule(PlayerController player)
     {
         players.Remove(player);
+        switch (players.Count) {
+            case 0:
+                point[player] = 3;
+                break;
+            case 1:
+                point[player] = 2;
+                break;
+            case 2:
+                point[player] = 1;
+                break;
+
+        }
+        
         WinRule();
         if (!playerWin) {
             GameObject.Destroy(player.gameObject);
@@ -72,17 +87,13 @@ public class SharkEater : MiniGame
 
     public override void WinRule()
     {
-        if (players.Count == 0)
+        if (players.Count < 2)
         {
             playerWin = true;
             //empate
 
 
-        } else if (players.Count == 1)
-        {
-            playerWin = true;
-            //um ganhou sozinho
-        }
+        } 
     }
     Vector3 getNearestFence(PlayerController player)
     {
@@ -103,7 +114,6 @@ public class SharkEater : MiniGame
         timeToEat += Time.deltaTime;
         if (timeToEat > 1)
         {
-            
             foreach (var shark in sharks)
             {
                 Vector3 aux = Vector3.zero;
@@ -132,5 +142,10 @@ public class SharkEater : MiniGame
     {
         sharkController();
         stopBlooding();
+    }
+
+    public override void Jump(PlayerController player)
+    {
+        player.rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
     }
 }

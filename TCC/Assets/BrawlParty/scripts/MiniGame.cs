@@ -10,5 +10,5 @@ public abstract class MiniGame : MonoBehaviour
     public abstract void HitRule(PlayerController player);
     public abstract void MovementRule(PlayerController player);
     public abstract void RotationRule(PlayerController player);
-
+    public abstract void Jump(PlayerController player);
 }

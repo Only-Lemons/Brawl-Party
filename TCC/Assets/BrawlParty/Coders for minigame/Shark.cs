@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Shark : MonoBehaviour
 {
+    Rigidbody rb;
     Vector3 nextFence;
     bool inJump = false;
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     private void Update()
     {
         if (!inJump)
@@ -21,7 +26,7 @@ public class Shark : MonoBehaviour
     {
         if (!inJump)
         {
-           // this.transform.position = Vector3
+            this.rb.AddForce(Vector3.up * 15f, ForceMode.Impulse); 
         }
     }
     private void OnTriggerEnter(Collider other)
