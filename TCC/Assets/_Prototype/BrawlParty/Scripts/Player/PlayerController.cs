@@ -264,7 +264,13 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         }
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Oxygen"))
+        {
+            actualGameMode.HitRule(this);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
