@@ -276,7 +276,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (other.CompareTag("Planet"))
         {
-            rb.drag = 1f;
+            rb.drag = 4f;
         }
 
 
