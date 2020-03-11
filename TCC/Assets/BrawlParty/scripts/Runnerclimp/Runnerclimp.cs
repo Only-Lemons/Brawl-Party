@@ -40,14 +40,14 @@ public class Runnerclimp : MiniGame
         if (timeInstantiateStone <= 0)
             timeInstantiateStone = 4;
 
-        InvokeRepeating("RollingStones", 10f, timeInstantiateStone);
-        InvokeRepeating("instanciaPedra", 12f, timeInstantiateStone);
+        InvokeRepeating("RollingStones", 10f, timeInstantiateStone - timeUp);
+        InvokeRepeating("instanciaPedra", 12f, timeInstantiateStone - timeUp);
         InvokeRepeating("PlatformGenerator", 0, 2/speed);
     }
 
     public override void Action(PlayerController player)
     {
-        player.rb.AddForce(Vector3.up * 10.5f, ForceMode.Impulse);
+        player.rb.AddForce(Vector3.up * (10f + (10f*timeUp)), ForceMode.Impulse);
     }
 
     public override void HitRule(PlayerController player)
