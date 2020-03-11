@@ -64,7 +64,6 @@ public class Spacenaut : MiniGame
 
     void Death(PlayerController player)
     {
-        //playerOxygen.Remove(player);
         players.Remove(player);
         Destroy(player.gameObject);
     }
