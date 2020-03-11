@@ -11,7 +11,6 @@ public class SharkEater : MiniGame
     List<GameObject> fences = new List<GameObject>();
     Dictionary<PlayerController, float> blooding = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, float> timeInBlooding = new Dictionary<PlayerController, float>();
-    Dictionary<PlayerController, Shark> sharkPerPlayer = new Dictionary<PlayerController, Shark>();
     // PODE SER NO MINIGAME
 
     float timeToEat = 0;
@@ -25,6 +24,8 @@ public class SharkEater : MiniGame
         foreach (var player in players)
         {
             player.actualGameMode = this;
+            blooding[player] = 0;
+            timeInBlooding[player] = 0;
         }
     }
     void stopBlooding()
