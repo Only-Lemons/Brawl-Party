@@ -7,7 +7,6 @@ public class Runnerclimp : MiniGame
     public List<PlayerController> players = new List<PlayerController>();
     public Camera camera;
     float timeUp;
-    public float lowSpeed;
 
     public GameObject[] platform;
     public Transform posSpawn;
@@ -20,8 +19,10 @@ public class Runnerclimp : MiniGame
     public float timeInstantiateStone;
 
     float randomStonePos;
+    public float playerFallMultiplier;
 
-    //float randomPosStone;
+    //Foot
+    public GameObject footPlayer;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class Runnerclimp : MiniGame
         foreach (var player in players)
         {
             player.actualGameMode = this;
+            Instantiate(footPlayer, player.transform);
         }
 
         camera = Camera.main;
@@ -45,8 +47,7 @@ public class Runnerclimp : MiniGame
 
     public override void Action(PlayerController player)
     {
-        player.GetComponent<Rigidbody>().AddForce(Vector3.up * 15, ForceMode.Impulse);
-        Debug.Log("adsasgfasfasd");
+        player.rb.AddForce(Vector3.up * 10.5f, ForceMode.Impulse);
     }
 
     public override void HitRule(PlayerController player)
@@ -56,6 +57,19 @@ public class Runnerclimp : MiniGame
     public override void MovementRule(PlayerController player)
     {
         player.transform.position += player._movementAxis * player.speed * Time.fixedDeltaTime;
+    }
+
+    void LockZ()
+    {
+        foreach (var player in players)
+        {
+            player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0);
+
+            if(player.rb.velocity.y < 3f)
+            {
+                player.rb.velocity += Vector3.up * Physics.gravity.y * (playerFallMultiplier - 1) * Time.deltaTime;
+            }
+        }
     }
 
     public override void PointRule(PlayerController player)
@@ -114,6 +128,12 @@ public class Runnerclimp : MiniGame
 
     void FixedUpdate()
     {
+        LockZ();
         SceneMechanics();
+    }
+
+    public override void Jump(PlayerController player)
+    {
+        throw new System.NotImplementedException();
     }
 }

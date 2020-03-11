@@ -21,4 +21,13 @@ public class Stone : MonoBehaviour
     {
         transform.Rotate(ramdom*Time.deltaTime, ramdom*Time.deltaTime, ramdom*Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Destroy(other.gameObject);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+    }
 }
