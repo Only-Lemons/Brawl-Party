@@ -10,11 +10,18 @@ public class Runnerclimp : MiniGame
     public float lowSpeed;
 
     public GameObject[] platform;
+    public Transform posSpawn;
     public Transform[] posPlatform;
-    float timePlatform;
-    //public float distanceInstantiatePlatform;
-    public float timeInstantiatePlatform;
-    //GameObject tempPlatform;
+    public float speed;
+
+    //Stone
+    public GameObject stonePrefab;
+    public GameObject warningEffect;
+    public float timeInstantiateStone;
+
+    float randomStonePos;
+
+    //float randomPosStone;
 
     void Start()
     {
@@ -26,15 +33,20 @@ public class Runnerclimp : MiniGame
         }
 
         camera = Camera.main;
-        timePlatform = 1;
-        if (timeInstantiatePlatform <= 0)
-            timeInstantiatePlatform = 2;
+        if (speed <= 0)
+            speed = 2;
+        if (timeInstantiateStone <= 0)
+            timeInstantiateStone = 4;
 
-        //tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
+        InvokeRepeating("RollingStones", 10f, timeInstantiateStone);
+        InvokeRepeating("instanciaPedra", 12f, timeInstantiateStone);
+        InvokeRepeating("PlatformGenerator", 0, 2/speed);
     }
 
     public override void Action(PlayerController player)
     {
+        player.GetComponent<Rigidbody>().AddForce(Vector3.up * 15, ForceMode.Impulse);
+        Debug.Log("adsasgfasfasd");
     }
 
     public override void HitRule(PlayerController player)
@@ -61,50 +73,47 @@ public class Runnerclimp : MiniGame
 
     void SceneMechanics() //Comportamento geral do cenário
     {
-        timeUp += Acceleration(Time.deltaTime);
+        speed += Time.deltaTime / 100;
+        timeUp = Time.deltaTime * speed;
         camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + timeUp, camera.transform.position.z);
 
-        
-
-        PlatformGenerator();
+        posSpawn.position = new Vector3(posSpawn.position.x, camera.transform.position.y + 8, posSpawn.position.z);
     }
-    float Acceleration(float t) //Aumenta dificuldade do jogo gradualmente
-    {
-        return (t * t) / lowSpeed;
-    }
+    //float Acceleration(float t) //Aumenta dificuldade do jogo gradualmente
+    //{
+    //    //return (t * t);
+    //    return t/200;
+    //}
 
     void PlatformGenerator() //Comportamento e geração das plataformas
     {
-        if (timeInstantiatePlatform > 0.2f)
-        {
-            timeInstantiatePlatform -= timeUp / 10;
-        }
-        else
-            timeInstantiatePlatform = 0.2f;
+        GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
+    }
 
-        timePlatform += Time.deltaTime;
-        if (timePlatform >= timeInstantiatePlatform)
-        {
-            GameObject temp = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
-            timePlatform = 0;
+    void RollingStones()
+    {
+        print("RollingStones");
+        randomStonePos = Random.Range(-6f, 6f);
+        GameObject warning = Instantiate(warningEffect);
+        warning.transform.position = new Vector3(randomStonePos, posSpawn.position.y - 2);
+        warning.transform.parent = posSpawn.transform;
+    }
 
-        }
-        //float distance = Vector3.Distance(tempPlatform.transform.position, posPlatform[1].position);
-        //if (distance > distanceInstantiatePlatform)
-        //{
-        //    tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
-        //}
-
+    void instanciaPedra()
+    {
+        print("Instancia Pedra");
+        GameObject stone = Instantiate(stonePrefab);
+        stone.transform.position = new Vector3(randomStonePos, posSpawn.position.y, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        SceneMechanics();
-        WinRule();
+        //WinRule();
     }
 
     void FixedUpdate()
     {
+        SceneMechanics();
     }
 }

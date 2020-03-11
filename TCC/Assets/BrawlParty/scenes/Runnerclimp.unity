@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 405185240}
   m_Layer: 0
-  m_Name: posPlatformSpawn
+  m_Name: PosSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,15 +144,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405185239}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.04, z: 10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1049350209}
   - {fileID: 862047560}
   - {fileID: 1814614373}
-  m_Father: {fileID: 888621742}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862047559
 GameObject:
@@ -328,7 +328,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1527405080}
-  - {fileID: 405185240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -432,6 +431,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2136061040103969205, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136061040103969205, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969206, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
       propertyPath: m_Name
@@ -626,11 +635,17 @@ MonoBehaviour:
   platform:
   - {fileID: 738310335822285627, guid: f0c5af49fedaca242afed5e1bbfb3543, type: 3}
   - {fileID: 9056326913321065914, guid: 20bb2f4f9b0928244860f9cf24f3fedf, type: 3}
+  posSpawn: {fileID: 405185240}
   posPlatform:
   - {fileID: 1049350209}
   - {fileID: 862047560}
   - {fileID: 1814614373}
-  timeInstantiatePlatform: 0
+  speed: 0
+  stonePrefab: {fileID: 6606819014400937946, guid: 9782242820833a94c81ba43cf5efd609,
+    type: 3}
+  warningEffect: {fileID: 6313957517326469316, guid: b5f4823d4cb52ff459b6700641f96680,
+    type: 3}
+  timeInstantiateStone: 5
 --- !u!4 &1435958864
 Transform:
   m_ObjectHideFlags: 0
@@ -639,7 +654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435958862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07537809, y: 0.6354593, z: 0.37433314}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -922,5 +937,5 @@ Transform:
   m_LocalScale: {x: 14.6965, y: 1.3620483, z: 1.3620483}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

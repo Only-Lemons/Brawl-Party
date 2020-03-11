@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            GameController.singleton.gameMode.Action(this);
+            actualGameMode.Action(this);
         }
     }
 
