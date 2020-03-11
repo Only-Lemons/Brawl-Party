@@ -41,7 +41,7 @@ public class Runnerclimp : MiniGame
             timeInstantiateStone = 4;
 
         InvokeRepeating("RollingStones", 10f, timeInstantiateStone - timeUp);
-        InvokeRepeating("instanciaPedra", 12f, timeInstantiateStone - timeUp);
+        InvokeRepeating("InstantiateStone", 12f, timeInstantiateStone - timeUp);
         InvokeRepeating("PlatformGenerator", 0, 2/speed);
     }
 
@@ -113,7 +113,7 @@ public class Runnerclimp : MiniGame
         warning.transform.parent = posSpawn.transform;
     }
 
-    void instanciaPedra()
+    void InstantiateStone()
     {
         print("Instancia Pedra");
         GameObject stone = Instantiate(stonePrefab);
