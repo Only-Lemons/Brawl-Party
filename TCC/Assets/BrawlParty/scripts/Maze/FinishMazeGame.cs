@@ -10,6 +10,7 @@ public class FinishMazeGame : MonoBehaviour
         if (player != null)
         {
             player.actualGameMode.HitRule(player);
+            Debug.Log(player.name +  " terminou o game");
         }
     }
 }

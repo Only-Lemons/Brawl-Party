@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class Maze : MiniGame
@@ -15,6 +16,10 @@ public class Maze : MiniGame
     GameObject door;
     [SerializeField]
     List<Jason> jasons = new List<Jason>();
+
+    [SerializeField]
+    private Transform _doorFinalPosition = null;   
+
     float fTime;
     float calculateLT = 1;
     private void Start()
@@ -44,9 +49,14 @@ public class Maze : MiniGame
             float coicidenteP = 0;
             foreach(var player in players)
             {
-                if (((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1/Vector3.Distance(player.transform.position,door.transform.position))) > coicidenteP)
+                float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, door.transform.position)));
+                if ( cpa > coicidenteP)
+                {
                     playerF = player;
+                    coicidenteP =cpa;
+                }
             }
+            print(playerF.name);
             jason.moviment(playerF.transform.position);
         }
     }
@@ -70,8 +80,12 @@ public class Maze : MiniGame
     void CloseDoors()
     {
         fTime -= Time.fixedDeltaTime;
-        doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
-        doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
+        //doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
+        //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
+
+        Sequence seq = DOTween.Sequence();
+        seq.Insert(0, doors[0].transform.DOLocalMoveX(_doorFinalPosition.localPosition.x, 180f, false));
+        seq.Insert(0, doors[1].transform.DOLocalMoveX(_doorFinalPosition.localPosition.x, 180f, false));
 
     }
     public override void Action(PlayerController player)
