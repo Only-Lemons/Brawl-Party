@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Maze : MiniGame
 {
     Dictionary<PlayerController, float> lightPerPlayer = new Dictionary<PlayerController, float>();
-    List<Jason> jasons = new List<Jason>();
     List<PlayerController> players = new List<PlayerController>();
     Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
+    [SerializeField]
     List<GameObject> doors = new List<GameObject>();
     [SerializeField]
     GameObject door;
+    [SerializeField]
+    List<Jason> jasons = new List<Jason>();
     float fTime;
     float calculateLT = 1;
     private void Start()
@@ -22,6 +25,7 @@ public class Maze : MiniGame
             player.actualGameMode = this;
             inStun[player] = false;
             timeStun[player] = 0;
+            lightPerPlayer[player] = 1;
         }
         fTime = 5f;
     }
@@ -66,8 +70,8 @@ public class Maze : MiniGame
     void CloseDoors()
     {
         fTime -= Time.fixedDeltaTime;
-        doors[0].transform.position +=  new Vector3(doors[0].transform.position.x * Time.fixedDeltaTime * 5, doors[0].transform.position.y, doors[0].transform.position.z);
-        doors[1].transform.position += new Vector3(doors[1].transform.position.x * Time.fixedDeltaTime * 5, doors[1].transform.position.y, doors[1].transform.position.z);
+        doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
+        doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
     }
     public override void Action(PlayerController player)

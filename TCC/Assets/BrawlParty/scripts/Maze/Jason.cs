@@ -35,6 +35,7 @@ public class Jason: MonoBehaviour
     }
     public void moviment(Vector3 vec)
     {
+        IAmoviment.ResetPath();
         IAmoviment.SetDestination(vec);
     }
 }
