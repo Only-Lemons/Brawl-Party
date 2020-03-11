@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SharkEater : MiniGame
 {
-    [SerializeField]
-    List<PlayerController> players = new List<PlayerController>();
+    public List<PlayerController> players = new List<PlayerController>();
     [SerializeField]
     List<Shark> sharks = new List<Shark>();
     [SerializeField]
@@ -14,15 +13,15 @@ public class SharkEater : MiniGame
     Dictionary<PlayerController, float> timeInBlooding = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, Shark> sharkPerPlayer = new Dictionary<PlayerController, Shark>();
     // PODE SER NO MINIGAME
-    Dictionary<PlayerController, int> point = new Dictionary<PlayerController, int>();
+
     float timeToEat = 0;
     bool playerWin;
 
     void Start()
     {
+      
         playerWin = false;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
-
         foreach (var player in players)
         {
             player.actualGameMode = this;
@@ -52,13 +51,13 @@ public class SharkEater : MiniGame
         players.Remove(player);
         switch (players.Count) {
             case 0:
-                point[player] = 3;
+                playerPoints[player] = 3;
                 break;
             case 1:
-                point[player] = 2;
+                playerPoints[player] = 2;
                 break;
             case 2:
-                point[player] = 1;
+                playerPoints[player] = 1;
                 break;
 
         }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class MiniGame : MonoBehaviour
-{
+{ 
+    protected Dictionary<PlayerController, int> playerPoints = new Dictionary<PlayerController, int>();
+
     public abstract void PointRule(PlayerController player);
     public abstract void WinRule();
     public abstract void Action(PlayerController player);

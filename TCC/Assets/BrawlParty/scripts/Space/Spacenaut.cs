@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Spacenaut : MiniGame
 {
-    public List<PlayerController> players= new List<PlayerController>();
+    public List<PlayerController> players = new List<PlayerController>();
     Dictionary<PlayerController, float> playerOxygen = new Dictionary<PlayerController, float>();
-
-
     void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         foreach (var player in players)
         {
-            player.actualGameMode = this;
             playerOxygen.Add(player, 100f);
+            player.actualGameMode = this;
         }
 
 
@@ -85,5 +83,8 @@ public class Spacenaut : MiniGame
         }
     }
 
-
+    public override void Jump(PlayerController player)
+    {
+        throw new System.NotImplementedException();
+    }
 }
