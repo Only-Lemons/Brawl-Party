@@ -219,17 +219,17 @@ PrefabInstance:
     - target: {fileID: 2136061040103969205, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
       propertyPath: m_AngularDrag
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969205, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969205, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
       propertyPath: m_Mass
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969206, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
@@ -494,7 +494,7 @@ PrefabInstance:
     - target: {fileID: 3434427980774303637, guid: 22d6daf7a651e14438cf6248cf9b8c5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.76
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 3434427980774303637, guid: 22d6daf7a651e14438cf6248cf9b8c5a,
         type: 3}
@@ -564,7 +564,7 @@ PrefabInstance:
     - target: {fileID: 8340823964733322125, guid: 22d6daf7a651e14438cf6248cf9b8c5a,
         type: 3}
       propertyPath: gravityScale
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8340823964733322125, guid: 22d6daf7a651e14438cf6248cf9b8c5a,
         type: 3}
@@ -632,7 +632,7 @@ PrefabInstance:
     - target: {fileID: 3434427980774303637, guid: 22d6daf7a651e14438cf6248cf9b8c5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.06
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3434427980774303637, guid: 22d6daf7a651e14438cf6248cf9b8c5a,
         type: 3}
