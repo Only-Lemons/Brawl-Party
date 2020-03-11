@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spacenaut : MiniGame
 {
     public List<PlayerController> players = new List<PlayerController>();
+    public GameObject oxPrefab;
     Dictionary<PlayerController, float> playerOxygen = new Dictionary<PlayerController, float>();
     void Start()
     {
@@ -15,7 +16,8 @@ public class Spacenaut : MiniGame
             player.actualGameMode = this;
         }
 
-       // StartCoroutine(OxygenLoss());
+        StartCoroutine(OxygenLoss());
+        StartCoroutine(OxygenInstante());
     }
 
     private void Update()
@@ -38,10 +40,10 @@ public class Spacenaut : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-        player.rb.AddForce(Vector3.right * player._movementAxis.x * player.speed);
+        //  player.rb.AddForce(Vector3.right * player._movementAxis.x * player.speed);
 
        // player.transform.position += (player._movementAxis).normalized * player.speed * Time.fixedDeltaTime;
-        //player.transform.Translate(player._movementAxis * player.speed * Time.fixedDeltaTime, Camera.main.transform);
+        player.transform.Translate(player._movementAxis * player.speed * Time.fixedDeltaTime, Camera.main.transform);
     }
 
     public override void PointRule(PlayerController player)
@@ -82,6 +84,20 @@ public class Spacenaut : MiniGame
             }     
         }
     }
+
+
+    IEnumerator OxygenInstante()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3f);
+            int rng = Random.Range(0, players.Count - 1);
+            GameObject ox = Instantiate(oxPrefab, players[rng].transform.position + new Vector3(0,2,0),Quaternion.identity);
+          
+
+        }
+    }
+
 
     public override void Jump(PlayerController player)
     {

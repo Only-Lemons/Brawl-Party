@@ -269,6 +269,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
         if (other.CompareTag("Oxygen"))
         {
             actualGameMode.HitRule(this);
+            Destroy(other.gameObject);
         }
     }
 
