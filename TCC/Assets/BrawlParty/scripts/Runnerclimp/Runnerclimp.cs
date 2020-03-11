@@ -101,7 +101,27 @@ public class Runnerclimp : MiniGame
 
     void PlatformGenerator() //Comportamento e geração das plataformas
     {
-        GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
+        int qtd = Random.Range(0, 4);
+        if (qtd > 2) 
+        {
+            int platRandom = Random.Range(0, posPlatform.Length);
+            GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
+            int platNew = 0;
+            do
+            {
+                platNew = Random.Range(0, posPlatform.Length);
+            }
+            while (platRandom == platNew);
+            if (platNew != platRandom)
+            {
+                GameObject tempPlatformMew = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew].position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
+        }
+
     }
 
     void RollingStones()
