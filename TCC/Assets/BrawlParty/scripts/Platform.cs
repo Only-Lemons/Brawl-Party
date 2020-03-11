@@ -6,7 +6,7 @@ public class Platform : MonoBehaviour
 {
     void Start()
     {
-        Destroy(this.gameObject, 5);
+        Destroy(this.gameObject, 20);
     }
 
 }

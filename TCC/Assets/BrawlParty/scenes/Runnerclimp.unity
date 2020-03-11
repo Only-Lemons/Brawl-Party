@@ -622,8 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   camera: {fileID: 0}
-  timeUp: 0
-  speed: 30
+  lowSpeed: 5
   platform:
   - {fileID: 738310335822285627, guid: f0c5af49fedaca242afed5e1bbfb3543, type: 3}
   - {fileID: 9056326913321065914, guid: 20bb2f4f9b0928244860f9cf24f3fedf, type: 3}
@@ -631,7 +630,7 @@ MonoBehaviour:
   - {fileID: 1049350209}
   - {fileID: 862047560}
   - {fileID: 1814614373}
-  timeInstantiatePlatform: 1.5
+  timeInstantiatePlatform: 0
 --- !u!4 &1435958864
 Transform:
   m_ObjectHideFlags: 0

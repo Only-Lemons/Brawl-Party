@@ -6,14 +6,15 @@ public class Runnerclimp : MiniGame
 {
     public List<PlayerController> players = new List<PlayerController>();
     public Camera camera;
-    public float timeUp;
-    public int speed;
+    float timeUp;
+    public float lowSpeed;
 
     public GameObject[] platform;
     public Transform[] posPlatform;
     float timePlatform;
+    //public float distanceInstantiatePlatform;
     public float timeInstantiatePlatform;
-
+    //GameObject tempPlatform;
 
     void Start()
     {
@@ -25,6 +26,11 @@ public class Runnerclimp : MiniGame
         }
 
         camera = Camera.main;
+        timePlatform = 1;
+        if (timeInstantiatePlatform <= 0)
+            timeInstantiatePlatform = 2;
+
+        //tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
     }
 
     public override void Action(PlayerController player)
@@ -50,40 +56,55 @@ public class Runnerclimp : MiniGame
 
     public override void WinRule()
     {
-        
+
     }
 
     void SceneMechanics() //Comportamento geral do cenário
     {
-        timeUp += Time.fixedDeltaTime / speed;
-        if(timeInstantiatePlatform > 0.3f)
-            timeInstantiatePlatform -= timeUp / 2000;
-        float time = Time.fixedDeltaTime * Acceleration(timeUp);
-        camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + time, camera.transform.position.z);
+        timeUp += Acceleration(Time.deltaTime);
+        camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + timeUp, camera.transform.position.z);
+
+        
 
         PlatformGenerator();
     }
     float Acceleration(float t) //Aumenta dificuldade do jogo gradualmente
     {
-        return Mathf.Exp(t);
+        return (t * t) / lowSpeed;
     }
 
     void PlatformGenerator() //Comportamento e geração das plataformas
     {
-        timePlatform += Time.deltaTime;
-        if(timePlatform > timeInstantiatePlatform)
+        if (timeInstantiatePlatform > 0.2f)
         {
-            GameObject plat = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
-
-            timePlatform = 0;
+            timeInstantiatePlatform -= timeUp / 10;
         }
-    }
+        else
+            timeInstantiatePlatform = 0.2f;
 
+        timePlatform += Time.deltaTime;
+        if (timePlatform >= timeInstantiatePlatform)
+        {
+            GameObject temp = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
+            timePlatform = 0;
+
+        }
+        //float distance = Vector3.Distance(tempPlatform.transform.position, posPlatform[1].position);
+        //if (distance > distanceInstantiatePlatform)
+        //{
+        //    tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
+        //}
+
+    }
 
     // Update is called once per frame
     void Update()
     {
         SceneMechanics();
         WinRule();
+    }
+
+    void FixedUpdate()
+    {
     }
 }
