@@ -50,7 +50,7 @@ public class Maze : MiniGame
             foreach(var player in players)
             {
                 float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, door.transform.position)));
-                if ( cpa > coicidenteP)
+                if ( cpa > coicidenteP && !inStun[player])
                 {
                     playerF = player;
                     coicidenteP =cpa;

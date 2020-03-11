@@ -6,7 +6,7 @@ public class FinishMazeGame : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController player = GetComponent<PlayerController>();
+        PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
             player.actualGameMode.HitRule(player);
