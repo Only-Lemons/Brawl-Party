@@ -12,6 +12,8 @@ public class Runnerclimp : MiniGame
     public Transform posSpawn;
     public Transform[] posPlatform;
     public float speed;
+    float platformPerSecond;
+    public float distancePlatform;
 
     //Stone
     public GameObject stonePrefab;
@@ -24,6 +26,8 @@ public class Runnerclimp : MiniGame
     //Foot
     public GameObject footPlayer;
 
+    float time;
+
     void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
@@ -35,19 +39,19 @@ public class Runnerclimp : MiniGame
         }
 
         camera = Camera.main;
-        if (speed <= 0)
-            speed = 2;
+        if (platformPerSecond <= 0)
+            platformPerSecond = 2;
         if (timeInstantiateStone <= 0)
             timeInstantiateStone = 4;
 
-        InvokeRepeating("RollingStones", 10f, timeInstantiateStone - timeUp);
-        InvokeRepeating("InstantiateStone", 12f, timeInstantiateStone - timeUp);
-        InvokeRepeating("PlatformGenerator", 0, 2/speed);
+        InvokeRepeating("RollingStones", 10f, timeInstantiateStone);
+        InvokeRepeating("InstantiateStone", 12f, timeInstantiateStone);
     }
 
     public override void Action(PlayerController player)
     {
-        player.rb.AddForce(Vector3.up * (10f + (10f*timeUp)), ForceMode.Impulse);
+        if (player.rb.velocity.y > -0.2f && player.rb.velocity.y < 0.2f)
+            player.rb.AddForce(Vector3.up * (10f + (10f * timeUp)), ForceMode.Impulse);
     }
 
     public override void HitRule(PlayerController player)
@@ -65,7 +69,7 @@ public class Runnerclimp : MiniGame
         {
             player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0);
 
-            if(player.rb.velocity.y < 3f)
+            if (player.rb.velocity.y < 3f)
             {
                 player.rb.velocity += Vector3.up * Physics.gravity.y * (playerFallMultiplier - 1) * Time.deltaTime;
             }
@@ -91,7 +95,7 @@ public class Runnerclimp : MiniGame
         timeUp = Time.deltaTime * speed;
         camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + timeUp, camera.transform.position.z);
 
-        posSpawn.position = new Vector3(posSpawn.position.x, camera.transform.position.y + 8, posSpawn.position.z);
+        posSpawn.position = new Vector3(posSpawn.position.x, camera.transform.position.y + 10.5f, posSpawn.position.z);
     }
     //float Acceleration(float t) //Aumenta dificuldade do jogo gradualmente
     //{
@@ -101,39 +105,45 @@ public class Runnerclimp : MiniGame
 
     void PlatformGenerator() //Comportamento e geração das plataformas
     {
-        int qtd = Random.Range(0, 4);
-        if (qtd > 2) 
+        time += Time.deltaTime;
+        platformPerSecond = speed / distancePlatform;
+        if (time > 1 / (platformPerSecond))
         {
-            int platRandom = Random.Range(0, posPlatform.Length);
-            GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
-            int platNew = 0;
-            do
+            int qtd = Random.Range(0, 4);
+            if (qtd > 2)
             {
-                platNew = Random.Range(0, posPlatform.Length);
+                int platRandom = Random.Range(0, posPlatform.Length);
+                GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
+                int platNew = 0;
+                do
+                {
+                    platNew = Random.Range(0, posPlatform.Length);
+                }
+                while (platRandom == platNew);
+                if (platNew != platRandom)
+                {
+                    GameObject tempPlatformMew = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew].position, Quaternion.identity);
+                }
             }
-            while (platRandom == platNew);
-            if (platNew != platRandom)
+            else
             {
-                GameObject tempPlatformMew = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew].position, Quaternion.identity);
+                GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
             }
-        }
-        else
-        {
-            GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
+            time = 0;
         }
 
     }
 
-    void RollingStones()
+    void WarningStone()
     {
         print("RollingStones");
-        randomStonePos = Random.Range(-6f, 6f);
+        randomStonePos = Random.Range(-9f, 9f);
         GameObject warning = Instantiate(warningEffect);
         warning.transform.position = new Vector3(randomStonePos, posSpawn.position.y - 2);
         warning.transform.parent = posSpawn.transform;
     }
 
-    void InstantiateStone()
+    void RollingStones()
     {
         print("Instancia Pedra");
         GameObject stone = Instantiate(stonePrefab);
@@ -150,6 +160,7 @@ public class Runnerclimp : MiniGame
     {
         LockZ();
         SceneMechanics();
+        PlatformGenerator();
     }
 
     public override void Jump(PlayerController player)

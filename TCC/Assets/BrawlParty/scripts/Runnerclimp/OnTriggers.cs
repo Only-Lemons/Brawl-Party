@@ -18,7 +18,7 @@ public class OnTriggers : MonoBehaviour
         else if(this.gameObject.name == "PlatformBroken(Clone)")
         {
             if (other.tag == "Foot")
-                Destroy(this.gameObject, 1.5f);
+                Destroy(this.gameObject, 2.5f);
         }
     }
 
