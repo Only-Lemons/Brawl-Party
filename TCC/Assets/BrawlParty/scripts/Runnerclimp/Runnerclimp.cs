@@ -6,27 +6,28 @@ public class Runnerclimp : MiniGame
 {
     public List<PlayerController> players = new List<PlayerController>();
     public Camera camera;
-    float timeUp;
+    
 
     public GameObject[] platform;
     public Transform posSpawn;
     public Transform[] posPlatform;
     public float speed;
-    float platformPerSecond;
     public float distancePlatform;
 
     //Stone
     public GameObject stonePrefab;
     public GameObject warningEffect;
     public float timeInstantiateStone;
-
-    float randomStonePos;
     public float playerFallMultiplier;
 
     //Foot
     public GameObject footPlayer;
+    //
 
     float time;
+    float timeUp;
+    float platformPerSecond;
+    float randomStonePos;
 
     void Start()
     {
@@ -39,13 +40,9 @@ public class Runnerclimp : MiniGame
         }
 
         camera = Camera.main;
-        if (platformPerSecond <= 0)
-            platformPerSecond = 2;
-        if (timeInstantiateStone <= 0)
-            timeInstantiateStone = 4;
 
         InvokeRepeating("RollingStones", 10f, timeInstantiateStone);
-        InvokeRepeating("InstantiateStone", 12f, timeInstantiateStone);
+        InvokeRepeating("WarningStone", 12f, timeInstantiateStone);
     }
 
     public override void Action(PlayerController player)
@@ -136,7 +133,6 @@ public class Runnerclimp : MiniGame
 
     void WarningStone()
     {
-        print("RollingStones");
         randomStonePos = Random.Range(-9f, 9f);
         GameObject warning = Instantiate(warningEffect);
         warning.transform.position = new Vector3(randomStonePos, posSpawn.position.y - 2);
@@ -145,7 +141,6 @@ public class Runnerclimp : MiniGame
 
     void RollingStones()
     {
-        print("Instancia Pedra");
         GameObject stone = Instantiate(stonePrefab);
         stone.transform.position = new Vector3(randomStonePos, posSpawn.position.y, 0);
     }
