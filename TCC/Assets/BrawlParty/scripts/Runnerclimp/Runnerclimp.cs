@@ -88,7 +88,7 @@ public class Runnerclimp : MiniGame
 
     void SceneMechanics() //Comportamento geral do cenário
     {
-        speed += Time.deltaTime / 100;
+        speed += Time.deltaTime / 40;
         timeUp = Time.deltaTime * speed;
         camera.transform.position = new Vector3(camera.transform.position.x, camera.transform.position.y + timeUp, camera.transform.position.z);
 
@@ -106,20 +106,46 @@ public class Runnerclimp : MiniGame
         platformPerSecond = speed / distancePlatform;
         if (time > 1 / (platformPerSecond))
         {
-            int qtd = Random.Range(0, 4);
+            int qtd = Random.Range(0, 5);
             if (qtd > 2)
             {
                 int platRandom = Random.Range(0, posPlatform.Length);
                 GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
-                int platNew = 0;
+                int platNew1 = 0;
                 do
                 {
-                    platNew = Random.Range(0, posPlatform.Length);
+                    platNew1 = Random.Range(0, posPlatform.Length);
                 }
-                while (platRandom == platNew);
-                if (platNew != platRandom)
+                while (platRandom == platNew1);
+                if (platNew1 != platRandom)
                 {
-                    GameObject tempPlatformMew = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew].position, Quaternion.identity);
+                    GameObject tempPlatformMew1 = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew1].position, Quaternion.identity);
+                    int platNew2 = 0;
+                    do
+                    {
+                        platNew2 = Random.Range(0, posPlatform.Length);
+                    }
+                    while (platNew2 == platNew1 || platNew2 == platRandom);
+                    if (platNew2 != platRandom && platNew2 != platNew1)
+                    {
+                        GameObject tempPlatformMew2 = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew2].position, Quaternion.identity);
+                    }
+
+                }
+            }
+            else if (qtd == 0)
+            {
+                int platRandom = Random.Range(0, posPlatform.Length);
+                GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
+                int platNew1 = 0;
+                do
+                {
+                    platNew1 = Random.Range(0, posPlatform.Length);
+                }
+                while (platRandom == platNew1);
+                if (platNew1 != platRandom)
+                {
+                    GameObject tempPlatformMew1 = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew1].position, Quaternion.identity);
                 }
             }
             else
