@@ -17,36 +17,39 @@ public class BotRunnerclimp : MonoBehaviour
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody>();
+        platformPast = GameObject.FindGameObjectWithTag("Base");
     }
 
     void Jump()
     {
-        if (transform.position.y < Camera.main.transform.position.y + 3)
+        if (transform.position.y <= Camera.main.transform.position.y + 4)
         {
             timeJump += Time.deltaTime;
-            if (rb.velocity.y == 0 && timeJump > 0.15f)
+            if (timeJump > 0.15f && rb.velocity.magnitude < 0.2f)
             {
                 Debug.Log("pulo");
                 rb.AddForce(Vector3.up * (11f), ForceMode.Impulse);
                 timeJump = 0;
-                platformPast = null;
+                //platformPast = null;
             }
         }
     }
 
     void Walking()
     {
-        if (transform.position.x > platformPast.transform.position.x - 3 && transform.position.x < platformPast.transform.position.x + 3 || rb.velocity.y != 0)
+        if (transform.position.x > platformPast.transform.position.x - 3 && transform.position.x < platformPast.transform.position.x + 3 || rb.velocity.magnitude > 0)
         {
-            if (transform.position.x <= platformNext.transform.position.x)
+            if (transform.position.x < platformNext.transform.position.x)
             {
-                Debug.Log("direita");
-                transform.position = new Vector3(transform.position.x + Time.fixedDeltaTime * speedBot, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + Time.deltaTime * speedBot, transform.position.y, transform.position.z);
+                if (transform.position.x > platformNext.transform.position.x)
+                    transform.position = new Vector3(platformNext.transform.position.x, transform.position.y, transform.position.z);
             }
             if (transform.position.x > platformNext.transform.position.x)
             {
-                Debug.Log("esquerda");
-                transform.position = new Vector3(transform.position.x - Time.fixedDeltaTime * speedBot, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x - Time.deltaTime * speedBot, transform.position.y, transform.position.z);
+                if (transform.position.x < platformNext.transform.position.x)
+                    transform.position = new Vector3(platformNext.transform.position.x, transform.position.y, transform.position.z);
             }
         }
     }
@@ -71,7 +74,9 @@ public class BotRunnerclimp : MonoBehaviour
             distance = Vector3.Distance(platformNext.transform.position, this.transform.position);
             for (int i = 0; i < plat.Length; i++)
             {
-                if (Vector3.Distance(plat[i].transform.position, this.transform.position) < distance && plat[i].transform.position.y < transform.position.y + 5)
+                if (Vector3.Distance(plat[i].transform.position, this.transform.position) < distance
+                    && plat[i].transform.position.y < transform.position.y + 5
+                    && plat[i].transform.position.y > transform.position.y - 1)
                 {
                     distance = Vector3.Distance(plat[i].transform.position, this.transform.position);
                     platformNext = plat[i];
@@ -84,7 +89,6 @@ public class BotRunnerclimp : MonoBehaviour
 
     void SearchPlatform()
     {
-        //if (platformNext == null && rb.velocity.y == 0)
         if (platformNext == null)
         {
             platformNext = PlatformNext(GameObject.FindGameObjectsWithTag("Platform"));
@@ -96,6 +100,7 @@ public class BotRunnerclimp : MonoBehaviour
             {
                 distance = 0;
                 platformNext.tag = "Untagged";
+                Untagg("Platform", gameObject);
                 if (rb.velocity.y == 0)
                 {
                     platformPast = platformNext;
@@ -106,6 +111,19 @@ public class BotRunnerclimp : MonoBehaviour
             {
                 Jump();
             }
+        }
+    }
+
+    void Untagg(string tag, GameObject bot)
+    {
+        GameObject[] objs = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach(GameObject obj in objs)
+        {
+            if (Vector3.Distance(obj.transform.position, bot.transform.position) < 1 && bot.transform.position.y > platformNext.transform.position.y + 1)
+                obj.tag = "Untagged";
+            else
+                obj.tag = tag;
         }
     }
 }

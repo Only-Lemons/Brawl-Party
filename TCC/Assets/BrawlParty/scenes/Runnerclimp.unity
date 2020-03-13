@@ -266,8 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f39f4bcfffc1643a6d90b74468d3a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0
-  platformNext: {fileID: 0}
+  speedBot: 8
 --- !u!1 &862047559
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +668,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AngularDrag
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136061040103969205, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969206, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
@@ -1371,7 +1375,7 @@ GameObject:
   - component: {fileID: 1964145531}
   m_Layer: 0
   m_Name: BaseChao
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1445,7 +1449,7 @@ Transform:
   m_GameObject: {fileID: 1964145530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 9.79, z: 0}
-  m_LocalScale: {x: 14.6965, y: 1.3620483, z: 1.3620483}
+  m_LocalScale: {x: 29.278368, y: 1.3620483, z: 1.3620483}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
