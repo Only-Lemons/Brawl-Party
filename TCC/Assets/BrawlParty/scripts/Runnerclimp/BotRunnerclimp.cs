@@ -8,7 +8,7 @@ public class BotRunnerclimp : MonoBehaviour
 
     float distance;
     GameObject platformNext;
-    //GameObject platformPast;
+    GameObject platformPast;
     Rigidbody rb;
 
     //limitadores
@@ -29,14 +29,14 @@ public class BotRunnerclimp : MonoBehaviour
                 Debug.Log("pulo");
                 rb.AddForce(Vector3.up * (11f), ForceMode.Impulse);
                 timeJump = 0;
-               // platformPast = null;
+                platformPast = null;
             }
         }
     }
 
     void Walking()
     {
-        //if (transform.position.x > platformPast.transform.position.x - 3 && transform.position.x < platformPast.transform.position.x + 3 || platformPast == null)
+        if (transform.position.x > platformPast.transform.position.x - 3 && transform.position.x < platformPast.transform.position.x + 3 || rb.velocity.y != 0)
         {
             if (transform.position.x <= platformNext.transform.position.x)
             {
@@ -85,7 +85,7 @@ public class BotRunnerclimp : MonoBehaviour
     void SearchPlatform()
     {
         //if (platformNext == null && rb.velocity.y == 0)
-        if (rb.velocity.y == 0)
+        if (platformNext == null)
         {
             platformNext = PlatformNext(GameObject.FindGameObjectsWithTag("Platform"));
         }
@@ -98,7 +98,7 @@ public class BotRunnerclimp : MonoBehaviour
                 platformNext.tag = "Untagged";
                 if (rb.velocity.y == 0)
                 {
-                    //platformPast = platformNext;
+                    platformPast = platformNext;
                     platformNext = null;
                 }
             }
