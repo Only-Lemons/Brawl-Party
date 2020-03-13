@@ -6,9 +6,9 @@ public class BotRunnerclimp : MonoBehaviour
 {
     public float speedBot = 3;
 
-
     float distance;
     GameObject platformNext;
+    //GameObject platformPast;
     Rigidbody rb;
 
     //limitadores
@@ -29,25 +29,25 @@ public class BotRunnerclimp : MonoBehaviour
                 Debug.Log("pulo");
                 rb.AddForce(Vector3.up * (11f), ForceMode.Impulse);
                 timeJump = 0;
+               // platformPast = null;
             }
         }
     }
 
     void Walking()
     {
-        if (transform.position.x < platformNext.transform.position.x)
+        //if (transform.position.x > platformPast.transform.position.x - 3 && transform.position.x < platformPast.transform.position.x + 3 || platformPast == null)
         {
-            Debug.Log("direita");
-            transform.position = new Vector3(transform.position.x + Time.fixedDeltaTime * speedBot, transform.position.y, transform.position.z);
-        }
-        else if (transform.position.x > platformNext.transform.position.x)
-        {
-            Debug.Log("esquerda");
-            transform.position = new Vector3(transform.position.x - Time.fixedDeltaTime * speedBot, transform.position.y, transform.position.z);
-        }
-        else
-        {
-
+            if (transform.position.x <= platformNext.transform.position.x)
+            {
+                Debug.Log("direita");
+                transform.position = new Vector3(transform.position.x + Time.fixedDeltaTime * speedBot, transform.position.y, transform.position.z);
+            }
+            if (transform.position.x > platformNext.transform.position.x)
+            {
+                Debug.Log("esquerda");
+                transform.position = new Vector3(transform.position.x - Time.fixedDeltaTime * speedBot, transform.position.y, transform.position.z);
+            }
         }
     }
 
@@ -84,7 +84,8 @@ public class BotRunnerclimp : MonoBehaviour
 
     void SearchPlatform()
     {
-        if (platformNext == null && rb.velocity.y == 0)
+        //if (platformNext == null && rb.velocity.y == 0)
+        if (rb.velocity.y == 0)
         {
             platformNext = PlatformNext(GameObject.FindGameObjectsWithTag("Platform"));
         }
@@ -96,8 +97,10 @@ public class BotRunnerclimp : MonoBehaviour
                 distance = 0;
                 platformNext.tag = "Untagged";
                 if (rb.velocity.y == 0)
+                {
+                    //platformPast = platformNext;
                     platformNext = null;
-                //alvoAtual = AlvoMaisProximo(GameObject.FindGameObjectsWithTag("Horda"));
+                }
             }
             else
             {
