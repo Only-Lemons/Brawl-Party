@@ -7,17 +7,15 @@ public class Spacenaut : MiniGame
     public List<PlayerController> players = new List<PlayerController>();
     public GameObject oxPrefab;
     Dictionary<PlayerController, float> playerOxygen = new Dictionary<PlayerController, float>();
+
     void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         foreach (var player in players)
         {
-            playerOxygen.Add(player, 100f);
+            playerOxygen.Add(player, 0f);
             player.actualGameMode = this;
         }
-
-        StartCoroutine(OxygenLoss());
-        StartCoroutine(OxygenInstante());
     }
 
     private void Update()
@@ -28,22 +26,60 @@ public class Spacenaut : MiniGame
 
     public override void Action(PlayerController player)
     {
-        //Pular
-        player.rb.AddForce(player.transform.up * 15f, ForceMode.Impulse);
+        Collider[] colided = Physics.OverlapBox(player.transform.position, new Vector3(2, 2, 4), Quaternion.identity);
+        float mDist = float.MaxValue;
+        Collider mDistCollider = null;
+        if(colided!= null)
+        {
+            for (int i = 0; i < colided.Length; i++)
+            {
+                //GAms pq o layermask nao quer funcionar
+                if (colided[i].GetComponent<PlayerController>() != player && !colided[i].CompareTag("Planet"))
+                {
+                    float dist = Vector3.Distance(player.transform.position, colided[i].transform.position);
+                    if (dist <= mDist)
+                        mDistCollider = colided[i];
+                }          
+            }
+            if(mDistCollider.CompareTag("Player"))
+            {
+                HitRule(mDistCollider.GetComponent<PlayerController>());
+            }
+            else if (mDistCollider.CompareTag("Oxygen"))
+            {
+                
+                if(playerOxygen[player]<=100)
+                    playerOxygen[player] += mDistCollider.GetComponent<Resource>().takeResource();
+            }else if(mDistCollider.CompareTag("Nave"))
+            {
+                if (playerOxygen[player] > 0)
+                {
+                    playerOxygen[player] -= 10;
+                    if(mDistCollider.GetComponent<Nave>().takeResource())
+                    {
+                        WinRule();
+                    }
+                }
+
+                   
+
+            }
+
+        }
     }
 
     public override void HitRule(PlayerController player)
     {
-        //Quando ele acerta em algo
-        playerOxygen[player] += 30f;
+
+        player.rb.AddForce(Vector3.forward* 10, ForceMode.Impulse);
     }
 
     public override void MovementRule(PlayerController player)
     {
-        //  player.rb.AddForce(Vector3.right * player._movementAxis.x * player.speed);
 
-       // player.transform.position += (player._movementAxis).normalized * player.speed * Time.fixedDeltaTime;
-        player.transform.Translate(player._movementAxis * player.speed * Time.fixedDeltaTime, Camera.main.transform);
+
+       player.transform.position += (player._movementAxis) * player.speed * Time.fixedDeltaTime;
+        
     }
 
     public override void PointRule(PlayerController player)
@@ -54,11 +90,12 @@ public class Spacenaut : MiniGame
     public override void RotationRule(PlayerController player)
     {
         
+        player.rb.MoveRotation(Quaternion.Euler(player._movementAxis));
     }
 
     public override void WinRule()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("ACABOOOOOOOOOOOOO");
     }
 
 
@@ -101,6 +138,7 @@ public class Spacenaut : MiniGame
 
     public override void Jump(PlayerController player)
     {
-        throw new System.NotImplementedException();
+        //Pular
+        player.rb.AddForce(player.transform.up * 15f, ForceMode.Impulse);
     }
 }
