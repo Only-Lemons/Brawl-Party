@@ -37,19 +37,15 @@ public class BotRunnerclimp : MonoBehaviour
 
     void Walking()
     {
-        if (transform.position.x > platformPast.transform.position.x - 3 && transform.position.x < platformPast.transform.position.x + 3 || rb.velocity.magnitude > 0)
+        if (transform.position.x > platformPast.transform.position.x - 3 && transform.position.x < platformPast.transform.position.x + 3 || Mathf.Abs(rb.velocity.y) > 0.1f)
         {
             if (transform.position.x < platformNext.transform.position.x)
             {
-                transform.position = new Vector3(transform.position.x + Time.deltaTime * speedBot, transform.position.y, transform.position.z);
-                if (transform.position.x > platformNext.transform.position.x)
-                    transform.position = new Vector3(platformNext.transform.position.x, transform.position.y, transform.position.z);
+                rb.velocity = new Vector3(rb.velocity.x + Time.deltaTime * speedBot, rb.velocity.y, rb.velocity.z);
             }
             if (transform.position.x > platformNext.transform.position.x)
             {
-                transform.position = new Vector3(transform.position.x - Time.deltaTime * speedBot, transform.position.y, transform.position.z);
-                if (transform.position.x < platformNext.transform.position.x)
-                    transform.position = new Vector3(platformNext.transform.position.x, transform.position.y, transform.position.z);
+                rb.velocity = new Vector3(rb.velocity.x - Time.deltaTime * speedBot, rb.velocity.y, rb.velocity.z);
             }
         }
     }
@@ -76,7 +72,7 @@ public class BotRunnerclimp : MonoBehaviour
             {
                 if (Vector3.Distance(plat[i].transform.position, this.transform.position) < distance
                     && plat[i].transform.position.y < transform.position.y + 5
-                    && plat[i].transform.position.y > transform.position.y - 1)
+                    && plat[i].transform.position.y > platformPast.transform.position.y)
                 {
                     distance = Vector3.Distance(plat[i].transform.position, this.transform.position);
                     platformNext = plat[i];
@@ -101,7 +97,7 @@ public class BotRunnerclimp : MonoBehaviour
                 distance = 0;
                 platformNext.tag = "Untagged";
                 Untagg("Platform", gameObject);
-                if (rb.velocity.y == 0)
+                if (Mathf.Abs(rb.velocity.y) < 0.1f)
                 {
                     platformPast = platformNext;
                     platformNext = null;
