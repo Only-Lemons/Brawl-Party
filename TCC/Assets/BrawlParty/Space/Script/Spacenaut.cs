@@ -29,7 +29,10 @@ public class Spacenaut : MiniGame
         Collider[] colided = Physics.OverlapBox(player.transform.position, new Vector3(2, 2, 4), Quaternion.identity);
         float mDist = float.MaxValue;
         Collider mDistCollider = null;
-        if(colided!= null)
+
+        Debug.Log("Meu recurso é:" + playerOxygen[player]);
+
+        if (colided!= null)
         {
             for (int i = 0; i < colided.Length; i++)
             {
@@ -41,6 +44,7 @@ public class Spacenaut : MiniGame
                         mDistCollider = colided[i];
                 }          
             }
+
             if(mDistCollider.CompareTag("Player"))
             {
                 HitRule(mDistCollider.GetComponent<PlayerController>());
@@ -59,9 +63,7 @@ public class Spacenaut : MiniGame
                     {
                         WinRule();
                     }
-                }
-
-                   
+                }   
 
             }
 

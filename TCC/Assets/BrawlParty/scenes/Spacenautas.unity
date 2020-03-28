@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 931598965}
   - component: {fileID: 931598964}
   - component: {fileID: 931598963}
+  - component: {fileID: 931598968}
   m_Layer: 17
   m_Name: Reource
   m_TagString: Oxygen
@@ -491,6 +492,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &931598968
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931598962}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1007244357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3434427980774303637, guid: 22d6daf7a651e14438cf6248cf9b8c5a,
@@ -637,7 +654,7 @@ PrefabInstance:
     - target: {fileID: 2136061040103969209, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.810133
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969209, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
@@ -1229,6 +1246,7 @@ GameObject:
   - component: {fileID: 1762953614}
   - component: {fileID: 1762953613}
   - component: {fileID: 1762953617}
+  - component: {fileID: 1762953618}
   m_Layer: 0
   m_Name: Nave
   m_TagString: Nave
@@ -1304,7 +1322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762953612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.38, y: 3.15, z: -5.75}
+  m_LocalPosition: {x: -8.38, y: 5.9, z: -20.4}
   m_LocalScale: {x: 4.1493, y: 4.1493, z: 4.1493}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1322,6 +1340,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767dd2a8114c98e458e1ba77c2144c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceAmount: 0
+--- !u!54 &1762953618
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762953612}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2038630988
 PrefabInstance:
   m_ObjectHideFlags: 0
