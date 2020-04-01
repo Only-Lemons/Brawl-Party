@@ -18,7 +18,11 @@ public enum GameModes
     JhonBeen,
     SnackAtack,
     RunGhost,
-    Boss
+    Boss,
+    Halloween,
+    SpaceNault,
+    RunnersClimp,
+    Shark
 }
   
  
