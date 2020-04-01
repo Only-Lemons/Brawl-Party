@@ -70,12 +70,20 @@ public class BotRunnerclimp : MonoBehaviour
             distance = Vector3.Distance(platformNext.transform.position, this.transform.position);
             for (int i = 0; i < plat.Length; i++)
             {
-                if (Vector3.Distance(plat[i].transform.position, this.transform.position) < distance
-                    && plat[i].transform.position.y < transform.position.y + 5
-                    && plat[i].transform.position.y > platformPast.transform.position.y)
+                for (int j = 0; j < plat.Length; j++)
                 {
-                    distance = Vector3.Distance(plat[i].transform.position, this.transform.position);
-                    platformNext = plat[i];
+                    if(plat[i].transform.position != plat[j].transform.position)
+                    {
+                        if(Vector3.Distance(plat[i].transform.position, transform.position) < Vector3.Distance(plat[j].transform.position, transform.position))
+                        {
+                            if (Vector3.Distance(plat[i].transform.position, transform.position) < distance)
+                                if (plat[i].transform.position.y < this.transform.position.y +5 && plat[i].transform.position.y > this.transform.position.y)
+                            {
+                                distance = Vector3.Distance(plat[i].transform.position, this.transform.position);
+                                platformNext = plat[i];
+                            }
+                        }
+                    }
                 }
             }
 
@@ -92,12 +100,12 @@ public class BotRunnerclimp : MonoBehaviour
 
         if (platformNext != null)
         {
-            if (this.transform.position.y > platformNext.transform.position.y)
+            if (this.transform.position.y >= platformNext.transform.position.y)
             {
                 distance = 0;
-                platformNext.tag = "Untagged";
-                Untagg("Platform", gameObject);
-                if (Mathf.Abs(rb.velocity.y) < 0.1f)
+                //platformNext.tag = "Untagged";
+                //Untagg("Platform", gameObject);
+                if (Mathf.Abs(rb.velocity.magnitude) < 0.1f)
                 {
                     platformPast = platformNext;
                     platformNext = null;
@@ -108,6 +116,9 @@ public class BotRunnerclimp : MonoBehaviour
                 Jump();
             }
         }
+
+        if(platformPast == null)
+            platformPast = GameObject.FindGameObjectWithTag("Base");
     }
 
     void Untagg(string tag, GameObject bot)
