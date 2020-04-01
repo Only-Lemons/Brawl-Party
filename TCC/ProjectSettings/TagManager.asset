@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - TileN
+  - Base
   - Obstaculo
   - Pai
   - Filho
@@ -16,6 +16,10 @@ TagManager:
   - Enemy
   - Planet
   - Oxygen
+  - Foot
+  - Platform
+  - FxTemporaire
+  - Unplatform
   layers:
   - Default
   - TransparentFX
@@ -34,8 +38,8 @@ TagManager:
   - Cenario
   - Floor
   - IgnorePlayer
-  - 
-  - 
+  - Player
+  - Platform
   - 
   - 
   - 
