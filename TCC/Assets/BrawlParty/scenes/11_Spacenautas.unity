@@ -196,6 +196,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 14735384}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &84592465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 84592468}
+  - component: {fileID: 84592467}
+  - component: {fileID: 84592466}
+  m_Layer: 0
+  m_Name: Controladores
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &84592466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84592465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70e7edc8e74089428237ab8abc0bd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playersControllers: []
+  playerMortosPrefabs: []
+  playersUI: []
+  timeRespawn: 0
+--- !u!114 &84592467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84592465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23502611ecb7aa04a8900781a2d42a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comecouContar: 0
+  comecou: 0
+  timeComecarText: {fileID: 0}
+  playerManager: {fileID: 0}
+  uIManager: {fileID: 0}
+  time: {fileID: 0}
+  pontos: []
+  personagens: []
+  players: []
+  painelPontos: {fileID: 0}
+  spritePersonagens: []
+  powerSpritePersonagem: []
+  posicoesPersonagens: []
+--- !u!4 &84592468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84592465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.135, z: -12.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &152853970
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +518,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.5030705, g: 0.6192768, b: 0.8018868, a: 0}
+  m_BackGroundColor: {r: 0.31083125, g: 0.39295095, b: 0.5188679, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1102,7 +1175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
-  oxPrefab: {fileID: 5084646374391070076, guid: 7d2cb9b679df69a4dba63488b5f95fb3,
+  oxPrefab: {fileID: 5110484350103472351, guid: 6e12c9a5ba7e98241a48b02370574f12,
     type: 3}
 --- !u!4 &1435958864
 Transform:

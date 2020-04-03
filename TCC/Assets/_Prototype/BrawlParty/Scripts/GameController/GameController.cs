@@ -47,17 +47,11 @@ public class GameController : MonoBehaviour
 
     }
 
-    void SetarSprites()
-    {
-        foreach (PlayerController p in GameController.singleton.playerManager.playersControllers)
-        {
-            spritePersonagens.Add(p.playerSprite);
-        }
-    }
+
     private void Start()
     {
         
-        painelPontos.SetActive(false);
+       // painelPontos.SetActive(false);
        
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
@@ -68,15 +62,23 @@ public class GameController : MonoBehaviour
         GameManager.Instance.TryGetGameController();
         playerManager.adcionarPlayerControlador();
 
-        gameMode.StartGame();
+        gameMode.StartGame(); // isso nao precisa mais
         comecouContar = true;
 
         timeComecarText.CrossFadeAlpha(0, 5, false);
         SetarSprites();
     }
 
+    void SetarSprites()
+    {
+        foreach (PlayerController p in GameController.singleton.playerManager.playersControllers)
+        {
+            spritePersonagens.Add(p.playerSprite);
+        }
+    }
 
 
+    //Chamo quando meu minigame acaba
     public void FinishGame()
     {
         Time.timeScale = 1;
@@ -122,20 +124,25 @@ public class GameController : MonoBehaviour
         StartCoroutine(ChangeScene());
 
     }
+
+    //Muda pra de draw mini game
     IEnumerator ChangeScene()
     {
-
-
         yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(8);
     }
+
     private void Update()
     {
         if (comecou)
-            gameMode.Update();
+            gameMode.Update(); 
+
+
         ComecarJogo();
     }
 
+
+    // Isso é so UI 
     public void ComecarJogo()
     {
         if (comecouContar)
@@ -161,11 +168,10 @@ public class GameController : MonoBehaviour
                 }
             }
         }
-
         if (time.text == "00:00")
             timeComecarText.text = "FINISH!";
-
     }
+
 
     void pegarPlayerScene(GameObject[] players)
     {

@@ -40,23 +40,14 @@ public class PlayerManager : MonoBehaviour
     {
         
        // adcionarPlayerControlador();
-        MovePlayerBase();
+
     }
 
     private void Update()
     {
         DeathPlayerVerifity();
     }
-    void MovePlayerBase()
-    {
-        foreach (PlayerController player in playersControllers)
-        {
-            //player.GetComponentInChildren<Camera>().enabled = false;
-            //player.GetComponent<PlayerSelect>().enabled = false;
-            //player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)].position;
-            //player._base = _tileManager.bases[playersControllers.IndexOf(player)].position;
-        }
-    }
+
     void setPlayerInScene()
     {
         PlayerController[] aux = GameObject.FindObjectsOfType<PlayerController>();
@@ -67,6 +58,7 @@ public class PlayerManager : MonoBehaviour
             aux[i].playerUI = playersUI[i];
         }
     }
+
     void DeathPlayerVerifity()
     {
         if(playerMortos.Count > 0)
@@ -96,6 +88,7 @@ public class PlayerManager : MonoBehaviour
                 playerMortosPrefabs.Remove(playerMortosPrefabs[i]);
         }
     }
+
    public void adcionarPlayerControlador()
     {
         for (int i = 0; i < playersControllers.Count; i++)
@@ -114,11 +107,9 @@ public class PlayerManager : MonoBehaviour
             }
         }
         List<PlayerController> aux = playersControllers.FindAll(x => !x.gameObject.activeSelf);
-
         foreach (var auxP in aux)
         {
             playersControllers.Remove(playersControllers.Find(x => x == auxP));
         }
-
     }
 }
