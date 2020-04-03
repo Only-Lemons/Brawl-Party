@@ -28,10 +28,7 @@ public class Planet : MonoBehaviour
 
         Vector3 dir = (transform.position - obj.transform.position) * gravityScale;
         obj.GetComponent<Rigidbody>().AddForce(dir);
+        obj.transform.up += Vector3.MoveTowards(obj.transform.up, -dir, gravityScale * Time.deltaTime * 5f);
 
-        if (obj.CompareTag("Player"))
-        {
-            obj.transform.up += Vector3.MoveTowards(obj.transform.up, -dir, gravityScale * Time.deltaTime * 5f);
-        }
     }
 }
