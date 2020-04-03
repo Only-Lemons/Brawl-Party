@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class SortScene : MonoBehaviour
 {
+
     public List<GameMode> gameModes;
     public List<GameMode> auxMod;
     public Image prefabScene;
@@ -22,14 +23,10 @@ public class SortScene : MonoBehaviour
         {
             auxMod.Add(gameModes[Index]);
         }
-        //foreach(GameMode games in auxMod)
-        //{
-        //    gameModes.Remove(games);
-        //}
+
         if (GameManager.Instance.lastGameModes.Count >= GameManager.Instance.quantGames)
-        {
-            
-            SceneManager.LoadScene(15);
+        {   
+            SceneManager.LoadScene(9);
         }
         else
         {

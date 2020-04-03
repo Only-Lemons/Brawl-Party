@@ -8,6 +8,13 @@ public class Spacenaut : MiniGame
     public GameObject oxPrefab;
     Dictionary<PlayerController, float> playerOxygen = new Dictionary<PlayerController, float>();
 
+    GameManager gameManager;
+
+    void Awake()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
@@ -97,7 +104,7 @@ public class Spacenaut : MiniGame
 
     public override void WinRule()
     {
-        Debug.Log("ACABOOOOOOOOOOOOO");
+        
     }
 
 

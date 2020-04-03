@@ -96,8 +96,6 @@ public class PlayerManager : MonoBehaviour
                 playerMortosPrefabs.Remove(playerMortosPrefabs[i]);
         }
     }
-
-
    public void adcionarPlayerControlador()
     {
         for (int i = 0; i < playersControllers.Count; i++)

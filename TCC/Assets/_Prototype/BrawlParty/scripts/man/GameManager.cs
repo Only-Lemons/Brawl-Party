@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         switch (SceneManager.GetActiveScene().buildIndex)
         {
-            case 14: // Menu do Personagem
+            case 6: // Menu do Personagem
                 foreach (GameObject player in playersPanels)
                 {
                     //player.transform.GetChild(0).gameObject.SetActive(false);
@@ -73,9 +73,9 @@ public class GameManager : MonoBehaviour
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
 
 
-                break;
+            break;
 
-            case 3:
+            case 4: // Loading
                 if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio

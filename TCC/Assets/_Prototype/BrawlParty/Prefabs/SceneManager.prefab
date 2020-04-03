@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9791b6388984acf4a947b77185819a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuIncial: 1_MenuInicial
+  selectMode: 6_selectMode
 --- !u!114 &-7082222713703743249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,96 +65,64 @@ MonoBehaviour:
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceLostEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
   m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceRegainedEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: a84250f7-2471-4e35-a4d4-955ec33ff11d
     m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 5cac40f4-eacd-4aed-a203-635a41614410
     m_ActionName: Player/Add[/Keyboard/space,/XInputControllerWindows/start,/XInputControllerWindows/start]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 1180468d-8dff-41c7-aed7-413cdf886c5f
     m_ActionName: Player/Confirmed[/Keyboard/enter,/XInputControllerWindows/start,/XInputControllerWindows/start]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: c6cb16ca-edb2-4bd9-9d04-82327cb906c9
     m_ActionName: Player/UP[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/right]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 33612110-46f5-44e7-b94f-5c56f98e21db
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/XInputControllerWindows/rightStick,/Mouse/delta,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: d0a05ba7-d68f-4f5d-b099-543705f53838
     m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 97a4d398-30b5-4a45-9fd4-2b88e286edfc
     m_ActionName: Player/Insert[/XInputControllerWindows/start,/XInputControllerWindows/start]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 6d28fee9-9236-48f7-851d-a0f767a58858
     m_ActionName: Player/Switch[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/leftTrigger,/Keyboard/q]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: ac149a4a-e81d-493b-b362-8f205f1904b4
     m_ActionName: Player/Aim[/XInputControllerWindows/leftTrigger,/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 27123c6f-a94d-42eb-a186-5dd99b809eb2
     m_ActionName: Player/Action[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/c]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: ee33ec7d-651c-4e19-bd68-7ff938c38afa
     m_ActionName: Player/R[/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightShoulder,/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: a2d9cd92-4ccb-4a76-b0cc-c8c76fd54b7a
     m_ActionName: Player/L[/Keyboard/q,/XInputControllerWindows/leftShoulder,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 32e026f2-d1a3-451b-9264-ed3f3a993737
     m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 43ffcc9f-a6e5-4b31-9117-48710c88cee0
     m_ActionName: UI/Submit[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
@@ -168,80 +138,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 22339c79-42a0-4b20-b3cc-1e8529df9b48
     m_ActionName: UI/Cancel[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: c7da65fe-79e8-4c26-a63a-8d2d49c2c4da
     m_ActionName: UI/Point[/Mouse/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 07b9d6a5-1e07-4fc1-9865-623e542a5c3c
     m_ActionName: UI/Click[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 622492f5-a3dd-46c5-8cbc-063a27b6ff8e
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: e274cfe4-e5a8-46b3-8be7-31f3c06439a8
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: eb52c786-7084-4137-a6bd-fcf8d6bd5823
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: f821ace4-7e30-494d-ba72-ab9ce3614e39
     m_ActionName: UI/TrackedDevicePosition
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 3a07559a-eff8-46c8-aa9c-acb4d14e5a67
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: d94b5f98-48ee-4af4-b1a4-3d90dfbe8b43
     m_ActionName: UI/TrackedDeviceSelect
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 5c051ee0-0e32-40be-b64f-4b4d525c3f91
     m_ActionName: SelectUI/UP[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/right]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 2dd6a005-e796-4838-af5d-3a30a66b9920
     m_ActionName: SelectUI/Confirmed[/Keyboard/enter,/XInputControllerWindows/start,/XInputControllerWindows/start]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: ef2e8b7f-5b08-41d9-9960-7e0db65ed0a4
     m_ActionName: SelectUI/UP1[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick/right]
   - m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: a2145048-2876-4b8a-a260-776b06d3ebd1
     m_ActionName: SelectUI/Add[/Keyboard/space,/XInputControllerWindows/start,/XInputControllerWindows/start]
   - m_PersistentCalls:
@@ -257,8 +201,6 @@ MonoBehaviour:
           m_StringArgument: (1)MenuInicial
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+ActionEvent, Unity.InputSystem,
-      Version=0.9.5.0, Culture=neutral, PublicKeyToken=null
     m_ActionId: 4c600dda-652b-45e4-af04-f5ad374b55a8
     m_ActionName: UI/Return[/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
   m_AutoSwitchControlScheme: 0
