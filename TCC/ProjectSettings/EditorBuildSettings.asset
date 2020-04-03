@@ -24,11 +24,17 @@ EditorBuildSettings:
     path: Assets/BrawlParty/scenes/5_GameConfig.unity
     guid: 56dbcdf6042ba994dba87c0c731b5de1
   - enabled: 1
+    path: Assets/BrawlParty/scenes/6_selectMode.unity
+    guid: 8dbb33e6436b04a4ab813a862d09d36c
+  - enabled: 1
     path: Assets/BrawlParty/scenes/7_MenuPersonagem.unity
     guid: badf9b97acd6ce04c86b7f8e5e94cbfb
   - enabled: 1
-    path: Assets/BrawlParty/scenes/8_Vitoria.unity
-    guid: 8471328262e232f418305f028cd36f37
+    path: Assets/BrawlParty/scenes/8_drawArena.unity
+    guid: e561041559f7b8047a4e80b3d0c9a765
+  - enabled: 1
+    path: Assets/BrawlParty/scenes/9_Vitoria.unity
+    guid: c2d578d30739ac54ba87576cab8b128e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 75d13b8fd062eec44850361a199fe242,
       type: 2}
