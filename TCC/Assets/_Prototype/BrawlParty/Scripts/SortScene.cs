@@ -83,7 +83,7 @@ public class SortScene : MonoBehaviour
         GameManager.Instance.nextLevel = gameModes[sortGameM].Scene;
         GameManager.Instance.newGameMode = gameModes[sortGameM].gameMode;
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
 
     }
     IEnumerator StartScene()
