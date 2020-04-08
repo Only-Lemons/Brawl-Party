@@ -21,6 +21,9 @@ public class SharkEater : MiniGame
       
         playerWin = false;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
+        if(GameManager.Instance != null)
+            GameManager.Instance.getPlayersMinigame(players);
+
         foreach (var player in players)
         {
             player.actualGameMode = this;

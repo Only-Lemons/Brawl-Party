@@ -18,6 +18,10 @@ public class Spacenaut : MiniGame
     void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
+        
+        if(GameManager.Instance != null)
+            GameManager.Instance.getPlayersMinigame(players);
+        
         foreach (var player in players)
         {
             playerOxygen.Add(player, 0f);

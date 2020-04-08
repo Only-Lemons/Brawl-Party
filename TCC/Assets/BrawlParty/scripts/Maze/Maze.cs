@@ -22,9 +22,14 @@ public class Maze : MiniGame
 
     float fTime;
     float calculateLT = 1;
+
     private void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
+        
+        if(GameManager.Instance != null)
+            GameManager.Instance.getPlayersMinigame(players);
+
         foreach (var player in players)
         {
             player.actualGameMode = this;
@@ -32,8 +37,10 @@ public class Maze : MiniGame
             timeStun[player] = 0;
             lightPerPlayer[player] = 1;
         }
+        
         fTime = 5f;
     }
+
     private void FixedUpdate()
     {
         RemoveStun();
@@ -41,6 +48,7 @@ public class Maze : MiniGame
         ChangeLightPlayer();
         ChoicePathJason();
     }
+
     void ChoicePathJason()
     {
         foreach (var jason in jasons)

@@ -150,4 +150,24 @@ public class GameManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+
+    public void getPlayersMinigame(List<PlayerController> players)
+    {
+        for(int i = 0; i < players.Count; i++)
+        {
+            if(i < playersPanels.Count)
+            {
+                players[i].transform.SetParent(playersPanels[i].transform);
+            }
+        }
+
+        // Nao sei o que isso faz sinceramente 
+        List<PlayerController> aux = players.FindAll(x => !x.gameObject.activeSelf);
+        foreach (var auxP in aux)
+        {
+            players.Remove(players.Find(x => x == auxP));
+        }
+
+    }
+    
 }

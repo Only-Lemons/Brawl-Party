@@ -24,10 +24,12 @@ public class GameController : MonoBehaviour
     public Text timeComecarText;
 
     public IGameMode gameMode;
+
     [HideInInspector]
     public PlayerManager playerManager;
     [HideInInspector]
     public UIManager uIManager;
+
     public Text time;
     public List<Text> pontos;
     public List<Image> personagens;
@@ -56,16 +58,20 @@ public class GameController : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         uIManager = GetComponent<UIManager>();
 
-
+        // Tem que existir so que mlhor 
         pegarPlayerScene(GameObject.FindGameObjectsWithTag("Player"));
 
+        // nao preicsa mais 
         GameManager.Instance.TryGetGameController();
+
         playerManager.adcionarPlayerControlador();
 
         gameMode.StartGame(); // isso nao precisa mais
-        comecouContar = true;
 
+        //Inicio minigame HUD
+        comecouContar = true;
         timeComecarText.CrossFadeAlpha(0, 5, false);
+
         SetarSprites();
     }
 
@@ -135,7 +141,7 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         if (comecou)
-            gameMode.Update(); 
+            gameMode.Update(); // Isso nao preicsa mais 
 
 
         ComecarJogo();
