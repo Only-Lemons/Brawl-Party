@@ -131,9 +131,9 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     isConfirmed = true;
                 }
 
-
-            } else if (GameManager.Instance.gameController.comecou)
-                GameManager.Instance.PressStart();
+            }
+           // } else if (GameManager.Instance.gameController.comecou)
+               // GameManager.Instance.PressStart();
 
         }
     }

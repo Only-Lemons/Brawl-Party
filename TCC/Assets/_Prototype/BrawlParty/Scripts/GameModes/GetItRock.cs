@@ -16,6 +16,7 @@ public class GetItRock : IGameMode
     int dificuldade = 0;
 
     int pontoTotal;
+    
     public GetItRock(GameController gameController, float time)
     {
         aux = gameController;

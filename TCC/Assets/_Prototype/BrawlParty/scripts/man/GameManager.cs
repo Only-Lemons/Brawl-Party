@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public int quantTGames = 4;
     public int TimeInGame = 1;
-    public int quantGames = 4;
+    public int quantGames = 0;
     public GameModes newGameMode;
     public List<int> lastGameModes = new List<int>();
     public List<GameObject> playersPanels = new List<GameObject>();
@@ -64,12 +64,12 @@ public class GameManager : MonoBehaviour
 
                 transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
 
-                if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
+                //if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
                     necessarioMaisJogadores.text = "";
                 }
-                else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
+               // else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
 
 
@@ -170,4 +170,14 @@ public class GameManager : MonoBehaviour
 
     }
     
+    public void WinMinigame()
+    {
+        quantGames ++;
+        if(quantGames > quantTGames)
+            SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
+        else
+            SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
+    }
+
+
 }
