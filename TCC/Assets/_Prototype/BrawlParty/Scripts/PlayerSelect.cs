@@ -59,7 +59,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     private void FixedUpdate()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 14 && isConfirmed)
+        if (SceneManager.GetActiveScene().buildIndex == 7 && isConfirmed)
             UpdateCharSelectUi();
 
 
@@ -102,7 +102,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 14)
+            if (SceneManager.GetActiveScene().buildIndex == 7)
             {
                 if (isConfirmed)
                 {
