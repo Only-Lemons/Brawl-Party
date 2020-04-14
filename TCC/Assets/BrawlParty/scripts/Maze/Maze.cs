@@ -11,9 +11,9 @@ public class Maze : MiniGame
     Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
     [SerializeField]
-    List<GameObject> doors = new List<GameObject>();
+    GameObject doors;
     [SerializeField]
-    GameObject door;
+    GameObject FinishGame;
     [SerializeField]
     List<Jason> jasons = new List<Jason>();
 
@@ -57,7 +57,7 @@ public class Maze : MiniGame
             float coicidenteP = 0;
             foreach(var player in players)
             {
-                float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, door.transform.position)));
+                float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, FinishGame.transform.position)));
                 if ( cpa > coicidenteP && !inStun[player])
                 {
                     playerF = player;
@@ -92,8 +92,7 @@ public class Maze : MiniGame
         //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
         Sequence seq = DOTween.Sequence();
-        seq.Insert(0, doors[0].transform.DOLocalMoveX(_doorFinalPosition.localPosition.x, 180f, false));
-        seq.Insert(0, doors[1].transform.DOLocalMoveX(_doorFinalPosition.localPosition.x, 180f, false));
+        seq.Insert(0, doors.transform.DOLocalMoveX(_doorFinalPosition.localPosition.x + 4, 180f, false));
 
     }
     public override void Action(PlayerController player)
@@ -171,7 +170,7 @@ public class Maze : MiniGame
     {
        if(fTime <= 0 || players.Count == 0)
         {
-
+            //GameManager.Instance.
         }
     }
 }
