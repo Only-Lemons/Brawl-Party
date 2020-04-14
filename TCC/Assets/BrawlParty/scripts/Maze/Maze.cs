@@ -43,10 +43,11 @@ public class Maze : MiniGame
 
     private void FixedUpdate()
     {
+     
         RemoveStun();
         CloseDoors();
         ChangeLightPlayer();
-        ChoicePathJason();
+      
     }
 
     void ChoicePathJason()
@@ -67,6 +68,10 @@ public class Maze : MiniGame
             print(playerF.name);
             jason.moviment(playerF.transform.position);
         }
+    }
+    private void Update()
+    {
+        ChoicePathJason();
     }
     void ChangeLightPlayer()
     {
@@ -100,7 +105,7 @@ public class Maze : MiniGame
         if (!inStun[player])
         {
             inStun[player] = true;
-            timeStun[player] = 2;
+            timeStun[player] = 10;
         }
     }
     void RemoveStun()
