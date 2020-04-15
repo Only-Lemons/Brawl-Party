@@ -24,6 +24,10 @@ public class VictoryScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(GameManager.Instance.quantGames < GameManager.Instance.quantTGames)
+        {
+            GameManager.Instance.nextLevel = 10;
+        }
         foreach (GameObject panel in GameManager.Instance.playersPanels)
         {
             panel.GetComponentInChildren<PlayerSelect>().isConfirmed = true;

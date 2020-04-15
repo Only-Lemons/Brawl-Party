@@ -18,10 +18,10 @@ public class SharkEater : MiniGame
 
     void Start()
     {
-      
+
         playerWin = false;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
-        if(GameManager.Instance != null)
+        if (GameManager.Instance != null)
             GameManager.Instance.getPlayersMinigame(players);
 
         foreach (var player in players)
@@ -35,10 +35,11 @@ public class SharkEater : MiniGame
     {
         foreach (var player in players)
         {
-            if(timeInBlooding[player] > 0)
+            if (timeInBlooding[player] > 0)
             {
                 timeInBlooding[player] -= Time.deltaTime;
-                if (timeInBlooding[player] <= 0) {
+                if (timeInBlooding[player] <= 0)
+                {
                     timeInBlooding[player] = 0;
                     blooding[player] = 0;
                 }
@@ -53,21 +54,26 @@ public class SharkEater : MiniGame
     public override void HitRule(PlayerController player)
     {
         players.Remove(player);
-        switch (players.Count) {
-            case 0:
-                playerPoints[player] = 3;
-                break;
+        switch (players.Count)
+        {
             case 1:
-                playerPoints[player] = 2;
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
                 break;
             case 2:
-                playerPoints[player] = 1;
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                break;
+            case 3:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                break;
+            default:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
                 break;
 
         }
-        
+
         WinRule();
-        if (!playerWin) {
+        if (!playerWin)
+        {
             GameObject.Destroy(player.gameObject);
         }
     }
@@ -80,7 +86,7 @@ public class SharkEater : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        
+
     }
 
     public override void RotationRule(PlayerController player)
@@ -94,9 +100,8 @@ public class SharkEater : MiniGame
         {
             playerWin = true;
             //empate
-
-
-        } 
+            GameManager.Instance.WinMinigame();
+        }
     }
     Vector3 getNearestFence(PlayerController player)
     {
@@ -104,7 +109,7 @@ public class SharkEater : MiniGame
         float minDistance = Vector3.Distance(player.transform.position, fences[0].transform.position);
         foreach (var fence in fences)
         {
-            if(Vector3.Distance(player.transform.position,fence.transform.position)< minDistance)
+            if (Vector3.Distance(player.transform.position, fence.transform.position) < minDistance)
             {
                 aux = fence.transform.position;
                 minDistance = Vector3.Distance(player.transform.position, fence.transform.position);
@@ -122,17 +127,18 @@ public class SharkEater : MiniGame
                 Vector3 aux = Vector3.zero;
                 foreach (var player in players)
                 {
-                    if(Random.Range(0f,1f) < blooding[player])
+                    if (Random.Range(0f, 1f) < blooding[player])
                     {
                         aux = getNearestFence(player);
                     }
                 }
-                if (aux == Vector3.zero) {
+                if (aux == Vector3.zero)
+                {
                     int numCer = Random.Range(0, fences.Count);
                     aux = fences[numCer].transform.position;
                 }
                 shark.Moviment(aux);
-                if(timeToEat >= 3)
+                if (timeToEat >= 3)
                 {
                     timeToEat = 0;
                     shark.Jump();

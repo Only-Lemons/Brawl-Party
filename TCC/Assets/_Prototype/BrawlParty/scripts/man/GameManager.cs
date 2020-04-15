@@ -69,10 +69,13 @@ public class GameManager : MonoBehaviour
 
                 if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
-                    SceneManager.LoadScene(nextLevel); // provisorio
+                    if (nextLevel != 7 && nextLevel != 4 && nextLevel != 8)
+                        SceneManager.LoadScene(4); // provisorio
+                    else
+                        SceneManager.LoadScene(nextLevel); // provisorio
+
                     necessarioMaisJogadores.text = "";
                     inicializarDicio();
-
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
@@ -85,7 +88,6 @@ public class GameManager : MonoBehaviour
                 if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
-                    
                 }
                 break;
 
@@ -121,21 +123,21 @@ public class GameManager : MonoBehaviour
 
     public void newScene(GameModes game)
     {
-        switch (game)
-        {
-            case GameModes.GetItRock:
-                gameController.gameMode = new GetItRock(gameController, 30 * TimeInGame);
-                break;
-            case GameModes.JhonBeen:
-                gameController.gameMode = new JhonBeen(gameController, 40 * TimeInGame);
-                break;
-            case GameModes.SnackAtack:
-                gameController.gameMode = new SnackAtack(gameController, 30 * TimeInGame);
-                break;
-            case GameModes.RunGhost:
-                gameController.gameMode = new RunGhost(gameController, 30 * TimeInGame);
-                break;
-        }
+        //switch (game)
+        //{
+        //    //case GameModes.GetItRock:
+        //    //    gameController.gameMode = new GetItRock(gameController, 30 * TimeInGame);
+        //    //    break;
+        //    //case GameModes.JhonBeen:
+        //    //    gameController.gameMode = new JhonBeen(gameController, 40 * TimeInGame);
+        //    //    break;
+        //    //case GameModes.SnackAtack:
+        //    //    gameController.gameMode = new SnackAtack(gameController, 30 * TimeInGame);
+        //    //    break;
+        //    //case GameModes.RunGhost:
+        //    //    gameController.gameMode = new RunGhost(gameController, 30 * TimeInGame);
+        //    //    break;
+        //}
     }
 
 
@@ -182,7 +184,7 @@ public class GameManager : MonoBehaviour
         if(quantGames > quantTGames)
             SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
         else
-            SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
+            SceneManager.LoadScene(9, LoadSceneMode.Single); // Tela vitoria minigame
     }
 
 

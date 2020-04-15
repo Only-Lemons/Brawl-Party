@@ -16,7 +16,7 @@ public class SelectGameMenu : MonoBehaviour
         SceneManager.LoadScene(7);
     }
 
-     IEnumerator ChangeScene()
+    IEnumerator ChangeScene()
     {
         GameManager.Instance.nextLevel = modoJogo.Scene;
         GameManager.Instance.newGameMode = modoJogo.gameMode;

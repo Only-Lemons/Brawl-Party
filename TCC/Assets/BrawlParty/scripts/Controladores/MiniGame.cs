@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class MiniGame : MonoBehaviour
 { 
-    protected Dictionary<PlayerController, int> playerPoints = new Dictionary<PlayerController, int>();
+    protected Dictionary<GameObject, int> playerPoints = new Dictionary<GameObject, int>();
 
     public abstract void PointRule(PlayerController player);
     public abstract void WinRule();

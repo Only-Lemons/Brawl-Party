@@ -130,16 +130,16 @@ public class Maze : MiniGame
         switch (players.Count)
         {
             case 3:
-                playerPoints[player] = 3;
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
                 break;
             case 2:
-                playerPoints[player] = 2;
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
                 break;
             case 1:
-                playerPoints[player] = 1;
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
                 break;
             default:
-                playerPoints[player] = 0;
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
                 break;
         }
 
@@ -176,6 +176,7 @@ public class Maze : MiniGame
        if(fTime <= 0 || players.Count == 0)
         {
             // Coloca no manager os pontos e tals ta faltando 
+            //GameManager.Instance.playersPontos = playerPoints;
             GameManager.Instance.WinMinigame();
         }
     }

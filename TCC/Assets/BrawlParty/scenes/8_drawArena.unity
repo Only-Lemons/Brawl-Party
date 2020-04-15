@@ -304,7 +304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4345662, y: 0.4242973}
   m_AnchorMax: {x: 0.559, y: 0.6291892}
-  m_AnchoredPosition: {x: 2.1, y: -46.15}
+  m_AnchoredPosition: {x: 2.100006, y: -46.149994}
   m_SizeDelta: {x: 2.3, y: -16.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288789003
@@ -997,29 +997,29 @@ MonoBehaviour:
   gameModes:
   - gameMode: 5
     sprite: {fileID: 21300000, guid: 51b3261a3d874cb4b8655e782440a443, type: 3}
-    Scene: 15
+    Scene: 16
     spriteScene: {fileID: 3547381763761409659, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
   - gameMode: 7
     sprite: {fileID: 3048925395330779877, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
-    Scene: 10
+    Scene: 11
     spriteScene: {fileID: 21300000, guid: 51b3261a3d874cb4b8655e782440a443, type: 3}
   - gameMode: 2
     sprite: {fileID: -8468315610544368307, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
-    Scene: 12
+    Scene: 13
     spriteScene: {fileID: -8468315610544368307, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
   - gameMode: 3
     sprite: {fileID: 7719596976410993096, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
-    Scene: 13
+    Scene: 14
     spriteScene: {fileID: 7719596976410993096, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
   - gameMode: 8
     sprite: {fileID: 21300000, guid: 01bb24768ef7669489419e116c5658c2, type: 3}
-    Scene: 11
+    Scene: 12
     spriteScene: {fileID: 21300000, guid: 01bb24768ef7669489419e116c5658c2, type: 3}
   - gameMode: 9
     sprite: {fileID: 21300000, guid: e89bdfdc924231b4593f3571c30d903a, type: 3}
@@ -1027,8 +1027,18 @@ MonoBehaviour:
     spriteScene: {fileID: 21300000, guid: e89bdfdc924231b4593f3571c30d903a, type: 3}
   - gameMode: 10
     sprite: {fileID: 21300000, guid: fc6bf2bd91ba89b4c8dcbcad2bbf185b, type: 3}
-    Scene: 17
+    Scene: 19
     spriteScene: {fileID: 21300000, guid: fc6bf2bd91ba89b4c8dcbcad2bbf185b, type: 3}
+  - gameMode: 9
+    sprite: {fileID: -3611738328835053587, guid: c8e4a04acd23751408b6096cf7ab550c,
+      type: 3}
+    Scene: 18
+    spriteScene: {fileID: -3611738328835053587, guid: c8e4a04acd23751408b6096cf7ab550c,
+      type: 3}
+  - gameMode: 10
+    sprite: {fileID: 21300000, guid: 403267778244b80468bf9e7790a9a763, type: 3}
+    Scene: 17
+    spriteScene: {fileID: 21300000, guid: 403267778244b80468bf9e7790a9a763, type: 3}
   auxMod: []
   prefabScene: {fileID: 833547671}
   prefabGM: {fileID: 1895641213}

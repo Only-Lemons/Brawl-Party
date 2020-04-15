@@ -50,7 +50,7 @@ public class FallBirds : MiniGame
             if (player.transform.position.x <= -10)
                 player.transform.position = new Vector3(-10, player.transform.position.y, 0);
             if (player.transform.position.x >= 10)
-                player.transform.position = new Vector3(-10, player.transform.position.y, 0);
+                player.transform.position = new Vector3(10, player.transform.position.y, 0);
             if (player.transform.position.y <= -6)
                 player.transform.position = new Vector3(player.transform.position.x, -6, 0);
             if (player.transform.position.y >= 6)

@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77193733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 650.0825, y: 360, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1637,7 +1637,7 @@ MonoBehaviour:
     gameMode: 2
     sprite: {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 9
+    Scene: 13
     spriteScene: {fileID: -8468315610544368307, guid: e43eb451d8f4928488ccb461df3772e9,
       type: 3}
 --- !u!1 &1056063986
@@ -2638,7 +2638,7 @@ MonoBehaviour:
     gameMode: 3
     sprite: {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 10
+    Scene: 14
     spriteScene: {fileID: -8468315610544368307, guid: e43eb451d8f4928488ccb461df3772e9,
       type: 3}
 --- !u!1 &1356657393
@@ -2823,7 +2823,7 @@ PrefabInstance:
     - target: {fileID: 3723403232242304973, guid: 2316862fc1d193f49b0dc6780c59090d,
         type: 3}
       propertyPath: selectMode
-      value: 5_selectMode
+      value: 6_selectMode
       objectReference: {fileID: 0}
     - target: {fileID: 3723403232242304974, guid: 2316862fc1d193f49b0dc6780c59090d,
         type: 3}
@@ -3467,7 +3467,7 @@ MonoBehaviour:
     gameMode: 9
     sprite: {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 17
+    Scene: 18
     spriteScene: {fileID: -8468315610544368307, guid: e43eb451d8f4928488ccb461df3772e9,
       type: 3}
 --- !u!114 &1783317913
@@ -3770,7 +3770,7 @@ MonoBehaviour:
     gameMode: 5
     sprite: {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 12
+    Scene: 16
     spriteScene: {fileID: -8468315610544368307, guid: e43eb451d8f4928488ccb461df3772e9,
       type: 3}
 --- !u!1 &1842202587

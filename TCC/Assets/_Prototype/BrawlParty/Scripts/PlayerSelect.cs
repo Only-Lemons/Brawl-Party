@@ -120,7 +120,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 }
 
             }
-            else if(SceneManager.GetActiveScene().buildIndex == 4)
+            else if(SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetActiveScene().buildIndex == 9))
             {
                 if (isConfirmed)
                 {  

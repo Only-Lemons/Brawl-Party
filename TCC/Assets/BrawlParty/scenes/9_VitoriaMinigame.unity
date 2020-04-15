@@ -1834,7 +1834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15831935, y: 0}
   m_AnchorMax: {x: 0.83300006, y: 1}
-  m_AnchoredPosition: {x: 3.899994, y: -12.299957}
+  m_AnchoredPosition: {x: 3.899994, y: -12.299896}
   m_SizeDelta: {x: 0.5, y: 60.400024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786300723
@@ -1969,7 +1969,6 @@ GameObject:
   - component: {fileID: 1970921056}
   - component: {fileID: 1970921055}
   - component: {fileID: 1970921054}
-  - component: {fileID: 1970921053}
   - component: {fileID: 1970921058}
   m_Layer: 5
   m_Name: Canvas
@@ -1978,45 +1977,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1970921053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970921052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a9589880607ad14d807176aa612c736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliderLoad: {fileID: 0}
-  videosGameplay:
-  - {fileID: 32900000, guid: fc55bfc2fc64c7e4994291a7027f680d, type: 3}
-  - {fileID: 32900000, guid: e0ba544f55b26f8478b82d8e4211b4e2, type: 3}
-  - {fileID: 32900000, guid: c3ba86bcb271cfa42a6eac754fdef126, type: 3}
-  - {fileID: 32900000, guid: 409a4091268075a489e2d90f360294d2, type: 3}
-  spritesMinigames:
-  - {fileID: 3128145301084039129, guid: 5b2b1692e95f05141810d80adc39cd95, type: 3}
-  - {fileID: -1224655957869853199, guid: 5b2b1692e95f05141810d80adc39cd95, type: 3}
-  - {fileID: 27785594550805444, guid: 5b2b1692e95f05141810d80adc39cd95, type: 3}
-  - {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95, type: 3}
-  videoPlayer: {fileID: 0}
-  minigameName: {fileID: 0}
-  minigameDescription: {fileID: 0}
-  spriteMinigameP: {fileID: 0}
-  spriteMinigameG: {fileID: 1708858434}
-  game: 0
-  spritePlayer:
-  - {fileID: 596614544}
-  - {fileID: 1356290065}
-  - {fileID: 1342598069}
-  - {fileID: 877669207}
-  confirmPlayer:
-  - {fileID: 1163026842}
-  - {fileID: 2088014715}
-  - {fileID: 161891301}
-  - {fileID: 549721066}
 --- !u!114 &1970921054
 MonoBehaviour:
   m_ObjectHideFlags: 0
