@@ -11,14 +11,11 @@ public class Maze : MiniGame
     Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
     [SerializeField]
-    GameObject doors;
+    GameObject door;
     [SerializeField]
     GameObject FinishGame;
     [SerializeField]
     List<Jason> jasons = new List<Jason>();
-
-    [SerializeField]
-    private Transform _doorFinalPosition = null;   
 
     float fTime;
     float calculateLT = 1;
@@ -96,17 +93,13 @@ public class Maze : MiniGame
         //doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
         //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
-        Sequence seq = DOTween.Sequence();
-        seq.Insert(0, doors.transform.DOLocalMoveX(_doorFinalPosition.localPosition.x + 4, 180f, false));
+
+        Vector3.Lerp(door.transform.position, new Vector3(door.transform.position.x + 4, door.transform.position.y, door.transform.position.z),180);
 
     }
     public override void Action(PlayerController player)
     {
-        if (!inStun[player])
-        {
-            inStun[player] = true;
-            timeStun[player] = 10;
-        }
+      
     }
     void RemoveStun()
     {
@@ -126,26 +119,11 @@ public class Maze : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-        players.Remove(player);
-        switch (players.Count)
+        if (!inStun[player])
         {
-            case 3:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
-                break;
-            case 2:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
-                break;
-            case 1:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-                break;
-            default:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
-                break;
+            inStun[player] = true;
+            timeStun[player] = 10;
         }
-
-        WinRule();
-        GameObject.Destroy(player.gameObject);
-        
     }
 
     public override void Jump(PlayerController player)
@@ -163,7 +141,25 @@ public class Maze : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-       
+        players.Remove(player);
+        switch (players.Count)
+        {
+            case 3:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                break;
+            case 2:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                break;
+            case 1:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                break;
+            default:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+                break;
+        }
+        GameObject.Destroy(player.gameObject);
+        WinRule();
+        
     }
 
     public override void RotationRule(PlayerController player)
@@ -175,8 +171,7 @@ public class Maze : MiniGame
     {
        if(fTime <= 0 || players.Count == 0)
         {
-            // Coloca no manager os pontos e tals ta faltando 
-            //GameManager.Instance.playersPontos = playerPoints;
+
             GameManager.Instance.WinMinigame();
         }
     }

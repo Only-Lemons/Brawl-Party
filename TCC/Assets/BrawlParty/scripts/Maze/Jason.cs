@@ -30,7 +30,7 @@ public class Jason: MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if(player != null)
         {
-            player.actualGameMode.Action(player);
+            player.actualGameMode.HitRule(player);
         }
     }
     public void moviment(Vector3 vec)
