@@ -9,9 +9,7 @@ public class Stone : MonoBehaviour
     public float randomPosStone;
     void Start()
     {
-        //randomPosStone =  Random.Range(-6f, 6f);
-        //transform.position = new Vector3(randomPosStone, transform.position.y, transform.position.z);
-        Destroy(this.gameObject, 3);
+        //Destroy(this.gameObject, 3);
         ramdom = Random.Range(40f, 80f);
         GetComponent<Rigidbody>().AddForce(Vector3.down*100, ForceMode.Impulse);
     }
@@ -27,7 +25,12 @@ public class Stone : MonoBehaviour
         if (other.tag == "Player")
         {
             Destroy(other.gameObject);
-            //UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+
+        if (other.tag == "Platform")
+        {
+            other.GetComponent<Rigidbody>().AddForce(Vector3.down, ForceMode.Impulse);
+            //Destroy(other.gameObject); //temporario
         }
     }
 }

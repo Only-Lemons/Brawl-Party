@@ -6,7 +6,7 @@ public class Runnerclimp : MiniGame
 {
     public List<PlayerController> players = new List<PlayerController>();
     public Camera camera;
-    
+
 
     public GameObject[] platform;
     public Transform posSpawn;
@@ -20,10 +20,6 @@ public class Runnerclimp : MiniGame
     public float timeInstantiateStone;
     public float playerFallMultiplier;
 
-    //Foot
-    public GameObject footPlayer;
-    //
-
     float time;
     float timeUp;
     float platformPerSecond;
@@ -36,7 +32,6 @@ public class Runnerclimp : MiniGame
         foreach (var player in players)
         {
             player.actualGameMode = this;
-            Instantiate(footPlayer, player.transform);
         }
 
         camera = Camera.main;
@@ -45,9 +40,20 @@ public class Runnerclimp : MiniGame
         InvokeRepeating("WarningStone", 12f, timeInstantiateStone);
     }
 
+    void JumpAuto()
+    {
+        foreach (var player in players)
+        {
+            if (player.GetComponent<Rigidbody>().velocity.y <= 0)
+                player.GetComponent<BoxCollider>().isTrigger = false;
+            else
+                player.GetComponent<BoxCollider>().isTrigger = true;
+        }
+    }
+
     public override void Action(PlayerController player)
     {
-        if (player.rb.velocity.y > -0.2f && player.rb.velocity.y < 0.2f)
+        //if (player.rb.velocity.y > -0.2f && player.rb.velocity.y < 0.2f)
             player.rb.AddForce(Vector3.up * (10f + (10f * timeUp)), ForceMode.Impulse);
     }
 
@@ -94,11 +100,6 @@ public class Runnerclimp : MiniGame
 
         posSpawn.position = new Vector3(posSpawn.position.x, camera.transform.position.y + 10.5f, posSpawn.position.z);
     }
-    //float Acceleration(float t) //Aumenta dificuldade do jogo gradualmente
-    //{
-    //    //return (t * t);
-    //    return t/200;
-    //}
 
     void PlatformGenerator() //Comportamento e geração das plataformas
     {
@@ -106,51 +107,28 @@ public class Runnerclimp : MiniGame
         platformPerSecond = speed / distancePlatform;
         if (time > 1 / (platformPerSecond))
         {
-            int qtd = Random.Range(0, 5);
-            if (qtd > 2)
+            int platRandom = Random.Range(0, posPlatform.Length);
+            Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
+            int platNew1 = 0;
+            do
             {
-                int platRandom = Random.Range(0, posPlatform.Length);
-                GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
-                int platNew1 = 0;
+                platNew1 = Random.Range(0, posPlatform.Length);
+            }
+            while (platRandom == platNew1);
+            if (platNew1 != platRandom)
+            {
+                Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew1].position, Quaternion.identity);
+                int platNew2 = 0;
                 do
                 {
-                    platNew1 = Random.Range(0, posPlatform.Length);
+                    platNew2 = Random.Range(0, posPlatform.Length);
                 }
-                while (platRandom == platNew1);
-                if (platNew1 != platRandom)
+                while (platNew2 == platNew1 || platNew2 == platRandom);
+                if (platNew2 != platRandom && platNew2 != platNew1)
                 {
-                    GameObject tempPlatformMew1 = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew1].position, Quaternion.identity);
-                    int platNew2 = 0;
-                    do
-                    {
-                        platNew2 = Random.Range(0, posPlatform.Length);
-                    }
-                    while (platNew2 == platNew1 || platNew2 == platRandom);
-                    if (platNew2 != platRandom && platNew2 != platNew1)
-                    {
-                        GameObject tempPlatformMew2 = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew2].position, Quaternion.identity);
-                    }
+                    Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew2].position, Quaternion.identity);
+                }
 
-                }
-            }
-            else if (qtd == 0)
-            {
-                int platRandom = Random.Range(0, posPlatform.Length);
-                GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platRandom].position, Quaternion.identity);
-                int platNew1 = 0;
-                do
-                {
-                    platNew1 = Random.Range(0, posPlatform.Length);
-                }
-                while (platRandom == platNew1);
-                if (platNew1 != platRandom)
-                {
-                    GameObject tempPlatformMew1 = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[platNew1].position, Quaternion.identity);
-                }
-            }
-            else
-            {
-                GameObject tempPlatform = Instantiate(platform[Random.Range(0, platform.Length)], posPlatform[Random.Range(0, posPlatform.Length)].position, Quaternion.identity);
             }
             time = 0;
         }
@@ -175,6 +153,7 @@ public class Runnerclimp : MiniGame
     void Update()
     {
         //WinRule();
+        JumpAuto();
     }
 
     void FixedUpdate()

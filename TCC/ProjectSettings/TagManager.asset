@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Base
+  - TileN
   - Obstaculo
   - Pai
   - Filho
@@ -17,10 +17,10 @@ TagManager:
   - Planet
   - Oxygen
   - Nave
-  - Foot
+  - Base
   - Platform
-  - FxTemporaire
-  - Unplatform
+  - Foot
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -41,8 +41,6 @@ TagManager:
   - IgnorePlayer
   - Interactle
   - 
-  - Player
-  - Platform
   - 
   - 
   - 
