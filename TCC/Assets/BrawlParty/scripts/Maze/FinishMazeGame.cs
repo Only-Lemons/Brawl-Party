@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FinishMazeGame : MonoBehaviour
 {
@@ -9,8 +7,7 @@ public class FinishMazeGame : MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
-            player.actualGameMode.HitRule(player);
-            Debug.Log(player.name +  " terminou o game");
+            player.actualGameMode.PointRule(player);
         }
     }
 }
