@@ -3,25 +3,123 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostRun : IGameMode
-{
-    GameController aux;
+public class GhostRun : MiniGame
+{   
+    List<PlayerController> players = new List<PlayerController>();
+
     float timeOfGame;
-    GameObject _Monster = Resources.Load("Mecanicas/Monster") as GameObject;
-    GameObject _Ghost = Resources.Load("Mecanicas/Ghost") as GameObject;
+    [SerializeField]GameObject _Monster;
+    [SerializeField]GameObject _Ghost ;
+
     GhostController[] ghost;
     Dictionary<PlayerController, int> pointPlayer = new Dictionary<PlayerController, int>();
     Dictionary<GhostController, float> canFollow = new Dictionary<GhostController, float>();
     Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
+    
     List<PlayerController> winners = new List<PlayerController>();
+
     bool adicionolPoint = false;
     int numwinner = 0;
     int morreuAgoraMsm = 0;
-    public GhostRun(GameController gameController, float time)
+    private void Start()
     {
-        aux = gameController;
-        timeOfGame = time;
+        players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
+        
+        if(GameManager.Instance != null)
+            GameManager.Instance.getPlayersMinigame(players);
+
+        foreach (var player in players)
+        {
+            player.actualGameMode = this;
+
+        }
+        AddPlayerInformations();
+        InstantiateGhost();
+        morreuAgoraMsm = players.Count-1;
+
     }
+
+    void Update()
+    {
+         if (!adicionolPoint)
+        {
+            timeOfGame -= Time.deltaTime;
+            ShowTime();
+            MoveGhost();
+            AddPointForPlayers();
+            if (timeOfGame <= 0)
+            {
+
+                InsertWinners();
+                WinRule();
+            }
+        }
+    }
+
+    public override void Action(PlayerController player)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void HitRule(PlayerController player)
+    {
+        isGhost[player] = true;
+        morreuAgoraMsm--;
+        player.morreuAgora += morreuAgoraMsm;
+        player.transform.GetChild(1).gameObject.SetActive(false);
+        player.gameObject.GetComponent<Collider>().enabled = false;
+        GameObject.Instantiate(_Monster, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform);
+        if (VerifyPlayerMortos())
+            WinRule();
+    }
+
+    public override void Jump(PlayerController player)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void MovementRule(PlayerController player)
+    {
+        player.transform.position += player._movementAxis * player.speed * Time.deltaTime;
+        if (player._movementAxis != Vector3.zero)
+        {
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(player._movementAxis), Time.deltaTime * 20);
+        }
+    }
+
+    public override void PointRule(PlayerController player)
+    {
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += (int)(8 * Time.deltaTime);
+        //player.playerUI.points.text = pointPlayer[player].ToString();
+    }
+
+    public override void RotationRule(PlayerController player)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void WinRule()
+    {
+        foreach (PlayerController player in players)
+        {
+            if (isGhost[player] == false)
+            {
+                GameManager.Instance.pontosGeral[players.IndexOf(player)] += players.Count - 1;
+            }
+            else
+            {
+                GameManager.Instance.pontosGeral[players.IndexOf(player)] += (players.Count-2) - player.morreuAgora;
+            }
+        }
+        if (adicionolPoint == false)
+        {
+            GameManager.Instance.WinMinigame();
+            adicionolPoint = true;
+        }
+    }
+
+
+
     bool VerifyPlayerMortos()
     {
         int a = 0;
@@ -35,56 +133,11 @@ public class GhostRun : IGameMode
 
         return true;
     }
-    public void Action(PlayerController player)
-    {
-
-    }
-
-    public void HitRule(PlayerController player)
-    {
-        isGhost[player] = true;
-        morreuAgoraMsm--;
-        player.morreuAgora += morreuAgoraMsm;
-        player.transform.GetChild(1).gameObject.SetActive(false);
-        player.gameObject.GetComponent<Collider>().enabled = false;
-        GameObject.Instantiate(_Monster, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform);
-        if (VerifyPlayerMortos())
-            WinRule();
-    }
-
-    public void MovementRule(PlayerController player)
-    {
-        player.transform.position += player._movementAxis * player.speed * Time.deltaTime;
-        if (player._movementAxis != Vector3.zero)
-        {
-            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(player._movementAxis), Time.deltaTime * 20);
-        }
-    }
-
-    public void PointRule(PlayerController player)
-    {
-        pointPlayer[player] += (int)(8 * Time.deltaTime);
-        player.playerUI.points.text = pointPlayer[player].ToString();
-    }
-
-    public void RotationRule(PlayerController player)
-    {
-
-        //player.rotation = Quaternion.Lerp(player.rotation,Quaternion.Euler(dir.x,dir.y,dir.z), Time.deltaTime);
-    }
-
-    public void StartGame()
-    {
-        AddPlayerInformations();
-        InstantiateGhost();
-        GameController.singleton.uIManager.SumirTudo();
-        morreuAgoraMsm = aux.playerManager.playersControllers.Count - 1;
-    }
 
     private void InstantiateGhost()
     {
         ghost = GameObject.FindObjectsOfType<GhostController>();
-        foreach (GhostController newGhost in ghost)
+        foreach(GhostController newGhost in ghost)
         {
             canFollow.Add(newGhost, 0);
         }
@@ -100,84 +153,50 @@ public class GhostRun : IGameMode
 
         }
     }
-    public void Update()
-    {
-        if (!adicionolPoint)
-        {
-            timeOfGame -= Time.deltaTime;
-            ShowTime();
-            MoveGhost();
-            AddPointForPlayers();
-            if (timeOfGame <= 0)
-            {
 
-                InsertWinners();
-                WinRule();
-            }
-        }
-    }
-
+    
     private void MoveGhost()
     {
-        foreach (GhostController ghost in ghost)
-        {
-
-            PlayerController closerPlayer = aux.playerManager.playersControllers[0];
-            float DistanciaMin = float.MaxValue;
-            foreach (PlayerController player in aux.playerManager.playersControllers)
-            {
-                if (!isGhost[player] && DistanciaMin > Vector3.Distance(player.transform.position, ghost.transform.position))
+        foreach (GhostController ghost in ghost) {
+               
+                PlayerController closerPlayer = players[0];
+                float DistanciaMin = float.MaxValue;
+                foreach (PlayerController player in players)
                 {
-                    closerPlayer = player;
-                    DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
+                    if (!isGhost[player] && DistanciaMin > Vector3.Distance(player.transform.position, ghost.transform.position))
+                    {
+                        closerPlayer = player;
+                        DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
+                    }
                 }
-            }
-            ghost.FollowPlayer(closerPlayer);
+                ghost.FollowPlayer(closerPlayer);
         }
     }
 
     private void AddPointForPlayers()
     {
-        for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
-            if (!isGhost[aux.playerManager.playersControllers[i]])
-                PointRule(aux.playerManager.playersControllers[i]);
+            if (!isGhost[players[i]])
+                PointRule(players[i]);
         }
     }
 
     void InsertWinners()
     {
-        for (int i = 0; i < aux.playerManager.playersControllers.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
-            if (!isGhost[aux.playerManager.playersControllers[i]])
+            if (!isGhost[players[i]])
             {
-                winners.Add(aux.playerManager.playersControllers[i]);
+                winners.Add(players[i]);
             }
         }
     }
+
     public void ShowTime()
     {
         string minute = ((int)(timeOfGame / 60)).ToString("00"); ;
         string seconds = ((int)(timeOfGame % 60)).ToString("00"); ;
-        aux.time.text = minute + ":" + seconds;
-    }
-    public void WinRule()
-    {
-        foreach (PlayerController player in aux.playerManager.playersControllers)
-        {
-            if (isGhost[player] == false)
-            {
-                GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += aux.playerManager.playersControllers.Count - 1;
-            }
-            else
-            {
-                GameManager.Instance.pontosGeral[aux.playerManager.playersControllers.IndexOf(player)] += (aux.playerManager.playersControllers.Count - 2) - player.morreuAgora;
-            }
-        }
-        if (adicionolPoint == false)
-        {
-            aux.FinishGame();
-            adicionolPoint = true;
-        }
+        //aux.time.text = minute + ":" + seconds;
     }
 }
