@@ -6,7 +6,7 @@ public class FallingGloves : MiniGame
 {
 
     List<PlayerController> players = new List<PlayerController>();
-    float timeOfGame;
+    float timeOfGame = 30;
     GameObject[] hammers = new GameObject[6];
     List<PlayerController> winners = new List<PlayerController>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
@@ -121,10 +121,10 @@ public class FallingGloves : MiniGame
         pontoTotal-=1;
         if (VerifyPlayerMortos())
         {
-            //winners.Add(player);
+            winners.Add(player);
             InsertWinners();
             numwinner++;
-            //WinRule();
+            WinRule();
         }
     }
 
@@ -169,14 +169,9 @@ public class FallingGloves : MiniGame
         {
             if (!falha)
             {
-                for (int i = 0; i < players.Count; i++)
-                {
-                   // GameManager.Instance.pontosGeral[i] += players[i].pontosGenericos;
-                }
-
                 for (int i = 0; i < winners.Count; i++)
                 {
-                  //  GameManager.Instance.pontosGeral[players.IndexOf(winners[i])] -= 1;
+                      GameManager.Instance.playersPontos[winners[i].gameObject.transform.parent.gameObject] += 1;
                 }
             }
 
@@ -184,11 +179,12 @@ public class FallingGloves : MiniGame
             {
                 for (int i = 0; i <players.Count; i++)
                 {
-                    //GameManager.Instance.pontosGeral[i] += 1;
+                     GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += 1;
                 }
             }
             
             adicionolPoint = true;
+            GameManager.Instance.WinMinigame();
         }
     }
     void InsertPlayerInDates()
