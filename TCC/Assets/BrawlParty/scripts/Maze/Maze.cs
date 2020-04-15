@@ -175,7 +175,8 @@ public class Maze : MiniGame
     {
        if(fTime <= 0 || players.Count == 0)
         {
-            //GameManager.Instance.
+            // Coloca no manager os pontos e tals ta faltando 
+            GameManager.Instance.WinMinigame();
         }
     }
 }

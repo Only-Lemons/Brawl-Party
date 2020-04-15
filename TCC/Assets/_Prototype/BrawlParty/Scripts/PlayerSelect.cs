@@ -41,7 +41,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
 
     public Sprite selectSprite;
-
+    public string selectName;
     [Header("Default Sprites")]
     [SerializeField] private string defaultName;
     [SerializeField] private Sprite defaultSplash;
@@ -108,7 +108,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 {
                     backgroundColor.color = Color.green;
                     selectSprite = characterSplash.sprite;
-
+                    selectName = characterName.text;
                     //Debug.Log("Removed" + charList[selectedCharIndex].charName);
                     isConfirmed = false;
                 }
@@ -120,7 +120,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 }
 
             }
-            else if(SceneManager.GetActiveScene().buildIndex == 3)
+            else if(SceneManager.GetActiveScene().buildIndex == 4)
             {
                 if (isConfirmed)
                 {  

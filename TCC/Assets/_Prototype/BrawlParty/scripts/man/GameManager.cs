@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameModes newGameMode;
     public List<int> lastGameModes = new List<int>();
     public List<GameObject> playersPanels = new List<GameObject>();
+    
+    public Dictionary<GameObject, int> playersPontos = new Dictionary<GameObject, int>();
+
     public int[] pontosGeral;
     public Vector3 lastPainel;
     int oldScene = 0;
@@ -68,6 +71,8 @@ public class GameManager : MonoBehaviour
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
                     necessarioMaisJogadores.text = "";
+                    inicializarDicio();
+
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
@@ -76,6 +81,7 @@ public class GameManager : MonoBehaviour
             break;
 
             case 4: // Loading
+            case 9: // ViCtoryScene
                 if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
@@ -179,5 +185,13 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
     }
 
+
+    void inicializarDicio()
+    {
+        foreach ( GameObject playerP in playersPanels)
+        {
+            playersPontos.Add(playerP,0);    
+        }
+    }
 
 }
