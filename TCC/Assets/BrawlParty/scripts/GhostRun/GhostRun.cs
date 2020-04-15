@@ -21,8 +21,10 @@ public class GhostRun : MiniGame
     bool adicionolPoint = false;
     int numwinner = 0;
     int morreuAgoraMsm = 0;
+    float tempoGame;
     private void Start()
     {
+        timeOfGame = 30;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         
         if(GameManager.Instance != null)
@@ -43,6 +45,7 @@ public class GhostRun : MiniGame
     {
          if (!adicionolPoint)
         {
+            tempoGame += Time.deltaTime;
             timeOfGame -= Time.deltaTime;
             ShowTime();
             MoveGhost();
@@ -89,7 +92,7 @@ public class GhostRun : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += (int)(8 * Time.deltaTime);
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += (int)(8 * tempoGame);
         //player.playerUI.points.text = pointPlayer[player].ToString();
     }
 
@@ -125,7 +128,7 @@ public class GhostRun : MiniGame
         int a = 0;
         for (int i = 0; i < isGhost.Count; i++)
         {
-            if (isGhost[GameController.singleton.playerManager.playersControllers[i]] == false)
+            if (isGhost[players[i]] == false)
                 a++;
         }
         if (a > 1)
@@ -145,10 +148,10 @@ public class GhostRun : MiniGame
 
     void AddPlayerInformations()
     {
-        foreach (PlayerController player in GameController.singleton.playerManager.playersControllers)
+        foreach (PlayerController player in players)
         {
             pointPlayer.Add(player, 0);
-            player.playerUI.points.text = pointPlayer[player].ToString();
+            //player.playerUI.points.text = pointPlayer[player].ToString();
             isGhost.Add(player, false);
 
         }

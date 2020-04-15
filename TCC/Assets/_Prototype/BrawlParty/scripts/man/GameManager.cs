@@ -163,9 +163,17 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < players.Count; i++)
         {
-            if(i < playersPanels.Count)
+            if (i < playersPanels.Count)
             {
                 players[i].transform.SetParent(playersPanels[i].transform);
+            }
+            else
+            {
+
+                players[i].gameObject.SetActive(false);
+                //players.Remove(players[i]);
+                //Destroy(players[i].gameObject);
+
             }
         }
 

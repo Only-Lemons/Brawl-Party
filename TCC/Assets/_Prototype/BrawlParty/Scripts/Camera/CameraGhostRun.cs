@@ -14,7 +14,7 @@ public class CameraGhostRun : MonoBehaviour
 
     void Start()
     {
-        targ = GameController.singleton.playerManager.playersControllers;
+        //targ = GameController.singleton.playerManager.playersControllers;
         cam = Camera.main;
 
         posCam = cam.transform.position;
@@ -24,7 +24,7 @@ public class CameraGhostRun : MonoBehaviour
     public void GetTargets()
     {
         targ.Clear();
-        targ = GameController.singleton.playerManager.playersControllers;
+        //Wtarg = GameController.singleton.playerManager.playersControllers;
 
     }
 

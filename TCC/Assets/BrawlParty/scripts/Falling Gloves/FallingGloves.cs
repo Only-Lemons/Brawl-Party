@@ -171,7 +171,7 @@ public class FallingGloves : MiniGame
             {
                 for (int i = 0; i < winners.Count; i++)
                 {
-                      GameManager.Instance.playersPontos[winners[i].gameObject.transform.parent.gameObject] += 1;
+                      GameManager.Instance.playersPontos[winners[i].gameObject.transform.parent.gameObject] += 2;
                 }
             }
 
@@ -217,7 +217,7 @@ public class FallingGloves : MiniGame
 
         for (int i = 0; i < playerMortos.Count; i++)
         {
-            if (playerMortos[GameController.singleton.playerManager.playersControllers[i]] == false)
+            if (playerMortos[players[i]] == false)
                 a++;
         }
 
