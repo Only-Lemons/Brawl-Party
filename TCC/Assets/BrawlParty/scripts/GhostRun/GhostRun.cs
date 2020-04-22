@@ -12,10 +12,10 @@ public class GhostRun : MiniGame
     [SerializeField]GameObject _Ghost ;
 
     GhostController[] ghost;
-    Dictionary<PlayerController, int> pointPlayer = new Dictionary<PlayerController, int>();
+
     Dictionary<GhostController, float> canFollow = new Dictionary<GhostController, float>();
     Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
-    
+    Dictionary<PlayerController, int> _pointGeralForManager = new Dictionary<PlayerController, int>();
     List<PlayerController> winners = new List<PlayerController>();
 
     bool adicionolPoint = false;
@@ -53,7 +53,6 @@ public class GhostRun : MiniGame
             if (timeOfGame <= 0)
             {
 
-                InsertWinners();
                 WinRule();
             }
         }
@@ -73,7 +72,10 @@ public class GhostRun : MiniGame
         player.gameObject.GetComponent<Collider>().enabled = false;
         GameObject.Instantiate(_Monster, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform);
         if (VerifyPlayerMortos())
+        {
+            AddPointForPlayers();
             WinRule();
+        }
     }
 
     public override void Jump(PlayerController player)
@@ -92,27 +94,22 @@ public class GhostRun : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += (int)(8 * tempoGame);
+        playerPoints[player.gameObject.transform.parent.gameObject] += (int)(8 * tempoGame);
+        Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
         //player.playerUI.points.text = pointPlayer[player].ToString();
     }
 
     public override void RotationRule(PlayerController player)
     {
-        throw new NotImplementedException();
+ // FAZ ND
     }
 
     public override void WinRule()
     {
+        InsertWinners();
         foreach (PlayerController player in players)
         {
-            if (isGhost[player] == false)
-            {
-                GameManager.Instance.pontosGeral[players.IndexOf(player)] += players.Count - 1;
-            }
-            else
-            {
-                GameManager.Instance.pontosGeral[players.IndexOf(player)] += (players.Count-2) - player.morreuAgora;
-            }
+            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += _pointGeralForManager[player];
         }
         if (adicionolPoint == false)
         {
@@ -150,7 +147,7 @@ public class GhostRun : MiniGame
     {
         foreach (PlayerController player in players)
         {
-            pointPlayer.Add(player, 0);
+            playerPoints.Add(player.gameObject.transform.parent.gameObject, 0);
             //player.playerUI.points.text = pointPlayer[player].ToString();
             isGhost.Add(player, false);
 
@@ -187,12 +184,20 @@ public class GhostRun : MiniGame
 
     void InsertWinners()
     {
+        Dictionary<PlayerController, int> position = new Dictionary<PlayerController, int>();
         for (int i = 0; i < players.Count; i++)
         {
-            if (!isGhost[players[i]])
+            position.Add(players[i], 3);
+            for (int j = players.Count; j > i; j--)
             {
-                winners.Add(players[i]);
+                if (playerPoints[players[i].gameObject.transform.parent.gameObject] < playerPoints[players[j % players.Count].gameObject.transform.parent.gameObject] && j != i)
+                {
+                    position[players[i]]--;
+                    Debug.Log("Entrou aqui!!");
+                }
+                   
             }
+            _pointGeralForManager.Add(players[i] ,position[players[i]]);
         }
     }
 
