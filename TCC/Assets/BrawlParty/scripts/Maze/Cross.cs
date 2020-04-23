@@ -7,7 +7,7 @@ public class Cross : MonoBehaviour
     public GhostRun modegame;
     private void OnTriggerEnter(Collider other)
     {
-        var player = other.gameObject.GetComponentInChildren<PlayerController>();
+        PlayerController player = other.gameObject.GetComponentInChildren<PlayerController>();
         if (player != null)
         {
             modegame.AddObjectInPlayer(player);

@@ -6518,11 +6518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07925e2bce0f7fb4fbbf6c0a5865b8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Cross: {fileID: 8569501861665066863, guid: 4381f7319b856ae4fbbd6b977fced02b, type: 3}
+  _cross: {fileID: 8569501861665066863, guid: 4381f7319b856ae4fbbd6b977fced02b, type: 3}
   ghost:
   - {fileID: 8411557222385371885}
   - {fileID: 972317332}
   - {fileID: 66387389}
+  _particula: {fileID: 6174535880151864995, guid: 114d338501bd9b74fae16249b29af39b,
+    type: 3}
 --- !u!4 &971363816
 Transform:
   m_ObjectHideFlags: 0

@@ -8,17 +8,19 @@ public class GhostRun : MiniGame
     List<PlayerController> players = new List<PlayerController>();
 
     float timeOfGame;
-    [SerializeField]GameObject _Cross;
+    [SerializeField]GameObject _cross;
     [SerializeField]GhostController[] ghost;
+    [SerializeField]GameObject _particula;
     
-    Dictionary<GhostController, float> canFollow = new Dictionary<GhostController, float>();
-    Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
+    Dictionary<GhostController, float> _canFollow = new Dictionary<GhostController, float>();
+    Dictionary<PlayerController, bool> _isDead = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, int> _pointGeralForManager = new Dictionary<PlayerController, int>();
     Dictionary<PlayerController, int> _itemsforplayer = new Dictionary<PlayerController, int>();
     Dictionary<PlayerController, float> _timeinvenciblelayer = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, bool> _playerisinvencible = new Dictionary<PlayerController, bool>();
-    bool adicionolPoint = false;
-    float tempoGame;
+    Dictionary<PlayerController, GameObject> _particlesInGame = new Dictionary<PlayerController, GameObject>();
+    bool _adicionolPoint = false;
+    float _tempoGame;
     float _timeToInstantiateNewCross;
     private void Start()
     {
@@ -43,6 +45,8 @@ public class GhostRun : MiniGame
         _itemsforplayer[player] += 1;
         if(_itemsforplayer[player] == 3)
         {
+           GameObject aux =  GameObject.Instantiate(_particula, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform).gameObject;
+            _particlesInGame.Add(player, aux);
             _timeinvenciblelayer[player] = 2f;
             _itemsforplayer[player] = 0;
             _playerisinvencible[player] = true;
@@ -50,9 +54,9 @@ public class GhostRun : MiniGame
     }
     void Update()
     {
-         if (!adicionolPoint)
+         if (!_adicionolPoint)
         {
-            tempoGame += Time.deltaTime;
+            _tempoGame += Time.deltaTime;
             timeOfGame -= Time.deltaTime;
             ShowTime();
             MoveGhost();
@@ -62,7 +66,7 @@ public class GhostRun : MiniGame
             if (_timeToInstantiateNewCross <= 0)
             {
                 _timeToInstantiateNewCross = 2;
-                GameObject gameObject =  GameObject.Instantiate(_Cross,new Vector3(Random.Range(-7.58f, 8.75f), 1.8f,Random.Range(-5.22f, 8.57f)),Quaternion.identity).gameObject;
+                GameObject gameObject =  GameObject.Instantiate(_cross,new Vector3(Random.Range(-7.58f, 8.75f), 1.8f,Random.Range(-5.22f, 8.57f)),Quaternion.identity).gameObject;
                 gameObject.GetComponent<Cross>().modegame = this;
             }
             if (timeOfGame <= 0)
@@ -79,7 +83,10 @@ public class GhostRun : MiniGame
                 continue;
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
+            {
                 _playerisinvencible[player] = false;
+                GameObject.Destroy(_particlesInGame[player]);
+            }
         }
     }
 
@@ -90,8 +97,9 @@ public class GhostRun : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-        if (_playerisinvencible[player])
+        if (!_playerisinvencible[player])
         {
+            _isDead[player] = true;
             player.gameObject.SetActive(false);
             if (VerifyPlayerMortos())
             {
@@ -117,7 +125,7 @@ public class GhostRun : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        playerPoints[player.gameObject.transform.parent.gameObject] += (int)(8 * tempoGame);
+        playerPoints[player.gameObject.transform.parent.gameObject] += (int)(8 * _tempoGame);
         Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
         //player.playerUI.points.text = pointPlayer[player].ToString();
     }
@@ -134,18 +142,18 @@ public class GhostRun : MiniGame
         {
             GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += _pointGeralForManager[player];
         }
-        if (adicionolPoint == false)
+        if (_adicionolPoint == false)
         {
             GameManager.Instance.WinMinigame();
-            adicionolPoint = true;
+            _adicionolPoint = true;
         }
     }
     bool VerifyPlayerMortos()
     {
         int a = 0;
-        for (int i = 0; i < isGhost.Count; i++)
+        for (int i = 0; i < _isDead.Count; i++)
         {
-            if (isGhost[players[i]] == false)
+            if (_isDead[players[i]] == false)
                 a++;
         }
         if (a > 1)
@@ -159,7 +167,7 @@ public class GhostRun : MiniGame
         ghost = GameObject.FindObjectsOfType<GhostController>();
         foreach(GhostController newGhost in ghost)
         {
-            canFollow.Add(newGhost, 0);
+            _canFollow.Add(newGhost, 0);
         }
     }
 
@@ -172,7 +180,7 @@ public class GhostRun : MiniGame
             _timeinvenciblelayer.Add(player, 0);
             playerPoints.Add(player.gameObject.transform.parent.gameObject, 0);
             //player.playerUI.points.text = pointPlayer[player].ToString();
-            isGhost.Add(player, false);
+            _isDead.Add(player, false);
 
         }
     }
@@ -186,7 +194,7 @@ public class GhostRun : MiniGame
                 float DistanciaMin = float.MaxValue;
                 foreach (PlayerController player in players)
                 {
-                    if (!isGhost[player] && DistanciaMin > Vector3.Distance(player.transform.position, ghost.transform.position))
+                    if (!_isDead[player] && DistanciaMin > Vector3.Distance(player.transform.position, ghost.transform.position))
                     {
                         closerPlayer = player;
                         DistanciaMin = Vector3.Distance(player.transform.position, ghost.transform.position);
@@ -200,7 +208,7 @@ public class GhostRun : MiniGame
     {
         for (int i = 0; i < players.Count; i++)
         {
-            if (!isGhost[players[i]])
+            if (!_isDead[players[i]])
                 PointRule(players[i]);
         }
     }
