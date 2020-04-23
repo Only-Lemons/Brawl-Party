@@ -20,11 +20,20 @@ public class Maze : MiniGame
     float fTime;
     float calculateLT = 1;
 
+    public GameObject[] randomWall;
+    public GameObject[] playersLight;
+    public GameObject[] jasonsFear;
+    public float timeWallRandomize = 5;
+    float timeWR;
+
     private void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
-        
-        if(GameManager.Instance != null)
+        randomWall = GameObject.FindGameObjectsWithTag("FakeWall");
+        jasonsFear = GameObject.FindGameObjectsWithTag("Enemy");
+        timeWR = timeWallRandomize;
+
+        if (GameManager.Instance != null)
             GameManager.Instance.getPlayersMinigame(players);
 
         foreach (var player in players)
@@ -34,17 +43,19 @@ public class Maze : MiniGame
             timeStun[player] = 0;
             lightPerPlayer[player] = 1;
         }
-        
+
+        //RandomWallInsert();
+
         fTime = 5f;
     }
 
     private void FixedUpdate()
     {
-     
+
         RemoveStun();
         CloseDoors();
         ChangeLightPlayer();
-      
+
     }
 
     void ChoicePathJason()
@@ -53,13 +64,13 @@ public class Maze : MiniGame
         {
             PlayerController playerF = players[0];
             float coicidenteP = 0;
-            foreach(var player in players)
+            foreach (var player in players)
             {
                 float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, FinishGame.transform.position)));
-                if ( cpa > coicidenteP && !inStun[player])
+                if (cpa > coicidenteP && !inStun[player])
                 {
                     playerF = player;
-                    coicidenteP =cpa;
+                    coicidenteP = cpa;
                 }
             }
             print(playerF.name);
@@ -69,16 +80,19 @@ public class Maze : MiniGame
     private void Update()
     {
         ChoicePathJason();
+
+        RandomWallInsert();
+        FearLevel();
     }
     void ChangeLightPlayer()
     {
         calculateLT -= Time.fixedDeltaTime;
-        if(calculateLT <= 0)
+        if (calculateLT <= 0)
         {
-            foreach(var player in players)
+            foreach (var player in players)
             {
                 lightPerPlayer[player] = 0;
-                foreach(var player2 in players)
+                foreach (var player2 in players)
                 {
                     if (Vector3.Distance(player.transform.position, player2.transform.position) < 2)
                         lightPerPlayer[player] += 0.10f;
@@ -93,13 +107,12 @@ public class Maze : MiniGame
         //doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
         //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
-
-        Vector3.Lerp(door.transform.position, new Vector3(door.transform.position.x + 4, door.transform.position.y, door.transform.position.z),180);
+        Vector3.Lerp(door.transform.position, new Vector3(door.transform.position.x + 4, door.transform.position.y, door.transform.position.z), 180);
 
     }
     public override void Action(PlayerController player)
     {
-      
+
     }
     void RemoveStun()
     {
@@ -108,10 +121,47 @@ public class Maze : MiniGame
             if (inStun[player])
             {
                 timeStun[player] -= Time.fixedDeltaTime;
-                if(timeStun[player] <= 0)
+                if (timeStun[player] <= 0)
                 {
                     timeStun[player] = 0;
                     inStun[player] = false;
+                }
+            }
+        }
+    }
+
+    void RandomWallInsert()
+    {
+        timeWallRandomize -= Time.fixedDeltaTime;
+        if (timeWallRandomize <= 0)
+        {
+            foreach (GameObject g in randomWall)
+            {
+                int random = Random.Range(0, 2);
+                g.SetActive(true);
+                if (random == 0)
+                {
+                    g.SetActive(false);
+                }
+            }
+            timeWallRandomize = timeWR;
+        }
+    }
+
+    void FearLevel()
+    {
+        foreach(GameObject jason in jasonsFear)
+        {
+            foreach (GameObject player in playersLight)
+            {
+                if(Vector3.Distance(jason.gameObject.transform.position, player.transform.position) < 10)
+                {
+                    if (player.transform.localScale.x >= 3)
+                        player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(1, 1, 1), Time.fixedDeltaTime); ;
+                }
+                else
+                {
+                    player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(15, 15, 1), Time.fixedDeltaTime);
                 }
             }
         }
@@ -128,7 +178,7 @@ public class Maze : MiniGame
 
     public override void Jump(PlayerController player)
     {
-       //NÃO PULA
+        //NÃO PULA
     }
 
     public override void MovementRule(PlayerController player)
@@ -159,17 +209,17 @@ public class Maze : MiniGame
         }
         GameObject.Destroy(player.gameObject);
         WinRule();
-        
+
     }
 
     public override void RotationRule(PlayerController player)
     {
-       
+
     }
 
     public override void WinRule()
     {
-       if(fTime <= 0 || players.Count == 0)
+        if (fTime <= 0 || players.Count == 0)
         {
 
             GameManager.Instance.WinMinigame();
