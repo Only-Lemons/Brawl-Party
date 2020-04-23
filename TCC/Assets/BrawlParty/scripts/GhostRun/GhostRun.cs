@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,22 +8,21 @@ public class GhostRun : MiniGame
     List<PlayerController> players = new List<PlayerController>();
 
     float timeOfGame;
-    [SerializeField]GameObject _Monster;
-    [SerializeField]GameObject _Ghost ;
-
-    GhostController[] ghost;
-
+    [SerializeField]GameObject _Cross;
+    [SerializeField]GhostController[] ghost;
+    
     Dictionary<GhostController, float> canFollow = new Dictionary<GhostController, float>();
     Dictionary<PlayerController, bool> isGhost = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, int> _pointGeralForManager = new Dictionary<PlayerController, int>();
-    List<PlayerController> winners = new List<PlayerController>();
-
+    Dictionary<PlayerController, int> _itemsforplayer = new Dictionary<PlayerController, int>();
+    Dictionary<PlayerController, float> _timeinvenciblelayer = new Dictionary<PlayerController, float>();
+    Dictionary<PlayerController, bool> _playerisinvencible = new Dictionary<PlayerController, bool>();
     bool adicionolPoint = false;
-    int numwinner = 0;
-    int morreuAgoraMsm = 0;
     float tempoGame;
+    float _timeToInstantiateNewCross;
     private void Start()
     {
+        _timeToInstantiateNewCross = 1;
         timeOfGame = 30;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         
@@ -37,10 +36,18 @@ public class GhostRun : MiniGame
         }
         AddPlayerInformations();
         InstantiateGhost();
-        morreuAgoraMsm = players.Count-1;
 
     }
-
+    public void AddObjectInPlayer(PlayerController player)
+    {
+        _itemsforplayer[player] += 1;
+        if(_itemsforplayer[player] == 3)
+        {
+            _timeinvenciblelayer[player] = 2f;
+            _itemsforplayer[player] = 0;
+            _playerisinvencible[player] = true;
+        }
+    }
     void Update()
     {
          if (!adicionolPoint)
@@ -50,37 +57,53 @@ public class GhostRun : MiniGame
             ShowTime();
             MoveGhost();
             AddPointForPlayers();
+            EfectInvenciblePlayers();
+            _timeToInstantiateNewCross -= Time.deltaTime;
+            if (_timeToInstantiateNewCross <= 0)
+            {
+                _timeToInstantiateNewCross = 2;
+                GameObject gameObject =  GameObject.Instantiate(_Cross,new Vector3(Random.Range(-7.58f, 8.75f), 1.8f,Random.Range(-5.22f, 8.57f)),Quaternion.identity).gameObject;
+                gameObject.GetComponent<Cross>().modegame = this;
+            }
             if (timeOfGame <= 0)
             {
-
                 WinRule();
             }
+        }
+    }
+    void EfectInvenciblePlayers()
+    {
+        foreach (PlayerController player in players)
+        {
+            if (!_playerisinvencible[player])
+                continue;
+            _timeinvenciblelayer[player] -= Time.deltaTime;
+            if (_timeinvenciblelayer[player] <= 0)
+                _playerisinvencible[player] = false;
         }
     }
 
     public override void Action(PlayerController player)
     {
-        throw new NotImplementedException();
+        //Fodas
     }
 
     public override void HitRule(PlayerController player)
     {
-        isGhost[player] = true;
-        morreuAgoraMsm--;
-        player.morreuAgora += morreuAgoraMsm;
-        player.transform.GetChild(1).gameObject.SetActive(false);
-        player.gameObject.GetComponent<Collider>().enabled = false;
-        GameObject.Instantiate(_Monster, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform);
-        if (VerifyPlayerMortos())
+        if (_playerisinvencible[player])
         {
-            AddPointForPlayers();
-            WinRule();
+            player.gameObject.SetActive(false);
+            if (VerifyPlayerMortos())
+            {
+                AddPointForPlayers();
+                WinRule();
+            }
         }
     }
 
     public override void Jump(PlayerController player)
     {
-        throw new NotImplementedException();
+       //FODAS
     }
 
     public override void MovementRule(PlayerController player)
@@ -101,7 +124,7 @@ public class GhostRun : MiniGame
 
     public override void RotationRule(PlayerController player)
     {
- // FAZ ND
+        // FAZ ND
     }
 
     public override void WinRule()
@@ -117,9 +140,6 @@ public class GhostRun : MiniGame
             adicionolPoint = true;
         }
     }
-
-
-
     bool VerifyPlayerMortos()
     {
         int a = 0;
@@ -147,6 +167,9 @@ public class GhostRun : MiniGame
     {
         foreach (PlayerController player in players)
         {
+            _playerisinvencible.Add(player, false);
+            _itemsforplayer.Add(player, 0);
+            _timeinvenciblelayer.Add(player, 0);
             playerPoints.Add(player.gameObject.transform.parent.gameObject, 0);
             //player.playerUI.points.text = pointPlayer[player].ToString();
             isGhost.Add(player, false);
