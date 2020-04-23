@@ -36,6 +36,8 @@ public class Jason: MonoBehaviour
     public void moviment(Vector3 vec)
     {
         IAmoviment.ResetPath();
+
+        if(Vector3.Distance(this.gameObject.transform.position, vec) > 2)
         IAmoviment.SetDestination(vec);
     }
 }
