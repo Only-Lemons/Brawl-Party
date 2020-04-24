@@ -25,6 +25,7 @@ public class Maze : MiniGame
     public GameObject[] jasonsFear;
     public float timeWallRandomize = 5;
     float timeWR;
+    int friend;
 
     private void Start()
     {
@@ -83,6 +84,7 @@ public class Maze : MiniGame
 
         RandomWallInsert();
         FearLevel();
+        FriendlyLevel();
     }
     void ChangeLightPlayer()
     {
@@ -150,11 +152,11 @@ public class Maze : MiniGame
 
     void FearLevel()
     {
-        foreach(GameObject jason in jasonsFear)
+        foreach (GameObject jason in jasonsFear)
         {
             foreach (GameObject player in playersLight)
             {
-                if(Vector3.Distance(jason.gameObject.transform.position, player.transform.position) < 10)
+                if (Vector3.Distance(jason.transform.position, player.transform.position) < 10)
                 {
                     if (player.transform.localScale.x >= 3)
                         player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(1, 1, 1), Time.fixedDeltaTime); ;
@@ -162,6 +164,30 @@ public class Maze : MiniGame
                 else
                 {
                     player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(15, 15, 1), Time.fixedDeltaTime);
+                }
+            }
+        }
+    }
+
+    void FriendlyLevel()
+    {
+        foreach (GameObject player in playersLight)
+        {
+            foreach (GameObject player2 in playersLight)
+            {
+                if (Vector3.Distance(player.transform.position, player2.transform.position) < 10)
+                {
+                    if (player.transform.position != player2.transform.position)
+                        if (friend < 5)
+                            friend++;
+                    if (player.transform.localScale.x <= 35)
+                        player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(friend * 15, friend * 15, 1), Time.fixedDeltaTime); ;
+                }
+                else
+                {
+                    player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(15, 15, 1), Time.fixedDeltaTime);
+                    if (friend > 0)
+                        friend--;
                 }
             }
         }
