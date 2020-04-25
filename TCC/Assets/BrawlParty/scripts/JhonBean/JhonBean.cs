@@ -17,7 +17,8 @@ public class JhonBean : MiniGame
 
     float timeOfGame;
     float timeToSpawn = 0;
-    GameObject _bird = Resources.Load("Mecanicas/Bird") as GameObject;
+    [SerializeField]
+    GameObject _bird;
     List<PlayerController> winners = new List<PlayerController>();
     GameObject[] cameras;
     Dictionary<PlayerController, Stun> canMove = new Dictionary<PlayerController, Stun>();
