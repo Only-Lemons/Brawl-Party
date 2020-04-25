@@ -12,7 +12,7 @@ public class AudioController : MonoBehaviour
     public AudioClip clipMorte;
     public AudioClip clipHit;
 
-    void Start()
+    void Awake()
     {
         instance = this;
     }

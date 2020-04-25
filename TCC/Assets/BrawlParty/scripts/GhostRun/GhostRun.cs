@@ -26,7 +26,7 @@ public class GhostRun : MiniGame
     float _timeToInstantiateNewCross;
     private void Start()
     {
-        AudioManager.PlayGameMusic();
+        //AudioManager.PlayGameMusic();
         _timeToInstantiateNewCross = 1;
         timeOfGame = 30;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
@@ -153,6 +153,7 @@ public class GhostRun : MiniGame
             _adicionolPoint = true;
         }
     }
+   
     bool VerifyPlayerMortos()
     {
         int a = 0;
