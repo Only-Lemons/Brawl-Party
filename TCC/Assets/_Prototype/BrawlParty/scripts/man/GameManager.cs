@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerInputPrefab;
 
-    public AudioManager audioManager;
+    public AudioManager2 audioManager;
 
     public ParticleManager particleManager;
 
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GetComponent<AudioManager>();
+        audioManager = GetComponent<AudioManager2>();
         particleManager = GetComponent<ParticleManager>();
     }
 
