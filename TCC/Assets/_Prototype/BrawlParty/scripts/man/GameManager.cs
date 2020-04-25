@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public AudioManager audioManager;
 
+    public ParticleManager particleManager;
+
     public IGameMode gameMode;
 
     public GameController gameController;
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         audioManager = GetComponent<AudioManager>();
+        particleManager = GetComponent<ParticleManager>();
     }
 
     private void FixedUpdate()
