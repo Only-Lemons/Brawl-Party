@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GhostRun : MiniGame
 {   
@@ -10,7 +11,8 @@ public class GhostRun : MiniGame
     float timeOfGame;
     [SerializeField]GameObject _cross;
     [SerializeField]GhostController[] ghost;
-    [SerializeField]GameObject _particula;
+    [SerializeField]List<Images> _playersImages;
+    [SerializeField] Sprite _morte;
     
     Dictionary<GhostController, float> _canFollow = new Dictionary<GhostController, float>();
     Dictionary<PlayerController, bool> _isDead = new Dictionary<PlayerController, bool>();
@@ -18,7 +20,7 @@ public class GhostRun : MiniGame
     Dictionary<PlayerController, int> _itemsforplayer = new Dictionary<PlayerController, int>();
     Dictionary<PlayerController, float> _timeinvenciblelayer = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, bool> _playerisinvencible = new Dictionary<PlayerController, bool>();
-    Dictionary<PlayerController, GameObject> _particlesInGame = new Dictionary<PlayerController, GameObject>();
+    Dictionary<PlayerController, int> _indexs = new Dictionary<PlayerController, int>();
     bool _adicionolPoint = false;
     float _tempoGame;
     float _timeToInstantiateNewCross;
@@ -38,15 +40,16 @@ public class GhostRun : MiniGame
         }
         AddPlayerInformations();
         InstantiateGhost();
-
+        
     }
     public void AddObjectInPlayer(PlayerController player)
     {
         _itemsforplayer[player] += 1;
-        if(_itemsforplayer[player] == 3)
+        _playersImages[_indexs[player]].quantidade.text = _itemsforplayer[player].ToString();
+        if (_itemsforplayer[player] >= 3)
         {
-           GameObject aux =  GameObject.Instantiate(_particula, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity, player.transform).gameObject;
-            _particlesInGame.Add(player, aux);
+            GameManager.Instance.particleManager.getParticula("InVenCiBeLiDaDe", player.transform);
+            _playersImages[_indexs[player]].quantidade.text = "0";
             _timeinvenciblelayer[player] = 2f;
             _itemsforplayer[player] = 0;
             _playerisinvencible[player] = true;
@@ -85,7 +88,6 @@ public class GhostRun : MiniGame
             if (_timeinvenciblelayer[player] <= 0)
             {
                 _playerisinvencible[player] = false;
-                GameObject.Destroy(_particlesInGame[player]);
             }
         }
     }
@@ -101,6 +103,7 @@ public class GhostRun : MiniGame
         {
             _isDead[player] = true;
             player.gameObject.SetActive(false);
+            _playersImages[_indexs[player]].fotoPersonagem.sprite = _morte;
             if (VerifyPlayerMortos())
             {
                 AddPointForPlayers();
@@ -173,6 +176,7 @@ public class GhostRun : MiniGame
 
     void AddPlayerInformations()
     {
+        int aux = 0;
         foreach (PlayerController player in players)
         {
             _playerisinvencible.Add(player, false);
@@ -181,8 +185,15 @@ public class GhostRun : MiniGame
             playerPoints.Add(player.gameObject.transform.parent.gameObject, 0);
             //player.playerUI.points.text = pointPlayer[player].ToString();
             _isDead.Add(player, false);
-
+            _playersImages[aux].quantidade.text = "0";
+            _indexs.Add(player, aux);
+           aux++;
         }
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            _playersImages[i].fotoPersonagem.sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
+        }
+ 
     }
 
     
@@ -238,4 +249,11 @@ public class GhostRun : MiniGame
         string seconds = ((int)(timeOfGame % 60)).ToString("00"); ;
         //aux.time.text = minute + ":" + seconds;
     }
+}
+[System.Serializable]
+public struct Images
+{
+    public Image fotoPersonagem;
+    public Image fotoCruz;
+    public Text  quantidade;
 }
