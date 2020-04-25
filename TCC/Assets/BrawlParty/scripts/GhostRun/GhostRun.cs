@@ -26,6 +26,7 @@ public class GhostRun : MiniGame
     float _timeToInstantiateNewCross;
     private void Start()
     {
+        AudioManager.PlayGameMusic();
         _timeToInstantiateNewCross = 1;
         timeOfGame = 30;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
@@ -103,6 +104,7 @@ public class GhostRun : MiniGame
         {
             _isDead[player] = true;
             player.gameObject.SetActive(false);
+            AudioManager.PlayHit();
             _playersImages[_indexs[player]].fotoPersonagem.sprite = _morte;
             if (VerifyPlayerMortos())
             {
