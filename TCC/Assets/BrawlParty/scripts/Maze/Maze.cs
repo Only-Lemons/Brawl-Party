@@ -17,6 +17,8 @@ public class Maze : MiniGame
     [SerializeField]
     List<Jason> jasons = new List<Jason>();
 
+    Vector3 closedDoor;
+
     float fTime;
     float calculateLT = 1;
 
@@ -29,6 +31,7 @@ public class Maze : MiniGame
 
     private void Start()
     {
+        closedDoor = new Vector3(10, door.transform.position.y, door.transform.position.z);
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         randomWall = GameObject.FindGameObjectsWithTag("FakeWall");
         jasonsFear = GameObject.FindGameObjectsWithTag("Enemy");
@@ -47,7 +50,8 @@ public class Maze : MiniGame
 
         //RandomWallInsert();
 
-        fTime = 5f;
+        fTime = 180f;
+        
     }
 
     private void FixedUpdate()
@@ -109,7 +113,7 @@ public class Maze : MiniGame
         //doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
         //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
-        Vector3.Lerp(door.transform.position, new Vector3(door.transform.position.x + 4, door.transform.position.y, door.transform.position.z), 180);
+        door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(closedDoor.x, door.transform.position.y, door.transform.position.z), Time.fixedDeltaTime/(fTime));
 
     }
     public override void Action(PlayerController player)
