@@ -2899,7 +2899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -63.9, y: 110.99999}
+  m_AnchoredPosition: {x: -63.9, y: 190.3}
   m_SizeDelta: {x: 47.8, y: 47.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &325550576
@@ -5909,7 +5909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70.5, y: 110.99999}
+  m_AnchoredPosition: {x: 70.5, y: 190.29999}
   m_SizeDelta: {x: 47.8, y: 47.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724580398
@@ -7098,7 +7098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -210, y: 111}
+  m_AnchoredPosition: {x: -210, y: 190.29999}
   m_SizeDelta: {x: 47.8, y: 47.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &871708465
@@ -8006,16 +8006,20 @@ MonoBehaviour:
   - {fileID: 972317332}
   - {fileID: 66387389}
   _playersImages:
-  - fotoPersonagem: {fileID: 871708465}
+  - pai: {fileID: 871708463}
+    fotoPersonagem: {fileID: 871708465}
     fotoCruz: {fileID: 1374506991}
     quantidade: {fileID: 1683940092}
-  - fotoPersonagem: {fileID: 325550576}
+  - pai: {fileID: 325550574}
+    fotoPersonagem: {fileID: 325550576}
     fotoCruz: {fileID: 1953492795}
     quantidade: {fileID: 1899606151}
-  - fotoPersonagem: {fileID: 724580398}
+  - pai: {fileID: 724580396}
+    fotoPersonagem: {fileID: 724580398}
     fotoCruz: {fileID: 1953492795}
     quantidade: {fileID: 1899606151}
-  - fotoPersonagem: {fileID: 724580398}
+  - pai: {fileID: 971666628}
+    fotoPersonagem: {fileID: 724580398}
     fotoCruz: {fileID: 1533930610}
     quantidade: {fileID: 1580620019}
   _morte: {fileID: 21300000, guid: 533d0b462ee3ffe4396c81fdd628c1ec, type: 3}
@@ -8068,7 +8072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 210, y: 110.99999}
+  m_AnchoredPosition: {x: 210, y: 190.29999}
   m_SizeDelta: {x: 47.8, y: 47.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971666630

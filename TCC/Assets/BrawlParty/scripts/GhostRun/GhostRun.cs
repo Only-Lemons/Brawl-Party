@@ -192,9 +192,14 @@ public class GhostRun : MiniGame
             _indexs.Add(player, aux);
            aux++;
         }
-        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        for (int i = 0; i < _playersImages.Count; i++)
         {
-            _playersImages[i].fotoPersonagem.sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
+            if( i < GameManager.Instance.playersPanels.Count)
+                _playersImages[i].fotoPersonagem.sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
+            else
+            {
+                _playersImages[i].pai.SetActive(false);
+            }
         }
  
     }
@@ -256,6 +261,7 @@ public class GhostRun : MiniGame
 [System.Serializable]
 public struct Images
 {
+    public GameObject pai;
     public Image fotoPersonagem;
     public Image fotoCruz;
     public Text  quantidade;
