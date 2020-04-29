@@ -18,15 +18,15 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.56
+    value: 0.78
   threshold:
     overrideState: 1
-    value: 0.7
+    value: 0.83
   softKnee:
     overrideState: 0
-    value: 0.5
+    value: 0.077
   clamp:
-    overrideState: 1
+    overrideState: 0
     value: 65472
   diffusion:
     overrideState: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 8
---- !u!114 &-6361341420986900348
+--- !u!114 &-8670131435322477435
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,19 +59,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   gradingMode:
     overrideState: 1
-    value: 1
+    value: 0
   externalLut:
     overrideState: 0
     value: {fileID: 0}
     defaultState: 1
   tonemapper:
-    overrideState: 1
+    overrideState: 0
     value: 0
   toneCurveToeStrength:
     overrideState: 0
@@ -96,32 +96,32 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 4
   ldrLutContribution:
-    overrideState: 0
+    overrideState: 1
     value: 1
   temperature:
     overrideState: 1
-    value: -10
+    value: 3.8
   tint:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 17.7
   colorFilter:
     overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    value: {r: 1, g: 0, b: 0, a: 1}
   hueShift:
-    overrideState: 0
-    value: 0
-  saturation:
-    overrideState: 0
-    value: 0
-  brightness:
-    overrideState: 0
-    value: 0
-  postExposure:
     overrideState: 1
-    value: 0.69
-  contrast:
+    value: -1
+  saturation:
+    overrideState: 1
+    value: -3.8
+  brightness:
+    overrideState: 1
+    value: -12.6
+  postExposure:
     overrideState: 0
     value: 0
+  contrast:
+    overrideState: 1
+    value: 0.6
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -150,14 +150,14 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 1
-    value: {x: 0.9457216, y: 0.9088031, z: 1, w: 0}
+    overrideState: 0
+    value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
-    overrideState: 1
-    value: {x: 1, y: 0.97272944, z: 0.8909186, w: 0}
+    overrideState: 0
+    value: {x: 1, y: 1, z: 1, w: 0}
   gain:
-    overrideState: 1
-    value: {x: 0.8575289, y: 1, z: 0.97824436, w: 0}
+    overrideState: 0
+    value: {x: 1, y: 1, z: 1, w: 0}
   masterCurve:
     overrideState: 0
     value:
@@ -1372,9 +1372,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 448965343419447968}
-  - {fileID: -6361341420986900348}
   - {fileID: 3664510122539616451}
   - {fileID: -8765973179759797093}
+  - {fileID: -8670131435322477435}
 --- !u!114 &448965343419447968
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1396,10 +1396,10 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 0.35
+    value: 1.57
   color:
-    overrideState: 1
-    value: {r: 0.0242969, g: 0.05375705, b: 0.24528301, a: 1}
+    overrideState: 0
+    value: {r: 0.4428876, g: 0.0028924954, b: 0.6132076, a: 1}
   ambientOnly:
     overrideState: 0
     value: 0
@@ -1414,16 +1414,16 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 1
+    value: 3.09
   directLightingStrength:
     overrideState: 0
     value: 0
   radius:
     overrideState: 1
-    value: 0.62
+    value: 0.65
   quality:
     overrideState: 1
-    value: 1
+    value: 4
 --- !u!114 &3664510122539616451
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -1444,23 +1444,23 @@ MonoBehaviour:
     overrideState: 1
     value: 0
   color:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 1}
+    overrideState: 1
+    value: {r: 0.2036854, g: 0, b: 0.3773585, a: 1}
   center:
     overrideState: 0
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.313
+    value: 0.336
   smoothness:
     overrideState: 1
-    value: 0.225
+    value: 0.101
   roundness:
-    overrideState: 0
+    overrideState: 1
     value: 1
   rounded:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 1
   mask:
     overrideState: 0
     value: {fileID: 0}
