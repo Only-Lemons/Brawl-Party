@@ -31,7 +31,7 @@ public class PosicoesTabuleiro : MonoBehaviour
         if (!recebeuBonus)
         {
             player.speed += velMovimentoB;
-            player.shield += escudoB;
+     
 
             //player.gold += ouroB;
 

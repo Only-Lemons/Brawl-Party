@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class hammer : MonoBehaviour
 {
-   
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerController>() != null)
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
-            other.GetComponent<PlayerController>().ReceiveDamage(10000000, null);
+            MiniGame m = GameObject.Find("Game Mode").GetComponent<FallingGloves>();
+            m.HitRule(player);
+            //other.GetComponent<PlayerController>().ReceiveDamage(10000000, null);
         }
     }
    

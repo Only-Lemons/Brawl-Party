@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerInputPrefab;
 
-    public AudioManager audioManager;
+    public AudioManager2 audioManager;
+
+    public ParticleManager particleManager;
 
     public IGameMode gameMode;
 
@@ -19,10 +21,13 @@ public class GameManager : MonoBehaviour
 
     public int quantTGames = 4;
     public int TimeInGame = 1;
-    public int quantGames = 4;
+    public int quantGames = 0;
     public GameModes newGameMode;
     public List<int> lastGameModes = new List<int>();
     public List<GameObject> playersPanels = new List<GameObject>();
+    
+    public Dictionary<GameObject, int> playersPontos = new Dictionary<GameObject, int>();
+
     public int[] pontosGeral;
     public Vector3 lastPainel;
     int oldScene = 0;
@@ -48,14 +53,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GetComponent<AudioManager>();
+        audioManager = GetComponent<AudioManager2>();
+        particleManager = GetComponent<ParticleManager>();
     }
 
     private void FixedUpdate()
     {
         switch (SceneManager.GetActiveScene().buildIndex)
         {
-            case 14: // Menu do Personagem
+            case 7: // Menu do Personagem
                 foreach (GameObject player in playersPanels)
                 {
                     //player.transform.GetChild(0).gameObject.SetActive(false);
@@ -66,20 +72,25 @@ public class GameManager : MonoBehaviour
 
                 if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
-                    SceneManager.LoadScene(nextLevel); // provisorio
+                    if (nextLevel != 7 && nextLevel != 4 && nextLevel != 8)
+                        SceneManager.LoadScene(4); // provisorio
+                    else
+                        SceneManager.LoadScene(nextLevel); // provisorio
+
                     necessarioMaisJogadores.text = "";
+                    inicializarDicio();
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
 
 
-                break;
+            break;
 
-            case 3:
+            case 4: // Loading
+            case 9: // ViCtoryScene
                 if (playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                 {
                     SceneManager.LoadScene(nextLevel); // provisorio
-                    
                 }
                 break;
 
@@ -115,27 +126,21 @@ public class GameManager : MonoBehaviour
 
     public void newScene(GameModes game)
     {
-        switch (game)
-        {
-            case GameModes.CaptureTheFlag:
-                gameController.gameMode = new CaptureTheFlag(gameController,40 * TimeInGame);
-                break;
-            case GameModes.FreeForAll:
-                gameController.gameMode = new FreeForAll(gameController, 30 * TimeInGame);
-                break;
-            case GameModes.GetItRock:
-                gameController.gameMode = new GetItRock(gameController, 30 * TimeInGame);
-                break;
-            case GameModes.JhonBeen:
-                gameController.gameMode = new JhonBeen(gameController, 40 * TimeInGame);
-                break;
-            case GameModes.SnackAtack:
-                gameController.gameMode = new SnackAtack(gameController, 30 * TimeInGame);
-                break;
-            case GameModes.RunGhost:
-                gameController.gameMode = new RunGhost(gameController, 30 * TimeInGame);
-                break;
-        }
+        //switch (game)
+        //{
+        //    //case GameModes.GetItRock:
+        //    //    gameController.gameMode = new GetItRock(gameController, 30 * TimeInGame);
+        //    //    break;
+        //    //case GameModes.JhonBeen:
+        //    //    gameController.gameMode = new JhonBeen(gameController, 40 * TimeInGame);
+        //    //    break;
+        //    //case GameModes.SnackAtack:
+        //    //    gameController.gameMode = new SnackAtack(gameController, 30 * TimeInGame);
+        //    //    break;
+        //    //case GameModes.RunGhost:
+        //    //    gameController.gameMode = new RunGhost(gameController, 30 * TimeInGame);
+        //    //    break;
+        //}
     }
 
 
@@ -154,6 +159,52 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
         Destroy(this.gameObject);
+    }
+
+
+    public void getPlayersMinigame(List<PlayerController> players)
+    {
+        for(int i = 0; i < players.Count; i++)
+        {
+            if (i < playersPanels.Count)
+            {
+                players[i].transform.SetParent(playersPanels[i].transform);
+            }
+            else
+            {
+
+                players[i].gameObject.SetActive(false);
+                //players.Remove(players[i]);
+                //Destroy(players[i].gameObject);
+
+            }
+        }
+
+        // Nao sei o que isso faz sinceramente 
+        List<PlayerController> aux = players.FindAll(x => !x.gameObject.activeSelf);
+        foreach (var auxP in aux)
+        {
+            players.Remove(players.Find(x => x == auxP));
+        }
+
+    }
+    
+    public void WinMinigame()
+    {
+        quantGames ++;
+        if(quantGames > quantTGames)
+            SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
+        else
+            SceneManager.LoadScene(9, LoadSceneMode.Single); // Tela vitoria minigame
+    }
+
+
+    void inicializarDicio()
+    {
+        foreach ( GameObject playerP in playersPanels)
+        {
+            playersPontos.Add(playerP,0);    
+        }
     }
 
 }

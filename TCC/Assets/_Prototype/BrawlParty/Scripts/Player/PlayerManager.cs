@@ -30,7 +30,6 @@ public class PlayerManager : MonoBehaviour
     public List<PlayerController> playerMortosPrefabs = new List<PlayerController>();
     public List<playerUIElements> playersUI = new List<playerUIElements>();
     public float timeRespawn;
-    TerrainController _tileManager;
 
 
     void Awake()
@@ -39,25 +38,16 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
-        _tileManager = GameController.singleton.tileManager;
+        
        // adcionarPlayerControlador();
-        MovePlayerBase();
+
     }
 
     private void Update()
     {
         DeathPlayerVerifity();
     }
-    void MovePlayerBase()
-    {
-        foreach (PlayerController player in playersControllers)
-        {
-            //player.GetComponentInChildren<Camera>().enabled = false;
-            //player.GetComponent<PlayerSelect>().enabled = false;
-            player.gameObject.transform.position =_tileManager.bases[playersControllers.IndexOf(player)].position;
-            player._base = _tileManager.bases[playersControllers.IndexOf(player)].position;
-        }
-    }
+
     void setPlayerInScene()
     {
         PlayerController[] aux = GameObject.FindObjectsOfType<PlayerController>();
@@ -68,6 +58,7 @@ public class PlayerManager : MonoBehaviour
             aux[i].playerUI = playersUI[i];
         }
     }
+
     void DeathPlayerVerifity()
     {
         if(playerMortos.Count > 0)
@@ -98,17 +89,18 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-
    public void adcionarPlayerControlador()
     {
         for (int i = 0; i < playersControllers.Count; i++)
         {
             if(i < GameManager.Instance.playersPanels.Count)
             {
-               playersControllers[i].transform.SetParent(GameManager.Instance.playersPanels[i].transform);
-               playersControllers[i].transform.GetChild(1).GetComponentInChildren<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor;
-               playersControllers[i].playerSprite = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectSprite;
-               playersControllers[i].playerColor = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor;
+                playersControllers[i].transform.SetParent(GameManager.Instance.playersPanels[i].transform); // Pega o player e seta no controlodaor
+
+                // Altera o personagem 
+                playersControllers[i].transform.GetChild(1).GetComponentInChildren<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor;
+                playersControllers[i].playerSprite = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectSprite;
+                playersControllers[i].playerColor = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor;
             }
             else
             {
@@ -117,11 +109,9 @@ public class PlayerManager : MonoBehaviour
             }
         }
         List<PlayerController> aux = playersControllers.FindAll(x => !x.gameObject.activeSelf);
-
         foreach (var auxP in aux)
         {
             playersControllers.Remove(playersControllers.Find(x => x == auxP));
         }
-
     }
 }

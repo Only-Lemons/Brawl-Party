@@ -52,12 +52,12 @@ public class RunGhost : IGameMode
             WinRule();
     }
 
-    public void MovementRule(Vector3 dir, Transform player, float speed)
+    public void MovementRule(PlayerController player)
     {
-        player.position += dir * speed * Time.deltaTime;
-        if (dir != Vector3.zero)
+        player.transform.position += player._movementAxis * player.speed * Time.deltaTime;
+        if (player._movementAxis != Vector3.zero)
         {
-            player.rotation = Quaternion.Lerp(player.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 20);
+            player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(player._movementAxis), Time.deltaTime * 20);
         }
     }
 
@@ -67,7 +67,7 @@ public class RunGhost : IGameMode
         player.playerUI.points.text = pointPlayer[player].ToString();
     }
 
-    public void RotationRule(Vector3 dir, Transform player)
+    public void RotationRule(PlayerController player)
     {
 
         //player.rotation = Quaternion.Lerp(player.rotation,Quaternion.Euler(dir.x,dir.y,dir.z), Time.deltaTime);

@@ -41,7 +41,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
 
     public Sprite selectSprite;
-
+    public string selectName;
     [Header("Default Sprites")]
     [SerializeField] private string defaultName;
     [SerializeField] private Sprite defaultSplash;
@@ -59,7 +59,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     private void FixedUpdate()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 14 && isConfirmed)
+        if (SceneManager.GetActiveScene().buildIndex == 7 && isConfirmed)
             UpdateCharSelectUi();
 
 
@@ -102,13 +102,13 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 14)
+            if (SceneManager.GetActiveScene().buildIndex == 7)
             {
                 if (isConfirmed)
                 {
                     backgroundColor.color = Color.green;
                     selectSprite = characterSplash.sprite;
-
+                    selectName = characterName.text;
                     //Debug.Log("Removed" + charList[selectedCharIndex].charName);
                     isConfirmed = false;
                 }
@@ -120,7 +120,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 }
 
             }
-            else if(SceneManager.GetActiveScene().buildIndex == 3)
+            else if(SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetActiveScene().buildIndex == 9))
             {
                 if (isConfirmed)
                 {  
@@ -131,9 +131,9 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     isConfirmed = true;
                 }
 
-
-            } else if (GameManager.Instance.gameController.comecou)
-                GameManager.Instance.PressStart();
+            }
+           // } else if (GameManager.Instance.gameController.comecou)
+               // GameManager.Instance.PressStart();
 
         }
     }

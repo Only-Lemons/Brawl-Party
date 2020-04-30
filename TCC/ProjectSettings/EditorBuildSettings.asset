@@ -6,53 +6,62 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(0)FirsScene.unity
-    guid: 92286d4d5424bef4ebba3b30f9842272
+    path: Assets/BrawlParty/scenes/0_FirstScene.unity
+    guid: 043d05eac4ebe6e4d85b59446b20f9a0
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(1)MenuInicial.unity
-    guid: 8302328bd74ca8740a76bdf030f32270
+    path: Assets/BrawlParty/scenes/1_MenuInicial.unity
+    guid: 15751da275be3d54c80947b394e1fcba
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(2) Config.unity
-    guid: ff055c03af8877a4aa5203a98871dd62
+    path: Assets/BrawlParty/scenes/2_Config.unity
+    guid: e609812d0899b604695feda40e7707a2
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(3) Loading.unity
-    guid: 5957c2f4c02e4674fb7cbfd95fc1363a
+    path: Assets/BrawlParty/scenes/3_Creditos.unity
+    guid: 24d3c803c4d962c4a9f241c3a050e0cb
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(4) MenuPersonagem.unity
-    guid: fbaecb1c6ea05fe4bb303269a05f02b1
+    path: Assets/BrawlParty/scenes/4_Loading.unity
+    guid: 24d775024419b5b449dbdc51362d3b65
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(5) drawArena.unity
-    guid: 7d0ff75eb0b122442a066b3eb961b84b
+    path: Assets/BrawlParty/scenes/5_GameConfig.unity
+    guid: 56dbcdf6042ba994dba87c0c731b5de1
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(6) selectMode.unity
-    guid: 340a8de77fb87c04eb3e47181d1436a1
+    path: Assets/BrawlParty/scenes/6_selectMode.unity
+    guid: 8dbb33e6436b04a4ab813a862d09d36c
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(7) Creditos.unity
-    guid: 6cfa3f35a019e3347a09ac79603f7ce1
+    path: Assets/BrawlParty/scenes/7_MenuPersonagem.unity
+    guid: badf9b97acd6ce04c86b7f8e5e94cbfb
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(8) Gelo.unity
-    guid: 5b7b20a77d718464dbe67cb2ae78a68b
+    path: Assets/BrawlParty/scenes/8_drawArena.unity
+    guid: e561041559f7b8047a4e80b3d0c9a765
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(9)FallingCubes.unity
-    guid: df9e0e2bb35f21541b132d8baab9c557
+    path: Assets/BrawlParty/scenes/9_VitoriaMinigame.unity
+    guid: 5efd9dee3087fa54a9ffc4ad6b210048
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(10) JhonBeen.unity
-    guid: e6a3c5c86ce3b8646b214497765a2bc4
+    path: Assets/BrawlParty/scenes/10_Vitoria.unity
+    guid: c2d578d30739ac54ba87576cab8b128e
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(11)SnackAttack.unity
-    guid: 3684869dd98ecd844adbd3dc1f90ea18
+    path: Assets/BrawlParty/scenes/11_Maze.unity
+    guid: 221db27e98954ee4597f29d5d851e899
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(12)GhostRun.unity
-    guid: f3d4ce0b797f20149bc592a60c69dfdc
+    path: Assets/BrawlParty/scenes/12_Spacenautas.unity
+    guid: 858791bcca3c5c445ab628ea93ccff5d
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(13) GameConfig.unity
-    guid: 53392df6bfaf9f541ba4539bf686eaf0
+    path: Assets/BrawlParty/scenes/13_FallingGloves.unity
+    guid: 398e8e8640416774e9ba8045667b1f0d
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(14) MenuPersonagem 1.unity
-    guid: 35c371ca6d5a7d541b44430b29eddf1b
+    path: Assets/BrawlParty/scenes/14_JhonBeen.unity
+    guid: 53c5237317810dc45b8d53812d0ac0db
   - enabled: 1
-    path: Assets/_Prototype/_Scenes/(15) Vitoria.unity
-    guid: 24362c17ceebef147af17f23962283d8
+    path: Assets/BrawlParty/scenes/15_SnackAttack.unity
+    guid: 2ee54ab951e8e5f49b0b30e83d6d3b2e
+  - enabled: 1
+    path: Assets/BrawlParty/scenes/16_GhostRun.unity
+    guid: 3da7a4ae66b92674a84f67683d5d804c
+  - enabled: 1
+    path: Assets/BrawlParty/scenes/17_FallBirds.unity
+    guid: a15312ecd9ffa31469cae9bdb8640200
+  - enabled: 1
+    path: Assets/BrawlParty/scenes/18_Runnerclimp.unity
+    guid: 1fd363e554dab234ca1c8eea7d6e2979
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 75d13b8fd062eec44850361a199fe242,
       type: 2}

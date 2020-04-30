@@ -7,11 +7,12 @@ using UnityEngine.InputSystem.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-    
+    public string menuIncial;
+    public string selectMode;
 
     public void sceneChange(string sceneName)
     {
-        if (sceneName == "(6) selectMode")
+        if (sceneName == selectMode)
             GameManager.Instance.quantGames = 0;
 
         SceneManager.LoadScene(sceneName);
@@ -19,7 +20,7 @@ public class ChangeScene : MonoBehaviour
 
     public void OnReturn()
     {
-        SceneManager.LoadScene("(1)MenuInicial");
+        SceneManager.LoadScene(menuIncial);
     }
 
 }

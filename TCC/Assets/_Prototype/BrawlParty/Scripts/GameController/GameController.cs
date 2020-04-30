@@ -24,11 +24,12 @@ public class GameController : MonoBehaviour
     public Text timeComecarText;
 
     public IGameMode gameMode;
+
     [HideInInspector]
-    public TerrainController tileManager;
     public PlayerManager playerManager;
     [HideInInspector]
     public UIManager uIManager;
+
     public Text time;
     public List<Text> pontos;
     public List<Image> personagens;
@@ -48,6 +49,32 @@ public class GameController : MonoBehaviour
 
     }
 
+
+    private void Start()
+    {
+        
+       // painelPontos.SetActive(false);
+       
+        playerManager = GetComponent<PlayerManager>();
+        uIManager = GetComponent<UIManager>();
+
+        // Tem que existir so que mlhor 
+        pegarPlayerScene(GameObject.FindGameObjectsWithTag("Player"));
+
+        // nao preicsa mais 
+        GameManager.Instance.TryGetGameController();
+
+        playerManager.adcionarPlayerControlador();
+
+        gameMode.StartGame(); // isso nao precisa mais
+
+        //Inicio minigame HUD
+        comecouContar = true;
+        timeComecarText.CrossFadeAlpha(0, 5, false);
+
+        SetarSprites();
+    }
+
     void SetarSprites()
     {
         foreach (PlayerController p in GameController.singleton.playerManager.playersControllers)
@@ -55,29 +82,9 @@ public class GameController : MonoBehaviour
             spritePersonagens.Add(p.playerSprite);
         }
     }
-    private void Start()
-    {
-        
-        painelPontos.SetActive(false);
-        tileManager = GetComponent<TerrainController>();
-        playerManager = GetComponent<PlayerManager>();
-        uIManager = GetComponent<UIManager>();
 
 
-        pegarPlayerScene(GameObject.FindGameObjectsWithTag("Player"));
-
-        GameManager.Instance.TryGetGameController();
-        playerManager.adcionarPlayerControlador();
-
-        gameMode.StartGame();
-        comecouContar = true;
-
-        timeComecarText.CrossFadeAlpha(0, 5, false);
-        SetarSprites();
-    }
-
-
-
+    //Chamo quando meu minigame acaba
     public void FinishGame()
     {
         Time.timeScale = 1;
@@ -123,20 +130,25 @@ public class GameController : MonoBehaviour
         StartCoroutine(ChangeScene());
 
     }
+
+    //Muda pra de draw mini game
     IEnumerator ChangeScene()
     {
-
-
         yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(8);
     }
+
     private void Update()
     {
         if (comecou)
-            gameMode.Update();
+            gameMode.Update(); // Isso nao preicsa mais 
+
+
         ComecarJogo();
     }
 
+
+    // Isso é so UI 
     public void ComecarJogo()
     {
         if (comecouContar)
@@ -162,11 +174,10 @@ public class GameController : MonoBehaviour
                 }
             }
         }
-
         if (time.text == "00:00")
             timeComecarText.text = "FINISH!";
-
     }
+
 
     void pegarPlayerScene(GameObject[] players)
     {

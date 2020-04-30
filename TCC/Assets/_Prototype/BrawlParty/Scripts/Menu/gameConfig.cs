@@ -13,6 +13,8 @@ public class gameConfig : MonoBehaviour
     public Text quantGames;
     public Text typeOfTime;
 
+    public string MenuPersonagem;
+
     private void Start()
     {
         quantidyGames.maxValue = GameManager.Instance.quantTGames-1;
@@ -42,7 +44,7 @@ public class gameConfig : MonoBehaviour
 
     public void mudarScena()
     {
-        GameManager.Instance.nextLevel = 5;
-        SceneManager.LoadScene(14);
+        GameManager.Instance.nextLevel = 8;
+        SceneManager.LoadScene(MenuPersonagem);
     }
 }

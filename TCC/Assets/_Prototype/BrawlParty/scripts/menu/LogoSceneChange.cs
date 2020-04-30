@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LogoSceneChange : MonoBehaviour
 {
+    public string scene;
     private void Update()
     {
         if (Input.anyKey)
-            SceneManager.LoadScene("(1)MenuInicial");
+            SceneManager.LoadScene(scene);
     }
 }

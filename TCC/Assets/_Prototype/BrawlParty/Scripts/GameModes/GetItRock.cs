@@ -16,6 +16,7 @@ public class GetItRock : IGameMode
     int dificuldade = 0;
 
     int pontoTotal;
+    
     public GetItRock(GameController gameController, float time)
     {
         aux = gameController;
@@ -128,24 +129,24 @@ public class GetItRock : IGameMode
         return boleano;
     }
 
-    public void MovementRule(Vector3 dir, Transform player, float speed)
+    public void MovementRule(PlayerController player)
     {
-        if (dir.x > 0)
+        if (player._movementAxis.x > 0)
         {
-            player.gameObject.GetComponent<PlayerController>().direc = 1;
-            player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
+            player.direc = 1;
+            player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
         }
-        else if (dir.x < 0)
+        else if (player._movementAxis.x < 0)
         {
-            player.gameObject.GetComponent<PlayerController>().direc = -1;
-            player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
+            player.direc = -1;
+            player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
         }
         else
         {
-            player.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.zero), Quaternion.identity, Time.deltaTime);
+            player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.zero), Quaternion.identity, Time.deltaTime);
         }
 
-        player.transform.position += new Vector3(dir.x, 0, 0) * speed * Time.deltaTime;
+        player.transform.position += new Vector3(player._movementAxis.x, 0, 0) * player.speed * Time.deltaTime;
 
     }
 
@@ -155,7 +156,7 @@ public class GetItRock : IGameMode
 
     }
 
-    public void RotationRule(Vector3 dir, Transform player)
+    public void RotationRule(PlayerController player)
     {
 
     }

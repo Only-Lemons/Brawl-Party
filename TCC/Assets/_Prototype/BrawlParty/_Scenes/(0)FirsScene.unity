@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -304,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.979}
   m_AnchorMin: {x: 0, y: 0.301273}
   m_AnchorMax: {x: 1, y: 0.63577914}
-  m_AnchoredPosition: {x: -5, y: -5.0999985}
+  m_AnchoredPosition: {x: -5, y: -5.099991}
   m_SizeDelta: {x: 58.19995, y: -7.600006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &881796575
@@ -340,8 +341,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -394,7 +393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.43253395, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: -0.00062561035}
+  m_AnchoredPosition: {x: -2, y: -0.00061035156}
   m_SizeDelta: {x: 40.5, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915352173
@@ -415,8 +414,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 9f5cca013a3537c46a45db1d526d735a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
@@ -592,8 +589,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5c9b530ed632203488ee701bb872b9e5, type: 3}
     m_FontSize: 120
@@ -664,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdfb14500fceed40921fce7585c509c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: 1_MenuInicial
 --- !u!4 &1916697247
 Transform:
   m_ObjectHideFlags: 0

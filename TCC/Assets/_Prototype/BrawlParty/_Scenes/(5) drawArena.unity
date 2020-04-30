@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -156,8 +157,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: -8468315610544368307, guid: e43eb451d8f4928488ccb461df3772e9,
     type: 3}
   m_Type: 0
@@ -326,8 +325,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -401,8 +398,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5c9b530ed632203488ee701bb872b9e5, type: 3}
     m_FontSize: 14
@@ -495,8 +490,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 5994366847660699745, guid: dd9b05438a56ae84e942897f600855a2,
     type: 3}
   m_Type: 1
@@ -553,8 +546,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 5994366847660699745, guid: dd9b05438a56ae84e942897f600855a2,
     type: 3}
   m_Type: 1
@@ -643,8 +634,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 872d71c57327dd14884211f128272019, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -738,8 +727,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -813,8 +800,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5c9b530ed632203488ee701bb872b9e5, type: 3}
     m_FontSize: 55
@@ -966,8 +951,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 3048925395330779877, guid: e43eb451d8f4928488ccb461df3772e9,
     type: 3}
   m_Type: 0
@@ -1013,17 +996,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameModes:
   - gameMode: 5
-    sprite: {fileID: 3547381763761409659, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
-      type: 3}
+    sprite: {fileID: 21300000, guid: 51b3261a3d874cb4b8655e782440a443, type: 3}
     Scene: 12
     spriteScene: {fileID: 3547381763761409659, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
-  - gameMode: 4
+  - gameMode: 7
     sprite: {fileID: 3048925395330779877, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
-    Scene: 11
-    spriteScene: {fileID: 3048925395330779877, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
-      type: 3}
+    Scene: 16
+    spriteScene: {fileID: 21300000, guid: 51b3261a3d874cb4b8655e782440a443, type: 3}
   - gameMode: 2
     sprite: {fileID: -8468315610544368307, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
@@ -1036,6 +1017,18 @@ MonoBehaviour:
     Scene: 10
     spriteScene: {fileID: 7719596976410993096, guid: 6b5d0b39fe1f1d943a987b6922fe9c36,
       type: 3}
+  - gameMode: 8
+    sprite: {fileID: 21300000, guid: 01bb24768ef7669489419e116c5658c2, type: 3}
+    Scene: 17
+    spriteScene: {fileID: 21300000, guid: 01bb24768ef7669489419e116c5658c2, type: 3}
+  - gameMode: 9
+    sprite: {fileID: 21300000, guid: e89bdfdc924231b4593f3571c30d903a, type: 3}
+    Scene: 18
+    spriteScene: {fileID: 21300000, guid: e89bdfdc924231b4593f3571c30d903a, type: 3}
+  - gameMode: 10
+    sprite: {fileID: 21300000, guid: fc6bf2bd91ba89b4c8dcbcad2bbf185b, type: 3}
+    Scene: 19
+    spriteScene: {fileID: 21300000, guid: fc6bf2bd91ba89b4c8dcbcad2bbf185b, type: 3}
   auxMod: []
   prefabScene: {fileID: 833547671}
   prefabGM: {fileID: 1895641213}
@@ -1231,8 +1224,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 7719596976410993096, guid: e43eb451d8f4928488ccb461df3772e9,
     type: 3}
   m_Type: 0
@@ -1347,8 +1338,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c362702638606654eb31f7db22662863, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1437,8 +1426,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 5994366847660699745, guid: dd9b05438a56ae84e942897f600855a2,
     type: 3}
   m_Type: 1
