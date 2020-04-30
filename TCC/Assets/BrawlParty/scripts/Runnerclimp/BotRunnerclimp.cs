@@ -55,6 +55,10 @@ public class BotRunnerclimp : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        platformNext = PlatformNext(GameObject.FindGameObjectsWithTag("Platform"));
+    }
 
     void FixedUpdate()
     {
@@ -76,10 +80,9 @@ public class BotRunnerclimp : MonoBehaviour
                     {
                         if(Vector3.Distance(plat[i].transform.position, transform.position) < Vector3.Distance(plat[j].transform.position, transform.position))
                         {
-                            if (Vector3.Distance(plat[i].transform.position, transform.position) < distance)
                                 if (plat[i].transform.position.y < this.transform.position.y +5 && plat[i].transform.position.y > this.transform.position.y)
                             {
-                                distance = Vector3.Distance(plat[i].transform.position, this.transform.position);
+                                //distance = Vector3.Distance(plat[i].transform.position, this.transform.position);
                                 platformNext = plat[i];
                             }
                         }
@@ -93,6 +96,7 @@ public class BotRunnerclimp : MonoBehaviour
 
     void SearchPlatform()
     {
+        
         if (platformNext == null)
         {
             platformNext = PlatformNext(GameObject.FindGameObjectsWithTag("Platform"));
