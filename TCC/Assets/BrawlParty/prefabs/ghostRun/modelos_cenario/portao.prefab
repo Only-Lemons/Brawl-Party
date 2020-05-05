@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6031367130811316459}
   - component: {fileID: 6973652581432180053}
   - component: {fileID: 1298777489501060559}
-  - component: {fileID: 8021546929427866245}
   m_Layer: 0
   m_Name: portao
   m_TagString: Untagged
@@ -80,16 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &8021546929427866245
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5535571787983314214}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.2003841, y: 6.296102, z: 1.0111771}
-  m_Center: {x: 0.061475337, y: 3.148051, z: 0.008436203}
