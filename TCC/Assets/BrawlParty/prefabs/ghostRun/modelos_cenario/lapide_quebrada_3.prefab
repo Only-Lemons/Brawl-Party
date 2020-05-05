@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6098281668309987910}
   - component: {fileID: 492443890266040215}
   - component: {fileID: 5177827132486601833}
+  - component: {fileID: 7459999589206884930}
   m_Layer: 0
   m_Name: lapide_quebrada_3
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!65 &5177827132486601833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5955563609914606488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.892143, y: 2.5502276, z: 0.5839581}
+  m_Center: {x: 0.00000020861626, y: 1.2603624, z: 0.00000020861626}
+--- !u!65 &7459999589206884930
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
