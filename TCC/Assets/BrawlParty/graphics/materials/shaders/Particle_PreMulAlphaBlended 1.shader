@@ -7,7 +7,7 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" }
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent"}
 
 		Blend One One
 		ZWrite Off
