@@ -9,7 +9,7 @@
     {
         Tags { "RenderType"="Transparent" }
 
-		Blend One SrcColor
+		Blend One One
 		ZWrite Off
 		Cull Off
 
