@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using System.Reflection.Emit;
 
 public class Maze : MiniGame
 {
@@ -22,6 +22,7 @@ public class Maze : MiniGame
     float fTime;
     float calculateLT = 1;
 
+    public GameObject exitLight;
     public GameObject[] randomWall;
     public GameObject[] playersLight;
     public GameObject[] jasonsFear;
@@ -31,7 +32,7 @@ public class Maze : MiniGame
 
     private void Start()
     {
-        closedDoor = new Vector3(10, door.transform.position.y, door.transform.position.z);
+        closedDoor = new Vector3(15, door.transform.position.y, door.transform.position.z);
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         randomWall = GameObject.FindGameObjectsWithTag("FakeWall");
         jasonsFear = GameObject.FindGameObjectsWithTag("Enemy");
@@ -114,6 +115,7 @@ public class Maze : MiniGame
         //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
         door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(closedDoor.x, door.transform.position.y, door.transform.position.z), Time.fixedDeltaTime/(fTime));
+        exitLight.transform.localScale = Vector3.Lerp(exitLight.transform.localScale, new Vector3(0, 1, 0), Time.fixedDeltaTime / (fTime));
 
     }
     public override void Action(PlayerController player)
@@ -202,7 +204,7 @@ public class Maze : MiniGame
         if (!inStun[player])
         {
             inStun[player] = true;
-            timeStun[player] = 10;
+            timeStun[player] = 2;
         }
     }
 
