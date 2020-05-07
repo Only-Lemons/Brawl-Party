@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: coneMaterial
+  m_Name: ghost
   m_Shader: {fileID: 4800000, guid: 472ed72889becb540984f4c0d335a26e, type: 3}
   m_ShaderKeywords: TWO_SIDED_ON
   m_LightmapFlags: 4
@@ -20,10 +20,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 668d502ab42197a4fa07fc9442133452, type: 3}
+        m_Texture: {fileID: 2800000, guid: c8356a1c16f50684eb2e6c1fb439397b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ToggleTwoSide: 1
     m_Colors:
-    - _Color: {r: 17.14912, g: 14.213685, b: 4.171407, a: 1}
+    - _Color: {r: 0.5235849, g: 1, b: 0.80878943, a: 1}
