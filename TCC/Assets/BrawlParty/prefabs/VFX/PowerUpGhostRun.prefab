@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3651642834182773764}
   - component: {fileID: 4646586598919346443}
   - component: {fileID: 5670507058540871073}
-  - component: {fileID: 622807205129341612}
+  - component: {fileID: 7872891674948263444}
   m_Layer: 0
   m_Name: cruz_1
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622807205129341613}
-  m_LocalRotation: {x: -0.002785033, y: -0.99587893, z: -0.084499456, w: 0.03282336}
-  m_LocalPosition: {x: -0.005, y: 0.372, z: -0.07}
-  m_LocalScale: {x: 0.33585286, y: 0.33585286, z: 0.33585286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 4527863297024059547}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -9.700001, y: -176.225, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4646586598919346443
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -80,22 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!111 &622807205129341612
-Animation:
+--- !u!114 &7872891674948263444
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622807205129341613}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 8f78f942b9b73cd4192bb6ad5fe1b39b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 8f78f942b9b73cd4192bb6ad5fe1b39b, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9f544672e8f0547a17391aae61294a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go: {fileID: 622807205129341613}
 --- !u!1 &4527863296275397165
 GameObject:
   m_ObjectHideFlags: 0
