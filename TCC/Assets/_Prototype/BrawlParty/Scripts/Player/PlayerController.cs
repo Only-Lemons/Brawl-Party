@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     [HideInInspector]
     public Inputs controls;
 
+    public GameObject playerModel;
+
     #region Movimentacao
     public Vector3 _movementAxis;
     public Vector3 _rotationAxis;
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     private void FixedUpdate()
     {
-
+        
           //  if (canDeath == true)
             //{
                 if (_movementAxis != Vector3.zero)
@@ -105,6 +107,10 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
            // }
     }
 
+    public void setColor(Color cor)
+    {
+        playerModel.GetComponent<SkinnedMeshRenderer>().material.color = cor;
+    }
 
     public void ResetarPlayer()
     {

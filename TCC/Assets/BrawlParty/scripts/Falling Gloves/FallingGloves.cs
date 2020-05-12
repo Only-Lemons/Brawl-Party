@@ -14,6 +14,7 @@ public class FallingGloves : MiniGame
     List<PlayerController> winners = new List<PlayerController>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, int> playersVidas = new  Dictionary<PlayerController,int>();
+    Dictionary<PlayerController, bool> playersI = new  Dictionary<PlayerController, bool>();
     bool adicionolPoint = false;
     int numwinner = 0;
     float lasthit = 0;
@@ -37,9 +38,17 @@ public class FallingGloves : MiniGame
         foreach (var player in players)
         {
             player.actualGameMode = this;
-           
+            
         }
 
+
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            if (i < players.Count) 
+            {
+                players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+            }
+        }
 
 
 
@@ -65,19 +74,22 @@ public class FallingGloves : MiniGame
         if (tempoVerificacao < 0 && qtdVivos < 1)
         {
             falha = true;
-            WinRule();
+            Invoke("WinRule",0);
+     
         }
         else if (tempoVerificacao < 0 && qtdVivos >= 1)
-            WinRule();
+        {
+            Invoke("WinRule", 0);
 
+        }
+        
         if (!adicionolPoint)
         {
             lasthit -= Time.deltaTime;
-           // timeOfGame -= Time.deltaTime;
+            // timeOfGame -= Time.deltaTime;
             ShowTime();
             InsertWinners();
-            WinRule();
-
+            //WinRule();
             if (lasthit <= 0)
             {
                 Falling();
@@ -161,22 +173,32 @@ public class FallingGloves : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-        playersVidas[player] -= 1; 
-
-        if(playersVidas[player] < 0)
+        if (playersI[player] == false)
         {
-            player.gameObject.SetActive(false);
-            playerMortos[player] = true;
-            player.pontosGenericos -= pontoTotal;
-            pontoTotal-=1;
-            if (VerifyPlayerMortos())
+            playersVidas[player] -= 1;
+            if (playersVidas[player] < 0)
             {
-                winners.Add(player);
-                InsertWinners();
-                numwinner++;
-                WinRule();
+                player.gameObject.SetActive(false);
+                playerMortos[player] = true;
+                player.pontosGenericos -= pontoTotal;
+                pontoTotal -= 1;
+                if (VerifyPlayerMortos())
+                {
+                    winners.Add(player);
+                    InsertWinners();
+                    numwinner++;
+                    Invoke("WinRule", 0);
+                }
             }
+            playersI[player] = true;
+            StartCoroutine(invencibilidadeCD(player));
         }
+    }
+
+    IEnumerator invencibilidadeCD(PlayerController player)
+    {
+        yield return new WaitForSeconds(2f);
+        playersI[player] = false;
     }
 
     public override void Jump(PlayerController player)
@@ -223,6 +245,7 @@ public class FallingGloves : MiniGame
                 for (int i = 0; i < winners.Count; i++)
                 {
                       GameManager.Instance.playersPontos[winners[i].gameObject.transform.parent.gameObject] += 2;
+                    Debug.Log("GANHOU ?");
                 }
             }
 
@@ -231,6 +254,7 @@ public class FallingGloves : MiniGame
                 for (int i = 0; i <players.Count; i++)
                 {
                      GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += 1;
+                    Debug.Log("PERDEU ?");
                 }
             }
             
@@ -244,6 +268,7 @@ public class FallingGloves : MiniGame
         {
             playerMortos.Add(player, false);
             playersVidas.Add(player,3);
+            playersI.Add(player, false);
             player.pontosGenericos =players.Count;
         }
     }

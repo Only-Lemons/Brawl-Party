@@ -102,6 +102,7 @@ MonoBehaviour:
     gun: {fileID: 0}
     gun2: {fileID: 0}
     character: {fileID: 0}
+  playerModel: {fileID: 8273838292931031871}
   _movementAxis: {x: 0, y: 0, z: 0}
   _rotationAxis: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
@@ -976,6 +977,12 @@ Transform:
 --- !u!4 &9047527370543672172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3220319501169496967, guid: 931781585ed15344b9222e4ef9c4b1c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3368805001859581717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8273838292931031871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2588740359533366230, guid: 931781585ed15344b9222e4ef9c4b1c5,
     type: 3}
   m_PrefabInstance: {fileID: 3368805001859581717}
   m_PrefabAsset: {fileID: 0}
