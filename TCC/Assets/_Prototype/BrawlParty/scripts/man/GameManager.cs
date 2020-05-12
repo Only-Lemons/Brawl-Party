@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
 
                     necessarioMaisJogadores.text = "";
                     inicializarDicio();
+
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";

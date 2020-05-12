@@ -18,6 +18,20 @@ public class ParticleManager : MonoBehaviour
 
 
     }
+
+
+    public void getParticulaUI(string name, RectTransform position)
+    {
+        Particulas aux = particulas.Find(x => x.nome.ToLower() == name.ToLower());
+        aux.particle.gameObject.transform.parent = position;
+        aux.particle.gameObject.transform.position = aux.posicaoRelativa;
+        aux.particle.Play();
+        StartCoroutine(resetParticle(aux));
+        particulas.Remove(aux);
+
+    }
+
+
     IEnumerator resetParticle(Particulas particles)
     {
         yield return new WaitForSeconds(particles.tempo);
