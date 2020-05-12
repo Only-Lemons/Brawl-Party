@@ -38,9 +38,17 @@ public class FallingGloves : MiniGame
         foreach (var player in players)
         {
             player.actualGameMode = this;
-           
+            
         }
 
+
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            if (i < players.Count) 
+            {
+                players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+            }
+        }
 
 
 
