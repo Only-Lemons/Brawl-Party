@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class GhostRun : MiniGame
 {   
     List<PlayerController> players = new List<PlayerController>();
@@ -70,7 +70,7 @@ public class GhostRun : MiniGame
             if (_timeToInstantiateNewCross <= 0)
             {
                 _timeToInstantiateNewCross = 2;
-                GameObject gameObject =  GameObject.Instantiate(_cross,new Vector3(Random.Range(-7.58f, 8.75f), 1.8f,Random.Range(-5.22f, 8.57f)),Quaternion.identity).gameObject;
+                GameObject gameObject =  GameObject.Instantiate(_cross,new Vector3(Random.Range(-7.58f, 8.75f), 1,Random.Range(-5.22f, 8.57f)),Quaternion.identity).gameObject;
                 gameObject.GetComponent<Cross>().modegame = this;
             }
             if (timeOfGame <= 0)
@@ -85,12 +85,14 @@ public class GhostRun : MiniGame
         {
             if (!_playerisinvencible[player])
                 continue;
+            GameManager.Instance.particleManager.getParticula("playerPowerUp", player.transform);
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
             {
                 _playerisinvencible[player] = false;
             }
         }
+
     }
 
     public override void Action(PlayerController player)
@@ -264,5 +266,5 @@ public struct Images
     public GameObject pai;
     public Image fotoPersonagem;
     public Image fotoCruz;
-    public Text  quantidade;
+    public TextMeshProUGUI  quantidade;
 }
