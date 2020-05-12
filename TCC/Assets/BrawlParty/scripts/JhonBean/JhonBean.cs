@@ -29,6 +29,9 @@ public class JhonBean : MiniGame
     int vencedor;
     float zoomCam = 14f;
 
+    public float timeForBirds = 1.5f;
+    float _timeForBirds;
+
     void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
@@ -41,18 +44,22 @@ public class JhonBean : MiniGame
             player.actualGameMode = this;
 
         }
-     
-        CancelarCameras();
+
         vencedor = players.Count - 1;
 
-        for (int i = 0; i <players.Count; i++)
+        InsertPlayerInDates();
+        CancelarCameras();
+
+        for (int i = 0; i < players.Count; i++)
         {
             if (players[i] != null)
             {
-                cameras[i].transform.position = new Vector3(players[i].transform.localPosition.x, players[i].transform.localPosition.z - zoomCam);
+                cameras[i].transform.position = new Vector3(players[i].transform.position.x, players[i].transform.localPosition.y + 130, players[i].transform.position.z - zoomCam);
             }
         }
-        InsertPlayerInDates();
+
+        timeOfGame = 30;
+        _timeForBirds = timeForBirds;
     }
     void InsertWinners()
     {
@@ -70,14 +77,14 @@ public class JhonBean : MiniGame
     {
         string minute = ((int)(timeOfGame / 60)).ToString("00"); ;
         string seconds = ((int)(timeOfGame % 60)).ToString("00"); ;
-        
+
     }
-    void goDownPlayers()
+    void GoDownPlayers(PlayerController player)
     {
-        foreach (PlayerController player in players)
-        {
-            player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3 * Time.deltaTime, player.transform.position.z);
-        }
+        //foreach (PlayerController player in players)
+        //{
+        //    player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3 * Time.deltaTime, player.transform.position.z);
+        //}
     }
     void CancelarCameras()
     {
@@ -123,7 +130,7 @@ public class JhonBean : MiniGame
                 zoomCam = 14;
                 break;
         }
-        UpdatePositionCamera();
+        
         //fimteste
     }
     private void UpdatePositionCamera()
@@ -133,16 +140,18 @@ public class JhonBean : MiniGame
             if (players[i] != null)
             {
                 if (players[i].transform.position.y > 0)
-                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(players[i].transform.localPosition.x, players[i].transform.localPosition.y + 5, players[i].transform.localPosition.z - zoomCam), Time.deltaTime * 2);
+                    //cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(players[i].transform.localPosition.x, players[i].transform.localPosition.y + 5, players[i].transform.localPosition.z - zoomCam), Time.deltaTime * 2);
+                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(players[i].transform.position.x, players[i].transform.localPosition.y + 5, players[i].transform.localPosition.z - zoomCam), Time.deltaTime);
                 else
-                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(players[i].transform.localPosition.x, players[i].transform.localPosition.y + 5, players[i].transform.localPosition.z - zoomCam), Time.deltaTime * 2);
+                    //cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(players[i].transform.localPosition.x, players[i].transform.localPosition.y + 5, players[i].transform.localPosition.z - zoomCam), Time.deltaTime * 2);
+                    cameras[i].transform.position = Vector3.Lerp(cameras[i].transform.position, new Vector3(players[i].transform.position.x, players[i].transform.localPosition.y + 5, players[i].transform.localPosition.z - zoomCam), Time.deltaTime);
             }
         }
     }
     void InsertPlayerInDates()
     {
         cameras = new GameObject[players.Count];
-        for (int i = 0; i < cameras.Length; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             cameras[i] = GameObject.Find("Camera_P" + (i + 1));
             //Debug.Log(cameras[i].gameObject.name);
@@ -165,11 +174,12 @@ public class JhonBean : MiniGame
     }
     void Update()
     {
-
+        UpdatePositionCamera();
+        FallingBirds();
     }
     public override void Action(PlayerController player)
     {
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove  && !adicionolPoint && !player.travar)
+        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && !adicionolPoint && !player.travar)
         {
             player.anim.SetTrigger("Climb");
             player.transform.position += new Vector3(0f, 1f, 0f);
@@ -178,12 +188,12 @@ public class JhonBean : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-       
+
     }
 
     public override void Jump(PlayerController player)
     {
-        
+
     }
 
     public override void MovementRule(PlayerController player)
@@ -210,7 +220,7 @@ public class JhonBean : MiniGame
     {
         player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
 
-       
+
         player.travar = true;
         vencedor--;
         switch (vencedor)
@@ -249,7 +259,7 @@ public class JhonBean : MiniGame
     }
     public override void RotationRule(PlayerController player)
     {
-        
+
     }
 
     public override void WinRule()
@@ -267,5 +277,16 @@ public class JhonBean : MiniGame
         }
     }
 
-    
+    void FallingBirds()
+    {
+        timeForBirds -= Time.fixedDeltaTime;
+        if (timeForBirds <= 0)
+        {
+            foreach (PlayerController p in players)
+            {
+                GameObject bird = Instantiate(_bird, p.gameObject.transform.position + new Vector3(0, 100 - p.gameObject.transform.position.y, 0), Quaternion.identity, this.transform);
+            }
+            timeForBirds = _timeForBirds;
+        }
+    }
 }
