@@ -59,7 +59,7 @@ public class GhostRun : MiniGame
         _playersImages[_indexs[player]].quantidade.text = _itemsforplayer[player].ToString();
         if (_itemsforplayer[player] >= 3)
         {
-            GameManager.Instance.particleManager.getParticula("InVenCiBeLiDaDe", player.transform);
+            GameManager.Instance.particleManager.getParticula("invencibilidade", player.transform);
             _playersImages[_indexs[player]].quantidade.text = "0";
             _timeinvenciblelayer[player] = 2f;
             _itemsforplayer[player] = 0;
@@ -95,7 +95,7 @@ public class GhostRun : MiniGame
         {
             if (!_playerisinvencible[player])
                 continue;
-            GameManager.Instance.particleManager.getParticula("playerPowerUp", player.transform);
+           
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
             {
