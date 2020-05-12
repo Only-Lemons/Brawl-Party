@@ -41,7 +41,7 @@ public class FallingGloves : MiniGame
             
         }
 
-
+        /// isso tem que estar em todos minigames
         for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
         {
             if (i < players.Count) 
