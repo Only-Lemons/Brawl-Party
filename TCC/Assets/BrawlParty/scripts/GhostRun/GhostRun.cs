@@ -114,6 +114,8 @@ public class GhostRun : MiniGame
     {
         if (!_playerisinvencible[player])
         {
+
+            GameManager.Instance.particleManager.getParticula("morte", player.transform);
             _isDead[player] = true;
             player.gameObject.SetActive(false);
             AudioManager.PlayHit();
@@ -143,7 +145,7 @@ public class GhostRun : MiniGame
     public override void PointRule(PlayerController player)
     {
         playerPoints[player.gameObject.transform.parent.gameObject] += (int)(8 * _tempoGame);
-        Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
+       // Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
         //player.playerUI.points.text = pointPlayer[player].ToString();
     }
 
