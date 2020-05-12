@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,13 +9,12 @@ public class CameraGhostRun : MonoBehaviour
 {
     Camera cam;
     public Vector3 posCam;
-    List<PlayerController> targ;
+    List<GameObject> targ;
 
     float sizeOrtog; // modo de câmera ortográfica
 
     void Start()
     {
-        //targ = GameController.singleton.playerManager.playersControllers;
         cam = Camera.main;
 
         posCam = cam.transform.position;
@@ -23,14 +23,18 @@ public class CameraGhostRun : MonoBehaviour
     }
     public void GetTargets()
     {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         targ.Clear();
-        //Wtarg = GameController.singleton.playerManager.playersControllers;
-
+        foreach(GameObject p in players)
+        {
+            targ.Add(p);
+        }
     }
 
 
     void LateUpdate()
     {
+        GetTargets();
         if (targ.Count > 0)
         {
             ControleFoco();
