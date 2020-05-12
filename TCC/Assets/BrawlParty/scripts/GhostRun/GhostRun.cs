@@ -95,7 +95,7 @@ public class GhostRun : MiniGame
         {
             if (!_playerisinvencible[player])
                 continue;
-            GameManager.Instance.particleManager.getParticula("playerPowerUp", player.transform);
+           
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
             {
