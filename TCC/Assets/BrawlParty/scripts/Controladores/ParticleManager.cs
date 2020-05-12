@@ -10,10 +10,8 @@ public class ParticleManager : MonoBehaviour
     public void getParticula(string name, Transform position)
     {
         Particulas aux = particulas.Find(x => x.nome.ToLower() == name.ToLower());
-        aux.particle.gameObject.transform.parent = position;
-        aux.particle.gameObject.transform.position = aux.posicaoRelativa;
-        aux.particle.Play();
-        StartCoroutine(resetParticle(aux));
+        GameObject particula = Instantiate(aux.particle, position.position, Quaternion.identity,position);
+        StartCoroutine(resetParticle(aux,particula));
         particulas.Remove(aux);
 
 
@@ -25,26 +23,25 @@ public class ParticleManager : MonoBehaviour
         Particulas aux = particulas.Find(x => x.nome.ToLower() == name.ToLower());
         aux.particle.gameObject.transform.parent = position;
         aux.particle.gameObject.transform.position = aux.posicaoRelativa;
-        aux.particle.Play();
-        StartCoroutine(resetParticle(aux));
+        GameObject particula = Instantiate(aux.particle, position.position, Quaternion.identity,position);
+        StartCoroutine(resetParticle(aux,particula));
         particulas.Remove(aux);
 
     }
 
 
-    IEnumerator resetParticle(Particulas particles)
+    IEnumerator resetParticle(Particulas particles,GameObject particula)
     {
         yield return new WaitForSeconds(particles.tempo);
-        particles.particle.gameObject.transform.parent = null;
-        particles.particle.gameObject.transform.position = _positionPattern;
         particulas.Add(particles);
+        GameObject.Destroy(particula);
     }
 }
-[System.Serializable]
+[System.Serializable]       
 public struct Particulas
 {
     public string nome;
-    public ParticleSystem particle;
+    public GameObject particle;
     public float tempo;
     public Vector3 posicaoRelativa;
 }

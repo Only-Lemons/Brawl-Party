@@ -23227,6 +23227,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2136061040103969206, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2136061040103969209, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35686,6 +35691,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.38472065
       objectReference: {fileID: 0}
+    - target: {fileID: 3148381975393899179, guid: feb55d171e606bd47b2bddff82154c1c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6297080517802432129, guid: feb55d171e606bd47b2bddff82154c1c,
         type: 3}
       propertyPath: m_Name
@@ -36672,6 +36682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bird: {fileID: 1995474968450977505, guid: 6439ab58c86ff654da6fa7ce86ef62d1, type: 3}
+  timeForBirds: 1.5
 --- !u!4 &1250720457
 Transform:
   m_ObjectHideFlags: 0

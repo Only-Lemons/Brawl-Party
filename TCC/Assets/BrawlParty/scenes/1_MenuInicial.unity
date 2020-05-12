@@ -2327,7 +2327,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1242086690, guid: 019d824110cdef24987d596f5b0c5dbd, type: 3}
     - {fileID: 1474074610, guid: 019d824110cdef24987d596f5b0c5dbd, type: 3}
+    - {fileID: 3658684374007790248, guid: 019d824110cdef24987d596f5b0c5dbd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 019d824110cdef24987d596f5b0c5dbd, type: 3}
+--- !u!1 &1242086689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4344593517675862184, guid: 019d824110cdef24987d596f5b0c5dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1242086688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1242086690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242086689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efbaa3427aa1674ca80e25cf3de84db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particulas:
+  - nome: morte
+    particle: {fileID: 4181606716157147422, guid: c0bbed244e6d8dc4e84d42e7ea412d20,
+      type: 3}
+    tempo: 25
+    posicaoRelativa: {x: 0, y: 0, z: 0}
+  - nome: invencibilidade
+    particle: {fileID: 2451015494665165877, guid: 1024c3dbd1a59a140bcb6d008d8bcc75,
+      type: 3}
+    tempo: 2
+    posicaoRelativa: {x: 0, y: 0, z: 0}
 --- !u!1 &1245697287
 GameObject:
   m_ObjectHideFlags: 0

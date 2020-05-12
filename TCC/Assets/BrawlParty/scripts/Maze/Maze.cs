@@ -9,6 +9,7 @@ public class Maze : MiniGame
     Dictionary<PlayerController, float> lightPerPlayer = new Dictionary<PlayerController, float>();
     List<PlayerController> players = new List<PlayerController>();
     Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
+    Dictionary<PlayerController, bool> withKey = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
     [SerializeField]
     GameObject door;
@@ -26,6 +27,11 @@ public class Maze : MiniGame
     public GameObject[] randomWall;
     public GameObject[] playersLight;
     public GameObject[] jasonsFear;
+
+    public GameObject keyExit;
+    GameObject keyExists;
+
+    public GameObject[] keysSpawn;
     public float timeWallRandomize = 5;
     float timeWR;
     int friend;
@@ -45,6 +51,7 @@ public class Maze : MiniGame
         {
             player.actualGameMode = this;
             inStun[player] = false;
+            withKey[player] = false;
             timeStun[player] = 0;
             lightPerPlayer[player] = 1;
         }
@@ -59,17 +66,18 @@ public class Maze : MiniGame
 
         //RandomWallInsert();
 
-        fTime = 180f;
-        
+        fTime = 120f;
+
+        KeysSpawn();
     }
 
     private void FixedUpdate()
     {
-
         RemoveStun();
         CloseDoors();
         ChangeLightPlayer();
-
+        UnbuggPlayerNonKey();
+        PlayerStuned();
     }
 
     void ChoicePathJason()
@@ -128,7 +136,9 @@ public class Maze : MiniGame
     }
     public override void Action(PlayerController player)
     {
-
+        Debug.Log("KEY");
+        if(Vector3.Distance(player.transform.position, keyExists.transform.position) < 1)
+            KeyPlayer(player);
     }
     void RemoveStun()
     {
@@ -213,6 +223,7 @@ public class Maze : MiniGame
         {
             inStun[player] = true;
             timeStun[player] = 2;
+            
         }
     }
 
@@ -231,25 +242,27 @@ public class Maze : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        players.Remove(player);
-        switch (players.Count)
+        if (withKey[player])
         {
-            case 3:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
-                break;
-            case 2:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
-                break;
-            case 1:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-                break;
-            default:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
-                break;
+            players.Remove(player);
+            switch (players.Count)
+            {
+                case 3:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                    break;
+                case 2:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                    break;
+                case 1:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                    break;
+                default:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+                    break;
+            }
+            GameObject.Destroy(player.gameObject);
+            WinRule();
         }
-        GameObject.Destroy(player.gameObject);
-        WinRule();
-
     }
 
     public override void RotationRule(PlayerController player)
@@ -263,6 +276,56 @@ public class Maze : MiniGame
         {
 
             GameManager.Instance.WinMinigame();
+        }
+    }
+
+    void KeysSpawn()
+    {
+        keyExists = Instantiate(keyExit);
+        keyExists.transform.position = keysSpawn[Random.Range(0, keysSpawn.Length)].transform.position;
+    }
+
+    public void KeyPlayer(PlayerController player)
+    {
+        if(!withKey[player])
+        {
+            //remove todas as chaves
+            foreach (var p in players)
+            {
+                if (withKey[p])
+                {
+                    withKey[p] = false;
+                }
+            }
+            //novo jogador com a chave
+            withKey[player] = true;
+            if (keyExists != null)
+                Destroy(keyExists);
+            keyExists = Instantiate(keyExit, player.transform.position + new Vector3(0,2,0), Quaternion.identity, player.gameObject.transform);
+        }
+
+    }
+    void UnbuggPlayerNonKey()
+    {
+        foreach (PlayerController p in players)
+        {
+            if (!withKey[p])
+                if (p.transform.position.z >= 21)
+                    p.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, 21);
+        }
+    }
+
+    void PlayerStuned()
+    {
+        foreach (var player in players)
+        {
+            if (inStun[player])
+            {
+                if (timeStun[player] >= 0)
+                {
+                    player.transform.Rotate(0,360*Time.fixedDeltaTime*3,0);
+                }
+            }
         }
     }
 }

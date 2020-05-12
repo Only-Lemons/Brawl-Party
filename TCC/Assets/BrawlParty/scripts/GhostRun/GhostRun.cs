@@ -59,7 +59,7 @@ public class GhostRun : MiniGame
         _playersImages[_indexs[player]].quantidade.text = _itemsforplayer[player].ToString();
         if (_itemsforplayer[player] >= 3)
         {
-            GameManager.Instance.particleManager.getParticula("InVenCiBeLiDaDe", player.transform);
+            GameManager.Instance.particleManager.getParticula("invencibilidade", player.transform);
             _playersImages[_indexs[player]].quantidade.text = "0";
             _timeinvenciblelayer[player] = 2f;
             _itemsforplayer[player] = 0;
@@ -95,7 +95,7 @@ public class GhostRun : MiniGame
         {
             if (!_playerisinvencible[player])
                 continue;
-            GameManager.Instance.particleManager.getParticula("playerPowerUp", player.transform);
+           
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
             {
@@ -114,6 +114,8 @@ public class GhostRun : MiniGame
     {
         if (!_playerisinvencible[player])
         {
+
+            GameManager.Instance.particleManager.getParticula("morte", player.transform);
             _isDead[player] = true;
             player.gameObject.SetActive(false);
             AudioManager.PlayHit();
@@ -143,7 +145,7 @@ public class GhostRun : MiniGame
     public override void PointRule(PlayerController player)
     {
         playerPoints[player.gameObject.transform.parent.gameObject] += (int)(8 * _tempoGame);
-        Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
+       // Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
         //player.playerUI.points.text = pointPlayer[player].ToString();
     }
 
