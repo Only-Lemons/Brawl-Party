@@ -257,7 +257,7 @@ public class GhostRun : MiniGame
                 if (playerPoints[players[i].gameObject.transform.parent.gameObject] < playerPoints[players[j % players.Count].gameObject.transform.parent.gameObject] && j != i)
                 {
                     position[players[i]]--;
-                    Debug.Log("Entrou aqui!!");
+                  
                 }
                    
             }
