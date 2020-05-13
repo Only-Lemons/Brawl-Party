@@ -21,11 +21,25 @@ public class FallBirds : MiniGame
 
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
 
+        if (GameManager.Instance != null)
+            GameManager.Instance.getPlayersMinigame(players);
+        
         foreach (var player in players)
         {
             player.actualGameMode = this;
             _positionOfDeath.Add(player, 0);
             _deathplayer++;
+        }
+
+
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            if (i < players.Count)
+            {
+                players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+              //  players[i].playerIndiq.GetComponent<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
+
+            }
         }
     }
 
