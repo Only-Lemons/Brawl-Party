@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class KeyMaze : MonoBehaviour
 {
+    Maze maze;
     bool scalad;
     void Start()
     {
+        maze = GameObject.FindObjectOfType<Maze>();
         scalad = true;
     }
 
@@ -26,6 +28,14 @@ public class KeyMaze : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x - Time.fixedDeltaTime, transform.localScale.x, transform.localScale.x);
             if (transform.localScale.magnitude < 2)
                 scalad = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            maze.KeyPlayer(other.GetComponent<PlayerController>());
         }
     }
 }
