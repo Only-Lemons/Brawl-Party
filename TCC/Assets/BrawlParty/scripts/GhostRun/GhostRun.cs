@@ -45,6 +45,7 @@ public class GhostRun : MiniGame
             if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+                players[i].playerIndiq.GetComponent<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
             }
         }
 
@@ -59,7 +60,7 @@ public class GhostRun : MiniGame
         _playersImages[_indexs[player]].quantidade.text = _itemsforplayer[player].ToString();
         if (_itemsforplayer[player] >= 3)
         {
-            GameManager.Instance.particleManager.getParticula("InVenCiBeLiDaDe", player.transform);
+            GameManager.Instance.particleManager.getParticula("invencibilidade", player.transform);
             _playersImages[_indexs[player]].quantidade.text = "0";
             _timeinvenciblelayer[player] = 2f;
             _itemsforplayer[player] = 0;
@@ -95,7 +96,7 @@ public class GhostRun : MiniGame
         {
             if (!_playerisinvencible[player])
                 continue;
-            GameManager.Instance.particleManager.getParticula("playerPowerUp", player.transform);
+           
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
             {
@@ -257,7 +258,7 @@ public class GhostRun : MiniGame
                 if (playerPoints[players[i].gameObject.transform.parent.gameObject] < playerPoints[players[j % players.Count].gameObject.transform.parent.gameObject] && j != i)
                 {
                     position[players[i]]--;
-                    Debug.Log("Entrou aqui!!");
+                  
                 }
                    
             }

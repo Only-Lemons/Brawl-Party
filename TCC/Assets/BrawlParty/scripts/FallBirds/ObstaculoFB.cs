@@ -16,8 +16,6 @@ public class ObstaculoFB : MonoBehaviour
 
     public float massa;
 
-
-
     private float tempo;
     // Start is called before the first frame update
     void Start()
