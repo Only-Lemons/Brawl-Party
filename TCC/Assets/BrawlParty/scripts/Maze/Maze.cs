@@ -108,7 +108,7 @@ public class Maze : MiniGame
         ChoicePathJason();
 
         RandomWallInsert();
-        FearLevel();
+        //FearLevel();
         FriendlyLevel();
     }
     void ChangeLightPlayer()
@@ -266,9 +266,16 @@ public class Maze : MiniGame
             //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
             //        break;
             //}
-            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-            isFinish = true;
-            //GameObject.Destroy(player.gameObject);
+            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += players.Count -1;
+
+            players.Remove(player);
+            GameObject.Destroy(player.gameObject);
+
+            if (players.Count <= 1)
+                isFinish = true;
+            else
+                KeysSpawn();
+
             WinRule();
         }
     }

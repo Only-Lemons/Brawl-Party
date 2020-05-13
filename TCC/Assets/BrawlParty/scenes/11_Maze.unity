@@ -803,7 +803,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 262144
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 1760536060}
+  m_TargetTexture: {fileID: 1773341389}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1
@@ -1915,9 +1915,9 @@ MonoBehaviour:
   randomWall: []
   playersLight:
   - {fileID: 52339844}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1521195488}
+  - {fileID: 969636773}
+  - {fileID: 1186266528}
   jasonsFear: []
   keyExit: {fileID: 6943520689946228063, guid: 61ffd9f3ea0e33248ac73788b3554209, type: 3}
   keysSpawn:
@@ -5663,7 +5663,7 @@ Transform:
   m_Father: {fileID: 1462426621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!84 &1760536060
+--- !u!84 &1773341389
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5676,8 +5676,8 @@ RenderTexture:
   m_ForcedFallbackFormat: 4
   m_DownscaleFallback: 0
   serializedVersion: 3
-  m_Width: 379
-  m_Height: 213
+  m_Width: 1193
+  m_Height: 671
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthFormat: 2
