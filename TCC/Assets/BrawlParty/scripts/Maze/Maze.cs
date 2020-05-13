@@ -61,6 +61,8 @@ public class Maze : MiniGame
             if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+                players[i].playerIndiq.GetComponent<Renderer>().material.color =  GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
+           
             }
         }
 
