@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     public MiniGame actualGameMode;
 
+    public GameObject playerIndiq;
 
     public PlayerController(SOPlayer jogador)
     {
