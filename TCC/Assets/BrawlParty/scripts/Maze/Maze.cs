@@ -77,11 +77,14 @@ public class Maze : MiniGame
 
     private void FixedUpdate()
     {
+        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+            return;
         RemoveStun();
         CloseDoors();
         ChangeLightPlayer();
         UnbuggPlayerNonKey();
         PlayerStuned();
+        WinRule();
     }
 
     void ChoicePathJason()
@@ -105,8 +108,9 @@ public class Maze : MiniGame
     }
     private void Update()
     {
+        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+            return;
         ChoicePathJason();
-
         RandomWallInsert();
         //FearLevel();
         FriendlyLevel();
@@ -240,9 +244,15 @@ public class Maze : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
+        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+            return;
         if (!inStun[player])
         {
             player.transform.position += player._movementAxis * player.speed * Time.fixedDeltaTime;
+            if (player._movementAxis != Vector3.zero)
+            {
+                player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(player._movementAxis), Time.deltaTime * 20);
+            }
         }
     }
 
@@ -276,7 +286,7 @@ public class Maze : MiniGame
             else
                 KeysSpawn();
 
-            WinRule();
+            
         }
     }
 
@@ -289,8 +299,9 @@ public class Maze : MiniGame
     {
         if (fTime <= 0 || isFinish)
         {
-
-            GameManager.Instance.WinMinigame();
+            TimeGameController.Instance.acabou = true;
+            if(TimeGameController.Instance.AcabouMesmo())
+                GameManager.Instance.WinMinigame();
         }
     }
 
