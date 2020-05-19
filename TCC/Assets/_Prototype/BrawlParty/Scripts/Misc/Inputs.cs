@@ -1032,6 +1032,17 @@ public class Inputs : IInputActionCollection
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e51c9485-09f2-4334-8bae-858cd1cb7af6"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""6651b288-6215-4edd-ac44-ebdf2d0d88a7"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",

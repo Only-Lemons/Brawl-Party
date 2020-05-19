@@ -12,19 +12,38 @@ public class FallBirds : MiniGame
     float timeFI;
     public Vector3 posInstantiate;
 
+    Dictionary<PlayerController, int> _positionOfDeath = new Dictionary<PlayerController, int>();
+    [SerializeField]
+    int _deathplayer;
     void Start()
     {
         timeFI = timeForInstantiate;
 
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
 
+        if (GameManager.Instance != null)
+            GameManager.Instance.getPlayersMinigame(players);
+        
         foreach (var player in players)
         {
             player.actualGameMode = this;
+            _positionOfDeath.Add(player, 0);
+            _deathplayer++;
+        }
+
+
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            if (i < players.Count)
+            {
+                players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+              //  players[i].playerIndiq.GetComponent<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
+
+            }
         }
     }
 
-    
+   
 
     public override void Action(PlayerController player)
     {
@@ -34,7 +53,12 @@ public class FallBirds : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-
+        _positionOfDeath[player] = _deathplayer;
+        _deathplayer--;
+        PointRule(player);
+        player.gameObject.SetActive(false);
+        if (_deathplayer <= 0)
+            WinRule();
     }
 
     public override void MovementRule(PlayerController player)
@@ -61,6 +85,20 @@ public class FallBirds : MiniGame
 
     public override void PointRule(PlayerController player)
     {
+
+        switch (_positionOfDeath[player])
+        {
+            case 3:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                break;
+            case 2:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                break;
+            case 1:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                break;
+        }
+
     }
 
     public override void RotationRule(PlayerController player)
@@ -69,6 +107,8 @@ public class FallBirds : MiniGame
 
     public override void WinRule()
     {
+       
+        GameManager.Instance.WinMinigame();
 
     }
 

@@ -21,7 +21,7 @@ public enum GameModes
     Boss,
     Halloween,
     SpaceNault,
-    RunnersClimp,
+    FallBird,
     Shark
 }
   

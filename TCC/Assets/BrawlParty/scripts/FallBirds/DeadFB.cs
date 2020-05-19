@@ -6,9 +6,11 @@ public class DeadFB : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null)
         {
-            Debug.Log("Morreu");
+            player.actualGameMode.HitRule(player);
         }
     }
+
 }

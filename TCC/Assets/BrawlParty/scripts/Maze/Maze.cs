@@ -36,6 +36,8 @@ public class Maze : MiniGame
     float timeWR;
     int friend;
 
+    bool isFinish = false;
+
     private void Start()
     {
         closedDoor = new Vector3(15, door.transform.position.y, door.transform.position.z);
@@ -61,6 +63,8 @@ public class Maze : MiniGame
             if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+                players[i].playerIndiq.GetComponent<Renderer>().material.color =  GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
+           
             }
         }
 
@@ -73,11 +77,14 @@ public class Maze : MiniGame
 
     private void FixedUpdate()
     {
+        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+            return;
         RemoveStun();
         CloseDoors();
         ChangeLightPlayer();
         UnbuggPlayerNonKey();
         PlayerStuned();
+        WinRule();
     }
 
     void ChoicePathJason()
@@ -101,10 +108,11 @@ public class Maze : MiniGame
     }
     private void Update()
     {
+        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+            return;
         ChoicePathJason();
-
         RandomWallInsert();
-        FearLevel();
+        //FearLevel();
         FriendlyLevel();
     }
     void ChangeLightPlayer()
@@ -130,15 +138,17 @@ public class Maze : MiniGame
         //doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
         //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
-        door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(closedDoor.x, door.transform.position.y, door.transform.position.z), Time.fixedDeltaTime/(fTime));
+        door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(closedDoor.x, door.transform.position.y, door.transform.position.z), Time.fixedDeltaTime / (fTime));
         exitLight.transform.localScale = Vector3.Lerp(exitLight.transform.localScale, new Vector3(0, 1, 0), Time.fixedDeltaTime / (fTime));
 
     }
     public override void Action(PlayerController player)
     {
         Debug.Log("KEY");
-        if(Vector3.Distance(player.transform.position, keyExists.transform.position) < 1)
+        if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
+        {
             KeyPlayer(player);
+        }
     }
     void RemoveStun()
     {
@@ -223,7 +233,7 @@ public class Maze : MiniGame
         {
             inStun[player] = true;
             timeStun[player] = 2;
-            
+
         }
     }
 
@@ -234,9 +244,15 @@ public class Maze : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
+        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+            return;
         if (!inStun[player])
         {
             player.transform.position += player._movementAxis * player.speed * Time.fixedDeltaTime;
+            if (player._movementAxis != Vector3.zero)
+            {
+                player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(player._movementAxis), Time.deltaTime * 20);
+            }
         }
     }
 
@@ -244,24 +260,33 @@ public class Maze : MiniGame
     {
         if (withKey[player])
         {
+            //players.Remove(player);
+            //switch (players.Count)
+            //{
+            //    case 3:
+            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+            //        break;
+            //    case 2:
+            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+            //        break;
+            //    case 1:
+            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+            //        break;
+            //    default:
+            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+            //        break;
+            //}
+            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += players.Count -1;
+
             players.Remove(player);
-            switch (players.Count)
-            {
-                case 3:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
-                    break;
-                case 2:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
-                    break;
-                case 1:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-                    break;
-                default:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
-                    break;
-            }
             GameObject.Destroy(player.gameObject);
-            WinRule();
+
+            if (players.Count <= 1)
+                isFinish = true;
+            else
+                KeysSpawn();
+
+            
         }
     }
 
@@ -272,22 +297,28 @@ public class Maze : MiniGame
 
     public override void WinRule()
     {
-        if (fTime <= 0 || players.Count == 0)
+        if (fTime <= 0 || isFinish)
         {
-
-            GameManager.Instance.WinMinigame();
+            TimeGameController.Instance.acabou = true;
+            if(TimeGameController.Instance.AcabouMesmo())
+                GameManager.Instance.WinMinigame();
         }
     }
 
     void KeysSpawn()
     {
+        int pos = Random.Range(0, keysSpawn.Length);
         keyExists = Instantiate(keyExit);
-        keyExists.transform.position = keysSpawn[Random.Range(0, keysSpawn.Length)].transform.position;
+        while (keysSpawn[pos] == null)
+            pos = Random.Range(0, keysSpawn.Length);
+
+        keyExists.transform.position = keysSpawn[pos].transform.position;
+        keysSpawn[pos] = null;
     }
 
     public void KeyPlayer(PlayerController player)
     {
-        if(!withKey[player])
+        if (!withKey[player])
         {
             //remove todas as chaves
             foreach (var p in players)
@@ -295,13 +326,14 @@ public class Maze : MiniGame
                 if (withKey[p])
                 {
                     withKey[p] = false;
+                    HitRule(p);
                 }
             }
             //novo jogador com a chave
             withKey[player] = true;
             if (keyExists != null)
                 Destroy(keyExists);
-            keyExists = Instantiate(keyExit, player.transform.position + new Vector3(0,2,0), Quaternion.identity, player.gameObject.transform);
+            keyExists = Instantiate(keyExit, player.transform.position + new Vector3(0, 2, 0), Quaternion.identity, player.gameObject.transform);
         }
 
     }
@@ -323,7 +355,7 @@ public class Maze : MiniGame
             {
                 if (timeStun[player] >= 0)
                 {
-                    player.transform.Rotate(0,360*Time.fixedDeltaTime*3,0);
+                    player.transform.Rotate(0, 360 * Time.fixedDeltaTime * 3, 0);
                 }
             }
         }

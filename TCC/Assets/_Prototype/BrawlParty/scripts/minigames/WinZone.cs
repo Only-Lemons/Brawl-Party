@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class WinZone : MonoBehaviour
 {
+
+    [SerializeField]
+    JhonBean gameMode;
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null)
         {
-            GameController.singleton.gameMode.PointRule(other.GetComponent<PlayerController>());
+            gameMode.PointRule(other.GetComponent<PlayerController>());
         }
     }
 }

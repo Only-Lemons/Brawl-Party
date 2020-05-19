@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public ParticleManager particleManager;
 
-    public IGameMode gameMode;
+   
 
     public GameController gameController;
 

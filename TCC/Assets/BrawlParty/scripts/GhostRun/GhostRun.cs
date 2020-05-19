@@ -45,6 +45,7 @@ public class GhostRun : MiniGame
             if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+                players[i].playerIndiq.GetComponent<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
             }
         }
 
@@ -257,7 +258,7 @@ public class GhostRun : MiniGame
                 if (playerPoints[players[i].gameObject.transform.parent.gameObject] < playerPoints[players[j % players.Count].gameObject.transform.parent.gameObject] && j != i)
                 {
                     position[players[i]]--;
-                    Debug.Log("Entrou aqui!!");
+                  
                 }
                    
             }

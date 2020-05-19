@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-
+    [SerializeField]
+    JhonBean gameMode;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            GameController.singleton.gameMode.HitRule(other.GetComponent<PlayerController>()); 
+            gameMode.HitRule(other.GetComponent<PlayerController>()); 
             this.GetComponent<ParticlePlayer>().Play(.2F);
             
             Destroy(this.gameObject, .2F);
