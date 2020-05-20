@@ -130,7 +130,7 @@ public class JhonBean : MiniGame
                 zoomCam = 14;
                 break;
         }
-        
+
         //fimteste
     }
     private void UpdatePositionCamera()
@@ -175,10 +175,13 @@ public class JhonBean : MiniGame
     void Update()
     {
         UpdatePositionCamera();
-        FallingBirds();
+        //FallingBirds();
+        WinRule();
     }
     public override void Action(PlayerController player)
     {
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+            return;
         if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && !adicionolPoint && !player.travar)
         {
             player.anim.SetTrigger("Climb");
@@ -198,6 +201,8 @@ public class JhonBean : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+            return;
         if (canMove[player].canMove && !player.travar)
         {
             if (player._movementAxis.x > 0f)
@@ -240,7 +245,7 @@ public class JhonBean : MiniGame
         }
 
         if (vencedor <= 0)
-            WinRule();
+            TimeGameController.Instance.acabou = true;
     }
     bool CanInstance(List<Vector3> posicoes)
     {
@@ -264,17 +269,18 @@ public class JhonBean : MiniGame
 
     public override void WinRule()
     {
-        if (!adicionolPoint)
-        {
-
-            for (int i = 0; i < winners.Count; i++)
+        if (TimeGameController.Instance.AcabouMesmo())
+            if (!adicionolPoint)
             {
-                GameManager.Instance.pontosGeral[players.IndexOf(winners[i])] += 1;
 
+                for (int i = 0; i < winners.Count; i++)
+                {
+                    GameManager.Instance.pontosGeral[players.IndexOf(winners[i])] += 1;
+
+                }
+                GameManager.Instance.WinMinigame();
+                adicionolPoint = true;
             }
-            GameManager.Instance.WinMinigame();
-            adicionolPoint = true;
-        }
     }
 
     void FallingBirds()

@@ -9,12 +9,12 @@ public class BirdJB : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.down * 200, ForceMode.Force);
+        rb.AddForce(Vector3.down * 400, ForceMode.Force);
     }
 
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x + Mathf.PingPong(Time.time/2.0f, 0.6f) - 0.3f, transform.position.y, transform.position.z);
+        //transform.position = new Vector3(transform.position.x + Mathf.PingPong(Time.fixedTime/10, 0.6f) - 0.3f, transform.position.y, transform.position.z);
     }
 
     // Update is called once per frame

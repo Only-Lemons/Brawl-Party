@@ -69,7 +69,9 @@ public class GhostRun : MiniGame
     }
     void Update()
     {
-         if (!_adicionolPoint)
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+            return;
+        if (!_adicionolPoint)
         {
             _tempoGame += Time.deltaTime;
             timeOfGame -= Time.deltaTime;
@@ -86,9 +88,12 @@ public class GhostRun : MiniGame
             }
             if (timeOfGame <= 0)
             {
+                TimeGameController.Instance.acabou = true;
+            if(TimeGameController.Instance.AcabouMesmo())
                 WinRule();
             }
         }
+        WinScene();
     }
     void EfectInvenciblePlayers()
     {
@@ -136,6 +141,8 @@ public class GhostRun : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+            return;
         player.transform.position += player._movementAxis * player.speed * Time.deltaTime;
         if (player._movementAxis != Vector3.zero)
         {
@@ -157,6 +164,7 @@ public class GhostRun : MiniGame
 
     public override void WinRule()
     {
+
         InsertWinners();
         foreach (PlayerController player in players)
         {
@@ -164,9 +172,18 @@ public class GhostRun : MiniGame
         }
         if (_adicionolPoint == false)
         {
-            GameManager.Instance.WinMinigame();
+            TimeGameController.Instance.acabou = true;
+            //GameManager.Instance.WinMinigame();
+
             _adicionolPoint = true;
         }
+    }
+
+    void WinScene()
+    {
+        
+        if (TimeGameController.Instance.AcabouMesmo())
+            GameManager.Instance.WinMinigame();
     }
    
     bool VerifyPlayerMortos()

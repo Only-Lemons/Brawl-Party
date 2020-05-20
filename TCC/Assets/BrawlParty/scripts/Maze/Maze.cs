@@ -73,11 +73,13 @@ public class Maze : MiniGame
         fTime = 120f;
 
         KeysSpawn();
+
+        AudioManager.PlayGameMusic();
     }
 
     private void FixedUpdate()
     {
-        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
         RemoveStun();
         CloseDoors();
@@ -95,6 +97,8 @@ public class Maze : MiniGame
             float coicidenteP = 0;
             foreach (var player in players)
             {
+                if (inStun[player])
+                    return;
                 float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, FinishGame.transform.position)));
                 if (cpa > coicidenteP && !inStun[player])
                 {
@@ -108,7 +112,7 @@ public class Maze : MiniGame
     }
     private void Update()
     {
-        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
         ChoicePathJason();
         RandomWallInsert();
@@ -148,6 +152,7 @@ public class Maze : MiniGame
         if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
         {
             KeyPlayer(player);
+            AudioManager.PlayColeta();
         }
     }
     void RemoveStun()
@@ -233,7 +238,7 @@ public class Maze : MiniGame
         {
             inStun[player] = true;
             timeStun[player] = 2;
-
+            AudioManager.PlayHit();
         }
     }
 
@@ -244,7 +249,7 @@ public class Maze : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-        if (!TimeGameController.Instance.Comecou() || !TimeGameController.Instance.Acabou())
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
         if (!inStun[player])
         {
@@ -260,6 +265,7 @@ public class Maze : MiniGame
     {
         if (withKey[player])
         {
+            AudioManager.PlayMorte();
             //players.Remove(player);
             //switch (players.Count)
             //{

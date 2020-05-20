@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,29 +7,57 @@ public static class AudioManager
 {
     public static void PlayGameMusic()
     {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(AudioController.instance.musicGame);
-        audioSource.loop = true;
+        try
+        {
+            GameObject soundGameObject = new GameObject("Sound");
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.PlayOneShot(AudioController.instance.musicGame);
+            audioSource.loop = true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Erro ao reproduzir PlayGameMusic: " + e.Message);
+        }
     }
     public static void PlayColeta()
     {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(AudioController.instance.clipColeta);
+        try
+        {
+            GameObject soundGameObject = new GameObject("Sound");
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.PlayOneShot(AudioController.instance.clipColeta);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Erro ao reproduzir PlayColeta: " + e.Message);
+        }
     }
 
     public static void PlayMorte()
     {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(AudioController.instance.clipMorte);
+        try
+        {
+            GameObject soundGameObject = new GameObject("Sound");
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.PlayOneShot(AudioController.instance.clipMorte);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Erro ao reproduzir PlayMorte: " + e.Message);
+        }
     }
 
     public static void PlayHit()
     {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(AudioController.instance.clipHit);
+        try
+        {
+            GameObject soundGameObject = new GameObject("Sound");
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.PlayOneShot(AudioController.instance.clipHit);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Erro ao reproduzir PlayHit: " + e.Message);
+        }
     }
 }

@@ -58,11 +58,13 @@ public class FallBirds : MiniGame
         PointRule(player);
         player.gameObject.SetActive(false);
         if (_deathplayer <= 0)
-            WinRule();
+            TimeGameController.Instance.acabou = true;
     }
 
     public override void MovementRule(PlayerController player)
     {
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+            return;
         player.transform.position += player._movementAxis * player.speed * Time.fixedDeltaTime;
     }
 
@@ -107,8 +109,9 @@ public class FallBirds : MiniGame
 
     public override void WinRule()
     {
-       
-        GameManager.Instance.WinMinigame();
+
+        if (TimeGameController.Instance.AcabouMesmo())
+            GameManager.Instance.WinMinigame();
 
     }
 
@@ -135,11 +138,16 @@ public class FallBirds : MiniGame
     // Update is called once per frame
     void Update()
     {
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+            return;
         //WinRule();
+        WinRule();
     }
 
     void FixedUpdate()
     {
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+            return;
         LockZ();
         SceneMechanics();
         ObstaculoGenerator();

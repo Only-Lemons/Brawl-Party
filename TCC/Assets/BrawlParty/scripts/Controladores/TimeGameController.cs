@@ -52,7 +52,7 @@ public class TimeGameController : MonoBehaviour
         {
             inicio.text = "COMEÇOU!";
             comecou = true;
-            if(timeComecar < -2.5f)
+            if(timeComecar < -1.5f)
                 inicio.text = "";
             return;
         }
