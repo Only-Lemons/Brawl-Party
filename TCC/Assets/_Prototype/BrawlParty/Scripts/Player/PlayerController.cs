@@ -192,14 +192,22 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
 
     }
 
-    public void OnStart(InputAction.CallbackContext context) { }
+    public void OnStart(InputAction.CallbackContext context) {
+     
+
+    }
 
     public void OnAim(InputAction.CallbackContext context)
     {
         GetComponent<AutoAim>().SetarBool();
     }
 
-    public void OnInsert(InputAction.CallbackContext context) { }
+    public void OnInsert(InputAction.CallbackContext context) {
+       
+            Debug.Log("DEU START");
+            actualGameMode.PauseGame();
+        
+    }
 
     public void OnSwitch(InputAction.CallbackContext context)
     {
@@ -216,7 +224,8 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started)
         {
-          
+            
+
             actualGameMode.Action(this);
         }
     }

@@ -177,8 +177,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnInsert(InputAction.CallbackContext context)
     {
+        Debug.Log("Pedrotario");
         try
         {
+           
             GetComponentInChildren<PlayerController>().OnInsert(context);
         }
         catch { }
@@ -208,7 +210,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         try
         {
-            Debug.Log("Show");
+
             GetComponentInChildren<PlayerController>().OnAction(context);
         }
         catch { }
