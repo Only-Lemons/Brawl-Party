@@ -120,7 +120,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 }
 
             }
-            else if(SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetActiveScene().buildIndex == 9))
+            else if(SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetSceneByBuildIndex(9).isLoaded) )
             {
                 if (isConfirmed)
                 {  
@@ -131,9 +131,9 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     isConfirmed = true;
                 }
 
-            }
-           // } else if (GameManager.Instance.gameController.comecou)
-               // GameManager.Instance.PressStart();
+            
+            } else
+                GameManager.Instance.PressStart();
 
         }
     }
@@ -177,8 +177,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
 
     public void OnInsert(InputAction.CallbackContext context)
     {
+        Debug.Log("Pedrotario");
         try
         {
+           
             GetComponentInChildren<PlayerController>().OnInsert(context);
         }
         catch { }
@@ -208,7 +210,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         try
         {
-            Debug.Log("Show");
+
             GetComponentInChildren<PlayerController>().OnAction(context);
         }
         catch { }
