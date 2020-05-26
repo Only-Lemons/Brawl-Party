@@ -223,9 +223,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     public void OnAction(InputAction.CallbackContext context)
     {
         if (context.started)
-        {
-            
-
+        {       
             actualGameMode.Action(this);
         }
     }
