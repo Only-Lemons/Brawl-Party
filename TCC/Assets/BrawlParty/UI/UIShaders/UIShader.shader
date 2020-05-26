@@ -57,7 +57,7 @@
 
 				fixed radial = 1 - sqrt(center.x * center.x + center.y * center.y) * _Atten;
 
-                return lerp(i.color, _Color, radial);
+                return lerp(i.color, saturate((radial + i.color) / 2), radial);
             }
             ENDCG
         }
