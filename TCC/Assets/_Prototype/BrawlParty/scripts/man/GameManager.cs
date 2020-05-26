@@ -40,9 +40,6 @@ public class GameManager : MonoBehaviour
     public Color corVencedor;
     public bool empatou;
 
-
-    public Scene victoryMiniGame;
-
     private void OnEnable()
     {
         if (Instance != null)
@@ -62,12 +59,6 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(SceneManager.GetSceneByBuildIndex(9).isLoaded &&(playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true)))
-        {
-            SceneManager.LoadScene(nextLevel); // provisorio
-        }
-
-
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 7: // Menu do Personagem
@@ -156,7 +147,6 @@ public class GameManager : MonoBehaviour
 
     public void PressStart()
     {
-        Debug.Log("SHWO");
         this.transform.GetChild(1).gameObject.SetActive(!this.transform.GetChild(1).gameObject.activeSelf);
         if (this.transform.GetChild(1).gameObject.activeSelf)
             Time.timeScale = 0;
@@ -206,7 +196,7 @@ public class GameManager : MonoBehaviour
         if(quantGames > quantTGames)
             SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
         else
-            SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
+            SceneManager.LoadScene(9, LoadSceneMode.Single); // Tela vitoria minigame
     }
 
 
