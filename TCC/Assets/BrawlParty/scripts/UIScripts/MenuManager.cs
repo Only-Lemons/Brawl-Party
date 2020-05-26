@@ -2,25 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using OnlyLemons.BrawlParty.UI;
+
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject menuInicial;
+    private GameObject menuInicial;
     [SerializeField]
-    GameObject menuInicialButton;
+    private GameObject menuInicialButton;
     [SerializeField]
-    GameObject creditos;
+    private GameObject creditos;
     [SerializeField]
-    GameObject config;
+    private GameObject config;
     [SerializeField]
-    GameObject gameConfig;
+    private GameObject gameConfig;
     [SerializeField]
-    GameObject selectMode;
+    private GameObject selectMode;
     [SerializeField]
-    GameObject firstScene;
+    private GameObject firstScene;
     [SerializeField]
-    EventSystem es;
+    private EventSystem es;
+
+    private FirstSceneVfx FirstSceneVfx => _firstSceneVfx;
+
+    [Header("Animation Refferences")]
+    [SerializeField]
+    private FirstSceneVfx _firstSceneVfx = null;
+
 
     public void Abrir(GameObject obj)
     {
@@ -38,7 +47,7 @@ public class MenuManager : MonoBehaviour
     {
         if(firstScene.activeSelf && Input.anyKey)
         {
-            firstScene.SetActive(false);
+            FirstSceneVfx.OnDisappear();
             es.SetSelectedGameObject(menuInicialButton);
             menuInicial.SetActive(true);
         }
