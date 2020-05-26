@@ -9,7 +9,9 @@ public class Menu : MonoBehaviour
     
     public void ChangeScene(int scene)
     {
-        SceneManager.LoadScene(scene);
+        Destroy(GameManager.Instance.gameObject);
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        Time.timeScale = 1 ;
     }
     public void ChangeSceneWithLoad(int scene)
     {

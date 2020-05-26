@@ -120,7 +120,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 }
 
             }
-            else if(SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetActiveScene().buildIndex == 9))
+            else if(SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetSceneByBuildIndex(9).isLoaded))
             {
                 if (isConfirmed)
                 {  
@@ -131,10 +131,11 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     isConfirmed = true;
                 }
 
-            }
-           // } else if (GameManager.Instance.gameController.comecou)
-               // GameManager.Instance.PressStart();
+            
+            } else {
+                GameManager.Instance.PressStart();
 
+            }
         }
     }
 

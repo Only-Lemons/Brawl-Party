@@ -19018,7 +19018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0015258789}
+  m_AnchoredPosition: {x: 0, y: -0.0015869141}
   m_SizeDelta: {x: -639.12, y: -360.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &881796576
@@ -33322,7 +33322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1732954347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37416,7 +37416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2121705233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37462,10 +37462,9 @@ MonoBehaviour:
   - {fileID: 1015999581}
   - {fileID: 520861729}
   _logoCanvasGroup: {fileID: 1391394241}
-  BG: {fileID: 881796576}
-  mat: {fileID: 0}
-  Col: {r: 1, g: 0.6868739, b: 0, a: 1}
-  Col2: {r: 1, g: 0.36715755, b: 0, a: 1}
+  _pressAnyButtonText: {fileID: 0}
+  _background: {fileID: 0}
+  _nextSceneColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2124937443
 GameObject:
   m_ObjectHideFlags: 0
@@ -38447,8 +38446,6 @@ MonoBehaviour:
   necessarioMaisJogadores: {fileID: 1816791067}
   corVencedor: {r: 0, g: 0, b: 0, a: 0}
   empatou: 0
-  victoryMiniGame:
-    m_Handle: 9
 --- !u!81 &4344593518849713546
 AudioListener:
   m_ObjectHideFlags: 0
