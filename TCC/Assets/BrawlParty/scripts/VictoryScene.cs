@@ -36,6 +36,10 @@ public class VictoryScene : MonoBehaviour
         updateScore();
     }
 
+    private void Update()
+    {
+        ConfirmarTutorial();
+    }
 
     void updateScore()
     {

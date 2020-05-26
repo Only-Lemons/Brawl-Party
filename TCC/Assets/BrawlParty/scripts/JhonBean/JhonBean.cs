@@ -24,6 +24,9 @@ public class JhonBean : MiniGame
     Dictionary<PlayerController, Stun> canMove = new Dictionary<PlayerController, Stun>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, PositionsLR> playerPosition = new Dictionary<PlayerController, PositionsLR>();
+    Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
+    Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
+
     bool adicionolPoint = false;
     List<PlayerController> players = new List<PlayerController>();
     int vencedor;
@@ -42,7 +45,8 @@ public class JhonBean : MiniGame
         foreach (var player in players)
         {
             player.actualGameMode = this;
-
+            inStun[player] = false;
+            timeStun[player] = 0;
         }
 
         vencedor = players.Count - 1;
@@ -50,7 +54,16 @@ public class JhonBean : MiniGame
         InsertPlayerInDates();
         CancelarCameras();
 
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            if (i < players.Count)
+            {
+                players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+            }
+        }
+
+
+                for (int i = 0; i < players.Count; i++)
         {
             if (players[i] != null)
             {
@@ -177,12 +190,13 @@ public class JhonBean : MiniGame
         UpdatePositionCamera();
         //FallingBirds();
         WinRule();
+
     }
     public override void Action(PlayerController player)
     {
         if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
-        if (canMove[player.gameObject.GetComponent<PlayerController>()].canMove && !adicionolPoint && !player.travar)
+        if (!inStun[player] && !adicionolPoint && !player.travar)
         {
             player.anim.SetTrigger("Climb");
             player.transform.position += new Vector3(0f, 1f, 0f);
@@ -191,7 +205,15 @@ public class JhonBean : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-
+       
+        if (!ispauseGame)
+        {
+            if (!inStun[player])
+            {
+                StartCoroutine(StunCerto(player));
+                AudioManager.PlayHit();
+            }
+        }
     }
 
     public override void Jump(PlayerController player)
@@ -203,7 +225,7 @@ public class JhonBean : MiniGame
     {
         if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
-        if (canMove[player].canMove && !player.travar)
+        if (!inStun[player] && !player.travar)
         {
             if (player._movementAxis.x > 0f)
             {
@@ -294,5 +316,13 @@ public class JhonBean : MiniGame
             }
             timeForBirds = _timeForBirds;
         }
+    }
+
+    IEnumerator StunCerto(PlayerController p)
+    {
+        inStun[p] = true;
+        yield return new WaitForSeconds(2f);
+        inStun[p] = false;
+
     }
 }

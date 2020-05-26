@@ -71,7 +71,7 @@ public class Inputs : IInputActionCollection
                     ""id"": ""97a4d398-30b5-4a45-9fd4-2b88e286edfc"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Tap""
                 },
                 {
                     ""name"": ""Switch"",

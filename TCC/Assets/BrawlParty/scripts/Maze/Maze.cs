@@ -38,6 +38,8 @@ public class Maze : MiniGame
 
     bool isFinish = false;
 
+
+   
     private void Start()
     {
         closedDoor = new Vector3(15, door.transform.position.y, door.transform.position.z);
@@ -76,51 +78,61 @@ public class Maze : MiniGame
 
         AudioManager.PlayGameMusic();
     }
-
+    
     private void FixedUpdate()
     {
-        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
-            return;
-        RemoveStun();
-        CloseDoors();
-        ChangeLightPlayer();
-        UnbuggPlayerNonKey();
-        PlayerStuned();
-        WinRule();
+        if (!this.ispauseGame)
+        {
+            if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+                return;
+            RemoveStun();
+            CloseDoors();
+            ChangeLightPlayer();
+            UnbuggPlayerNonKey();
+            PlayerStuned();
+            WinRule();
+        }
     }
 
     void ChoicePathJason()
     {
-        foreach (var jason in jasons)
+        if (!ispauseGame)
         {
-            PlayerController playerF = players[0];
-            float coicidenteP = 0;
-            foreach (var player in players)
+            foreach (var jason in jasons)
             {
-                if (inStun[player])
-                    return;
-                float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, FinishGame.transform.position)));
-                if (cpa > coicidenteP && !inStun[player])
+                PlayerController playerF = players[0];
+                float coicidenteP = 0;
+                foreach (var player in players)
                 {
-                    playerF = player;
-                    coicidenteP = cpa;
+                    if (inStun[player])
+                        return;
+                    float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, FinishGame.transform.position)));
+                    if (cpa > coicidenteP && !inStun[player])
+                    {
+                        playerF = player;
+                        coicidenteP = cpa;
+                    }
                 }
+                
+                jason.moviment(playerF.transform.position);
             }
-            print(playerF.name);
-            jason.moviment(playerF.transform.position);
         }
     }
     private void Update()
     {
-        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
-            return;
-        ChoicePathJason();
-        RandomWallInsert();
-        //FearLevel();
-        FriendlyLevel();
+        if (!ispauseGame)
+        {
+            if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+                return;
+            ChoicePathJason();
+            RandomWallInsert();
+            //FearLevel();
+            FriendlyLevel();
+        }
     }
     void ChangeLightPlayer()
     {
+      
         calculateLT -= Time.fixedDeltaTime;
         if (calculateLT <= 0)
         {
@@ -138,34 +150,42 @@ public class Maze : MiniGame
     }
     void CloseDoors()
     {
-        fTime -= Time.fixedDeltaTime;
-        //doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
-        //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
+        if (!ispauseGame)
+        {
+            fTime -= Time.fixedDeltaTime;
+            //doors[0].transform.position = Vector3.Lerp(doors[0].transform.position, new Vector3(-1.114f, doors[0].transform.position.y, doors[0].transform.position.z), 5);
+            //doors[1].transform.position = Vector3.Lerp(doors[1].transform.position, new Vector3(1.36f, doors[1].transform.position.y, doors[1].transform.position.z), 5);
 
-        door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(closedDoor.x, door.transform.position.y, door.transform.position.z), Time.fixedDeltaTime / (fTime));
-        exitLight.transform.localScale = Vector3.Lerp(exitLight.transform.localScale, new Vector3(0, 1, 0), Time.fixedDeltaTime / (fTime));
-
+            door.transform.position = Vector3.Lerp(door.transform.position, new Vector3(closedDoor.x, door.transform.position.y, door.transform.position.z), Time.fixedDeltaTime / (fTime));
+            exitLight.transform.localScale = Vector3.Lerp(exitLight.transform.localScale, new Vector3(0, 1, 0), Time.fixedDeltaTime / (fTime));
+        }
     }
     public override void Action(PlayerController player)
     {
-        Debug.Log("KEY");
-        if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
+        if (!ispauseGame)
         {
-            KeyPlayer(player);
-            AudioManager.PlayColeta();
+         
+            if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
+            {
+                KeyPlayer(player);
+                AudioManager.PlayColeta();
+            }
         }
     }
     void RemoveStun()
     {
-        foreach (var player in players)
+        if (!ispauseGame)
         {
-            if (inStun[player])
+            foreach (var player in players)
             {
-                timeStun[player] -= Time.fixedDeltaTime;
-                if (timeStun[player] <= 0)
+                if (inStun[player])
                 {
-                    timeStun[player] = 0;
-                    inStun[player] = false;
+                    timeStun[player] -= Time.fixedDeltaTime;
+                    if (timeStun[player] <= 0)
+                    {
+                        timeStun[player] = 0;
+                        inStun[player] = false;
+                    }
                 }
             }
         }
@@ -173,36 +193,43 @@ public class Maze : MiniGame
 
     void RandomWallInsert()
     {
-        timeWallRandomize -= Time.fixedDeltaTime;
-        if (timeWallRandomize <= 0)
+
+        if (!ispauseGame)
         {
-            foreach (GameObject g in randomWall)
+            timeWallRandomize -= Time.fixedDeltaTime;
+            if (timeWallRandomize <= 0)
             {
-                int random = Random.Range(0, 2);
-                g.SetActive(true);
-                if (random == 0)
+                foreach (GameObject g in randomWall)
                 {
-                    g.SetActive(false);
+                    int random = Random.Range(0, 2);
+                    g.SetActive(true);
+                    if (random == 0)
+                    {
+                        g.SetActive(false);
+                    }
                 }
+                timeWallRandomize = timeWR;
             }
-            timeWallRandomize = timeWR;
         }
     }
 
     void FearLevel()
     {
-        foreach (GameObject jason in jasonsFear)
+        if (!ispauseGame)
         {
-            foreach (GameObject player in playersLight)
+            foreach (GameObject jason in jasonsFear)
             {
-                if (Vector3.Distance(jason.transform.position, player.transform.position) < 10)
+                foreach (GameObject player in playersLight)
                 {
-                    if (player.transform.localScale.x >= 3)
-                        player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(1, 1, 1), Time.fixedDeltaTime); ;
-                }
-                else
-                {
-                    player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(15, 15, 1), Time.fixedDeltaTime);
+                    if (Vector3.Distance(jason.transform.position, player.transform.position) < 10)
+                    {
+                        if (player.transform.localScale.x >= 3)
+                            player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(1, 1, 1), Time.fixedDeltaTime); ;
+                    }
+                    else
+                    {
+                        player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(15, 15, 1), Time.fixedDeltaTime);
+                    }
                 }
             }
         }
@@ -210,23 +237,26 @@ public class Maze : MiniGame
 
     void FriendlyLevel()
     {
-        foreach (GameObject player in playersLight)
+        if (!ispauseGame)
         {
-            foreach (GameObject player2 in playersLight)
+            foreach (GameObject player in playersLight)
             {
-                if (Vector3.Distance(player.transform.position, player2.transform.position) < 10)
+                foreach (GameObject player2 in playersLight)
                 {
-                    if (player.transform.position != player2.transform.position)
-                        if (friend < 5)
-                            friend++;
-                    if (player.transform.localScale.x <= 35)
-                        player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(friend * 15, friend * 15, 1), Time.fixedDeltaTime); ;
-                }
-                else
-                {
-                    player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(15, 15, 1), Time.fixedDeltaTime);
-                    if (friend > 0)
-                        friend--;
+                    if (Vector3.Distance(player.transform.position, player2.transform.position) < 10)
+                    {
+                        if (player.transform.position != player2.transform.position)
+                            if (friend < 5)
+                                friend++;
+                        if (player.transform.localScale.x <= 35)
+                            player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(friend * 15, friend * 15, 1), Time.fixedDeltaTime); ;
+                    }
+                    else
+                    {
+                        player.transform.localScale = Vector3.Lerp(player.transform.localScale, new Vector3(15, 15, 1), Time.fixedDeltaTime);
+                        if (friend > 0)
+                            friend--;
+                    }
                 }
             }
         }
@@ -234,11 +264,14 @@ public class Maze : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-        if (!inStun[player])
+        if (!ispauseGame)
         {
-            inStun[player] = true;
-            timeStun[player] = 2;
-            AudioManager.PlayHit();
+            if (!inStun[player])
+            {
+                inStun[player] = true;
+                timeStun[player] = 2;
+                AudioManager.PlayHit();
+            }
         }
     }
 
@@ -249,50 +282,56 @@ public class Maze : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
-            return;
-        if (!inStun[player])
+        if (!ispauseGame)
         {
-            player.transform.position += player._movementAxis * player.speed * Time.fixedDeltaTime;
-            if (player._movementAxis != Vector3.zero)
+            if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+                return;
+            if (!inStun[player])
             {
-                player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(player._movementAxis), Time.deltaTime * 20);
+                player.transform.position += player._movementAxis * player.speed * Time.fixedDeltaTime;
+                if (player._movementAxis != Vector3.zero)
+                {
+                    player.transform.rotation = Quaternion.Lerp(player.transform.rotation, Quaternion.LookRotation(player._movementAxis), Time.deltaTime * 20);
+                }
             }
         }
     }
 
     public override void PointRule(PlayerController player)
     {
-        if (withKey[player])
+        if (!ispauseGame)
         {
-            AudioManager.PlayMorte();
-            //players.Remove(player);
-            //switch (players.Count)
-            //{
-            //    case 3:
-            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
-            //        break;
-            //    case 2:
-            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
-            //        break;
-            //    case 1:
-            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-            //        break;
-            //    default:
-            //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
-            //        break;
-            //}
-            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += players.Count -1;
+            if (withKey[player])
+            {
+                AudioManager.PlayMorte();
+                //players.Remove(player);
+                //switch (players.Count)
+                //{
+                //    case 3:
+                //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                //        break;
+                //    case 2:
+                //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                //        break;
+                //    case 1:
+                //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                //        break;
+                //    default:
+                //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+                //        break;
+                //}
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += players.Count - 1;
 
-            players.Remove(player);
-            GameObject.Destroy(player.gameObject);
+                players.Remove(player);
+                GameObject.Destroy(player.gameObject);
 
-            if (players.Count <= 1)
-                isFinish = true;
-            else
-                KeysSpawn();
+                if (players.Count <= 1)
+                    isFinish = true;
+                else
+                    KeysSpawn();
 
-            
+
+            }
         }
     }
 
@@ -303,65 +342,80 @@ public class Maze : MiniGame
 
     public override void WinRule()
     {
-        if (fTime <= 0 || isFinish)
+        if (!ispauseGame)
         {
-            TimeGameController.Instance.acabou = true;
-            if(TimeGameController.Instance.AcabouMesmo())
-                GameManager.Instance.WinMinigame();
+            if (fTime <= 0 || isFinish)
+            {
+                TimeGameController.Instance.acabou = true;
+                if (TimeGameController.Instance.AcabouMesmo())
+                    GameManager.Instance.WinMinigame();
+            }
         }
     }
 
     void KeysSpawn()
     {
-        int pos = Random.Range(0, keysSpawn.Length);
-        keyExists = Instantiate(keyExit);
-        while (keysSpawn[pos] == null)
-            pos = Random.Range(0, keysSpawn.Length);
+        if (!ispauseGame)
+        {
+            int pos = Random.Range(0, keysSpawn.Length);
+            keyExists = Instantiate(keyExit);
+            while (keysSpawn[pos] == null)
+                pos = Random.Range(0, keysSpawn.Length);
 
-        keyExists.transform.position = keysSpawn[pos].transform.position;
-        keysSpawn[pos] = null;
+            keyExists.transform.position = keysSpawn[pos].transform.position;
+            keysSpawn[pos] = null;
+        }
     }
 
     public void KeyPlayer(PlayerController player)
     {
-        if (!withKey[player])
+        if (!ispauseGame)
         {
-            //remove todas as chaves
-            foreach (var p in players)
+            if (!withKey[player])
             {
-                if (withKey[p])
+                //remove todas as chaves
+                foreach (var p in players)
                 {
-                    withKey[p] = false;
-                    HitRule(p);
+                    if (withKey[p])
+                    {
+                        withKey[p] = false;
+                        HitRule(p);
+                    }
                 }
+                //novo jogador com a chave
+                withKey[player] = true;
+                if (keyExists != null)
+                    Destroy(keyExists);
+                keyExists = Instantiate(keyExit, player.transform.position + new Vector3(0, 2, 0), Quaternion.identity, player.gameObject.transform);
             }
-            //novo jogador com a chave
-            withKey[player] = true;
-            if (keyExists != null)
-                Destroy(keyExists);
-            keyExists = Instantiate(keyExit, player.transform.position + new Vector3(0, 2, 0), Quaternion.identity, player.gameObject.transform);
         }
 
     }
     void UnbuggPlayerNonKey()
     {
-        foreach (PlayerController p in players)
+        if (!ispauseGame)
         {
-            if (!withKey[p])
-                if (p.transform.position.z >= 21)
-                    p.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, 21);
+            foreach (PlayerController p in players)
+            {
+                if (!withKey[p])
+                    if (p.transform.position.z >= 21)
+                        p.transform.position = new Vector3(p.transform.position.x, p.transform.position.y, 21);
+            }
         }
     }
 
     void PlayerStuned()
     {
-        foreach (var player in players)
+        if (!ispauseGame)
         {
-            if (inStun[player])
+            foreach (var player in players)
             {
-                if (timeStun[player] >= 0)
+                if (inStun[player])
                 {
-                    player.transform.Rotate(0, 360 * Time.fixedDeltaTime * 3, 0);
+                    if (timeStun[player] >= 0)
+                    {
+                        player.transform.Rotate(0, 360 * Time.fixedDeltaTime * 3, 0);
+                    }
                 }
             }
         }
