@@ -24,17 +24,29 @@ namespace OnlyLemons.BrawlParty.UI
         private Image _background = null;
 
         [SerializeField]
+        private MainMenuVfx _mainMenuVfx = null;
+
+        [SerializeField]
+        private CanvasGroup _thanksForPlaying = null;
+
+        [SerializeField]
         private Color _color = Color.white;
-        void Start()
-        {
-            OnAppear();
-        }
+
+        public Tween Anim { get; set; }
 
         public override void OnAppear()
         {
             Sequence seq = DOTween.Sequence();
 
             #region Prepare
+            Anim?.Kill();
+
+            for (int i = 0; i < Logos.Length; i++)
+            {
+                Logos[i].gameObject.SetActive(true);
+                Textos[i].gameObject.SetActive(true);
+            }
+
             TextBg.localPosition = new Vector2(1912, 0);
             Logos[0].localPosition = new Vector2(-960, 0);
             Textos[0].localPosition = new Vector2(0, -1082);    
@@ -52,7 +64,28 @@ namespace OnlyLemons.BrawlParty.UI
             seq.Insert(19.5f, Logos[2].DOLocalMoveY(0, 1f).SetEase(Ease.InOutBack));
             seq.Join(Logos[1].DOLocalMoveY(-810.25f, 0.5f));
             seq.Join(Textos[2].DOLocalMoveY(1700, 20));
+            seq.Insert(30, Logos[2].DOLocalMoveY(818, 0.3f));
+            seq.Join(Logos[0].DOLocalMoveX(0, 1f).SetEase(Ease.InOutBack));
+            seq.Join(_thanksForPlaying.DOFade(1, 1f));
 
+            seq.Play();
+
+            Anim = seq;
+        }
+
+        public override void OnDisappear()
+        {
+            Sequence seq = DOTween.Sequence();
+
+            for (int i = 0; i < Logos.Length; i++)
+            {
+                Logos[i].gameObject.SetActive(false);
+                Textos[i].gameObject.SetActive(false);
+            }
+
+            seq.Insert(0, TextBg.DOLocalMoveX(1910, 0.5f));
+
+            seq.OnComplete(() => { _mainMenuVfx.gameObject.SetActive(true);  _mainMenuVfx.OnAppear(); });
             seq.Play();
         }
     }

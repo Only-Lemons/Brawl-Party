@@ -12,8 +12,6 @@ namespace OnlyLemons.BrawlParty.UI
         private CanvasGroup LogoCanvasGroup => _logoCanvasGroup;
         private RectTransform RectTransform => _rectTransform;
         private GameObject PressAnyButtonText => _pressAnyButtonText;
-        private Image Background => _background;
-        private Color NextSceneColor => _nextSceneColor;
 
         #region Serialize Fields
         [SerializeField]
@@ -28,10 +26,6 @@ namespace OnlyLemons.BrawlParty.UI
         private CanvasGroup _logoCanvasGroup = null;
         [SerializeField]
         private GameObject _pressAnyButtonText = null;
-        [SerializeField]
-        private Image _background = null;
-        [SerializeField]
-        private Color _nextSceneColor = Color.white;
         #endregion
 
         public float Delay { get; set; }
@@ -77,7 +71,6 @@ namespace OnlyLemons.BrawlParty.UI
             seq.OnStart(() => { PressAnyButtonText.SetActive(false); });
 
             seq.Insert(0, LogoCanvasGroup.DOFade(0, 0.5f));
-            seq.Insert(0, Background.DOColor(NextSceneColor, 1f));
 
             seq.OnComplete(() => { this.gameObject.SetActive(false); });
 
