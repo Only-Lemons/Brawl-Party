@@ -34,8 +34,13 @@ public class VictoryScene : MonoBehaviour
         }
         AtualizarSprites();
         updateScore();
+     
     }
 
+    void Update()
+    {
+           ConfirmarTutorial();
+    }
 
     void updateScore()
     {
