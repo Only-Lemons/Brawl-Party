@@ -24,11 +24,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private EventSystem es;
 
-    private FirstSceneVfx FirstSceneVfx => _firstSceneVfx;
+    private AnimationManager AnimManager => _animManager;
 
     [Header("Animation Refferences")]
     [SerializeField]
-    private FirstSceneVfx _firstSceneVfx = null;
+    private AnimationManager _animManager = null;
 
 
     public void Abrir(GameObject obj)
@@ -47,9 +47,8 @@ public class MenuManager : MonoBehaviour
     {
         if(firstScene.activeSelf && Input.anyKey)
         {
-            FirstSceneVfx.OnDisappear();
+            AnimManager.FirstToHome();
             es.SetSelectedGameObject(menuInicialButton);
-            menuInicial.SetActive(true);
         }
     }
 
