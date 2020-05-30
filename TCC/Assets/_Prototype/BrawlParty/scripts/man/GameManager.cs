@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         particleManager = GetComponent<ParticleManager>();
     }
 
+    private void Start()
+    {
+        quantTGames = 4;
+    }
+
     private void FixedUpdate()
     {
     
