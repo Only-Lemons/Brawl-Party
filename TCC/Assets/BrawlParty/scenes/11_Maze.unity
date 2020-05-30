@@ -803,7 +803,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 262144
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 1830739895}
+  m_TargetTexture: {fileID: 990522883}
   m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1
@@ -1824,7 +1824,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
@@ -1905,6 +1905,234 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36d9e604a6db4248aede26dc3490bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _DistancesFuzzy:
+  - name: Distance Player Door
+    Perto:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -0.25
+        outSlope: -0.25
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4
+        value: 0
+        inSlope: -0.004400339
+        outSlope: -0.004400339
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.018236902
+      - serializedVersion: 3
+        time: 40
+        value: 0
+        inSlope: 0.030852046
+        outSlope: 0.030852046
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.02558861
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Medio:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.5005045
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4
+        value: 0
+        inSlope: 0.09944353
+        outSlope: 0.09944353
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 12.453052
+        value: 1.6812027
+        inSlope: 0.056179084
+        outSlope: 0.056179084
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.039925124
+        outWeight: 0.027424274
+      - serializedVersion: 3
+        time: 40
+        value: 0
+        inSlope: 0.07340032
+        outSlope: 0.07340032
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.05462989
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Longe:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.0044184937
+        outSlope: 0.0044184937
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5337772
+        value: 0.002358491
+        inSlope: -0.0022737018
+        outSlope: -0.0022737018
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.8264609
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 8.861625
+        value: 0.0017886683
+        inSlope: 0.00038913873
+        outSlope: 0.00038913873
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.08670212
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 18.069077
+        value: 0.005193144
+        inSlope: 0.0024126393
+        outSlope: 0.0024126393
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.082271114
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 40
+        value: 1
+        inSlope: 0.045360923
+        outSlope: 0.045360923
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - name: Distance Ghost Player
+    Perto:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -0.06666667
+        outSlope: -0.06666667
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 15
+        value: 0
+        inSlope: -0
+        outSlope: -0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.1816146
+      - serializedVersion: 3
+        time: 50
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Medio:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.24755526
+        outSlope: 0.24755526
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.18413423
+      - serializedVersion: 3
+        time: 15.149231
+        value: 1
+        inSlope: 0.02415093
+        outSlope: 0.02415093
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.12811965
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 30
+        value: 0
+        inSlope: 0.022064673
+        outSlope: 0.022064673
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.054887008
+      - serializedVersion: 3
+        time: 50
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Longe:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.015408385
+        outSlope: 0.015408385
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.006621714
+      - serializedVersion: 3
+        time: 50
+        value: 1
+        inSlope: 0.004753894
+        outSlope: 0.004753894
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.06566086
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   door: {fileID: 801353054}
   FinishGame: {fileID: 1444350317}
   jasons:
@@ -3348,6 +3576,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969636773}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &990522883
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 572
+  m_Height: 322
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 2
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &997125505
 GameObject:
   m_ObjectHideFlags: 0
@@ -4024,7 +4287,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
@@ -4715,7 +4978,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4997,7 +5259,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5606,7 +5867,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
@@ -5872,7 +6133,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -6082,41 +6343,6 @@ Transform:
   m_Father: {fileID: 1235647416}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!84 &1830739895
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1003
-  m_Height: 564
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 2
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1888737398
 GameObject:
   m_ObjectHideFlags: 0
@@ -6640,7 +6866,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

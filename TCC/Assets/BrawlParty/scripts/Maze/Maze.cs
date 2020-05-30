@@ -6,6 +6,12 @@ using System.Reflection.Emit;
 
 public class Maze : MiniGame
 {
+
+    [SerializeField]
+    List<GraphsGhostDistance> _DistancesFuzzy;
+   
+   
+
     Dictionary<PlayerController, float> lightPerPlayer = new Dictionary<PlayerController, float>();
     List<PlayerController> players = new List<PlayerController>();
     Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
@@ -97,9 +103,11 @@ public class Maze : MiniGame
             float coicidenteP = 0;
             foreach (var player in players)
             {
-                //if (inStun[player])
-                //    return;
-                float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, FinishGame.transform.position)));
+                if (inStun[player])
+                    continue;
+                float cpa = (getWeightDistanceJasonPlayer(Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (getWeightDistancePlayerDoor(Vector3.Distance(player.transform.position, FinishGame.transform.position))));
+                Debug.Log(Vector3.Distance(player.transform.position, jason.transform.position));
+
                 if (cpa > coicidenteP && !inStun[player])
                 {
                     playerF = player;
@@ -109,6 +117,31 @@ public class Maze : MiniGame
             print(playerF.name);
             jason.moviment(playerF.transform.position);
         }
+    }
+    int getWeightDistanceJasonPlayer(float time) // A minima distancia é 2 e a máxima 50 fazer gráfico pensando nisso sendo o ultimo time 40 e o primeiro 4
+    {
+        float perto = _DistancesFuzzy[0].Perto.Evaluate(time);
+        float medio = _DistancesFuzzy[0].Medio.Evaluate(time);
+        float longe = _DistancesFuzzy[0].Longe.Evaluate(time);
+        int peso = 2;
+        if (perto < medio && longe < medio)
+            peso = 1;
+        if (medio < longe && perto < longe)
+            peso = 0;
+        return peso;
+    }
+    int getWeightDistancePlayerDoor(float time)// A minima distancia é 4 e a máxima 40 fazer gráfico pensando nisso sendo o ultimo time 40 e o primeiro 4
+    {
+        float perto = _DistancesFuzzy[1].Perto.Evaluate(time);
+        float medio = _DistancesFuzzy[1].Medio.Evaluate(time);
+        float longe = _DistancesFuzzy[1].Longe.Evaluate(time);
+        int peso = 0;
+        if (perto < medio && longe < medio)
+            peso = 2;
+        if (medio < longe && perto < longe)
+            peso = 1;
+        return peso;
+        
     }
     private void Update()
     {
@@ -303,7 +336,7 @@ public class Maze : MiniGame
 
     public override void WinRule()
     {
-        if (fTime <= 0 || isFinish)
+        if (fTime <= 3 || isFinish)
         {
             TimeGameController.Instance.acabou = true;
             if(TimeGameController.Instance.AcabouMesmo())
@@ -367,4 +400,12 @@ public class Maze : MiniGame
             }
         }
     }
+}
+[System.Serializable]
+struct GraphsGhostDistance
+{
+   public string name;
+   public AnimationCurve Perto;
+   public AnimationCurve Medio;
+   public AnimationCurve Longe;
 }
