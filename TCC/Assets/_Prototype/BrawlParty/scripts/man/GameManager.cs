@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
     
         if ( SceneManager.GetSceneByBuildIndex(9).isLoaded && playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
         {
+            if (quantGames < quantTGames)
+                nextLevel = 8;
             SceneManager.LoadScene(nextLevel); // provisorio
             Debug.Log("Entrou aqui");
         }      
@@ -199,11 +201,19 @@ public class GameManager : MonoBehaviour
     
     public void WinMinigame()
     {
-        quantGames ++;
+        Debug.Log("QUantidade de minigames " + quantGames);
+     
         if(quantGames > quantTGames)
+        {
+            quantGames++;
             SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
+        }
         else
+        {
+            quantGames++;
             SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
+        }
+           
     }
 
 

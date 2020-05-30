@@ -18,13 +18,13 @@ public class SortScene : MonoBehaviour
     void Start()
     {
 
-        GameManager.Instance.quantTGames = gameModes.Count;
+       // GameManager.Instance.quantTGames = gameModes.Count;
         foreach (int Index in GameManager.Instance.lastGameModes)
         {
             auxMod.Add(gameModes[Index]);
         }
 
-        if (GameManager.Instance.lastGameModes.Count >= GameManager.Instance.quantGames)
+        if (GameManager.Instance.lastGameModes.Count >= GameManager.Instance.quantTGames)
         {   
             SceneManager.LoadScene(9);
         }

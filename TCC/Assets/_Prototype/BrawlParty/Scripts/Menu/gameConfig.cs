@@ -23,7 +23,7 @@ public class gameConfig : MonoBehaviour
     }
     void Update()
     {
-        GameManager.Instance.quantGames = (int)quantidyGames.value;
+        GameManager.Instance.quantTGames = (int)quantidyGames.value;
         quantGames.text = quantidyGames.value.ToString("0");
 
 
