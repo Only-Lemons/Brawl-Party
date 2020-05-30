@@ -520,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 8411557221602498679, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8411557222385371885, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
@@ -9257,7 +9257,7 @@ PrefabInstance:
     - target: {fileID: 8411557221602498679, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8411557222385371885, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
@@ -12115,6 +12115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459999589206884930, guid: 95289e1c39f00b3438468cc7130b2323,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -5.72
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95289e1c39f00b3438468cc7130b2323, type: 3}
@@ -18426,6 +18431,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.1235
       objectReference: {fileID: 0}
+    - target: {fileID: 2928529161348126369, guid: cbca4a97a3fe1ab49aa079ab6bc8cafe,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -1.29
+      objectReference: {fileID: 0}
     - target: {fileID: 4730113459912029559, guid: cbca4a97a3fe1ab49aa079ab6bc8cafe,
         type: 3}
       propertyPath: m_Name
@@ -18658,6 +18668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicGame: {fileID: 8300000, guid: 5bfd720e92c2d5b48bc4ecb4b67e4284, type: 3}
+  clipNascendo: {fileID: 0}
   clipColeta: {fileID: 0}
   clipMorte: {fileID: 8300000, guid: c90aa4dcb363b524fb3644456588dfb5, type: 3}
   clipHit: {fileID: 8300000, guid: 3388972125fe9734d9b003350955e327, type: 3}
@@ -21421,7 +21432,7 @@ PrefabInstance:
     - target: {fileID: 8411557221602498679, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8411557222385371885, guid: 7a5ad400c7bf09641a76c39a4b7eb2e8,
         type: 3}
