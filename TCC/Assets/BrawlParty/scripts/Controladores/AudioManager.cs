@@ -60,4 +60,18 @@ public static class AudioManager
             Debug.Log("Erro ao reproduzir PlayHit: " + e.Message);
         }
     }
+
+    public static void PlayNascendo()
+    {
+        try
+        {
+            GameObject soundGameObject = new GameObject("Sound");
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.PlayOneShot(AudioController.instance.clipNascendo);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Erro ao reproduzir PlayNascendo: " + e.Message);
+        }
+    }
 }

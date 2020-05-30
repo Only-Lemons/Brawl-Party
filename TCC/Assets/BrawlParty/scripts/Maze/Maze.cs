@@ -97,8 +97,8 @@ public class Maze : MiniGame
             float coicidenteP = 0;
             foreach (var player in players)
             {
-                if (inStun[player])
-                    return;
+                //if (inStun[player])
+                //    return;
                 float cpa = ((1 / Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (1 / Vector3.Distance(player.transform.position, FinishGame.transform.position)));
                 if (cpa > coicidenteP && !inStun[player])
                 {
@@ -313,6 +313,7 @@ public class Maze : MiniGame
 
     void KeysSpawn()
     {
+        AudioManager.PlayNascendo();
         int pos = Random.Range(0, keysSpawn.Length);
         keyExists = Instantiate(keyExit);
         while (keysSpawn[pos] == null)

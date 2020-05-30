@@ -8,6 +8,7 @@ public class AudioController : MonoBehaviour
 
     [Header("Áudios")]
     public AudioClip musicGame;
+    public AudioClip clipNascendo;
     public AudioClip clipColeta;
     public AudioClip clipMorte;
     public AudioClip clipHit;
