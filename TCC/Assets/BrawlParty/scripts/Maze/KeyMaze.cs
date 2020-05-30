@@ -12,7 +12,7 @@ public class KeyMaze : MonoBehaviour
         transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         maze = GameObject.FindObjectOfType<Maze>();
         scalad = true;
-        AudioManager.PlayNascendo();
+        
     }
 
     // Update is called once per frame

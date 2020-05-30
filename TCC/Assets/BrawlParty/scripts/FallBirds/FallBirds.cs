@@ -23,7 +23,7 @@ public class FallBirds : MiniGame
 
         if (GameManager.Instance != null)
             GameManager.Instance.getPlayersMinigame(players);
-        
+
         foreach (var player in players)
         {
             player.actualGameMode = this;
@@ -37,13 +37,13 @@ public class FallBirds : MiniGame
             if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
-              //  players[i].playerIndiq.GetComponent<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
+                //  players[i].playerIndiq.GetComponent<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
 
             }
         }
     }
 
-   
+
 
     public override void Action(PlayerController player)
     {
@@ -57,7 +57,7 @@ public class FallBirds : MiniGame
         _deathplayer--;
         PointRule(player);
         player.gameObject.SetActive(false);
-        if (_deathplayer <= 0)
+        if (_deathplayer <= 1)
             TimeGameController.Instance.acabou = true;
     }
 
@@ -81,25 +81,14 @@ public class FallBirds : MiniGame
                 player.transform.position = new Vector3(player.transform.position.x, -6, 0);
             if (player.transform.position.y >= 6)
                 player.transform.position = new Vector3(player.transform.position.x, 6, 0);
-            
+
         }
     }
 
     public override void PointRule(PlayerController player)
     {
 
-        switch (_positionOfDeath[player])
-        {
-            case 3:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
-                break;
-            case 2:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
-                break;
-            case 1:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-                break;
-        }
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += _positionOfDeath[player] - 1;
 
     }
 
@@ -123,7 +112,7 @@ public class FallBirds : MiniGame
     void ObstaculoGenerator() //Comportamento e geração dos obstaculos
     {
         timeForInstantiate -= Time.deltaTime;
-        if(timeForInstantiate <= 0)
+        if (timeForInstantiate <= 0)
         {
             GameObject x = Instantiate(InstanciarObstaculo(), posInstantiate, Quaternion.identity, this.transform);
             x.transform.position = RandomPosYObstaculo(x, 5);
@@ -146,9 +135,9 @@ public class FallBirds : MiniGame
 
     void FixedUpdate()
     {
+        LockZ();
         if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
-        LockZ();
         SceneMechanics();
         ObstaculoGenerator();
     }
@@ -163,7 +152,7 @@ public class FallBirds : MiniGame
         return obstaculos[Random.Range(0, obstaculos.Length)];
     }
 
-    Vector3 RandomPosYObstaculo(GameObject obj,float minMax)
+    Vector3 RandomPosYObstaculo(GameObject obj, float minMax)
     {
         return new Vector3(obj.transform.position.x, Random.Range(-minMax, minMax), obj.transform.position.z);
     }
