@@ -229,7 +229,7 @@ public class JhonBean : MiniGame
 
 
         player.travar = true;
-       
+        
         switch (vencedor)
         {
             case 3:

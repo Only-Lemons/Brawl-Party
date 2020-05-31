@@ -106,7 +106,7 @@ public class Maze : MiniGame
                 if (inStun[player])
                     continue;
                 float cpa = (getWeightDistanceJasonPlayer(Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (getWeightDistancePlayerDoor(Vector3.Distance(player.transform.position, FinishGame.transform.position))));
-                Debug.Log(Vector3.Distance(player.transform.position, jason.transform.position));
+              
 
                 if (cpa > coicidenteP && !inStun[player])
                 {

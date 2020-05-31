@@ -21,7 +21,7 @@ public class GhostRun : MiniGame
     Dictionary<PlayerController, float> _timeinvenciblelayer = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, bool> _playerisinvencible = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, int> _indexs = new Dictionary<PlayerController, int>();
-    bool _adicionolPoint = false;
+    int _qtdVivo;
     float _tempoGame;
     float _timeToInstantiateNewCross;
     private void Start()
@@ -51,6 +51,7 @@ public class GhostRun : MiniGame
 
 
         AddPlayerInformations();
+        _qtdVivo = players.Count;
         InstantiateGhost();
         
     }
@@ -71,8 +72,7 @@ public class GhostRun : MiniGame
     {
         if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
-        if (!_adicionolPoint)
-        {
+        
             _tempoGame += Time.deltaTime;
             timeOfGame -= Time.deltaTime;
             ShowTime();
@@ -92,8 +92,7 @@ public class GhostRun : MiniGame
             if(TimeGameController.Instance.AcabouMesmo())
                 WinRule();
             }
-        }
-        WinScene();
+   
     }
     void EfectInvenciblePlayers()
     {
@@ -123,12 +122,14 @@ public class GhostRun : MiniGame
 
             GameManager.Instance.particleManager.getParticula("morte", player.transform);
             _isDead[player] = true;
+           
             player.gameObject.SetActive(false);
+            PointRule(player);
+            _qtdVivo--;
             AudioManager.PlayHit();
             _playersImages[_indexs[player]].fotoPersonagem.sprite = _morte;
             if (VerifyPlayerMortos())
             {
-                AddPointForPlayers();
                 WinRule();
             }
         }
@@ -152,9 +153,38 @@ public class GhostRun : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        playerPoints[player.gameObject.transform.parent.gameObject] += (int)(8 * _tempoGame);
-       // Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
-        //player.playerUI.points.text = pointPlayer[player].ToString();
+        if (players.Count == 4)
+        {
+            switch (_qtdVivo)
+            {
+                case 1:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                    break;
+                case 2:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                    break;
+                case 3:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                    break;
+                default:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+                    break;
+            }
+        }
+        else
+        {
+            switch (_qtdVivo)
+            {
+
+                case 1:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                    break;
+                default:
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+                    break;
+            }
+        }
+
     }
 
     public override void RotationRule(PlayerController player)
@@ -165,18 +195,12 @@ public class GhostRun : MiniGame
     public override void WinRule()
     {
 
-        InsertWinners();
-        foreach (PlayerController player in players)
-        {
-            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += _pointGeralForManager[player];
-        }
-        if (_adicionolPoint == false)
-        {
+       
+       
             TimeGameController.Instance.acabou = true;
-            //GameManager.Instance.WinMinigame();
+            GameManager.Instance.WinMinigame();
 
-            _adicionolPoint = true;
-        }
+           
     }
 
     void WinScene()
