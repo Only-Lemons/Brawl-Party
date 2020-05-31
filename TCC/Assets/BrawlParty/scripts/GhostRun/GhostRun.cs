@@ -24,6 +24,7 @@ public class GhostRun : MiniGame
     bool _adicionolPoint = false;
     float _tempoGame;
     float _timeToInstantiateNewCross;
+    int totalPoint;
     private void Start()
     {
         AudioManager.PlayGameMusic();
@@ -152,7 +153,8 @@ public class GhostRun : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        playerPoints[player.gameObject.transform.parent.gameObject] += (int)(8 * _tempoGame);
+        playerPoints[player.gameObject.transform.parent.gameObject] += totalPoint;
+        totalPoint++;
        // Debug.Log(playerPoints[player.gameObject.transform.parent.gameObject] + " player: " + player.name);
         //player.playerUI.points.text = pointPlayer[player].ToString();
     }
