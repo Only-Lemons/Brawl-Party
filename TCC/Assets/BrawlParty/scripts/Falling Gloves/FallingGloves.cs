@@ -228,7 +228,23 @@ public class FallingGloves : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        throw new System.NotImplementedException();
+        switch (qtdVivos)
+        {
+            case 1:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                break;
+            case 2:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                break;
+            case 3:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                break;
+            default:
+                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+                break;
+        }
+    
+       
     }
 
     public override void RotationRule(PlayerController player)
@@ -238,29 +254,9 @@ public class FallingGloves : MiniGame
 
     public override void WinRule()
     {
-        if (!adicionolPoint)
-        {
-            if (!falha)
-            {
-                for (int i = 0; i < winners.Count; i++)
-                {
-                      GameManager.Instance.playersPontos[winners[i].gameObject.transform.parent.gameObject] += 2;
-                    Debug.Log("GANHOU ?");
-                }
-            }
-
-            if (falha)
-            {
-                for (int i = 0; i <players.Count; i++)
-                {
-                     GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += 1;
-                    Debug.Log("PERDEU ?");
-                }
-            }
-            
-            adicionolPoint = true;
+      
             GameManager.Instance.WinMinigame();
-        }
+        
     }
     void InsertPlayerInDates()
     {

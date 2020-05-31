@@ -229,7 +229,7 @@ public class JhonBean : MiniGame
 
 
         player.travar = true;
-        vencedor--;
+       
         switch (vencedor)
         {
             case 3:
@@ -245,7 +245,7 @@ public class JhonBean : MiniGame
                 GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
                 break;
         }
-
+        vencedor--;
         if (vencedor <= 0)
             TimeGameController.Instance.acabou = true;
     }
