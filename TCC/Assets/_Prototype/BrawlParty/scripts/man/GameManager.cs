@@ -218,7 +218,6 @@ public class GameManager : MonoBehaviour
             quantGames++;
             SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
         }
-           
     }
 
 

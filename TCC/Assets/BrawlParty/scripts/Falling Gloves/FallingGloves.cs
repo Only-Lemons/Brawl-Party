@@ -13,9 +13,9 @@ public class FallingGloves : MiniGame
     GameObject[] hammers = new GameObject[6];
     List<PlayerController> winners = new List<PlayerController>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
-    Dictionary<PlayerController, int> playersVidas = new  Dictionary<PlayerController,int>();
-    Dictionary<PlayerController, bool> playersI = new  Dictionary<PlayerController, bool>();
-   
+    Dictionary<PlayerController, int> playersVidas = new Dictionary<PlayerController, int>();
+    Dictionary<PlayerController, bool> playersI = new Dictionary<PlayerController, bool>();
+
     int numwinner = 0;
     float lasthit = 0;
 
@@ -27,32 +27,35 @@ public class FallingGloves : MiniGame
 
     int qtdVivos;
 
+    Vector3 posAllPlayerInit;
+    float forceJump;
+
     void Start()
     {
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
-        
-        if(GameManager.Instance != null)
+        posAllPlayerInit = players[0].transform.position;
+        forceJump = 10;
+
+        if (GameManager.Instance != null)
             GameManager.Instance.getPlayersMinigame(players);
 
 
         foreach (var player in players)
         {
             player.actualGameMode = this;
-            
+
         }
 
         /// isso tem que estar em todos minigames
         for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
         {
-            if (i < players.Count) 
+            if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
             }
         }
 
 
-
-     
         tempoIniciar = false;
         tempoVerificacao = 0.3f;
         InsertPlayerInDates();
@@ -64,26 +67,33 @@ public class FallingGloves : MiniGame
         qtdVivos = players.Count;
         pontoTotal = players.Count;
 
+
+
     }
 
 
     void Update()
     {
+        if (!TimeGameController.Instance.Comecou())
+            return;
+
         ContarFalha();
         AtualizarUI();
         if (tempoVerificacao < 0 && qtdVivos < 1)
         {
-        
-            Invoke("WinRule",0);
-     
+
+            TimeGameController.Instance.acabou = true;
+            //Invoke("WinRule",0);
+
         }
         else if (tempoVerificacao < 0 && qtdVivos >= 1)
         {
-            Invoke("WinRule", 0);
+            TimeGameController.Instance.acabou = true;
+            //Invoke("WinRule", 0);
 
         }
-        
-       
+
+
         lasthit -= Time.deltaTime;
         // timeOfGame -= Time.deltaTime;
         ShowTime();
@@ -94,7 +104,15 @@ public class FallingGloves : MiniGame
             Falling();
             lasthit = 5 - (dificuldade / 6);
         }
-        
+
+        WinRule();
+
+    }
+
+    void FixedUpdate()
+    {
+        Gravidade();
+        Pequenino();
     }
 
     void AtualizarUI()
@@ -103,10 +121,11 @@ public class FallingGloves : MiniGame
         {
             for (int j = 0; j < 1; j++)
             {
-                if(j < playersVidas[players[i]])
+                if (j < playersVidas[players[i]])
                 {
                     playersUI[i].lifes[j].gameObject.SetActive(true);
-                }else
+                }
+                else
                 {
                     playersUI[i].lifes[j].gameObject.SetActive(false);
                 }
@@ -118,20 +137,23 @@ public class FallingGloves : MiniGame
     {
         for (int i = 0; i < playersUI.Count; i++)
         {
-            if( i < GameManager.Instance.playersPanels.Count)
+            if (i < GameManager.Instance.playersPanels.Count)
             {
                 playersUI[i].icon.sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
                 for (int j = 0; j < 1; j++)
                 {
-                    if(j < playersVidas[players[i]])
+                    if (j < playersVidas[players[i]])
                     {
                         playersUI[i].lifes[j].gameObject.SetActive(true);
-                    }else
+                    }
+                    else
                     {
                         playersUI[i].lifes[j].gameObject.SetActive(false);
                     }
                 }
-            }else{
+            }
+            else
+            {
                 playersUI[i].pai.SetActive(false);
             }
         }
@@ -141,7 +163,7 @@ public class FallingGloves : MiniGame
     {
         List<int> posicoes = new List<int>();
         posicoes.Clear();
-        
+
         int random;
         for (int i = 0; i < 3; i++)
         {
@@ -162,11 +184,13 @@ public class FallingGloves : MiniGame
 
     public override void Action(PlayerController player)
     {
-        if (player.pulou == false )
+        if (player.transform.position.y <= 0.41f && !playersI[player])
+        //if (player.pulou == false )
         {
             player.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x, 0.41f, player.gameObject.transform.position.z);
-            player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.VelocityChange);
-            player.pulou = true;
+            player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 2 * forceJump, ForceMode.VelocityChange);
+            //player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 10 * forceJump, ForceMode.Impulse);
+            //player.pulou = true;
         }
     }
 
@@ -178,7 +202,8 @@ public class FallingGloves : MiniGame
             if (playersVidas[player] <= 0)
             {
                 PointRule(player);
-                player.gameObject.SetActive(false);
+                qtdVivos--;
+                //player.gameObject.SetActive(false); //teste
                 playerMortos[player] = true;
                 player.pontosGenericos -= pontoTotal;
                 pontoTotal -= 1;
@@ -187,7 +212,9 @@ public class FallingGloves : MiniGame
                     winners.Add(player);
                     InsertWinners();
                     numwinner++;
-                    Invoke("WinRule", 0);
+
+                    TimeGameController.Instance.acabou = true;
+                    //Invoke("WinRule", 0);
                 }
             }
             playersI[player] = true;
@@ -201,6 +228,30 @@ public class FallingGloves : MiniGame
         playersI[player] = false;
     }
 
+    void Pequenino()
+    {
+        foreach (PlayerController p in players)
+        {
+            if (playersI[p])
+                p.transform.localScale = Vector3.Lerp(p.transform.localScale, new Vector3(2.5f, 0.03f, 2.5f), Time.fixedDeltaTime * 10);
+            else if(playerMortos[p])
+                p.transform.localScale = Vector3.Lerp(p.transform.localScale, new Vector3(3f, 0.05f, 3f), Time.fixedDeltaTime * 10);
+            else
+                p.transform.localScale = Vector3.Lerp(p.transform.localScale, new Vector3(1, 1, 1), Time.fixedDeltaTime * 10);
+        }
+    }
+
+    void Gravidade()
+    {
+        foreach (PlayerController p in players)
+        {
+            if (p.transform.position.y > 0)
+            {
+                p.transform.position = Vector3.Lerp(p.transform.position, new Vector3(p.transform.position.x, posAllPlayerInit.y, p.transform.position.z), Time.fixedDeltaTime * forceJump / 2);
+            }
+        }
+    }
+
     public override void Jump(PlayerController player)
     {
         throw new System.NotImplementedException();
@@ -208,22 +259,26 @@ public class FallingGloves : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-       if (player._movementAxis.x > 0)
+        if (!playersI[player])
         {
-            player.direc = 1;
-            player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
-        }
-        else if (player._movementAxis.x < 0)
-        {
-            player.direc = -1;
-            player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
-        }
-        else
-        {
-            player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.zero), Quaternion.identity, Time.deltaTime);
-        }
+            if (player._movementAxis.x > 0)
+            {
+                player.direc = 1;
+                player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
+            }
+            else if (player._movementAxis.x < 0)
+            {
+                player.direc = -1;
+                player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.left), Quaternion.identity, Time.deltaTime);
+            }
+            else
+            {
+                player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.zero), Quaternion.identity, Time.deltaTime);
+            }
 
-        player.transform.position += new Vector3(player._movementAxis.x, 0, 0) * player.speed * Time.deltaTime;
+
+            player.transform.position += new Vector3(player._movementAxis.x, 0, 0) * player.speed * Time.deltaTime;
+        }
     }
 
     public override void PointRule(PlayerController player)
@@ -250,7 +305,7 @@ public class FallingGloves : MiniGame
         {
             switch (qtdVivos)
             {
-             
+
                 case 1:
                     GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
                     break;
@@ -259,8 +314,8 @@ public class FallingGloves : MiniGame
                     break;
             }
         }
-    
-       
+
+
     }
 
     public override void RotationRule(PlayerController player)
@@ -270,18 +325,19 @@ public class FallingGloves : MiniGame
 
     public override void WinRule()
     {
-      
+        //TimeGameController.Instance.acabou = true;
+        if (TimeGameController.Instance.AcabouMesmo())
             GameManager.Instance.WinMinigame();
-        
+
     }
     void InsertPlayerInDates()
     {
         foreach (PlayerController player in players)
         {
             playerMortos.Add(player, false);
-            playersVidas.Add(player,2);
+            playersVidas.Add(player, 2);
             playersI.Add(player, false);
-            player.pontosGenericos =players.Count;
+            player.pontosGenericos = players.Count;
         }
     }
     void InsertHammersInDates()
@@ -298,7 +354,7 @@ public class FallingGloves : MiniGame
         }
 
     }
-    
+
     bool VerifyPlayerMortos()
     {
         int a = 0;
@@ -317,7 +373,7 @@ public class FallingGloves : MiniGame
         }
         else boleano = false;
 
-        qtdVivos = a;
+        //qtdVivos = a;
 
         return boleano;
     }
