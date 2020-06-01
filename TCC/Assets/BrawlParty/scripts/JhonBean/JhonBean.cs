@@ -231,7 +231,7 @@ public class JhonBean : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou() || GameManager.Instance.end)
             return;
         if (!inStun[player] && !player.travar)
         {

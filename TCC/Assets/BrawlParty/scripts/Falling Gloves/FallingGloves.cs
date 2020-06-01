@@ -73,7 +73,7 @@ public class FallingGloves : MiniGame
 
     void Update()
     {
-        if (!TimeGameController.Instance.Comecou())
+        if (!TimeGameController.Instance.Comecou() || GameManager.Instance.end)
             return;
 
         ContarFalha();

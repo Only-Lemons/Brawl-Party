@@ -70,9 +70,14 @@ public class GameManager : MonoBehaviour
         if ( SceneManager.GetSceneByBuildIndex(9).isLoaded && playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
         {
             if (quantGames < quantTGames)
+            {
                 nextLevel = 8;
-            SceneManager.LoadScene(nextLevel); // provisorio
-            Debug.Log("Entrou aqui");
+            }else
+            {
+                nextLevel = 10;
+            }
+
+                SceneManager.LoadScene(nextLevel); // provisorio
         }      
 
         switch (SceneManager.GetActiveScene().buildIndex)
@@ -212,8 +217,8 @@ public class GameManager : MonoBehaviour
      
         if(quantGames > quantTGames)
         {
-            quantGames++;
-            StartCoroutine(CarregarCenaComPausa(10)); //TIRAISSO
+          //  quantGames++;
+         //   StartCoroutine(CarregarCenaComPausa(10)); //TIRAISSO
             //SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
         }
         else

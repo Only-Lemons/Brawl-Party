@@ -85,7 +85,7 @@ public class Maze : MiniGame
 
     private void FixedUpdate()
     {
-        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou() || GameManager.Instance.end)
             return;
         RemoveStun();
         CloseDoors();
