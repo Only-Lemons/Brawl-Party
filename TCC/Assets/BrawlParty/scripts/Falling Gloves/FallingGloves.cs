@@ -35,6 +35,7 @@ public class FallingGloves : MiniGame
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         posAllPlayerInit = players[0].transform.position;
         forceJump = 10;
+        
 
         if (GameManager.Instance != null)
             GameManager.Instance.getPlayersMinigame(players);
@@ -64,11 +65,9 @@ public class FallingGloves : MiniGame
         UIInit();
 
         //GameController.singleton.uIManager.SumirTudo();
-        qtdVivos = players.Count;
+        
         pontoTotal = players.Count;
-
-
-
+        qtdVivos = GameManager.Instance.playersPanels.Count;
     }
 
 
@@ -192,7 +191,7 @@ public class FallingGloves : MiniGame
 
     public override void Action(PlayerController player)
     {
-        if (player.transform.position.y <= 0.41f && !playersI[player])
+        if (player.transform.position.y <= 0.41f && !playersI[player] && TimeGameController.Instance.Comecou())
         //if (player.pulou == false )
         {
             player.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x, 0.41f, player.gameObject.transform.position.z);
@@ -211,7 +210,7 @@ public class FallingGloves : MiniGame
             if (playersVidas[player] <= 0)
             {
                 PointRule(player);
-                qtdVivos--;
+                
                 //player.gameObject.SetActive(false); //teste
                 playerMortos[player] = true;
                 player.pontosGenericos -= pontoTotal;
@@ -292,37 +291,40 @@ public class FallingGloves : MiniGame
 
     public override void PointRule(PlayerController player)
     {
-        if (players.Count == 4)
-        {
-            switch (qtdVivos)
-            {
-                case 1:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
-                    break;
-                case 2:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
-                    break;
-                case 3:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-                    break;
-                default:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
-                    break;
-            }
-        }
-        else
-        {
-            switch (qtdVivos)
-            {
+        int pontos = players.Count - qtdVivos;
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += pontos;
+        qtdVivos--;
+        //if (players.Count == 4)
+        //{
+        //    switch (qtdVivos)
+        //    {
+        //        case 1:
+        //            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+        //            break;
+        //        case 2:
+        //            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+        //            break;
+        //        case 3:
+        //            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+        //            break;
+        //        default:
+        //            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+        //            break;
+        //    }
+        //}
+        //else
+        //{
+        //    switch (qtdVivos)
+        //    {
 
-                case 1:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-                    break;
-                default:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
-                    break;
-            }
-        }
+        //        case 1:
+        //            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+        //            break;
+        //        default:
+        //            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+        //            break;
+        //    }
+        //}
 
 
     }
