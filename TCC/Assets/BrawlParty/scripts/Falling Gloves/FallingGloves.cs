@@ -78,7 +78,7 @@ public class FallingGloves : MiniGame
             return;
 
         ContarFalha();
-        AtualizarUI();
+    
         if (tempoVerificacao < 0 && qtdVivos < 1)
         {
 
@@ -121,14 +121,22 @@ public class FallingGloves : MiniGame
         {
             for (int j = 0; j < 1; j++)
             {
-                if (j < playersVidas[players[i]])
+                switch (playersVidas[players[i]])
                 {
-                    playersUI[i].lifes[j].gameObject.SetActive(true);
-                }
-                else
-                {
-                    playersUI[i].lifes[j].gameObject.SetActive(false);
-                }
+                    case 2:
+                        playersUI[i].lifes[0].gameObject.SetActive(true);
+                        playersUI[i].lifes[1].gameObject.SetActive(true);
+                        break;
+                    case 1:
+                        playersUI[i].lifes[0].gameObject.SetActive(false);
+                        playersUI[i].lifes[1].gameObject.SetActive(true);
+                        break;
+                    case 0:
+                        playersUI[i].lifes[0].gameObject.SetActive(false);
+                        playersUI[i].lifes[1].gameObject.SetActive(false);
+                        break;
+                
+                } 
             }
         }
     }
@@ -199,6 +207,7 @@ public class FallingGloves : MiniGame
         if (playersI[player] == false)
         {
             playersVidas[player] -= 1;
+            AtualizarUI();
             if (playersVidas[player] <= 0)
             {
                 PointRule(player);
