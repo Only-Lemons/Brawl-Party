@@ -104,9 +104,10 @@ public class GameManager : MonoBehaviour
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
+                else if (!(playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true)))
+                    necessarioMaisJogadores.text = "";
 
-
-            break;
+                break;
 
             case 4: // Loading
             case 9: // ViCtoryScene

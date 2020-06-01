@@ -12,7 +12,7 @@ public class ObstaculoFB : MonoBehaviour
        deslocamento,
        aceleracao,
        velocidade;
-        
+
 
     public float massa;
 
@@ -28,6 +28,9 @@ public class ObstaculoFB : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (TimeGameController.Instance.Acabou())
+            return;
+
         tempo = Time.fixedDeltaTime;
         aceleracao = (forca / massa) + gravidade;
         velocidade += aceleracao * tempo;

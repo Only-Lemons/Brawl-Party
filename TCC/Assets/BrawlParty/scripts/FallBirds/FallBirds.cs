@@ -13,10 +13,12 @@ public class FallBirds : MiniGame
     public Vector3 posInstantiate;
 
     Dictionary<PlayerController, int> _positionOfDeath = new Dictionary<PlayerController, int>();
+    Dictionary<PlayerController, bool> _playerDeath = new Dictionary<PlayerController, bool>();
     [SerializeField]
     int _deathplayer;
     void Start()
     {
+        _deathplayer = -1;
         timeFI = timeForInstantiate;
 
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
@@ -28,6 +30,7 @@ public class FallBirds : MiniGame
         {
             player.actualGameMode = this;
             _positionOfDeath.Add(player, 0);
+            _playerDeath.Add(player, false);
             _deathplayer++;
         }
 
@@ -55,10 +58,20 @@ public class FallBirds : MiniGame
     {
         _positionOfDeath[player] = _deathplayer;
         _deathplayer--;
+        _playerDeath[player] = true;
         PointRule(player);
         player.gameObject.SetActive(false);
         if (_deathplayer <= 1)
+        {
+            foreach(PlayerController p in players)
+            {
+                if(!_playerDeath[p])
+                {
+                    GameManager.Instance.playersPontos[p.gameObject.transform.parent.gameObject] += players.Count - 1;
+                }
+            }
             TimeGameController.Instance.acabou = true;
+        }
     }
 
     public override void MovementRule(PlayerController player)
