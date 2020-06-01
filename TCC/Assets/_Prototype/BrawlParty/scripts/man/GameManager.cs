@@ -211,13 +211,13 @@ public class GameManager : MonoBehaviour
         if(quantGames > quantTGames)
         {
             quantGames++;
-            StartCoroutine(CarregarCenaComPausa(10));
+            StartCoroutine(CarregarCenaComPausa(10)); //TIRAISSO
             //SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
         }
         else
         {
             quantGames++;
-            StartCoroutine(CarregarCenaComPausa(9));
+            StartCoroutine(CarregarCenaComPausa(9)); //TIRAISSO
             //SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
         }
     }
