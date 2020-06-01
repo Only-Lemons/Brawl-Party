@@ -101,11 +101,14 @@ public class Maze : MiniGame
         {
             PlayerController playerF = players[0];
             float coicidenteP = 0;
+            int weightKey = 1;
             foreach (var player in players)
             {
                 if (inStun[player])
                     continue;
-                float cpa = (getWeightDistanceJasonPlayer(Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (getWeightDistancePlayerDoor(Vector3.Distance(player.transform.position, FinishGame.transform.position))));
+                if (withKey[player])
+                    weightKey = 3;
+                float cpa = (getWeightDistanceJasonPlayer(Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (getWeightDistancePlayerDoor(Vector3.Distance(player.transform.position, FinishGame.transform.position))))* weightKey;
               
 
                 if (cpa > coicidenteP && !inStun[player])
