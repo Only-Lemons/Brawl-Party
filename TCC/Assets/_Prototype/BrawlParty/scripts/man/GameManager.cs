@@ -211,24 +211,27 @@ public class GameManager : MonoBehaviour
         if(quantGames > quantTGames)
         {
             quantGames++;
-            StartCoroutine(CarregarCenaComPausa(9));
+            StartCoroutine(CarregarCenaComPausa(10));
             //SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
         }
         else
         {
             quantGames++;
-            StartCoroutine(CarregarCenaComPausa(10));
+            StartCoroutine(CarregarCenaComPausa(9));
             //SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
         }
     }
 
     IEnumerator CarregarCenaComPausa(int id)
     {
-        yield return new WaitForSeconds(2);
-        if (id == 10)
+
+        if (id == 9)
             SceneManager.LoadScene(id, LoadSceneMode.Additive);
         else
+        {
+            yield return new WaitForSeconds(2);
             SceneManager.LoadScene(id, LoadSceneMode.Single);
+        }
     }
 
 
