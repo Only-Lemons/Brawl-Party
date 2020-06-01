@@ -75,4 +75,14 @@ public class VictoryScene : MonoBehaviour
                 confirmPlayer[i].text = "Waiting...";
         }
     }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.end = true;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.end = false;
+    }
 }

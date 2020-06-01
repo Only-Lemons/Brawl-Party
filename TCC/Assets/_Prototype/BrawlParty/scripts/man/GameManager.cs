@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public Color corVencedor;
     public bool empatou;
 
+    public bool end = false;
+
     private void OnEnable()
     {
         if (Instance != null)

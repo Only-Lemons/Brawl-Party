@@ -70,7 +70,7 @@ public class GhostRun : MiniGame
     }
     void Update()
     {
-        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou() || GameManager.Instance.end)
             return;
         
             _tempoGame += Time.deltaTime;
@@ -89,6 +89,7 @@ public class GhostRun : MiniGame
             if (timeOfGame <= 0)
             {
                 TimeGameController.Instance.acabou = true;
+
             if(TimeGameController.Instance.AcabouMesmo())
                 WinRule();
             }
