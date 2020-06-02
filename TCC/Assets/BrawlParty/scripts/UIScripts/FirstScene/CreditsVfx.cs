@@ -87,6 +87,8 @@ namespace OnlyLemons.BrawlParty.UI
 
             seq.OnComplete(() => { _mainMenuVfx.gameObject.SetActive(true);  _mainMenuVfx.OnAppear(); });
             seq.Play();
+
+            //Anim = seq;
         }
     }
 }
