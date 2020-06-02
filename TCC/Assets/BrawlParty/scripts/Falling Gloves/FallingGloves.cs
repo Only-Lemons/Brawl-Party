@@ -54,6 +54,7 @@ public class FallingGloves : MiniGame
             if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+                InstanciarPlayer(players[i].transform, GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectPlayerObject);
             }
         }
 
