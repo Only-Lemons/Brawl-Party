@@ -61,6 +61,18 @@ public class JhonBean : MiniGame
             }
         }
 
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            if (i < players.Count)
+            {
+                players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+                InstanciarPlayer(players[i].transform, GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectPlayerObject);
+
+            }
+        }
+
+
+
         timeOfGame = 30;
     }
     void InsertWinners()
