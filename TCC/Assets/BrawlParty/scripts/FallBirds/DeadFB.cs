@@ -9,7 +9,8 @@ public class DeadFB : MonoBehaviour
         PlayerController player = other.GetComponent<PlayerController>();
         if (player != null)
         {
-            player.actualGameMode.HitRule(player);
+            if(!TimeGameController.Instance.Acabou())
+                player.actualGameMode.HitRule(player);
         }
     }
 

@@ -9,7 +9,7 @@ public class CreditsPanel : MonoBehaviour
 
     public void OnCredits()
     {
-        Debug.Log("Opa");
+       
         if (!creditPanel.activeInHierarchy)
             creditPanel.SetActive(true);
         else

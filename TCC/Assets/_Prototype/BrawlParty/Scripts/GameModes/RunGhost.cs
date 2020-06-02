@@ -63,8 +63,7 @@ public class RunGhost : IGameMode
 
     public void PointRule(PlayerController player)
     {
-        pointPlayer[player] += (int)(8 * Time.deltaTime);
-        player.playerUI.points.text = pointPlayer[player].ToString();
+
     }
 
     public void RotationRule(PlayerController player)

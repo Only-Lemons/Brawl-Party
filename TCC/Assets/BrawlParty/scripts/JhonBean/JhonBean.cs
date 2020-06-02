@@ -24,19 +24,19 @@ public class JhonBean : MiniGame
     Dictionary<PlayerController, Stun> canMove = new Dictionary<PlayerController, Stun>();
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, PositionsLR> playerPosition = new Dictionary<PlayerController, PositionsLR>();
-    Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
     Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
-
+    Dictionary<PlayerController, Vector3> upPlayer = new Dictionary<PlayerController, Vector3>();
+    Dictionary<PlayerController, bool> canUp = new Dictionary<PlayerController, bool>();
     bool adicionolPoint = false;
     List<PlayerController> players = new List<PlayerController>();
     int vencedor;
     float zoomCam = 14f;
 
-    public float timeForBirds = 1.5f;
-    float _timeForBirds;
-
     void Start()
     {
+        AudioController.Instance.PlayAudio("BGM", true);
+        AudioController.Instance.PlayAudio("Passaro", true);
+
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
 
         if (GameManager.Instance != null)
@@ -46,7 +46,6 @@ public class JhonBean : MiniGame
         {
             player.actualGameMode = this;
             inStun[player] = false;
-            timeStun[player] = 0;
         }
 
         vencedor = players.Count - 1;
@@ -54,16 +53,7 @@ public class JhonBean : MiniGame
         InsertPlayerInDates();
         CancelarCameras();
 
-        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
-        {
-            if (i < players.Count)
-            {
-                players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
-            }
-        }
-
-
-                for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             if (players[i] != null)
             {
@@ -72,7 +62,6 @@ public class JhonBean : MiniGame
         }
 
         timeOfGame = 30;
-        _timeForBirds = timeForBirds;
     }
     void InsertWinners()
     {
@@ -172,9 +161,9 @@ public class JhonBean : MiniGame
         }
         for (int i = 0; i < players.Count; i++)
         {
-
-
             playerMortos.Add(players[i], false);
+            upPlayer.Add(players[i], players[i].transform.position);
+            canUp.Add(players[i], true);
             PositionsLR auxLR = new PositionsLR();
             playerPosition.Add(players[i], auxLR);
             playerPosition[players[i]].left = players[i].transform.position;
@@ -190,7 +179,11 @@ public class JhonBean : MiniGame
         UpdatePositionCamera();
         //FallingBirds();
         WinRule();
+    }
 
+    void FixedUpdate()
+    {
+        UpPlayer();
     }
     public override void Action(PlayerController player)
     {
@@ -199,20 +192,42 @@ public class JhonBean : MiniGame
         if (!inStun[player] && !adicionolPoint && !player.travar)
         {
             player.anim.SetTrigger("Climb");
-            player.transform.position += new Vector3(0f, 1f, 0f);
+            //player.transform.position += new Vector3(0f, 1f, 0f);
+
+            if (canUp[player])
+            {
+                upPlayer[player] += new Vector3(0f, 2f, 0f);
+                AudioController.Instance.PlayAudio("Up");
+            }
+        }
+    }
+
+    void UpPlayer()
+    {
+        foreach (PlayerController p in players)
+        {
+            upPlayer[p] = new Vector3(p.transform.position.x, upPlayer[p].y, p.transform.position.z);
+            p.transform.position = Vector3.Lerp(p.transform.position, new Vector3(p.transform.position.x, upPlayer[p].y, p.transform.position.z), Time.fixedDeltaTime * 5);
+
+            if (Vector3.Distance(p.transform.position, upPlayer[p]) < 1f)
+            {
+                canUp[p] = true;
+            }
+            else
+            {
+                canUp[p] = false;
+            }
+
+            if (upPlayer[p].y > 2)
+                upPlayer[p] += Vector3.down * (Time.fixedDeltaTime);
         }
     }
 
     public override void HitRule(PlayerController player)
     {
-        if (!ispauseGame)
-        {
-            if (!inStun[player])
-            {
-                StartCoroutine(StunCerto(player));
-                AudioManager.PlayHit();
-            }
-        }
+        inStun[player] = true;
+        StartCoroutine(StunCerto(player));
+        AudioController.Instance.PlayAudio("Hit");
     }
 
     public override void Jump(PlayerController player)
@@ -222,7 +237,7 @@ public class JhonBean : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
+        if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou() || GameManager.Instance.end)
             return;
         if (!inStun[player] && !player.travar)
         {
@@ -244,27 +259,28 @@ public class JhonBean : MiniGame
 
     public override void PointRule(PlayerController player)
     {
+        AudioController.Instance.PlayAudio("Win");
         player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
 
 
         player.travar = true;
-        vencedor--;
-        switch (vencedor)
-        {
-            case 3:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
-                break;
-            case 2:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
-                break;
-            case 1:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
-                break;
-            default:
-                GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
-                break;
-        }
 
+        //switch (vencedor)
+        //{
+        //case 3:
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += vencedor;
+        //    break;
+        //case 2:
+        //    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+        //    break;
+        //case 1:
+        //    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+        //    break;
+        //  default:
+        //GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
+        //break;
+        //}
+        vencedor--;
         if (vencedor <= 0)
             TimeGameController.Instance.acabou = true;
     }
@@ -304,24 +320,10 @@ public class JhonBean : MiniGame
             }
     }
 
-    void FallingBirds()
+    IEnumerator StunCerto(PlayerController player)
     {
-        timeForBirds -= Time.fixedDeltaTime;
-        if (timeForBirds <= 0)
-        {
-            foreach (PlayerController p in players)
-            {
-                GameObject bird = Instantiate(_bird, p.gameObject.transform.position + new Vector3(0, 100 - p.gameObject.transform.position.y, 0), Quaternion.identity, this.transform);
-            }
-            timeForBirds = _timeForBirds;
-        }
-    }
-
-    IEnumerator StunCerto(PlayerController p)
-    {
-        inStun[p] = true;
-        yield return new WaitForSeconds(2f);
-        inStun[p] = false;
-
+        inStun[player] = true;
+        yield return new WaitForSeconds(0.75f);
+        inStun[player] = false;
     }
 }

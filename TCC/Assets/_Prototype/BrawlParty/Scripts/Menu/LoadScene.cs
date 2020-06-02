@@ -66,16 +66,7 @@ public class LoadScene : MonoBehaviour
                 spriteMinigameP.sprite = spritesMinigames[0];
                 spriteMinigameG.sprite = spritesMinigames[0];
                 break;
-
             case 12:
-                minigameName.text = "Spacenautas";
-                minigameDescription.text = "Escape os the gloves, walk with the left analog and jump with 'A'";
-                videoPlayer.clip = videosGameplay[0];
-                spriteMinigameP.sprite = spritesMinigames[0];
-                spriteMinigameG.sprite = spritesMinigames[0];
-                break;
-
-            case 13:
                 minigameName.text = "Punch Escape";
                 minigameDescription.text = "Escape os the gloves, walk with the left analog and jump with 'A'";
                 videoPlayer.clip = videosGameplay[0];
@@ -83,23 +74,14 @@ public class LoadScene : MonoBehaviour
                 spriteMinigameG.sprite = spritesMinigames[0];
                 break;
 
-            case 14:
+            case 13:
                 minigameName.text = "Jhon Bean";
                 minigameDescription.text = "Climb fast to the top, press 'A' to go faster, and avoid of the obstacles with the Left Analog";
                 videoPlayer.clip = videosGameplay[1];
                 spriteMinigameP.sprite = spritesMinigames[1];
                 spriteMinigameG.sprite = spritesMinigames[1];
                 break;
-
-            case 15:
-                minigameName.text = "Nut Rain";
-                minigameDescription.text = "Get the nuts that are falling to gain points. But, avoid of the Hives";
-                videoPlayer.clip = videosGameplay[3];
-                spriteMinigameP.sprite = spritesMinigames[3];
-                spriteMinigameG.sprite = spritesMinigames[3];
-                break;
-
-            case 16:
+            case 14:
                 minigameName.text = "Ghost Run";
                 minigameDescription.text = "Run From The Ghosts! stay alive to win the game";
                 videoPlayer.clip = videosGameplay[2];
@@ -107,7 +89,7 @@ public class LoadScene : MonoBehaviour
                 spriteMinigameG.sprite = spritesMinigames[2];
                 break;
 
-            case 17:
+            case 15:
                 minigameName.text = "Fall Birds";
                 minigameDescription.text = "Run From The Ghosts! stay alive to win the game";
                 videoPlayer.clip = videosGameplay[2];
@@ -115,13 +97,7 @@ public class LoadScene : MonoBehaviour
                 spriteMinigameG.sprite = spritesMinigames[2];
                 break;
 
-            case 18:
-                minigameName.text = "Runnerclimp";
-                minigameDescription.text = "Run From The Ghosts! stay alive to win the game";
-                videoPlayer.clip = videosGameplay[2];
-                spriteMinigameP.sprite = spritesMinigames[2];
-                spriteMinigameG.sprite = spritesMinigames[2];
-                break;
+       
 
 
 

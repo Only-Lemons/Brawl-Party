@@ -17,13 +17,13 @@ public class gameConfig : MonoBehaviour
 
     private void Start()
     {
-        quantidyGames.maxValue = GameManager.Instance.quantTGames-1;
+        quantidyGames.maxValue = GameManager.Instance.quantTGames;
         quantidyGames.value = GameManager.Instance.quantGames;
         timeInGames.value = GameManager.Instance.TimeInGame;
     }
     void Update()
     {
-        GameManager.Instance.quantGames = (int)quantidyGames.value;
+        GameManager.Instance.quantTGames = (int)quantidyGames.value;
         quantGames.text = quantidyGames.value.ToString("0");
 
 

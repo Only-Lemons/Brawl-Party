@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7672202226114965743}
   - component: {fileID: 8679305396716302816}
   - component: {fileID: 3148381975393899179}
-  - component: {fileID: 3815302403381781141}
+  - component: {fileID: 6845047666788532802}
   m_Layer: 0
   m_Name: Passaro
   m_TagString: Enemy
@@ -29,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6297080517802432129}
-  m_LocalRotation: {x: -0.03247406, y: -0.7593535, z: -0.027766462, w: 0.649274}
-  m_LocalPosition: {x: -111.58162, y: 0.8220096, z: 0.2650926}
+  m_LocalRotation: {x: -0.03021207, y: -0.70646065, z: -0.030212112, w: 0.7064615}
+  m_LocalPosition: {x: -111.5816, y: 0.8220096, z: 0.2650926}
   m_LocalScale: {x: 0.38472068, y: 0.38472068, z: 0.38472068}
   m_Children:
   - {fileID: 7914130119323720399}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -4.8380003, y: -98.969, z: 0.763}
+  m_LocalEulerAnglesHint: {x: -4.8980002, y: -90.00001, z: 0}
 --- !u!33 &8615824259350090307
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   playOnAwake: 0
   loop: 0
   duration: 0
---- !u!95 &3815302403381781141
+--- !u!95 &6845047666788532802
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

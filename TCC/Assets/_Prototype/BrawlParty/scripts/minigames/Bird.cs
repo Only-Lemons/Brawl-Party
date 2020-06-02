@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bird : MonoBehaviour
 {
     [SerializeField]
-    MiniGame gameMode;
+    JhonBean gameMode;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

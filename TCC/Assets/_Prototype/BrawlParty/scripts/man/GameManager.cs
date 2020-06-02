@@ -40,8 +40,7 @@ public class GameManager : MonoBehaviour
     public Color corVencedor;
     public bool empatou;
 
-
-    public Scene victoryMiniGame;
+    public bool end = false;
 
     private void OnEnable()
     {
@@ -60,13 +59,26 @@ public class GameManager : MonoBehaviour
         particleManager = GetComponent<ParticleManager>();
     }
 
+    private void Start()
+    {
+        quantTGames = 4;
+    }
+
     private void FixedUpdate()
     {
-        if(SceneManager.GetSceneByBuildIndex(9).isLoaded &&(playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true)))
+    
+        if ( SceneManager.GetSceneByBuildIndex(9).isLoaded && playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
         {
-            SceneManager.LoadScene(nextLevel); // provisorio
-        }
+            if (quantGames < quantTGames)
+            {
+                nextLevel = 8;
+            }else
+            {
+                nextLevel = 10;
+            }
 
+                SceneManager.LoadScene(nextLevel); // provisorio
+        }      
 
         switch (SceneManager.GetActiveScene().buildIndex)
         {
@@ -92,9 +104,10 @@ public class GameManager : MonoBehaviour
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
                     necessarioMaisJogadores.text = "Necessário 2 ou mais jogadores para continuar...";
+                else if (!(playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true)))
+                    necessarioMaisJogadores.text = "";
 
-
-            break;
+                break;
 
             case 4: // Loading
             case 9: // ViCtoryScene
@@ -156,7 +169,6 @@ public class GameManager : MonoBehaviour
 
     public void PressStart()
     {
-        Debug.Log("SHWO");
         this.transform.GetChild(1).gameObject.SetActive(!this.transform.GetChild(1).gameObject.activeSelf);
         if (this.transform.GetChild(1).gameObject.activeSelf)
             Time.timeScale = 0;
@@ -202,11 +214,32 @@ public class GameManager : MonoBehaviour
     
     public void WinMinigame()
     {
-        quantGames ++;
+        Debug.Log("QUantidade de minigames " + quantGames);
+     
         if(quantGames > quantTGames)
-            SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
+        {
+          //  quantGames++;
+         //   StartCoroutine(CarregarCenaComPausa(10)); //TIRAISSO
+            //SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
+        }
         else
-            SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
+        {
+            quantGames++;
+            StartCoroutine(CarregarCenaComPausa(9)); //TIRAISSO
+            //SceneManager.LoadScene(9, LoadSceneMode.Additive); // Tela vitoria minigame
+        }
+    }
+
+    IEnumerator CarregarCenaComPausa(int id)
+    {
+
+        if (id == 9)
+            SceneManager.LoadScene(id, LoadSceneMode.Additive);
+        else
+        {
+            yield return new WaitForSeconds(2);
+            SceneManager.LoadScene(id, LoadSceneMode.Single);
+        }
     }
 
 

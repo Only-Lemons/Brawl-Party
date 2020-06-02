@@ -50,7 +50,7 @@ public class TimeGameController : MonoBehaviour
         inicio.text = ((int)timeComecar +1).ToString("0");
         if (timeComecar <= 0)
         {
-            inicio.text = "COMEÇOU!";
+            inicio.text = "GO!";
             comecou = true;
             if(timeComecar < -1.5f)
                 inicio.text = "";
@@ -63,10 +63,13 @@ public class TimeGameController : MonoBehaviour
         if (!acabou)
             return;
 
-        fim.text = "ACABOU!";
+        fim.text = "FINISH!";
         timePreFim -= Time.deltaTime;
         if (timePreFim <= 0)
+        {
+            fim.text = "";
             acabouMsm = true;
+        }
     }
 
 }
