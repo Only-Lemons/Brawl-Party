@@ -4335,14 +4335,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1546497286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41870eec9d5616c43a7fd38feaa62d7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 934392476e31a9c4fa7227bd255b3410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicGame: {fileID: 0}
-  clipNascendo: {fileID: 0}
-  clipColeta: {fileID: 0}
-  clipMorte: {fileID: 0}
-  clipHit: {fileID: 0}
+  sounds:
+  - name: BGM
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Platform
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Up
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  soundVolumeM: 1
 --- !u!4 &1546497288
 Transform:
   m_ObjectHideFlags: 0

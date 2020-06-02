@@ -50,9 +50,7 @@ public class VictoryScene : MonoBehaviour
             playerScoreBoard[i].icon.sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
             playerScoreBoard[i].name.text = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectName;
             playerScoreBoard[i].pontos.text = GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]].ToString();
-
         }
-
     }
 
 
@@ -62,7 +60,16 @@ public class VictoryScene : MonoBehaviour
         {
             spritePlayer[i].sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
         }
-         
+
+        for (int i = 0; i < playerScoreBoard.Length; i++)
+        {
+            if (playerScoreBoard[i].name.text == "Nome")
+            {
+                playerScoreBoard[i].icon.sprite = null;
+                playerScoreBoard[i].name.text = "";
+                playerScoreBoard[i].pontos.text = "";
+            }
+        }
     }
 
     void ConfirmarTutorial()

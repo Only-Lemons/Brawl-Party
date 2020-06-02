@@ -18666,14 +18666,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989377412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41870eec9d5616c43a7fd38feaa62d7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 934392476e31a9c4fa7227bd255b3410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicGame: {fileID: 8300000, guid: 5bfd720e92c2d5b48bc4ecb4b67e4284, type: 3}
-  clipNascendo: {fileID: 0}
-  clipColeta: {fileID: 0}
-  clipMorte: {fileID: 8300000, guid: c90aa4dcb363b524fb3644456588dfb5, type: 3}
-  clipHit: {fileID: 8300000, guid: 3388972125fe9734d9b003350955e327, type: 3}
+  sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 8b3692b53e5fd7a46a2dba4d3b4bf090, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Coleta
+    clip: {fileID: 8300000, guid: 65b43fc3b982ba7468298565d64e821e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Ghost
+    clip: {fileID: 8300000, guid: 87e77313f3ee4b34f9085040e049c85c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 3388972125fe9734d9b003350955e327, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &1989377414
 Transform:
   m_ObjectHideFlags: 0

@@ -80,7 +80,7 @@ public class Maze : MiniGame
 
         KeysSpawn();
 
-        AudioManager.PlayGameMusic();
+        AudioController.Instance.PlayAudio("BGM", true);
     }
 
     private void FixedUpdate()
@@ -188,7 +188,7 @@ public class Maze : MiniGame
         if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
         {
             KeyPlayer(player);
-            AudioManager.PlayColeta();
+            AudioController.Instance.PlayAudio("Coleta");
         }
     }
     void RemoveStun()
@@ -274,7 +274,8 @@ public class Maze : MiniGame
         {
             inStun[player] = true;
             timeStun[player] = 2;
-            AudioManager.PlayHit();
+
+            AudioController.Instance.PlayAudio("Hit");
         }
     }
 
@@ -301,7 +302,7 @@ public class Maze : MiniGame
     {
         if (withKey[player])
         {
-            AudioManager.PlayMorte();
+            AudioController.Instance.PlayAudio("PlayWin");
             //players.Remove(player);
             //switch (players.Count)
             //{
@@ -349,7 +350,8 @@ public class Maze : MiniGame
 
     void KeysSpawn()
     {
-        AudioManager.PlayNascendo();
+        AudioController.Instance.PlayAudio("KeySpawn");
+
         int pos = Random.Range(0, keysSpawn.Length);
         keyExists = Instantiate(keyExit);
         while (keysSpawn[pos] == null)
@@ -377,6 +379,8 @@ public class Maze : MiniGame
             if (keyExists != null)
                 Destroy(keyExists);
             keyExists = Instantiate(keyExit, player.transform.position + new Vector3(0, 2, 0), Quaternion.identity, player.gameObject.transform);
+
+            AudioController.Instance.PlayAudio("Hit");
         }
 
     }

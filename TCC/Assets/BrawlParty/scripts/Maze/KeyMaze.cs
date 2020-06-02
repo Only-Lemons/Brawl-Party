@@ -63,7 +63,6 @@ public class KeyMaze : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            AudioManager.PlayColeta();
             maze.KeyPlayer(other.GetComponent<PlayerController>());
         }
     }

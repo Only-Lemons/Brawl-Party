@@ -39,6 +39,7 @@ namespace OnlyLemons.BrawlParty.UI
         private void Start()
         {
             OnAppear();
+            AudioController.Instance.PlayAudio("Menu");
         }
 
         public override void OnAppear()

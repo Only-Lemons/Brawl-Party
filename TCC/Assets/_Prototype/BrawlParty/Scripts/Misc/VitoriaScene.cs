@@ -13,7 +13,8 @@ public class VitoriaScene : MonoBehaviour
     public Text texto;
     void Start()
     {
-	Time.timeScale = 1;
+        AudioController.Instance.PlayAudio("Win");
+	    Time.timeScale = 1;
         playerMaterial.color = GameManager.Instance.corVencedor;
         if (GameManager.Instance.empatou)
         {

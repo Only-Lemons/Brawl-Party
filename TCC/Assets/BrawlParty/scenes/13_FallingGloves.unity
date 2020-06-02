@@ -1766,7 +1766,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -3058,6 +3058,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3449,14 +3450,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 583403733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41870eec9d5616c43a7fd38feaa62d7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 934392476e31a9c4fa7227bd255b3410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicGame: {fileID: 0}
-  clipNascendo: {fileID: 0}
-  clipColeta: {fileID: 0}
-  clipMorte: {fileID: 0}
-  clipHit: {fileID: 0}
+  sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 02921fc506a483b4098d73c175df5a33, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: 61e1347e4d0a45f4ca46637f32c7e4ab, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: e3bf166530a0d2a47a073337ed01e9b8, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 1ceb96b005d8e9142b09849a3bf776db, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Splash
+    clip: {fileID: 8300000, guid: 08f1d1e25f2df0849a6105eccb58a45e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &583403735
 Transform:
   m_ObjectHideFlags: 0
@@ -6009,7 +6031,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -6314,6 +6336,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11576,7 +11599,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}

@@ -24,9 +24,12 @@ public class GhostRun : MiniGame
     int _qtdVivo;
     float _tempoGame;
     float _timeToInstantiateNewCross;
+
     private void Start()
     {
-        AudioManager.PlayGameMusic();
+        AudioController.Instance.PlayAudio("BGM", true);
+        AudioController.Instance.PlayAudio("Ghost", true);
+
         _timeToInstantiateNewCross = 1;
         timeOfGame = 30;
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
@@ -127,7 +130,7 @@ public class GhostRun : MiniGame
             player.gameObject.SetActive(false);
             PointRule(player);
             _qtdVivo--;
-            AudioManager.PlayHit();
+            AudioController.Instance.PlayAudio("Hit");
             _playersImages[_indexs[player]].fotoPersonagem.sprite = _morte;
             if (VerifyPlayerMortos())
             {

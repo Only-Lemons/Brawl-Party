@@ -18,6 +18,9 @@ public class FallBirds : MiniGame
     int _deathplayer;
     void Start()
     {
+        //AudioController.Instance.PlayAudio("BGM");
+        //AudioController.Instance.PlayAudio("Platform");
+
         _deathplayer = -1;
         timeFI = timeForInstantiate;
 
@@ -50,12 +53,14 @@ public class FallBirds : MiniGame
 
     public override void Action(PlayerController player)
     {
+        AudioController.Instance.PlayAudio("Up");
         player.rb.velocity = Vector3.zero;
         player.rb.AddForce(Vector3.up * 7f, ForceMode.Impulse);
     }
 
     public override void HitRule(PlayerController player)
     {
+        AudioController.Instance.PlayAudio("Hit");
         _positionOfDeath[player] = _deathplayer;
         _deathplayer--;
         _playerDeath[player] = true;

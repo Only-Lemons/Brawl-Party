@@ -32,6 +32,7 @@ public class FallingGloves : MiniGame
 
     void Start()
     {
+        AudioController.Instance.PlayAudio("BGM", true);
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         posAllPlayerInit = players[0].transform.position;
         forceJump = 10;
@@ -183,9 +184,16 @@ public class FallingGloves : MiniGame
             posicoes.Add(random);
 
             hammers[random].GetComponent<Animator>().SetTrigger("fall");
+            StartCoroutine(HitPouch());
         }
 
         dificuldade++;
+    }
+
+    IEnumerator HitPouch()
+    {
+        yield return new WaitForSeconds(1.4f);
+        AudioController.Instance.PlayAudio("Hit");
     }
 
 
@@ -196,6 +204,7 @@ public class FallingGloves : MiniGame
         {
             player.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x, 0.41f, player.gameObject.transform.position.z);
             player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 2 * forceJump, ForceMode.VelocityChange);
+            AudioController.Instance.PlayAudio("Jump");
             //player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 10 * forceJump, ForceMode.Impulse);
             //player.pulou = true;
         }
@@ -206,11 +215,12 @@ public class FallingGloves : MiniGame
         if (playersI[player] == false)
         {
             playersVidas[player]--;
+            AudioController.Instance.PlayAudio("Splash");
             AtualizarUI();
             if (playersVidas[player] <= 0)
             {
                 PointRule(player);
-
+                AudioController.Instance.PlayAudio("Death");
                 //player.gameObject.SetActive(false); //teste
                 playerMortos[player] = true;
                 //player.pontosGenericos -= pontoTotal;

@@ -34,6 +34,9 @@ public class JhonBean : MiniGame
 
     void Start()
     {
+        AudioController.Instance.PlayAudio("BGM", true);
+        AudioController.Instance.PlayAudio("Passaro", true);
+
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
 
         if (GameManager.Instance != null)
@@ -192,8 +195,10 @@ public class JhonBean : MiniGame
             //player.transform.position += new Vector3(0f, 1f, 0f);
 
             if (canUp[player])
+            {
                 upPlayer[player] += new Vector3(0f, 2f, 0f);
-
+                AudioController.Instance.PlayAudio("Up");
+            }
         }
     }
 
@@ -222,6 +227,7 @@ public class JhonBean : MiniGame
     {
         inStun[player] = true;
         StartCoroutine(StunCerto(player));
+        AudioController.Instance.PlayAudio("Hit");
     }
 
     public override void Jump(PlayerController player)
@@ -253,6 +259,7 @@ public class JhonBean : MiniGame
 
     public override void PointRule(PlayerController player)
     {
+        AudioController.Instance.PlayAudio("Win");
         player.transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(Vector3.right), Quaternion.identity, Time.deltaTime);
 
 
