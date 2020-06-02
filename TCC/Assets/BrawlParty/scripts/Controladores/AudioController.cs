@@ -1,19 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour
 {
-    public static AudioController instance;
+    public Sound[] sounds;
 
-    [Header("Áudios")]
-    public AudioClip musicGame;
-    public AudioClip clipColeta;
-    public AudioClip clipMorte;
-    public AudioClip clipHit;
-
-    void Awake()
+    private void Awake() 
     {
-        instance = this;
+        foreach(Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
+    }
+
+    public void PlayAudio(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Play();
     }
 }
