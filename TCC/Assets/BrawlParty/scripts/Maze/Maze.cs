@@ -104,7 +104,7 @@ public class Maze : MiniGame
             int weightKey = 1;
             foreach (var player in players)
             {
-                if (inStun[player])
+                if (!inStun[player])
                     continue;
                 if (withKey[player])
                     weightKey = 3;
@@ -185,10 +185,12 @@ public class Maze : MiniGame
     public override void Action(PlayerController player)
     {
         Debug.Log("KEY");
-        if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
         {
-            KeyPlayer(player);
-            AudioController.Instance.PlayAudio("Coleta");
+            if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
+            {
+                KeyPlayer(player);
+                AudioController.Instance.PlayAudio("Coleta");
+            }
         }
     }
     void RemoveStun()
