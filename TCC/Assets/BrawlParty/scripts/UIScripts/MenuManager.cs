@@ -36,6 +36,11 @@ public class MenuManager : MonoBehaviour
 
     bool inputBool = false;
 
+    private void Start() 
+    {
+        AudioController.Instance.PlayAudio("Menu");
+    }
+
     public void Abrir(GameObject obj)
     {
         obj.SetActive(true);
