@@ -120,6 +120,7 @@ public class GameController : MonoBehaviour
         {
             GameManager.Instance.empatou = false;
             GameManager.Instance.corVencedor = playerManager.playersControllers[maiorPos].playerColor;
+            GameManager.Instance.objVencedor = playerManager.playersControllers[maiorPos].GetComponentInParent<PlayerSelect>().selectPlayerObject;
         }
         else
         {
@@ -128,8 +129,9 @@ public class GameController : MonoBehaviour
         }
 
         StartCoroutine(ChangeScene());
-
     }
+
+
 
     //Muda pra de draw mini game
     IEnumerator ChangeScene()
