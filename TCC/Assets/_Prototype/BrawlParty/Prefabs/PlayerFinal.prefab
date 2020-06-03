@@ -323,56 +323,28 @@ MonoBehaviour:
   playersUI:
   - splash: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
     selectedSplash: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
-    charName: Bruxinha
-    charColor: {r: 0.8962264, g: 0.29169634, b: 0.8258973, a: 1}
-    charObject: {fileID: 2800530892066869924, guid: 32addb362733d824ead6d15a912c4878,
+    charName: Skull
+    charColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+    charObject: {fileID: 991973287008109, guid: 48a50f4cc8bdc0e48ad8c37507be3d4a,
       type: 3}
   - splash: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
     selectedSplash: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
-    charName: Rei Momo
-    charColor: {r: 0.8490566, g: 0.7704526, b: 0.244304, a: 1}
-    charObject: {fileID: 6499731530907077488, guid: 667ac670102f3a640a29fe47f2ef2ab2,
+    charName: Pirate
+    charColor: {r: 0, g: 0.5162797, b: 1, a: 1}
+    charObject: {fileID: 888440926291172945, guid: ecf9f4cc7707f57469b83e1b05a7bff7,
       type: 3}
   - splash: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
     selectedSplash: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
-    charName: Robozinho
-    charColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
-    charObject: {fileID: 309416636157976795, guid: ad76a7feaede79d43b6aad92e6c86f1b,
+    charName: Astronaut
+    charColor: {r: 0.5266499, g: 0.28586686, b: 0.8301887, a: 1}
+    charObject: {fileID: 2785390028105328171, guid: 0fcf2be73a4a53a4bb533f636b881b5e,
       type: 3}
   - splash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
     selectedSplash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
-    charName: Alien
-    charColor: {r: 0.39144683, g: 0.6415094, b: 0.26326096, a: 1}
-    charObject: {fileID: 1147915449620489663, guid: c9a3cae0e456afd4cbf18934e76094a5,
+    charName: Adventurer
+    charColor: {r: 1, g: 0.65181226, b: 0.23113209, a: 1}
+    charObject: {fileID: 3087482520299908971, guid: a2ee26129c438e940875a82f9f93118f,
       type: 3}
-  - splash: {fileID: 8163494095188252940, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    selectedSplash: {fileID: 8163494095188252940, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    charName: Ksabar
-    charColor: {r: 0.08899963, g: 0.10773947, b: 0.754717, a: 1}
-    charObject: {fileID: 0}
-  - splash: {fileID: 4037833166851039263, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    selectedSplash: {fileID: 4037833166851039263, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    charName: Captain Eagle
-    charColor: {r: 0.9150943, g: 0.15970986, b: 0.20315517, a: 1}
-    charObject: {fileID: 0}
-  - splash: {fileID: 8716251932417823705, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    selectedSplash: {fileID: 8716251932417823705, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    charName: Humanu
-    charColor: {r: 0.9056604, g: 0.7756962, b: 0.49982202, a: 1}
-    charObject: {fileID: 0}
-  - splash: {fileID: 7739555948055091260, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    selectedSplash: {fileID: 7739555948055091260, guid: 4653c30c5b539c548ba17201c6ffae76,
-      type: 3}
-    charName: Samy
-    charColor: {r: 1, g: 0.45336083, b: 0, a: 1}
-    charObject: {fileID: 0}
   playerMaterial: {fileID: 2100000, guid: ca25e3126e74e5848b0726e56eeb3843, type: 2}
   PlayerGame: {fileID: 0}
   selectedCharIndex: 0

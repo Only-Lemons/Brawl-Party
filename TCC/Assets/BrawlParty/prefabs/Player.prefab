@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 46940652289998796, guid: 6bb70ce5ef7f7e44e9aa050efd393858, type: 3}
   - {fileID: 7215837246808585241, guid: 8fcd4dad105434b409651ccca1776d66, type: 3}
   actualGameMode: {fileID: 0}
+  playerIndiq: {fileID: 0}
   pulou: 0
   direc: 0
   explode: 0
@@ -410,6 +411,7 @@ MonoBehaviour:
   PlayerGame: {fileID: 0}
   selectedCharIndex: 0
   desiredColor: {r: 0, g: 0, b: 0, a: 0}
+  selectPlayerObject: {fileID: 0}
   hasEntered: 0
   isConfirmed: 0
   selectSprite: {fileID: 0}
