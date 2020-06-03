@@ -53,7 +53,6 @@ public class GhostRun : MiniGame
             }
         }
 
-
         AddPlayerInformations();
         _qtdVivo = players.Count;
         InstantiateGhost();

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class LoadScene : MonoBehaviour
 {
@@ -39,6 +40,10 @@ public class LoadScene : MonoBehaviour
         //StartCoroutine(LoadAsynchronously(GameManager.Instance.nextLevel));
     }
 
+    private void Start()
+    {
+        AudioController.Instance.PlayAudio("Loading");
+    }
     IEnumerator LoadAsynchronously(int scene)
     {
         yield return new WaitForSeconds(3);
