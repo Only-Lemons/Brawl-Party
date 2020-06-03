@@ -30,11 +30,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private AnimationManager _animManager = null;
 
+    bool inputBool = false;
 
     public void Abrir(GameObject obj)
     {
         obj.SetActive(true);
         menuInicial.SetActive(false);
+        AudioController.Instance.PlayAudio("Click");
 
     }
 
@@ -45,11 +47,21 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if(firstScene.activeSelf && Input.anyKey)
+        if (firstScene.activeSelf && Input.anyKey)
         {
             AnimManager.FirstToHome();
             es.SetSelectedGameObject(menuInicialButton);
         }
+
+        else if ((Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.45f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.45f) && inputBool == false)
+        {
+            inputBool = true;
+            AudioController.Instance.PlayAudio("Select");
+        }
+
+        else if (!(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
+            inputBool = false;
+            
     }
 
     public void OnReturn()
@@ -61,6 +73,7 @@ public class MenuManager : MonoBehaviour
         firstScene.SetActive(false);
         gameConfig.SetActive(false);
         selectMode.SetActive(false);
+        AudioController.Instance.PlayAudio("Return");
     }
 
 }

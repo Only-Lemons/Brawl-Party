@@ -175,7 +175,9 @@ public class GameManager : MonoBehaviour
     {
         this.transform.GetChild(1).gameObject.SetActive(!this.transform.GetChild(1).gameObject.activeSelf);
         if (this.transform.GetChild(1).gameObject.activeSelf)
+        {
             Time.timeScale = 0;
+        }
         else
             Time.timeScale = 1;
     }
