@@ -280,7 +280,7 @@ public class JhonBean : MiniGame
         //switch (vencedor)
         //{
         //case 3:
-        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += vencedor;
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += vencedor * GameManager.Instance.pointsMultiply;
         //    break;
         //case 2:
         //    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;

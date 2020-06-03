@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public ParticleManager particleManager;
 
-
+    public int pointsMultiply = 1;
 
     public GameController gameController;
 
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
                     necessarioMaisJogadores.text = "";
                     inicializarDicio();
-                    
+
 
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
@@ -174,12 +174,14 @@ public class GameManager : MonoBehaviour
     public void PressStart()
     {
         this.transform.GetChild(1).gameObject.SetActive(!this.transform.GetChild(1).gameObject.activeSelf);
-        if (this.transform.GetChild(1).gameObject.activeSelf)
-        {
-            Time.timeScale = 0;
-        }
-        else
-            Time.timeScale = 1;
+        if (!GameManager.Instance.end)
+            if (this.transform.GetChild(1).gameObject.activeSelf)
+            {
+
+                Time.timeScale = 0;
+            }
+            else
+                Time.timeScale = 1;
     }
 
 

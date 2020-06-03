@@ -303,7 +303,7 @@ public class FallingGloves : MiniGame
     {
         int pontos = players.Count - qtdVivos;
         Debug.Log("Ganhei " + pontos);
-        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += pontos;
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += pontos * GameManager.Instance.pointsMultiply;
         qtdVivos--;
         //if (players.Count == 4)
         //{
@@ -412,7 +412,7 @@ public class FallingGloves : MiniGame
             {
                 winners.Add(players[i]);
                 //GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += players.Count - qtdVivos;
-                GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += players.Count - 1;
+                GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += (players.Count - 1) * GameManager.Instance.pointsMultiply;
             }
         }
     }

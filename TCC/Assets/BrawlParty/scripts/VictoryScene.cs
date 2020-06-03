@@ -12,6 +12,7 @@ public struct playerScore
     public Image icon;
     public Text name;
     public Text pontos;
+    public float pointsLerp;
     public RectTransform posScore;
     public int posAtual;
 }
@@ -48,6 +49,7 @@ public class VictoryScene : MonoBehaviour
     {
         ConfirmarTutorial();
         UpdatePointsVictory();
+        LerpScore();
     }
 
     void updateScore()
@@ -56,7 +58,19 @@ public class VictoryScene : MonoBehaviour
         {
             playerScoreBoard[i].icon.sprite = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectSprite;
             playerScoreBoard[i].name.text = GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().selectName;
-            playerScoreBoard[i].pontos.text = GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]].ToString();
+            //playerScoreBoard[i].pontos.text = GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]].ToString();
+            playerScoreBoard[i].pointsLerp = GameManager.Instance.pontosGeral[i];
+        }
+    }
+
+    void LerpScore()
+    {
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            //playerScoreBoard[i].pontos.text = Mathf.Lerp(float.Parse(playerScoreBoard[i].pontos.text), playerScoreBoard[i].pointsLerp, Time.fixedDeltaTime).ToString();
+            playerScoreBoard[i].pointsLerp = Mathf.Lerp(playerScoreBoard[i].pointsLerp, GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]], Time.fixedDeltaTime);
+            playerScoreBoard[i].pontos.text = playerScoreBoard[i].pointsLerp.ToString("0");
+            
         }
     }
 
@@ -86,7 +100,6 @@ public class VictoryScene : MonoBehaviour
             if (!GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().isConfirmed)
             {
                 confirmPlayer[i].text = "OK!";
-                AudioController.Instance.PlayAudio("EnterPlayer");
             }
             else
             {
@@ -102,6 +115,9 @@ public class VictoryScene : MonoBehaviour
 
     private void OnDisable()
     {
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+            GameManager.Instance.pontosGeral[i] = GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]];
+
         GameManager.Instance.end = false;
     }
 
@@ -124,7 +140,7 @@ public class VictoryScene : MonoBehaviour
             {
                 if (i != j)
                 {
-                    if (int.Parse(playerScoreBoard[i].pontos.text) > int.Parse(playerScoreBoard[j].pontos.text))
+                    if (playerScoreBoard[i].pointsLerp > playerScoreBoard[j].pointsLerp)
                     {
                         if (playerScoreBoard[i].posAtual < playerScoreBoard[j].posAtual)
                         {
