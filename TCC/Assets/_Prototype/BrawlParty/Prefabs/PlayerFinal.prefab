@@ -321,28 +321,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playersUI:
-  - splash: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
-    selectedSplash: {fileID: 21300000, guid: ba8e12c5ed91a2743a49e1ee0a7667ba, type: 3}
+  - splash: {fileID: 600787656912180804, guid: 7bc0ba24551510f428a3381bb7711df0, type: 3}
+    selectedSplash: {fileID: -8461685028558229809, guid: 3021838699663bc458a7fd3f31f68f1f,
+      type: 3}
     charName: Skull
-    charColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+    charColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
     charObject: {fileID: 991973287008109, guid: 48a50f4cc8bdc0e48ad8c37507be3d4a,
       type: 3}
-  - splash: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
-    selectedSplash: {fileID: 21300000, guid: 225a7879c6960934ba3594a41a31fd7c, type: 3}
+  - splash: {fileID: 3561037995832689329, guid: 7bc0ba24551510f428a3381bb7711df0,
+      type: 3}
+    selectedSplash: {fileID: 4353480153537320602, guid: 3021838699663bc458a7fd3f31f68f1f,
+      type: 3}
     charName: Pirate
-    charColor: {r: 0, g: 0.5162797, b: 1, a: 1}
+    charColor: {r: 0.23268954, g: 0.41989654, b: 0.5943396, a: 1}
     charObject: {fileID: 888440926291172945, guid: ecf9f4cc7707f57469b83e1b05a7bff7,
       type: 3}
-  - splash: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
-    selectedSplash: {fileID: 21300000, guid: d208ca921f2e3ef4499301ff60431b2c, type: 3}
+  - splash: {fileID: -6573777416417220690, guid: 7bc0ba24551510f428a3381bb7711df0,
+      type: 3}
+    selectedSplash: {fileID: -3201043819022996355, guid: 3021838699663bc458a7fd3f31f68f1f,
+      type: 3}
     charName: Astronaut
-    charColor: {r: 0.5266499, g: 0.28586686, b: 0.8301887, a: 1}
+    charColor: {r: 0.44679633, g: 0.010412939, b: 0.735849, a: 1}
     charObject: {fileID: 2785390028105328171, guid: 0fcf2be73a4a53a4bb533f636b881b5e,
       type: 3}
-  - splash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
-    selectedSplash: {fileID: 21300000, guid: a71bb8fb04c141b4688c3c90fe7816fc, type: 3}
+  - splash: {fileID: 5670999935819666744, guid: 7bc0ba24551510f428a3381bb7711df0,
+      type: 3}
+    selectedSplash: {fileID: 6067571935679448547, guid: 3021838699663bc458a7fd3f31f68f1f,
+      type: 3}
     charName: Adventurer
-    charColor: {r: 1, g: 0.65181226, b: 0.23113209, a: 1}
+    charColor: {r: 0.7924528, g: 0.43261456, b: 0, a: 1}
     charObject: {fileID: 3087482520299908971, guid: a2ee26129c438e940875a82f9f93118f,
       type: 3}
   playerMaterial: {fileID: 2100000, guid: ca25e3126e74e5848b0726e56eeb3843, type: 2}
