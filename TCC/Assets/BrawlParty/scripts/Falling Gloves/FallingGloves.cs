@@ -15,6 +15,7 @@ public class FallingGloves : MiniGame
     Dictionary<PlayerController, bool> playerMortos = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, int> playersVidas = new Dictionary<PlayerController, int>();
     Dictionary<PlayerController, bool> playersI = new Dictionary<PlayerController, bool>();
+    Dictionary<PlayerController, bool> playersInJump = new Dictionary<PlayerController, bool>();
 
     float lasthit = 0;
 
@@ -35,7 +36,7 @@ public class FallingGloves : MiniGame
         AudioController.Instance.PlayAudio("BGM", true);
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         posAllPlayerInit = players[0].transform.position;
-        forceJump = 10;
+        forceJump = 6;
 
 
         if (GameManager.Instance != null)
@@ -54,6 +55,7 @@ public class FallingGloves : MiniGame
             if (i < players.Count)
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
+                InstanciarPlayer(players[i].transform, GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectPlayerObject);
             }
         }
 
@@ -104,9 +106,8 @@ public class FallingGloves : MiniGame
             Falling();
             lasthit = 5 - (dificuldade / 6);
         }
-
+        
         WinRule();
-
     }
 
     void FixedUpdate()
@@ -262,9 +263,9 @@ public class FallingGloves : MiniGame
     {
         foreach (PlayerController p in players)
         {
-            if (p.transform.position.y > 0)
+            if (p.gameObject.GetComponent<Rigidbody>().velocity.y < 0)
             {
-                p.transform.position = Vector3.Lerp(p.transform.position, new Vector3(p.transform.position.x, posAllPlayerInit.y, p.transform.position.z), Time.fixedDeltaTime * forceJump / 2);
+                p.transform.position = Vector3.Lerp(p.transform.position, new Vector3(p.transform.position.x, posAllPlayerInit.y, p.transform.position.z), Time.fixedDeltaTime * forceJump);
             }
         }
     }
@@ -302,7 +303,7 @@ public class FallingGloves : MiniGame
     {
         int pontos = players.Count - qtdVivos;
         Debug.Log("Ganhei " + pontos);
-        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += pontos;
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += pontos * GameManager.Instance.pointsMultiply;
         qtdVivos--;
         //if (players.Count == 4)
         //{
@@ -361,6 +362,7 @@ public class FallingGloves : MiniGame
             playerMortos.Add(player, false);
             playersVidas.Add(player, 2);
             playersI.Add(player, false);
+            playersInJump.Add(player, false);
             player.pontosGenericos = players.Count;
         }
     }
@@ -409,7 +411,8 @@ public class FallingGloves : MiniGame
             if (!playerMortos[players[i]])
             {
                 winners.Add(players[i]);
-                GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += players.Count - qtdVivos;
+                //GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += players.Count - qtdVivos;
+                GameManager.Instance.playersPontos[players[i].gameObject.transform.parent.gameObject] += (players.Count - 1) * GameManager.Instance.pointsMultiply;
             }
         }
     }

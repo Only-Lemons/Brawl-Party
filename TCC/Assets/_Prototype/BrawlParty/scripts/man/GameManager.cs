@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerInputPrefab;
 
-    public AudioManager2 audioManager;
+    //public AudioManager2 audioManager;
 
     public ParticleManager particleManager;
 
-   
+    public int pointsMultiply = 1;
 
     public GameController gameController;
 
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public GameModes newGameMode;
     public List<int> lastGameModes = new List<int>();
     public List<GameObject> playersPanels = new List<GameObject>();
-    
+
     public Dictionary<GameObject, int> playersPontos = new Dictionary<GameObject, int>();
 
     public int[] pontosGeral;
@@ -55,30 +55,33 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GetComponent<AudioManager2>();
+        //audioManager = GetComponent<AudioManager2>();
         particleManager = GetComponent<ParticleManager>();
     }
 
     private void Start()
     {
         quantTGames = 4;
+
+
     }
 
     private void FixedUpdate()
     {
-    
-        if ( SceneManager.GetSceneByBuildIndex(9).isLoaded && playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
+
+        if (SceneManager.GetSceneByBuildIndex(9).isLoaded && playersPanels.Count > 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
         {
             if (quantGames < quantTGames)
             {
                 nextLevel = 8;
-            }else
+            }
+            else
             {
                 nextLevel = 10;
             }
 
-                SceneManager.LoadScene(nextLevel); // provisorio
-        }      
+            SceneManager.LoadScene(nextLevel); // provisorio
+        }
 
         switch (SceneManager.GetActiveScene().buildIndex)
         {
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
 
                     necessarioMaisJogadores.text = "";
                     inicializarDicio();
+
 
                 }
                 else if (playersPanels.Count == 1 && !playersPanels.Find(x => x.GetComponentInChildren<PlayerSelect>().isConfirmed == true))
@@ -170,10 +174,14 @@ public class GameManager : MonoBehaviour
     public void PressStart()
     {
         this.transform.GetChild(1).gameObject.SetActive(!this.transform.GetChild(1).gameObject.activeSelf);
-        if (this.transform.GetChild(1).gameObject.activeSelf)
-            Time.timeScale = 0;
-        else
-            Time.timeScale = 1;
+        if (!GameManager.Instance.end)
+            if (this.transform.GetChild(1).gameObject.activeSelf)
+            {
+
+                Time.timeScale = 0;
+            }
+            else
+                Time.timeScale = 1;
     }
 
 
@@ -187,7 +195,7 @@ public class GameManager : MonoBehaviour
 
     public void getPlayersMinigame(List<PlayerController> players)
     {
-        for(int i = 0; i < players.Count; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             if (i < playersPanels.Count)
             {
@@ -211,15 +219,15 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    
+
     public void WinMinigame()
     {
         Debug.Log("QUantidade de minigames " + quantGames);
-     
-        if(quantGames > quantTGames)
+
+        if (quantGames > quantTGames)
         {
-          //  quantGames++;
-         //   StartCoroutine(CarregarCenaComPausa(10)); //TIRAISSO
+            //  quantGames++;
+            //   StartCoroutine(CarregarCenaComPausa(10)); //TIRAISSO
             //SceneManager.LoadScene(10, LoadSceneMode.Single); // Tela vitoria jogo 
         }
         else
@@ -245,9 +253,10 @@ public class GameManager : MonoBehaviour
 
     void inicializarDicio()
     {
-        foreach ( GameObject playerP in playersPanels)
+        foreach (GameObject playerP in playersPanels)
         {
-            playersPontos.Add(playerP,0);    
+            playersPontos.Add(playerP, 0);
+
         }
     }
 

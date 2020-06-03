@@ -7,7 +7,7 @@ public class TesteContraGamns : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        AudioController.Instance.PlayAudio("DrumRoll");
         //for (int i = 0; i < GameManager.Instance.gameController.playerManager.playersControllers.Count; i++)
         //{
         //    GameManager.Instance.gameController.playerManager.playersControllers[i].gameObject.SetActive(true);
@@ -18,6 +18,7 @@ public class TesteContraGamns : MonoBehaviour
             if(GameManager.Instance.playersPanels[i].transform.childCount > 0)
                 Destroy(GameManager.Instance.playersPanels[i].transform.GetChild(0).gameObject);
         }
+
     }
 
 }

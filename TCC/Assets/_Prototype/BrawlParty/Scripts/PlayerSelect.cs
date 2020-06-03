@@ -14,13 +14,15 @@ public struct playerUI
     public Sprite splash, selectedSplash;
     public string charName;
     public Color charColor;
+    public GameObject charObject;
 
-    public playerUI(Sprite splash, Sprite selectedSplash, string charName, Color charColor)
+    public playerUI(Sprite splash, Sprite selectedSplash, string charName, Color charColor, GameObject charObject)
     {
         this.splash = splash;
         this.selectedSplash = selectedSplash;
         this.charName = charName;
         this.charColor = charColor;
+        this.charObject = charObject;
     }
 }
 
@@ -35,6 +37,8 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     public int selectedCharIndex = 0;
     [HideInInspector]
     public Color desiredColor;
+
+    public GameObject selectPlayerObject;
 
     public bool hasEntered = false,
              isConfirmed = true;
@@ -73,6 +77,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
             characterName.text = playersUI[0].charName;
             characterSplash.sprite = playersUI[0].splash;
             backgroundColor.color = playersUI[0].charColor;
+            selectPlayerObject = playersUI[0].charObject;
             hasEntered = true;
 
 
@@ -86,7 +91,9 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
         characterSplash.sprite = playersUI[selectedCharIndex].splash;
         characterName.text = playersUI[selectedCharIndex].charName;
         desiredColor = playersUI[selectedCharIndex].charColor;
+        selectPlayerObject = playersUI[selectedCharIndex].charObject;
         backgroundColor.color = desiredColor;
+
     }
 
 
@@ -106,6 +113,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
             {
                 if (isConfirmed)
                 {
+                    AudioController.Instance.PlayAudio("ConfirmPlayer");
                     backgroundColor.color = Color.green;
                     selectSprite = characterSplash.sprite;
                     selectName = characterName.text;
@@ -127,7 +135,8 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     isConfirmed = false;
                 }
                 else
-                { 
+                {
+                    AudioController.Instance.PlayAudio("ConfirmPlayer");
                     isConfirmed = true;
                 }
 
@@ -223,6 +232,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 selectedCharIndex = 0;
             selectedCharIndex++;
             UpdateCharSelectUi();
+            AudioController.Instance.PlayAudio("PassChar");
         }
     }
 
@@ -235,7 +245,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 selectedCharIndex = playersUI.Count - 1;
             selectedCharIndex--;
             UpdateCharSelectUi();
-
+            AudioController.Instance.PlayAudio("PassChar");
         }
     }
     #endregion

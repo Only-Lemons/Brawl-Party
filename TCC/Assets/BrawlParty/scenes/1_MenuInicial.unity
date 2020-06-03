@@ -9907,6 +9907,21 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: 46b4a4defbf45d94684482d3d0a00034, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Return
+    clip: {fileID: 8300000, guid: 302ca0a771599c14fa5e8d7b20cb91a4, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Select
+    clip: {fileID: 8300000, guid: a011c910eac196141a909effbebe499c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
   soundVolumeM: 1
 --- !u!4 &312080421
 Transform:
@@ -25494,7 +25509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Weverton Ar\xE3o"
+  m_text: Weverton Miranda
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9849f387188191a4eb16305b007fa029, type: 2}
   m_sharedMaterial: {fileID: -2861627284856762152, guid: 9849f387188191a4eb16305b007fa029,
@@ -47967,8 +47982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputPrefab: {fileID: 628252506523737648, guid: 8a28279ae3d6fa14590f062297fefa72,
     type: 3}
-  audioManager: {fileID: 0}
   particleManager: {fileID: 0}
+  pointsMultiply: 100
   gameController: {fileID: 0}
   quantTGames: 4
   TimeInGame: 1

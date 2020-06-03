@@ -17,6 +17,9 @@ public class Maze : MiniGame
     Dictionary<PlayerController, bool> inStun = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, bool> withKey = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
+
+    Dictionary<PlayerController, bool> playerImune = new Dictionary<PlayerController, bool>();
+    Dictionary<PlayerController, float> timeImune = new Dictionary<PlayerController, float>();
     [SerializeField]
     GameObject door;
     [SerializeField]
@@ -61,6 +64,8 @@ public class Maze : MiniGame
             inStun[player] = false;
             withKey[player] = false;
             timeStun[player] = 0;
+            playerImune[player] = false;
+            timeImune[player] = 0;
             lightPerPlayer[player] = 1;
         }
 
@@ -70,7 +75,8 @@ public class Maze : MiniGame
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
                 players[i].playerIndiq.GetComponent<Renderer>().material.color =  GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
-           
+                InstanciarPlayer(players[i].transform, GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectPlayerObject);
+
             }
         }
 
@@ -104,14 +110,16 @@ public class Maze : MiniGame
             int weightKey = 1;
             foreach (var player in players)
             {
-                if (!inStun[player])
-                    continue;
+                //if (!inStun[player])
+                //    continue;
+                //if (!playerImune[player]) //playerImune evita de ficar flicando os fantasmas, empurando pra trás da parede
+                //    continue; //tava travando o jason, recomendo deixar sem, e ir no if ali em baixo msm
                 if (withKey[player])
                     weightKey = 3;
                 float cpa = (getWeightDistanceJasonPlayer(Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (getWeightDistancePlayerDoor(Vector3.Distance(player.transform.position, FinishGame.transform.position))))* weightKey;
               
 
-                if (cpa > coicidenteP && !inStun[player])
+                if (cpa > coicidenteP && ((!inStun[player] && !playerImune[player]) || withKey[player])) //new if
                 {
                     playerF = player;
                     coicidenteP = cpa;
@@ -204,6 +212,17 @@ public class Maze : MiniGame
                 {
                     timeStun[player] = 0;
                     inStun[player] = false;
+                    playerImune[player] = true;
+                }
+            }
+
+            if (playerImune[player])
+            {
+                timeImune[player] -= Time.fixedDeltaTime;
+                if (timeImune[player] <= 0)
+                {
+                    timeImune[player] = 0;
+                    playerImune[player] = false;
                 }
             }
         }
@@ -276,6 +295,7 @@ public class Maze : MiniGame
         {
             inStun[player] = true;
             timeStun[player] = 2;
+            timeImune[player] = 2;
 
             AudioController.Instance.PlayAudio("Hit");
         }
@@ -321,7 +341,7 @@ public class Maze : MiniGame
             //        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
             //        break;
             //}
-            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += players.Count -1;
+            GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += (players.Count -1) * GameManager.Instance.pointsMultiply;
 
             players.Remove(player);
             GameObject.Destroy(player.gameObject);

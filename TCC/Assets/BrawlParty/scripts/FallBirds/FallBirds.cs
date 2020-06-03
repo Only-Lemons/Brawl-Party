@@ -72,7 +72,7 @@ public class FallBirds : MiniGame
             {
                 if(!_playerDeath[p])
                 {
-                    GameManager.Instance.playersPontos[p.gameObject.transform.parent.gameObject] += players.Count - 1;
+                    GameManager.Instance.playersPontos[p.gameObject.transform.parent.gameObject] += (players.Count - 1) * GameManager.Instance.pointsMultiply;
                 }
             }
             TimeGameController.Instance.acabou = true;
@@ -106,7 +106,7 @@ public class FallBirds : MiniGame
     public override void PointRule(PlayerController player)
     {
 
-        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += _positionOfDeath[player] - 1;
+        GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += (_positionOfDeath[player] - 1) * GameManager.Instance.pointsMultiply;
 
     }
 

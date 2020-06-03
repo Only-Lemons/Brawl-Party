@@ -582,30 +582,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: BGM
-    clip: {fileID: 8300000, guid: d7dcbd761b745a74c9c3b042a18f8966, type: 3}
+    clip: {fileID: 8300000, guid: 2414434c5ea62d1448ea43dd6cd975ae, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Hit
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 9f9a09cca63842f49849a0530e39c6da, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Win
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 65b43fc3b982ba7468298565d64e821e, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Up
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: e64dff8350c82fd48ba4fffa07843799, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Passaro
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: b010876a9efc28b4897947154a2aadf4, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  soundVolumeM: 1
 --- !u!4 &26125449
 Transform:
   m_ObjectHideFlags: 0
@@ -5412,6 +5413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.90361565
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764841336155217436, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7332396075976229346, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
@@ -24966,6 +24972,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.90361565
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764841336155217436, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7332396075976229346, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
@@ -50619,6 +50630,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.90361565
       objectReference: {fileID: 0}
+    - target: {fileID: 6764841336155217436, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7332396075976229346, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -64365,6 +64381,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.90361565
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764841336155217436, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7332396075976229346, guid: 5a1aeb7a42a960540bf8b38e1bbcb39a,
         type: 3}

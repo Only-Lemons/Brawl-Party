@@ -21,6 +21,7 @@ public class PlayerSelectManager : MonoBehaviour
             if (!players.Exists(x => x == jogadores[i]))
             {
                 players.Add(jogadores[i]);
+                AudioController.Instance.PlayAudio("EnterPlayer");
 
                 // jogadores[i].transform.position = pos[i];
             }

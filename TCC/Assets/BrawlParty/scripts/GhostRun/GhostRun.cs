@@ -49,9 +49,9 @@ public class GhostRun : MiniGame
             {
                 players[i].setColor(GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor);
                 players[i].playerIndiq.GetComponent<Renderer>().material.color = GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().desiredColor * 4;
+                InstanciarPlayer(players[i].transform, GameManager.Instance.playersPanels[i].GetComponent<PlayerSelect>().selectPlayerObject);
             }
         }
-
 
         AddPlayerInformations();
         _qtdVivo = players.Count;
@@ -162,13 +162,13 @@ public class GhostRun : MiniGame
             switch (_qtdVivo)
             {
                 case 1:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3;
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 3 * GameManager.Instance.pointsMultiply;
                     break;
                 case 2:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2;
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 2 * GameManager.Instance.pointsMultiply;
                     break;
                 case 3:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1 * GameManager.Instance.pointsMultiply;
                     break;
                 default:
                     GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;
@@ -181,7 +181,7 @@ public class GhostRun : MiniGame
             {
 
                 case 1:
-                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1;
+                    GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 1 * GameManager.Instance.pointsMultiply;
                     break;
                 default:
                     GameManager.Instance.playersPontos[player.gameObject.transform.parent.gameObject] += 0;

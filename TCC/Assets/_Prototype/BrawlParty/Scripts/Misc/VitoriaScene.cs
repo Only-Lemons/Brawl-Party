@@ -13,16 +13,17 @@ public class VitoriaScene : MonoBehaviour
     public Text texto;
     void Start()
     {
-        AudioController.Instance.PlayAudio("Win");
 	    Time.timeScale = 1;
         playerMaterial.color = GameManager.Instance.corVencedor;
         if (GameManager.Instance.empatou)
         {
+            AudioController.Instance.PlayAudio("Win");
             texto.text = "DRAW! MORE THAN ONE PLAYER WON!";
             playerWin.SetActive(false);
         }
         else
         {
+            AudioController.Instance.PlayAudio("Win");
             texto.text = "WINNER!";
             playerWin.SetActive(true);
         }
