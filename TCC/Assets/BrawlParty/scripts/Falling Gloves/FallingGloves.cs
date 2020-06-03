@@ -228,7 +228,6 @@ public class FallingGloves : MiniGame
                 //pontoTotal -= 1;
                 if (VerifyPlayerMortos())
                 {
-                    winners.Add(player);
                     InsertWinners();
 
                     TimeGameController.Instance.acabou = true;

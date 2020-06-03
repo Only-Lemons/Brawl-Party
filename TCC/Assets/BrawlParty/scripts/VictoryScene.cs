@@ -86,7 +86,6 @@ public class VictoryScene : MonoBehaviour
         {
             if (playerScoreBoard[i].name.text == "Nome")
             {
-                playerScoreBoard[i].icon.sprite = null;
                 playerScoreBoard[i].name.text = "";
                 playerScoreBoard[i].pontos.text = "";
             }
@@ -160,13 +159,13 @@ public class VictoryScene : MonoBehaviour
         //faz a transição suave entre os paineis
         for (int i = 0; i < positionsScoreLerp.Count; i++)
         {
-            positionsScoreLerp[i] = Mathf.Lerp(positionsScoreLerp[i], positionsScore[i], Time.fixedDeltaTime);
+            positionsScoreLerp[i] = Mathf.Lerp(positionsScoreLerp[i], positionsScore[i] + 100 * 2.6f, Time.fixedDeltaTime);
         }
 
         //seta o valor da posição
         for (int i = 0; i < positionsScore.Count; i++)
         {
-            playerScoreBoard[i].posScore.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, positionsScoreLerp[i], 100);
+            playerScoreBoard[i].posScore.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, positionsScoreLerp[i], playerScoreBoard[i].posScore.sizeDelta.y);
             //playerScoreBoard[i].posScore.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, Mathf.Lerp(playerScoreBoard[i].posScore.localPosition.y, positionsScore[i], Time.fixedDeltaTime), 100);
         }
     }
