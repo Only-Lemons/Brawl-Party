@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -14,6 +15,8 @@ namespace OnlyLemons.BrawlParty.UI
         private GameObject PressAnyButtonText => _pressAnyButtonText;
         private Image Background => _background;
         private Color NextSceneColor => _nextSceneColor;
+        private string Scene => _scene;
+        private GameObject ParticleObject => _particleObject;
 
         #region Serialize Fields
         [SerializeField]
@@ -32,17 +35,25 @@ namespace OnlyLemons.BrawlParty.UI
         private Image _background = null;
         [SerializeField]
         private Color _nextSceneColor = Color.white;
+        [SerializeField]
+        private string _scene = "";
+        [SerializeField]
+        private GameObject _particleObject = null;
         #endregion
 
         public float Delay { get; set; }
 
         private void Start()
         {
-            OnAppear();
-            AudioController.Instance.PlayAudio("Menu");
+            Appear();
         }
 
-        public override void OnAppear()
+        //private void Update()
+        //{
+        //    if (Input.anyKey) Disappear();
+        //}
+
+        private void Appear()
         {
             Sequence seq = DOTween.Sequence();
 
@@ -71,17 +82,16 @@ namespace OnlyLemons.BrawlParty.UI
             seq.Play();
         }
 
-        public override void OnDisappear()
+        private void Disappear()
         {
             Sequence seq = DOTween.Sequence();
 
-            seq.OnStart(() => { PressAnyButtonText.SetActive(false); });
+            seq.OnStart(() => { PressAnyButtonText.SetActive(false); ParticleObject.SetActive(false); });
 
             seq.Insert(0, LogoCanvasGroup.DOFade(0, 0.5f));
             seq.Insert(0, Background.DOColor(NextSceneColor, 1f));
 
-            seq.OnComplete(() => { this.gameObject.SetActive(false); });
-
+            //seq.OnComplete(() => { SceneManager.LoadScene(Scene); });
 
             seq.Play();
         }
