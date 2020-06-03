@@ -22,7 +22,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject firstScene;
     [SerializeField]
+    private GameObject exitPopup;
+    [SerializeField]
     private EventSystem es;
+
+    public string ActiveScene { get; set; }
 
     private AnimationManager AnimManager => _animManager;
 
@@ -66,7 +70,31 @@ public class MenuManager : MonoBehaviour
 
     public void OnReturn()
     {
-        menuInicial.SetActive(true);
+        switch (ActiveScene) 
+        {
+            case ("Credits") :
+                AnimManager.CreditsToMenu();
+                break;
+
+            case ("Settings"):
+                AnimManager.SettingsToMenu();
+                config.SetActive(false);
+                menuInicial.SetActive(true);
+                break;
+
+            case ("Single") :
+                Debug.Log("SingleToHome");
+                break;
+            case ("Exit"):
+                AnimManager.DontExit();
+                break;
+
+            default :
+                Debug.Log("Vix");
+                break;
+        }
+
+        //menuInicial.SetActive(true);
         es.SetSelectedGameObject(menuInicialButton);
         creditos.SetActive(false);
         config.SetActive(false);
@@ -74,6 +102,11 @@ public class MenuManager : MonoBehaviour
         gameConfig.SetActive(false);
         selectMode.SetActive(false);
         AudioController.Instance.PlayAudio("Return");
+        //creditos.SetActive(false);
+        //config.SetActive(false);
+        //firstScene.SetActive(false);
+        //gameConfig.SetActive(false);
+        //selectMode.SetActive(false);
     }
 
 }
