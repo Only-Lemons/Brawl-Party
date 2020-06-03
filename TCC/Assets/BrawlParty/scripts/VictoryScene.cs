@@ -24,23 +24,24 @@ public class VictoryScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GameManager.Instance.quantGames > GameManager.Instance.quantTGames)
+        if (GameManager.Instance.quantGames > GameManager.Instance.quantTGames)
         {
-            
+
             GameManager.Instance.nextLevel = 10;
         }
         foreach (GameObject panel in GameManager.Instance.playersPanels)
         {
             panel.GetComponentInChildren<PlayerSelect>().isConfirmed = true;
         }
+
         AtualizarSprites();
         updateScore();
-     
+
     }
 
     void Update()
     {
-           ConfirmarTutorial();
+        ConfirmarTutorial();
     }
 
     void updateScore()
@@ -77,9 +78,14 @@ public class VictoryScene : MonoBehaviour
         for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
         {
             if (!GameManager.Instance.playersPanels[i].GetComponentInChildren<PlayerSelect>().isConfirmed)
+            {
                 confirmPlayer[i].text = "OK!";
+                AudioController.Instance.PlayAudio("EnterPlayer");
+            }
             else
+            {
                 confirmPlayer[i].text = "Waiting...";
+            }
         }
     }
 

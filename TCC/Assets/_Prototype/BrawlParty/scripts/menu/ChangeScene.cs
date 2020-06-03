@@ -10,6 +10,11 @@ public class ChangeScene : MonoBehaviour
     public string menuIncial;
     public string selectMode;
 
+    private void Start()
+    {
+        AudioController.Instance.PlayAudio("BGM");
+    }
+
     public void sceneChange(string sceneName)
     {
         if (sceneName == selectMode)

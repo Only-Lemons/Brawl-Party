@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour, Inputs.IPlayerActions
     void Death()
     {
         anim.SetTrigger("Death");
-        GameManager.Instance.audioManager.playDeath();
+        //GameManager.Instance.audioManager.playDeath();
         GameController.singleton.gameMode.HitRule(this);
         if (this.transform.GetChild(2).childCount > 0)
             Destroy(this.transform.GetChild(2).GetChild(0).gameObject);

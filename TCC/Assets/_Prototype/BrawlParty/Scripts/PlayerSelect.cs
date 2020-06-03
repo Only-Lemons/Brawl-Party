@@ -113,6 +113,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
             {
                 if (isConfirmed)
                 {
+                    AudioController.Instance.PlayAudio("ConfirmPlayer");
                     backgroundColor.color = Color.green;
                     selectSprite = characterSplash.sprite;
                     selectName = characterName.text;
@@ -134,7 +135,8 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     isConfirmed = false;
                 }
                 else
-                { 
+                {
+                    AudioController.Instance.PlayAudio("ConfirmPlayer");
                     isConfirmed = true;
                 }
 
@@ -230,6 +232,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 selectedCharIndex = 0;
             selectedCharIndex++;
             UpdateCharSelectUi();
+            AudioController.Instance.PlayAudio("PassChar");
         }
     }
 
@@ -242,7 +245,7 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                 selectedCharIndex = playersUI.Count - 1;
             selectedCharIndex--;
             UpdateCharSelectUi();
-
+            AudioController.Instance.PlayAudio("PassChar");
         }
     }
     #endregion
