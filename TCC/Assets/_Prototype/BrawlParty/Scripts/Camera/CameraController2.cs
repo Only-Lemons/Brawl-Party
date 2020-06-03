@@ -11,6 +11,7 @@ public class CameraController2 : MonoBehaviour
     public float posicaoEmZ = 8;
     public float alturaCam = 25;
     List<PlayerController> targ;
+    public Maze players;
 
     float sizeOrtog; // modo de câmera ortográfica
 
@@ -23,7 +24,7 @@ public class CameraController2 : MonoBehaviour
         else
             Destroy(gameObject);
 
-        targ = GameController.singleton.playerManager.playersControllers;
+        targ = players.playersGame;
         cam = Camera.main;
 
         cam.transform.position = new Vector3(0, alturaCam, -10);

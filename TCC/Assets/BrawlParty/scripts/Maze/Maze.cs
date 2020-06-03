@@ -9,8 +9,6 @@ public class Maze : MiniGame
 
     [SerializeField]
     List<GraphsGhostDistance> _DistancesFuzzy;
-   
-   
 
     Dictionary<PlayerController, float> lightPerPlayer = new Dictionary<PlayerController, float>();
     List<PlayerController> players = new List<PlayerController>();
@@ -46,6 +44,8 @@ public class Maze : MiniGame
     int friend;
 
     bool isFinish = false;
+
+    public List<PlayerController> playersGame => players;
 
     private void Start()
     {
