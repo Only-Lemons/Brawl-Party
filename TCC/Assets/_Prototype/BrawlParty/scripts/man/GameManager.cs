@@ -38,9 +38,13 @@ public class GameManager : MonoBehaviour
 
     public Text necessarioMaisJogadores;
     public Color corVencedor;
+    public GameObject objVencedor;
     public bool empatou;
 
     public bool end = false;
+    public int maiorPonto;
+    public int maiorPos;
+
 
     private void OnEnable()
     {
@@ -77,6 +81,8 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                MaiorPonto();
+                objVencedor = playersPanels[maiorPos].GetComponentInParent<PlayerSelect>().selectPlayerObject;
                 nextLevel = 10;
             }
 
@@ -132,6 +138,28 @@ public class GameManager : MonoBehaviour
                     oldScene = SceneManager.GetActiveScene().buildIndex;
                 }
                 break;
+        }
+    }
+
+
+    void  MaiorPonto()
+    {
+        for (int i = 0; i < pontosGeral.Length; i++)
+        {
+            for (int j = 0; j < pontosGeral.Length; j++)
+            {
+                if (i != j)
+                {
+                    if (pontosGeral[i] > maiorPonto)
+                    {
+                        maiorPos = i;
+
+                        maiorPonto = GameManager.Instance.pontosGeral[i];
+                        if (GameManager.Instance.pontosGeral[i] == GameManager.Instance.pontosGeral[j]) ;
+                            //maiorPonto2 = GameManager.Instance.pontosGeral[j];
+                    }
+                }
+            }
         }
     }
 

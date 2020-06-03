@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 public class VitoriaScene : MonoBehaviour
 {
     public GameObject playerWin;
+    public GameObject playerWinDefault;
+    public AnimatorController animator;
     public Material playerMaterial;
     int maiorPonto = 0;
     public GameObject painel;
@@ -14,7 +17,12 @@ public class VitoriaScene : MonoBehaviour
     void Start()
     {
 	    Time.timeScale = 1;
-        playerMaterial.color = GameManager.Instance.corVencedor;
+
+        GameObject GO = Instantiate(GameManager.Instance.objVencedor,playerWin.transform.position,Quaternion.identity);
+
+        GO.GetComponent<Animator>().runtimeAnimatorController = animator;
+
+        //playerMaterial.color = GameManager.Instance.corVencedor;
         if (GameManager.Instance.empatou)
         {
             AudioController.Instance.PlayAudio("Win");
@@ -38,6 +46,6 @@ public class VitoriaScene : MonoBehaviour
         yield return new WaitForSeconds(4f);
         painel.SetActive(true);
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
