@@ -9,6 +9,7 @@ public class AnimationManager : MonoBehaviour
     private CreditsVfx CreditsVfx => _creditsVfx;
     private MainMenuVfx MainMenuVfx => _mainMenuVfx;
     private MenuManager MenuManager => _menuManager;
+    private SelectModeVfx SelectModeVfx => _selectModeVfx;
     private ExitPopupVfx ExitVfx => _exitVfx;
 
     [SerializeField]
@@ -21,6 +22,8 @@ public class AnimationManager : MonoBehaviour
     private ExitPopupVfx _exitVfx = null;
     [SerializeField]
     private MenuManager _menuManager = null;
+    [SerializeField]
+    private SelectModeVfx _selectModeVfx = null;
 
     public void FirstToHome() 
     {
@@ -60,11 +63,15 @@ public class AnimationManager : MonoBehaviour
 
     public void MenuToSingle() 
     {
+        SelectModeVfx.OnAppear();
+        MainMenuVfx.Disappear();
         MenuManager.ActiveScene = "Single";
     }
 
     public void SingleToMenu()
     {
+        SelectModeVfx.OnDisappear();
+        MainMenuVfx.OnAppear();
         MenuManager.ActiveScene = "Menu";
     }
 

@@ -16,11 +16,6 @@ namespace OnlyLemons.BrawlParty.UI
         [SerializeField]
         private Image _background = null;
 
-        void Start()
-        {
-            OnAppear();
-        }
-
         public override void OnAppear()
         {
             #region prepare

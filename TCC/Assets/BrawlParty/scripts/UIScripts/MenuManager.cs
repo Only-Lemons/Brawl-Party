@@ -22,8 +22,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject firstScene;
     [SerializeField]
-    private GameObject exitPopup;
-    [SerializeField]
     private EventSystem es;
 
     public string ActiveScene { get; set; }
@@ -88,6 +86,7 @@ public class MenuManager : MonoBehaviour
                 break;
 
             case ("Single") :
+                AnimManager.SingleToMenu();
                 Debug.Log("SingleToHome");
                 break;
             case ("Exit"):
@@ -101,11 +100,6 @@ public class MenuManager : MonoBehaviour
 
         //menuInicial.SetActive(true);
         es.SetSelectedGameObject(menuInicialButton);
-        creditos.SetActive(false);
-        config.SetActive(false);
-        firstScene.SetActive(false);
-        gameConfig.SetActive(false);
-        selectMode.SetActive(false);
         AudioController.Instance.PlayAudio("Return");
         //creditos.SetActive(false);
         //config.SetActive(false);
