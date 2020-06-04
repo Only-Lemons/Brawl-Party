@@ -119,7 +119,7 @@ public class Maze : MiniGame
                 float cpa = (getWeightDistanceJasonPlayer(Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (getWeightDistancePlayerDoor(Vector3.Distance(player.transform.position, FinishGame.transform.position))))* weightKey;
               
 
-                if (cpa > coicidenteP && ((!inStun[player] && !playerImune[player]) || withKey[player])) //new if
+                if (cpa > coicidenteP && ((!inStun[player] && !playerImune[player]) || (withKey[player] && !inStun[player]))) //new if
                 {
                     playerF = player;
                     coicidenteP = cpa;
@@ -197,7 +197,7 @@ public class Maze : MiniGame
             if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
             {
                 KeyPlayer(player);
-                AudioController.Instance.PlayAudio("Coleta");
+                
             }
         }
     }
@@ -291,7 +291,7 @@ public class Maze : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-        if (!inStun[player])
+        if (!inStun[player] && !playerImune[player])
         {
             inStun[player] = true;
             timeStun[player] = 2;
@@ -402,7 +402,7 @@ public class Maze : MiniGame
                 Destroy(keyExists);
             keyExists = Instantiate(keyExit, player.transform.position + new Vector3(0, 2, 0), Quaternion.identity, player.gameObject.transform);
 
-            AudioController.Instance.PlayAudio("Hit");
+            AudioController.Instance.PlayAudio("Coleta");
         }
 
     }
