@@ -18991,6 +18991,7 @@ MonoBehaviour:
   - {fileID: 2074487349}
   - {fileID: 1842964427}
   - {fileID: 927163187}
+  _mainMenuVfx: {fileID: 1732954348}
 --- !u!1 &678187616
 GameObject:
   m_ObjectHideFlags: 0
@@ -26665,7 +26666,6 @@ MonoBehaviour:
   gameConfig: {fileID: 93115982}
   selectMode: {fileID: 674801520}
   firstScene: {fileID: 2121705232}
-  exitPopup: {fileID: 0}
   es: {fileID: 1951390608}
   _animManager: {fileID: 1224625845}
 --- !u!4 &1224625843
@@ -49371,8 +49371,11 @@ MonoBehaviour:
   nextLevel: 0
   necessarioMaisJogadores: {fileID: 1816791067}
   corVencedor: {r: 0, g: 0, b: 0, a: 0}
+  objVencedor: {fileID: 0}
   empatou: 0
   end: 0
+  maiorPonto: 0
+  maiorPos: 0
 --- !u!81 &4344593518849713546
 AudioListener:
   m_ObjectHideFlags: 0
