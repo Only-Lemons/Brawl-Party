@@ -16,8 +16,9 @@ public class Maze : MiniGame
     Dictionary<PlayerController, bool> withKey = new Dictionary<PlayerController, bool>();
     Dictionary<PlayerController, float> timeStun = new Dictionary<PlayerController, float>();
 
-    Dictionary<PlayerController, bool> playerImune = new Dictionary<PlayerController, bool>();
-    Dictionary<PlayerController, float> timeImune = new Dictionary<PlayerController, float>();
+    //Dictionary<PlayerController, bool> playerImune = new Dictionary<PlayerController, bool>();
+    //Dictionary<PlayerController, float> timeImune = new Dictionary<PlayerController, float>();
+
     [SerializeField]
     GameObject door;
     [SerializeField]
@@ -64,8 +65,8 @@ public class Maze : MiniGame
             inStun[player] = false;
             withKey[player] = false;
             timeStun[player] = 0;
-            playerImune[player] = false;
-            timeImune[player] = 0;
+            //playerImune[player] = false;
+            //timeImune[player] = 0;
             lightPerPlayer[player] = 1;
         }
 
@@ -117,9 +118,10 @@ public class Maze : MiniGame
                 if (withKey[player])
                     weightKey = 3;
                 float cpa = (getWeightDistanceJasonPlayer(Vector3.Distance(player.transform.position, jason.transform.position)) * lightPerPlayer[player] * (getWeightDistancePlayerDoor(Vector3.Distance(player.transform.position, FinishGame.transform.position))))* weightKey;
-              
 
-                if (cpa > coicidenteP && ((!inStun[player] && !playerImune[player]) || (withKey[player] && !inStun[player]))) //new if
+
+                //if (cpa > coicidenteP && ((!inStun[player] && !playerImune[player]) || (withKey[player] && !inStun[player]))) //new if
+                if (cpa > coicidenteP && (!inStun[player] || (withKey[player] && !inStun[player]))) //new if2
                 {
                     playerF = player;
                     coicidenteP = cpa;
@@ -212,19 +214,19 @@ public class Maze : MiniGame
                 {
                     timeStun[player] = 0;
                     inStun[player] = false;
-                    playerImune[player] = true;
+                    //playerImune[player] = true;
                 }
             }
 
-            if (playerImune[player])
-            {
-                timeImune[player] -= Time.fixedDeltaTime;
-                if (timeImune[player] <= 0)
-                {
-                    timeImune[player] = 0;
-                    playerImune[player] = false;
-                }
-            }
+            //if (playerImune[player])
+            //{
+            //    timeImune[player] -= Time.fixedDeltaTime;
+            //    if (timeImune[player] <= 0)
+            //    {
+            //        timeImune[player] = 0;
+            //        playerImune[player] = false;
+            //    }
+            //}
         }
     }
 
@@ -291,11 +293,12 @@ public class Maze : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-        if (!inStun[player] && !playerImune[player])
+        //if (!inStun[player] && !playerImune[player])
+        if (!inStun[player])
         {
             inStun[player] = true;
             timeStun[player] = 2;
-            timeImune[player] = 2;
+            //timeImune[player] = 2;
 
             AudioController.Instance.PlayAudio("Hit");
         }

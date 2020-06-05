@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +9,7 @@ public class VitoriaScene : MonoBehaviour
 {
     public GameObject playerWin;
     public GameObject playerWinDefault;
-    public AnimatorController animator;
+    //public AnimatorController animator;
     public Material playerMaterial;
     int maiorPonto = 0;
     public GameObject painel;
@@ -20,7 +20,7 @@ public class VitoriaScene : MonoBehaviour
 
         GameObject GO = Instantiate(GameManager.Instance.objVencedor,playerWin.transform.position,Quaternion.identity);
 
-        GO.GetComponent<Animator>().runtimeAnimatorController = animator;
+        //GO.GetComponent<Animator>().runtimeAnimatorController = animator;
 
         //playerMaterial.color = GameManager.Instance.corVencedor;
         if (GameManager.Instance.empatou)
