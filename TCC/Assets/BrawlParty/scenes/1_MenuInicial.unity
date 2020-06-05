@@ -10941,7 +10941,7 @@ MonoBehaviour:
     gameMode: 4
     sprite: {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 0
+    Scene: 17
     spriteScene: {fileID: 21300000, guid: bfd80b9d263a66948a2ebcfad067542b, type: 3}
 --- !u!1 &414514732
 GameObject:
@@ -26640,6 +26640,7 @@ GameObject:
   - component: {fileID: 1224625842}
   - component: {fileID: 1224625844}
   - component: {fileID: 1224625845}
+  - component: {fileID: 1224625846}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -26728,6 +26729,39 @@ MonoBehaviour:
   _exitVfx: {fileID: 579839403}
   _menuManager: {fileID: 1224625842}
   _selectModeVfx: {fileID: 674801522}
+--- !u!114 &1224625846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224625841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6026fa56e30a7064199b9e254fa2d790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects:
+  - {fileID: 412978127}
+  - {fileID: 1084494898}
+  - {fileID: 1714124431}
+  - {fileID: 1447179315}
+  - {fileID: 1086864972}
+  _positions:
+  - {fileID: 542578630}
+  - {fileID: 607708029}
+  - {fileID: 2074487349}
+  - {fileID: 1842964427}
+  - {fileID: 927163187}
+  _opacity:
+  - {fileID: 296985391}
+  - {fileID: 1324236743}
+  - {fileID: 1058745234}
+  - {fileID: 1359181539}
+  - {fileID: 942037751}
+  _eventSystem: {fileID: 1951390608}
+  _selectMinigamePanel: {fileID: 674801520}
+  scrollSpeed: 0.5
 --- !u!1 &1224931317
 GameObject:
   m_ObjectHideFlags: 0
@@ -29573,7 +29607,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1673951046}
+      - m_Target: {fileID: 0}
         m_MethodName: UpdateLeftSelected
         m_Mode: 1
         m_Arguments:
@@ -30153,7 +30187,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1673951046}
+      - m_Target: {fileID: 0}
         m_MethodName: UpdateRightSelected
         m_Mode: 1
         m_Arguments:
@@ -32795,7 +32829,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1673951045}
-  - component: {fileID: 1673951046}
   m_Layer: 5
   m_Name: RouleteSelection
   m_TagString: Untagged
@@ -32823,38 +32856,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1916.5, y: 777}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1673951046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673951044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6026fa56e30a7064199b9e254fa2d790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objects:
-  - {fileID: 412978127}
-  - {fileID: 1084494898}
-  - {fileID: 1714124431}
-  - {fileID: 1447179315}
-  - {fileID: 1086864972}
-  _positions:
-  - {fileID: 542578630}
-  - {fileID: 607708029}
-  - {fileID: 2074487349}
-  - {fileID: 1842964427}
-  - {fileID: 927163187}
-  _opacity:
-  - {fileID: 296985391}
-  - {fileID: 1324236743}
-  - {fileID: 1058745234}
-  - {fileID: 1359181539}
-  - {fileID: 942037751}
-  _eventSystem: {fileID: 1951390608}
-  scrollSpeed: 0.5
 --- !u!1 &1674573820
 GameObject:
   m_ObjectHideFlags: 0
@@ -39922,7 +39923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.65448093, y: 0.026}
   m_AnchorMax: {x: 1, y: 0.1111088}
-  m_AnchoredPosition: {x: -5, y: -1.5}
+  m_AnchoredPosition: {x: -5, y: -1.5000305}
   m_SizeDelta: {x: -9.100006, y: 10.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816791070
@@ -49376,6 +49377,7 @@ MonoBehaviour:
   end: 0
   maiorPonto: 0
   maiorPos: 0
+  playerNonAvail: 
 --- !u!81 &4344593518849713546
 AudioListener:
   m_ObjectHideFlags: 0
