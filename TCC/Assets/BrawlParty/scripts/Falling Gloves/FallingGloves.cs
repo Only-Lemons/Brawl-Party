@@ -200,7 +200,7 @@ public class FallingGloves : MiniGame
 
     public override void Action(PlayerController player)
     {
-        if (player.transform.position.y <= 0.41f && !playersI[player] && TimeGameController.Instance.Comecou())
+        if (player.transform.position.y <= 0.41f && !playerMortos[player] && !playersI[player] && TimeGameController.Instance.Comecou())
         //if (player.pulou == false )
         {
             player.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x, 0.41f, player.gameObject.transform.position.z);
@@ -277,7 +277,7 @@ public class FallingGloves : MiniGame
 
     public override void MovementRule(PlayerController player)
     {
-        if (!playersI[player])
+        if (!playersI[player] && !playerMortos[player])
         {
             if (player._movementAxis.x > 0)
             {
