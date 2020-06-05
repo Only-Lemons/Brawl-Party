@@ -106,7 +106,7 @@ public class FallingGloves : MiniGame
             Falling();
             lasthit = 5 - (dificuldade / 6);
         }
-        
+
         WinRule();
     }
 
@@ -213,30 +213,31 @@ public class FallingGloves : MiniGame
 
     public override void HitRule(PlayerController player)
     {
-        if (playersI[player] == false)
-        {
-            playersVidas[player]--;
-            AudioController.Instance.PlayAudio("Splash");
-            AtualizarUI();
-            if (playersVidas[player] <= 0)
+        if (!playerMortos[player])
+            if (playersI[player] == false)
             {
-                PointRule(player);
-                AudioController.Instance.PlayAudio("Death");
-                //player.gameObject.SetActive(false); //teste
-                playerMortos[player] = true;
-                //player.pontosGenericos -= pontoTotal;
-                //pontoTotal -= 1;
-                if (VerifyPlayerMortos())
+                playersVidas[player]--;
+                AudioController.Instance.PlayAudio("Splash");
+                AtualizarUI();
+                if (playersVidas[player] <= 0)
                 {
-                    InsertWinners();
+                    PointRule(player);
+                    AudioController.Instance.PlayAudio("Death");
+                    //player.gameObject.SetActive(false); //teste
+                    playerMortos[player] = true;
+                    //player.pontosGenericos -= pontoTotal;
+                    //pontoTotal -= 1;
+                    if (VerifyPlayerMortos())
+                    {
+                        InsertWinners();
 
-                    TimeGameController.Instance.acabou = true;
-                    //Invoke("WinRule", 0);
+                        TimeGameController.Instance.acabou = true;
+                        //Invoke("WinRule", 0);
+                    }
                 }
+                playersI[player] = true;
+                StartCoroutine(invencibilidadeCD(player));
             }
-            playersI[player] = true;
-            StartCoroutine(invencibilidadeCD(player));
-        }
     }
 
     IEnumerator invencibilidadeCD(PlayerController player)
@@ -252,7 +253,7 @@ public class FallingGloves : MiniGame
             if (playersI[p])
                 p.transform.localScale = Vector3.Lerp(p.transform.localScale, new Vector3(2.5f, 0.03f, 2.5f), Time.fixedDeltaTime * 10);
             else if (playerMortos[p])
-                p.transform.localScale = Vector3.Lerp(p.transform.localScale, new Vector3(3f, 0.05f, 3f), Time.fixedDeltaTime * 10);
+                p.transform.localScale = Vector3.Lerp(p.transform.localScale, new Vector3(4f, 0.02f, 4f), Time.fixedDeltaTime * 10);
             else
                 p.transform.localScale = Vector3.Lerp(p.transform.localScale, new Vector3(1, 1, 1), Time.fixedDeltaTime * 10);
         }
