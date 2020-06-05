@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     {
         //audioManager = GetComponent<AudioManager2>();
         particleManager = GetComponent<ParticleManager>();
+        Time.timeScale = 1;
     }
 
     private void Start()
