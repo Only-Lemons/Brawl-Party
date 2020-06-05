@@ -64,9 +64,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     private void FixedUpdate()
     {
         if (SceneManager.GetActiveScene().buildIndex == 7 && isConfirmed)
+        {
+            NonAvailabed();
             UpdateCharSelectUi();
-
-
+        }
 
     }
 
@@ -78,9 +79,9 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
             characterSplash.sprite = playersUI[0].splash;
             backgroundColor.color = playersUI[0].charColor;
             selectPlayerObject = playersUI[0].charObject;
+
+            //GameManager.Instance.playerEnterDif++;
             hasEntered = true;
-
-
         }
     }
 
@@ -119,19 +120,23 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     selectName = characterName.text;
                     //Debug.Log("Removed" + charList[selectedCharIndex].charName);
                     isConfirmed = false;
+
+                    GameManager.Instance.playerNonAvail.Add(selectedCharIndex);
                 }
                 else
                 {
                     selectSprite = null;
                     backgroundColor.color = playersUI[selectedCharIndex].charColor;
                     isConfirmed = true;
+
+                    GameManager.Instance.playerNonAvail.Remove(selectedCharIndex);
                 }
 
             }
-            else if(SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetSceneByBuildIndex(9).isLoaded))
+            else if (SceneManager.GetActiveScene().buildIndex == 4 || (SceneManager.GetSceneByBuildIndex(9).isLoaded))
             {
                 if (isConfirmed)
-                {  
+                {
                     isConfirmed = false;
                 }
                 else
@@ -140,8 +145,10 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
                     isConfirmed = true;
                 }
 
-            
-            } else {
+
+            }
+            else
+            {
                 GameManager.Instance.PressStart();
 
             }
@@ -228,9 +235,15 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started && isConfirmed && hasEntered)
         {
-            if (selectedCharIndex == playersUI.Count - 1)
+            if (selectedCharIndex == playersUI.Count)
                 selectedCharIndex = 0;
-            selectedCharIndex++;
+            do
+            {
+                selectedCharIndex++;
+                if (selectedCharIndex >= playersUI.Count)
+                    selectedCharIndex = 0;
+            }
+            while (GameManager.Instance.playerNonAvail.Contains(selectedCharIndex));
             UpdateCharSelectUi();
             AudioController.Instance.PlayAudio("PassChar");
         }
@@ -240,12 +253,30 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started && isConfirmed && hasEntered)
         {
-
-            if (selectedCharIndex == 0)
+            if (selectedCharIndex == -1)
                 selectedCharIndex = playersUI.Count - 1;
-            selectedCharIndex--;
+            do
+            {
+                selectedCharIndex--;
+                if (selectedCharIndex <= -1)
+                    selectedCharIndex = playersUI.Count - 1;
+            }
+            while (GameManager.Instance.playerNonAvail.Contains(selectedCharIndex));
             UpdateCharSelectUi();
             AudioController.Instance.PlayAudio("PassChar");
+        }
+    }
+
+    void NonAvailabed()
+    {
+        if (GameManager.Instance.playerNonAvail.Count > 0)
+        {
+            if (GameManager.Instance.playerNonAvail.Contains(selectedCharIndex))
+            {
+                selectedCharIndex--;
+                if (selectedCharIndex <= -1)
+                    selectedCharIndex = playersUI.Count - 1;
+            }
         }
     }
     #endregion

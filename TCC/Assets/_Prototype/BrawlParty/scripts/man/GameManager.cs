@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     public int maiorPonto;
     public int maiorPos;
 
+    //public int playerEnterDif;
+    public List<int> playerNonAvail;
+
 
     private void OnEnable()
     {
