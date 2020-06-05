@@ -196,7 +196,7 @@ public class Maze : MiniGame
     {
         Debug.Log("KEY");
         {
-            if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 2.36f)
+            if (Vector3.Distance(player.gameObject.transform.position, keyExists.gameObject.transform.position) < 3.36f)
             {
                 KeyPlayer(player);
                 
@@ -388,7 +388,7 @@ public class Maze : MiniGame
 
     public void KeyPlayer(PlayerController player)
     {
-        if (!withKey[player])
+        if (!withKey[player] && !inStun[player])
         {
             //remove todas as chaves
             foreach (var p in players)

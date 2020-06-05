@@ -103,7 +103,7 @@ public class GhostRun : MiniGame
         foreach (PlayerController player in players)
         {
             if (!_playerisinvencible[player])
-                continue;
+                return;
            
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
