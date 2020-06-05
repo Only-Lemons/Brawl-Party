@@ -10938,7 +10938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modoJogo:
-    gameMode: 4
+    gameMode: 9
     sprite: {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
     Scene: 17
@@ -24725,7 +24725,7 @@ MonoBehaviour:
     gameMode: 2
     sprite: {fileID: 3128145301084039129, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 13
+    Scene: 12
     spriteScene: {fileID: 8805377049403718622, guid: f38ba442ef717d543a35bcd947580ed5,
       type: 3}
 --- !u!1 &1084751401
@@ -26151,6 +26151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: mudar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887258395823631468, guid: 3d1606f9162dabe45a7dca597a0fa807,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7887258395873768648, guid: 3d1606f9162dabe45a7dca597a0fa807,
         type: 3}
@@ -28767,7 +28772,7 @@ MonoBehaviour:
     gameMode: 3
     sprite: {fileID: -1224655957869853199, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 14
+    Scene: 13
     spriteScene: {fileID: 6827942721731354850, guid: f38ba442ef717d543a35bcd947580ed5,
       type: 3}
 --- !u!1 &1448148350
@@ -38289,7 +38294,7 @@ MonoBehaviour:
     gameMode: 5
     sprite: {fileID: -8146861956283846779, guid: 5b2b1692e95f05141810d80adc39cd95,
       type: 3}
-    Scene: 16
+    Scene: 14
     spriteScene: {fileID: -4447509978273622737, guid: f38ba442ef717d543a35bcd947580ed5,
       type: 3}
 --- !u!1 &1719219672
