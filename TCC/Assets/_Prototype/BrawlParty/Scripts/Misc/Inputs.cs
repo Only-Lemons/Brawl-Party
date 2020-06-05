@@ -686,6 +686,22 @@ public class Inputs : IInputActionCollection
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""goRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b74994e-ce2b-4bfc-a042-521ec7a6a95f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""goLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""fcba121e-aa80-4c4f-99bd-33a4f22ed8fa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -1073,6 +1089,94 @@ public class Inputs : IInputActionCollection
                     ""action"": ""Credits"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fdd80c00-f52b-4aaf-ae5e-89024f689605"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""goRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""651a7a98-534c-4dcd-b1d1-1ebc304842d0"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""goRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad8ddbc6-a2da-4658-8b21-04ada77469ff"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""goRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6486d62-e092-40e4-a2c6-1f1dd82b5a6e"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""goRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8683975-7299-4491-8996-ffe0f21b08ea"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""goLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f147fdd2-0a17-4b5a-bb54-cfcd33d1be02"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""goLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3e600d3-c86a-48d6-88bb-1d65a4f637e2"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""goLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bfd9d52-f9d1-4dfc-9c04-1a806f844a71"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""goLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1451,6 +1555,8 @@ public class Inputs : IInputActionCollection
         m_UI_TrackedDeviceSelect = m_UI.GetAction("TrackedDeviceSelect");
         m_UI_Return = m_UI.GetAction("Return");
         m_UI_Credits = m_UI.GetAction("Credits");
+        m_UI_goRight = m_UI.GetAction("goRight");
+        m_UI_goLeft = m_UI.GetAction("goLeft");
         // SelectUI
         m_SelectUI = asset.GetActionMap("SelectUI");
         m_SelectUI_UP = m_SelectUI.GetAction("UP");
@@ -1640,6 +1746,8 @@ public class Inputs : IInputActionCollection
     private readonly InputAction m_UI_TrackedDeviceSelect;
     private readonly InputAction m_UI_Return;
     private readonly InputAction m_UI_Credits;
+    private readonly InputAction m_UI_goRight;
+    private readonly InputAction m_UI_goLeft;
     public struct UIActions
     {
         private Inputs m_Wrapper;
@@ -1657,6 +1765,8 @@ public class Inputs : IInputActionCollection
         public InputAction @TrackedDeviceSelect => m_Wrapper.m_UI_TrackedDeviceSelect;
         public InputAction @Return => m_Wrapper.m_UI_Return;
         public InputAction @Credits => m_Wrapper.m_UI_Credits;
+        public InputAction @goRight => m_Wrapper.m_UI_goRight;
+        public InputAction @goLeft => m_Wrapper.m_UI_goLeft;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1705,6 +1815,12 @@ public class Inputs : IInputActionCollection
                 Credits.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCredits;
                 Credits.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCredits;
                 Credits.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCredits;
+                goRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnGoRight;
+                goRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnGoRight;
+                goRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnGoRight;
+                goLeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnGoLeft;
+                goLeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnGoLeft;
+                goLeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnGoLeft;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1748,6 +1864,12 @@ public class Inputs : IInputActionCollection
                 Credits.started += instance.OnCredits;
                 Credits.performed += instance.OnCredits;
                 Credits.canceled += instance.OnCredits;
+                goRight.started += instance.OnGoRight;
+                goRight.performed += instance.OnGoRight;
+                goRight.canceled += instance.OnGoRight;
+                goLeft.started += instance.OnGoLeft;
+                goLeft.performed += instance.OnGoLeft;
+                goLeft.canceled += instance.OnGoLeft;
             }
         }
     }
@@ -1866,6 +1988,8 @@ public class Inputs : IInputActionCollection
         void OnTrackedDeviceSelect(InputAction.CallbackContext context);
         void OnReturn(InputAction.CallbackContext context);
         void OnCredits(InputAction.CallbackContext context);
+        void OnGoRight(InputAction.CallbackContext context);
+        void OnGoLeft(InputAction.CallbackContext context);
     }
     public interface ISelectUIActions
     {

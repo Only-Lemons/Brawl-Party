@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using DG.Tweening;
 
 public class RouletteSelection : MonoBehaviour
@@ -11,6 +12,7 @@ public class RouletteSelection : MonoBehaviour
     private Transform[] Positions => _positions;
     private Image[] Opacity => _opacity;
     private EventSystem EventSystem => _eventSystem;
+    private GameObject SelectMinigamePanel => _selectMinigamePanel;
 
     #region SerializeFields
     [SerializeField]
@@ -20,7 +22,9 @@ public class RouletteSelection : MonoBehaviour
     [SerializeField]
     private Image[] _opacity = null;
     [SerializeField]
-    private EventSystem _eventSystem = null;
+    private EventSystem _eventSystem = null;   
+    [SerializeField]
+    private GameObject _selectMinigamePanel = null;
     #endregion
 
     public float scrollSpeed;
@@ -130,6 +134,17 @@ public class RouletteSelection : MonoBehaviour
         EventSystem.SetSelectedGameObject(Objects[2].gameObject);
     }
 
+
+    void OnGoRight()
+    {
+        if(_selectMinigamePanel.activeSelf)
+        UpdateRightSelected();
+    }
+    void OnGoLeft()
+    {
+        if (_selectMinigamePanel.activeSelf)
+            UpdateLeftSelected();
+    }
     public void Debug() 
     {
         UnityEngine.Debug.Log("Teste" + Objects[2].name);

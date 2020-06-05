@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using OnlyLemons.BrawlParty.UI;
-
+using UnityEngine.InputSystem.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -107,5 +107,5 @@ public class MenuManager : MonoBehaviour
         //gameConfig.SetActive(false);
         //selectMode.SetActive(false);
     }
-
+    
 }
