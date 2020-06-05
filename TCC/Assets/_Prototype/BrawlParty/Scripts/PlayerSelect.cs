@@ -235,8 +235,6 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started && isConfirmed && hasEntered)
         {
-            if (selectedCharIndex == playersUI.Count)
-                selectedCharIndex = 0;
             do
             {
                 selectedCharIndex++;
@@ -253,8 +251,6 @@ public class PlayerSelect : MonoBehaviour, Inputs.IPlayerActions
     {
         if (context.started && isConfirmed && hasEntered)
         {
-            if (selectedCharIndex == -1)
-                selectedCharIndex = playersUI.Count - 1;
             do
             {
                 selectedCharIndex--;
