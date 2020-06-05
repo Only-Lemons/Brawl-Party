@@ -54,6 +54,7 @@ public class Maze : MiniGame
         players = new List<PlayerController>(FindObjectsOfType<PlayerController>());
         randomWall = GameObject.FindGameObjectsWithTag("FakeWall");
         jasonsFear = GameObject.FindGameObjectsWithTag("Enemy");
+        timeWallRandomize = 10;
         timeWR = timeWallRandomize;
 
         if (GameManager.Instance != null)
