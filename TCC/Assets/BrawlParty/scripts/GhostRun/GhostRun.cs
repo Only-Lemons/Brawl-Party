@@ -102,9 +102,6 @@ public class GhostRun : MiniGame
     {
         foreach (PlayerController player in players)
         {
-            if (!_playerisinvencible[player])
-                return;
-           
             _timeinvenciblelayer[player] -= Time.deltaTime;
             if (_timeinvenciblelayer[player] <= 0)
             {
@@ -124,7 +121,7 @@ public class GhostRun : MiniGame
         if (!_playerisinvencible[player])
         {
 
-            GameManager.Instance.particleManager.getParticula("morte", player.transform);
+            //GameManager.Instance.particleManager.getParticula("morte", player.transform);
             _isDead[player] = true;
            
             player.gameObject.SetActive(false);

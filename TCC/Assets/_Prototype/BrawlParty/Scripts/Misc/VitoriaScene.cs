@@ -23,6 +23,22 @@ public class VitoriaScene : MonoBehaviour
         //GO.GetComponent<Animator>().runtimeAnimatorController = animator;
 
         //playerMaterial.color = GameManager.Instance.corVencedor;
+
+        for (int i = 0; i < GameManager.Instance.playersPanels.Count; i++)
+        {
+            for (int j = 0; j < GameManager.Instance.playersPanels.Count; j++)
+            {
+                if(j!=i)
+                {
+                    if (GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]] == GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[j]])
+                        if (GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]] == GameManager.Instance.maiorPonto)
+                            if (GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[j]] == GameManager.Instance.maiorPonto)
+                                GameManager.Instance.empatou = true;
+                }
+            }
+        }
+        
+
         if (GameManager.Instance.empatou)
         {
             AudioController.Instance.PlayAudio("Win");

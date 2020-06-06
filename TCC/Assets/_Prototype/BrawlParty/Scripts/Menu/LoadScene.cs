@@ -66,14 +66,14 @@ public class LoadScene : MonoBehaviour
         {
             case 11:
                 minigameName.text = "Maze";
-                minigameDescription.text = "Escape os the gloves, walk with the left analog and jump with 'A'";
+                minigameDescription.text = "Run to the maze's exit, avoiding ghosts and steal the key from your competitors with 'A'";
                 videoPlayer.clip = videosGameplay[3];
                 spriteMinigameP.sprite = spritesMinigames[0];
                 spriteMinigameG.sprite = spritesMinigames[0];
                 break;
             case 12:
                 minigameName.text = "Punch Escape";
-                minigameDescription.text = "Escape os the gloves, walk with the left analog and jump with 'A'";
+                minigameDescription.text = "Escape of the gloves, walk with the left analog and jump with 'A'";
                 videoPlayer.clip = videosGameplay[0];
                 spriteMinigameP.sprite = spritesMinigames[0];
                 spriteMinigameG.sprite = spritesMinigames[0];

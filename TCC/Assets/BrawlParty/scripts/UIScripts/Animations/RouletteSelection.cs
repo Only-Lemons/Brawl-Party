@@ -13,6 +13,7 @@ public class RouletteSelection : MonoBehaviour
     private Image[] Opacity => _opacity;
     private EventSystem EventSystem => _eventSystem;
     private GameObject SelectMinigamePanel => _selectMinigamePanel;
+    private bool travar = false;
 
     #region SerializeFields
     [SerializeField]
@@ -46,8 +47,10 @@ public class RouletteSelection : MonoBehaviour
 
     public void UpdateLeftSelected() 
     {
+        StartCoroutine(Cooldown());
         Sequence seq = DOTween.Sequence();
         seq.Play();
+        //seq.OnStart(() => { travar = true; });
 
         seq.Insert(0, Objects[0].DOLocalMoveX(Positions[4].localPosition.x, scrollSpeed));
         seq.Join(Objects[1].DOLocalMoveX(Positions[0].localPosition.x, scrollSpeed));
@@ -67,14 +70,16 @@ public class RouletteSelection : MonoBehaviour
         seq.Join(Opacity[4].DOFade(0.5f, scrollSpeed));
 
         seq.OnComplete(UpdateArrayLeft);
+        //seq.OnComplete(()=> { travar = false; UpdateArrayLeft(); });
 
     }
 
     public void UpdateRightSelected()
     {
+        StartCoroutine(Cooldown());
         Sequence seq = DOTween.Sequence();
         seq.Play();
-
+        //seq.OnStart(() => { travar = true; });
         seq.Insert(0, Objects[0].DOLocalMoveX(Positions[1].localPosition.x, scrollSpeed));
         seq.Join(Objects[1].DOLocalMoveX(Positions[2].localPosition.x, scrollSpeed));
         seq.Join(Objects[2].DOLocalMoveX(Positions[3].localPosition.x, scrollSpeed));
@@ -93,6 +98,7 @@ public class RouletteSelection : MonoBehaviour
         seq.Join(Opacity[4].DOFade(0.75f, scrollSpeed));
 
         seq.OnComplete(UpdateArrayRight);
+        //seq.OnComplete(() => { travar = false; UpdateArrayLeft(); });
     }
 
     private void UpdateArrayLeft() 
@@ -137,16 +143,23 @@ public class RouletteSelection : MonoBehaviour
 
     void OnGoRight()
     {
-        if(_selectMinigamePanel.activeSelf)
+        if(_selectMinigamePanel.activeSelf && travar == false)
         UpdateRightSelected();
     }
     void OnGoLeft()
     {
-        if (_selectMinigamePanel.activeSelf)
+        if (_selectMinigamePanel.activeSelf && travar == false)
             UpdateLeftSelected();
     }
     public void Debug() 
     {
         UnityEngine.Debug.Log("Teste" + Objects[2].name);
+    }
+
+    IEnumerator Cooldown()
+    {
+        travar = true;
+        yield return new WaitForSeconds(0.65f);
+        travar = false;
     }
 }

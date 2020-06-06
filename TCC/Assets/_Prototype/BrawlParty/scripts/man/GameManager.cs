@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public Text necessarioMaisJogadores;
     public Color corVencedor;
     public GameObject objVencedor;
-    public bool empatou;
+    public bool empatou = false;
 
     public bool end = false;
     public int maiorPonto;
@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+
+        empatou = false;
     }
 
     private void Awake()
@@ -69,9 +71,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        empatou = false;
         quantTGames = 4;
-
-
     }
 
     private void FixedUpdate()
@@ -148,19 +149,19 @@ public class GameManager : MonoBehaviour
 
     void  MaiorPonto()
     {
-        for (int i = 0; i < pontosGeral.Length; i++)
+        for (int i = 0; i < playersPanels.Count; i++)
         {
-            for (int j = 0; j < pontosGeral.Length; j++)
+            for (int j = 0; j < playersPanels.Count; j++)
             {
                 if (i != j)
                 {
-                    if (pontosGeral[i] > maiorPonto)
+                    if (GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]] > maiorPonto)
                     {
                         maiorPos = i;
 
-                        maiorPonto = GameManager.Instance.pontosGeral[i];
-                        if (GameManager.Instance.pontosGeral[i] == GameManager.Instance.pontosGeral[j]) ;
-                            //maiorPonto2 = GameManager.Instance.pontosGeral[j];
+                        maiorPonto = GameManager.Instance.playersPontos[GameManager.Instance.playersPanels[i]];
+                        //if (GameManager.Instance.pontosGeral[i] == GameManager.Instance.pontosGeral[j]) ;
+                        //    maiorPonto2 = GameManager.Instance.pontosGeral[j];
                     }
                 }
             }

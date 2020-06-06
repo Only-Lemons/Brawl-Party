@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Reflection.Emit;
+using UnityEngine.PlayerLoop;
 
 public class Maze : MiniGame
 {
@@ -101,6 +102,7 @@ public class Maze : MiniGame
         UnbuggPlayerNonKey();
         PlayerStuned();
         WinRule();
+        RandomWallInsert();
     }
 
     void ChoicePathJason()
@@ -162,7 +164,6 @@ public class Maze : MiniGame
         if (!TimeGameController.Instance.Comecou() && !TimeGameController.Instance.Acabou())
             return;
         ChoicePathJason();
-        RandomWallInsert();
         //FearLevel();
         FriendlyLevel();
     }
